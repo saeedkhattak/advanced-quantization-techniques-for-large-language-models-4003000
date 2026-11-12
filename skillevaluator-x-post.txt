@@ -1,0 +1,205 @@
+════════ VERSION 1: STORY ════════
+
+𝗡𝗩𝗜𝗗𝗜𝗔 𝗕𝘂𝗶𝗹𝘁 𝗔 𝗪𝗮𝘆 𝗧𝗼 𝗖𝗵𝗲𝗰𝗸 𝗜𝗳 𝗬𝗼𝘂𝗿 𝗔𝗴𝗲𝗻𝘁 𝗦𝗸𝗶𝗹𝗹 𝗔𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝗛𝗲𝗹𝗽𝘀
+
+You write a skill for Claude Code or Codex. A folder, a SKILL.md, a few scripts. The agent seems a bit better with it. Maybe.
+
+𝗕𝘂𝘁 "𝘀𝗲𝗲𝗺𝘀 𝗯𝗲𝘁𝘁𝗲𝗿" 𝗶𝘀 𝗮𝗹𝗹 𝗺𝗼𝘀𝘁 𝗼𝗳 𝘂𝘀 𝗵𝗮𝘃𝗲. Few people run the same task with and without the skill and compare.
+
+NVIDIA's SkillEvaluator does that comparison for you. It's open source (Apache 2.0) and it works in three steps.
+
+𝗦𝘁𝗲𝗽 𝗼𝗻𝗲 𝗶𝘀 𝘃𝗮𝗹𝗶𝗱𝗮𝘁𝗶𝗼𝗻. Is the skill safe and well formed? It runs security scanners (SkillSpector, Gitleaks, Semgrep if you want it). If a scanner can't run, the result is marked 𝘐𝘕𝘊𝘖𝘔𝘗𝘓𝘌𝘛𝘌 and the check fails. It doesn't quietly pass.
+
+𝗦𝘁𝗲𝗽 𝘁𝘄𝗼 𝗶𝘀 𝗱𝗲𝗱𝘂𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻. It uses embeddings to find guidance that repeats inside one skill, or overlaps with other skills in your catalog.
+
+𝗦𝘁𝗲𝗽 𝘁𝗵𝗿𝗲𝗲 𝗶𝘀 𝘁𝗵𝗲 𝗿𝗲𝗮𝗹 𝘁𝗲𝘀𝘁. It runs Codex, Claude Code or OpenCode on the same tasks twice inside a sandbox, once with the skill and once without. The gap is called 𝗦𝗸𝗶𝗹𝗹 𝗟𝗶𝗳𝘁.
+
+There's a nice detail here. If the agent never loads the skill at all, the report says "𝘐𝘕𝘊𝘖𝘕𝘊𝘓𝘜𝘚𝘐𝘝𝘌: 𝘴𝘬𝘪𝘭𝘭 𝘯𝘦𝘷𝘦𝘳 𝘢𝘤𝘵𝘪𝘷𝘢𝘵𝘦𝘥" instead of giving you a number that means nothing.
+
+𝗙𝗼𝗿 𝗽𝗲𝗼𝗽𝗹𝗲 𝘂𝘀𝗶𝗻𝗴 𝘀𝗸𝗶𝗹𝗹𝘀: you can run a quality check with no API key, no GPU and no Docker. The bundled example scores 𝟴𝟰.𝟱/𝟭𝟬𝟬, and the default pass line is 𝟳𝟬.
+
+𝗙𝗼𝗿 𝗽𝗲𝗼𝗽𝗹𝗲 𝗯𝘂𝗶𝗹𝗱𝗶𝗻𝗴 𝘀𝗸𝗶𝗹𝗹𝘀: there are ready GitHub and GitLab templates, so every pull request that touches a skill gets checked.
+
+NVIDIA's own numbers are good. On 𝟯𝟬𝟬+ 𝗼𝗳 𝗶𝘁𝘀 𝗼𝘄𝗻 𝘀𝗸𝗶𝗹𝗹𝘀, it reports average lift of +𝟰𝟭 𝗽𝗼𝗶𝗻𝘁𝘀 on correctness and +𝟯𝟵 on effectiveness.
+
+𝗢𝗻𝗲 𝗰𝗮𝘃𝗲𝗮𝘁: 𝘁𝗵𝗼𝘀𝗲 𝗻𝘂𝗺𝗯𝗲𝗿𝘀 𝗮𝗿𝗲 𝘀𝗲𝗹𝗳-𝗿𝗲𝗽𝗼𝗿𝘁𝗲𝗱, measured on NVIDIA's skills with Claude Code and Codex. 𝗔𝗯𝗼𝘂𝘁 𝟴𝟱% 𝗼𝗳 𝘁𝗵𝗼𝘀𝗲 𝘀𝗸𝗶𝗹𝗹𝘀 𝗿𝗮𝗻 𝗼𝗻𝗹𝘆 𝗼𝗻𝗲 𝗮𝘁𝘁𝗲𝗺𝗽𝘁. Live agent runs vary from run to run.
+
+The paper behind it is more careful. Across 𝟵𝟰𝟳 𝗽𝗮𝗶𝗿𝗲𝗱 𝗰𝗮𝘀𝗲𝘀 from 58 production skills, the skill helped in 𝟳𝟮.𝟴% of them. So in roughly one case out of four, it didn't help.
+
+This isn't brand new. Version 0.1.0 shipped in August and it's now at 𝟬.𝟴.𝟬 (Nov 5). SkillsBench and Anthropic's skill-creator already compare with-skill and without-skill runs. NVIDIA's version adds security gates, dedup and CI around that idea.
+
+It's also labelled 𝗘𝘅𝗽𝗲𝗿𝗶𝗺𝗲𝗻𝘁𝗮𝗹, with no support SLA. Live runs cost real tokens.
+
+𝗦𝗸𝗶𝗹𝗹𝘀 𝗮𝗿𝗲 𝗽𝗿𝗼𝗺𝗽𝘁𝘀 𝘁𝗵𝗮𝘁 𝘀𝗵𝗶𝗽 𝗹𝗶𝗸𝗲 𝗰𝗼𝗱𝗲, 𝗮𝗻𝗱 𝗻𝗼𝘄 𝘁𝗵𝗲𝘆 𝗰𝗮𝗻 𝗴𝗲𝘁 𝘁𝗲𝘀𝘁𝗲𝗱 𝗹𝗶𝗸𝗲 𝗰𝗼𝗱𝗲.
+
+Links in reply 👇
+
+
+════════ VERSION 2: KARPATHY STYLE ════════
+
+𝗬𝗼𝘂𝗿 𝗔𝗴𝗲𝗻𝘁 𝗦𝗸𝗶𝗹𝗹 𝗜𝘀 𝗔 𝗛𝘆𝗽𝗼𝘁𝗵𝗲𝘀𝗶𝘀
+
+Been thinking about what an agent skill really is.
+
+It's a folder of text that you hope changes how a model behaves. That's a hypothesis. 𝗔𝗻𝗱 𝗶𝘁 𝘂𝘀𝘂𝗮𝗹𝗹𝘆 𝘀𝗵𝗶𝗽𝘀 𝘄𝗶𝘁𝗵𝗼𝘂𝘁 𝗯𝗲𝗶𝗻𝗴 𝘁𝗲𝘀𝘁𝗲𝗱.
+
+NVIDIA's SkillEvaluator (open source, Apache 2.0) is interesting to me less as a tool and more as a stance.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝘁𝗵𝗲 𝘀𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝘀𝗰𝗮𝗻𝗻𝗶𝗻𝗴, 𝗶𝘁'𝘀 𝘁𝗵𝗲 𝗰𝗼𝗻𝘁𝗿𝗼𝗹 𝗴𝗿𝗼𝘂𝗽.
+
+Tier 3 runs a real agent (Codex, Claude Code or OpenCode) on the same tasks twice in a sandbox. Once with the skill, once without. The difference is "Skill Lift."
+
+That's just an A/B test. Very boring. Which is exactly why it matters, because the default today is vibes.
+
+The analogy I keep coming back to is unit tests. Nobody thinks a function works because it reads well. Skills have been getting a pass on that, imo.
+
+The other two tiers are housekeeping, but useful housekeeping. Tier 1 checks safety and structure with scanners. Tier 2 uses embeddings to catch guidance that repeats or overlaps.
+
+One small design choice I like a lot. 𝗜𝗳 𝘁𝗵𝗲 𝗮𝗴𝗲𝗻𝘁 𝗻𝗲𝘃𝗲𝗿 𝗮𝗰𝘁𝗶𝘃𝗮𝘁𝗲𝘀 𝘁𝗵𝗲 𝘀𝗸𝗶𝗹𝗹, 𝘁𝗵𝗲 𝗿𝗲𝘀𝘂𝗹𝘁 𝗶𝘀 "𝗜𝗡𝗖𝗢𝗡𝗖𝗟𝗨𝗦𝗜𝗩𝗘" rather than a lift number. A skill that never loads can't help, and pretending otherwise would poison the data.
+
+Now the numbers, with care.
+
+NVIDIA reports +𝟰𝟭 𝗽𝗼𝗶𝗻𝘁𝘀 correctness and +𝟯𝟵 effectiveness across 300+ of its own skills. Self-reported, mostly 𝗼𝗻𝗲 𝗮𝘁𝘁𝗲𝗺𝗽𝘁 𝗽𝗲𝗿 𝘀𝗸𝗶𝗹𝗹, and agent runs are noisy.
+
+The paper is more sober. 𝟵𝟰𝟳 𝗽𝗮𝗶𝗿𝗲𝗱 𝗰𝗮𝘀𝗲𝘀, mean composite lift of 𝟬.𝟮𝟭, positive in 𝟳𝟮.𝟴% of cases. I think that "roughly a quarter didn't help" figure is the most honest number in the whole release.
+
+It's not a new idea either. SkillsBench did paired with/without runs back in February, and Anthropic's skill-creator does baselines too.
+
+What I'd actually want to see: 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘴𝘬𝘪𝘭𝘭𝘴 𝘳𝘶𝘯 𝘸𝘪𝘵𝘩 5+ 𝘢𝘵𝘵𝘦𝘮𝘱𝘵𝘴, 𝘸𝘪𝘵𝘩 𝘤𝘰𝘯𝘧𝘪𝘥𝘦𝘯𝘤𝘦 𝘪𝘯𝘵𝘦𝘳𝘷𝘢𝘭𝘴, 𝘢𝘯𝘥 𝘢 𝘭𝘪𝘴𝘵 𝘰𝘧 𝘵𝘩𝘦 𝘴𝘬𝘪𝘭𝘭𝘴 𝘵𝘩𝘢𝘵 𝘮𝘢𝘥𝘦 𝘵𝘩𝘪𝘯𝘨𝘴 𝘸𝘰𝘳𝘴𝘦.
+
+Links in reply 👇
+
+
+════════ VERSION 3: SIMON WILLISON STYLE ════════
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗡𝗩𝗜𝗗𝗜𝗔 𝗦𝗸𝗶𝗹𝗹𝗘𝘃𝗮𝗹𝘂𝗮𝘁𝗼𝗿
+
+NVIDIA SkillEvaluator is an open source (Apache 2.0) Python tool for testing agent skills, the folders of instructions defined by the Agent Skills spec.
+
+The README describes it like this:
+
+"𝘴𝘵𝘢𝘳𝘵 𝘸𝘪𝘵𝘩 𝘲𝘶𝘢𝘭𝘪𝘵𝘺 𝘤𝘩𝘦𝘤𝘬𝘴, 𝘵𝘩𝘦𝘯 𝘤𝘰𝘮𝘱𝘢𝘳𝘦 𝘭𝘪𝘷𝘦 𝘳𝘶𝘯𝘴 𝘸𝘪𝘵𝘩 𝘢𝘯𝘥 𝘸𝘪𝘵𝘩𝘰𝘶𝘵 𝘢 𝘴𝘬𝘪𝘭𝘭."
+
+It has three tiers, and each runs on its own:
+
+• 𝗧𝗶𝗲𝗿 𝟭, 𝘃𝗮𝗹𝗶𝗱𝗮𝘁𝗶𝗼𝗻: "Is the skill safe and well-formed?" Uses SkillSpector and Gitleaks, Semgrep optional
+• 𝗧𝗶𝗲𝗿 𝟮, 𝗱𝗲𝗱𝘂𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻: "Does guidance repeat or overlap?" Embeddings plus a chat model
+• 𝗧𝗶𝗲𝗿 𝟯, 𝗹𝗶𝘃𝗲 𝗲𝘃𝗮𝗹𝘂𝗮𝘁𝗶𝗼𝗻: "Does the skill help the agent?" Runs a real agent in a Harbor sandbox
+
+𝗧𝘄𝗼 𝘁𝗵𝗶𝗻𝗴𝘀 𝗜 𝗳𝗼𝘂𝗻𝗱 𝗴𝗲𝗻𝘂𝗶𝗻𝗲𝗹𝘆 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴.
+
+First, the keyless path. This needs no API key, GPU or Docker:
+
+𝚞𝚟 𝚛𝚞𝚗 --𝚙𝚢𝚝𝚑𝚘𝚗 𝟹.𝟷𝟹 𝚜𝚔𝚒𝚕𝚕𝚎𝚟𝚊𝚕𝚞𝚊𝚝𝚘𝚛 𝚚𝚞𝚊𝚕𝚒𝚝𝚢-𝚌𝚑𝚎𝚌𝚔 <𝚜𝚔𝚒𝚕𝚕-𝚍𝚒𝚛>
+
+The bundled example scores 𝟴𝟰.𝟱/𝟭𝟬𝟬 (𝗕) against a default threshold of 70.
+
+Second, the activation check. The Tier 3 docs say that if no with-skill trial loaded the skill, the result is "𝘐𝘕𝘊𝘖𝘕𝘊𝘓𝘜𝘚𝘐𝘝𝘌: 𝘴𝘬𝘪𝘭𝘭 𝘯𝘦𝘷𝘦𝘳 𝘢𝘤𝘵𝘪𝘷𝘢𝘵𝘦𝘥." That's a failure mode a lot of skill authors probably don't know they have.
+
+Supported agents for live runs: codex, claude-code and opencode. Version 0.8.0 shipped on Nov 5.
+
+𝗧𝗵𝗶𝗻𝗴𝘀 𝘁𝗼 𝗯𝗲 𝗰𝗮𝗿𝗲𝗳𝘂𝗹 𝗮𝗯𝗼𝘂𝘁:
+
+• 𝗧𝗵𝗲 𝗵𝗲𝗮𝗱𝗹𝗶𝗻𝗲 𝗻𝘂𝗺𝗯𝗲𝗿𝘀 𝗮𝗿𝗲 𝗡𝗩𝗜𝗗𝗜𝗔'𝘀 𝗼𝘄𝗻. +41 correctness and +39 effectiveness across 300+ NVIDIA skills, on Claude Code and Codex, with about 85% of skills on a single attempt
+• The paper reports a mean composite lift of 0.2134 over 947 paired cases, positive in 𝟳𝟮.𝟴%
+• 𝗦𝘂𝗽𝗽𝗼𝗿𝘁 𝗹𝗲𝘃𝗲𝗹 𝗶𝘀 "𝗘𝘅𝗽𝗲𝗿𝗶𝗺𝗲𝗻𝘁𝗮𝗹", best effort, no SLA
+• Tier 3 costs money. The docs give the trial count as cases × agents × attempts × arms and don't estimate dollars
+
+Prior art worth reading: SkillsBench (Feb 2026), and Anthropic's skill-creator, which runs with-skill and baseline subagents side by side.
+
+Links in reply 👇
+
+
+════════ VERSION 4: SWYX STYLE ════════
+
+𝗦𝗸𝗶𝗹𝗹 𝗘𝘃𝗮𝗹𝘀 𝗔𝗿𝗲 𝗕𝗲𝗰𝗼𝗺𝗶𝗻𝗴 𝗧𝗵𝗲𝗶𝗿 𝗢𝘄𝗻 𝗖𝗮𝘁𝗲𝗴𝗼𝗿𝘆
+
+Agent skills went from "drop a markdown file in a folder" to something people now want CI for.
+
+𝗧𝗵𝗲 𝗻𝗲𝘄 𝗹𝗮𝘆𝗲𝗿 𝗶𝘀 𝘀𝗸𝗶𝗹𝗹 𝗲𝘃𝗮𝗹𝘀: proving a skill earns its context window.
+
+Quick map of who's doing what:
+
+• 𝗦𝗸𝗶𝗹𝗹𝘀𝗕𝗲𝗻𝗰𝗵 (𝗙𝗲𝗯 𝟮𝟬𝟮𝟲): a research benchmark. Paired runs with and without curated skills, across dozens of tasks
+• 𝗔𝗻𝘁𝗵𝗿𝗼𝗽𝗶𝗰 𝘀𝗸𝗶𝗹𝗹-𝗰𝗿𝗲𝗮𝘁𝗼𝗿: an authoring loop. Spawns with-skill and baseline runs, reports pass rate deltas
+• 𝗛𝗮𝗿𝗯𝗼𝗿: the sandbox runner, from the Terminal-Bench team. Runs Claude Code, Codex and others
+• 𝗡𝗩𝗜𝗗𝗜𝗔 𝗦𝗸𝗶𝗹𝗹𝗘𝘃𝗮𝗹𝘂𝗮𝘁𝗼𝗿: the pipeline. Scanners, dedup, live A/B runs on Harbor, plus CI templates
+
+𝗦𝗸𝗶𝗹𝗹𝗘𝘃𝗮𝗹𝘂𝗮𝘁𝗼𝗿 𝗶𝘀 𝘁𝗵𝗲 𝗼𝗻𝗲 𝘁𝗵𝗮𝘁 𝗹𝗼𝗼𝗸𝘀 𝗺𝗼𝘀𝘁 𝗹𝗶𝗸𝗲 𝗶𝗻𝗳𝗿𝗮𝘀𝘁𝗿𝘂𝗰𝘁𝘂𝗿𝗲 𝗿𝗮𝘁𝗵𝗲𝗿 𝘁𝗵𝗮𝗻 𝗿𝗲𝘀𝗲𝗮𝗿𝗰𝗵.
+
+Three tiers. Security and structure checks. Embedding-based overlap detection. Then live runs with Codex, Claude Code or OpenCode, with and without the skill, scored as "Skill Lift" across security, correctness, discoverability, effectiveness and efficiency.
+
+It ships GitHub and GitLab templates, so a PR that touches a skill gets scanned automatically. OpenClaw is piloting it on ClawHub, and Nous Research has tested it in Hermes Agent.
+
+NVIDIA's own claim is +𝟰𝟭 𝗽𝗼𝗶𝗻𝘁𝘀 on correctness across 300+ of its skills. 𝗦𝗲𝗹𝗳-𝗿𝗲𝗽𝗼𝗿𝘁𝗲𝗱, 𝗺𝗼𝘀𝘁𝗹𝘆 𝘀𝗶𝗻𝗴𝗹𝗲 𝗮𝘁𝘁𝗲𝗺𝗽𝘁. The paper's version is calmer: lift positive in 𝟳𝟮.𝟴% of 947 paired cases.
+
+It's Apache 2.0, labelled 𝗘𝘅𝗽𝗲𝗿𝗶𝗺𝗲𝗻𝘁𝗮𝗹, and on v0.8.0 since Nov 5.
+
+My take: 𝘀𝗸𝗶𝗹𝗹𝘀 𝗮𝗿𝗲 𝘁𝘂𝗿𝗻𝗶𝗻𝗴 𝗶𝗻𝘁𝗼 𝗽𝗮𝗰𝗸𝗮𝗴𝗲𝘀, 𝗮𝗻𝗱 𝗽𝗮𝗰𝗸𝗮𝗴𝗲𝘀 𝗻𝗲𝗲𝗱 𝗿𝗲𝗴𝗶𝘀𝘁𝗿𝗶𝗲𝘀, 𝘀𝗰𝗮𝗻𝗻𝗲𝗿𝘀 𝗮𝗻𝗱 𝘁𝗲𝘀𝘁𝘀. The marketplace that shows a lift score next to each skill wins trust first.
+
+Links in reply 👇
+
+
+════════ VERSION 5: HAMEL HUSAIN STYLE ════════
+
+𝗕𝗲𝗳𝗼𝗿𝗲 𝗬𝗼𝘂 𝗧𝗿𝘂𝘀𝘁 𝗔 𝗦𝗸𝗶𝗹𝗹 𝗟𝗶𝗳𝘁 𝗦𝗰𝗼𝗿𝗲
+
+NVIDIA open-sourced SkillEvaluator, a three-tier tool for testing agent skills. The part that matters is Tier 3: run the agent with and without the skill, then compare.
+
+That's the right shape. 𝗣𝗹𝗲𝗻𝘁𝘆 𝗼𝗳 𝘀𝗸𝗶𝗹𝗹𝘀 𝘀𝗵𝗶𝗽 𝘄𝗶𝘁𝗵𝗼𝘂𝘁 𝗲𝘃𝗲𝗿 𝗯𝗲𝗶𝗻𝗴 𝗰𝗼𝗺𝗽𝗮𝗿𝗲𝗱 𝘁𝗼 𝗮 𝗯𝗮𝘀𝗲𝗹𝗶𝗻𝗲.
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗴𝗶𝘃𝗲𝘀 𝘆𝗼𝘂:
+
+• 𝗔 𝗿𝗲𝗮𝗹 𝗰𝗼𝗻𝘁𝗿𝗼𝗹 𝗴𝗿𝗼𝘂𝗽: same tasks, same sandbox, skill on vs. off
+• 𝗔𝗰𝘁𝗶𝘃𝗮𝘁𝗶𝗼𝗻 𝗰𝗵𝗲𝗰𝗸𝘀: if the skill never loads, you get "INCONCLUSIVE", not a fake score
+• 𝗦𝘁𝗮𝘁𝗶𝗰 𝗴𝗮𝘁𝗲𝘀: secret and security scanning, and they fail closed when a scanner can't run
+• 𝗖𝗜 𝗵𝗼𝗼𝗸𝘀: GitHub and GitLab templates for every PR
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗴𝗶𝘃𝗲 𝘆𝗼𝘂:
+
+• 𝗬𝗼𝘂𝗿 𝗲𝘃𝗮𝗹 𝗰𝗮𝘀𝗲𝘀. With no dataset it builds one starter case with limited coverage, and generated templates skip negative cases unless you write them
+• 𝗦𝘁𝗮𝘁𝗶𝘀𝘁𝗶𝗰𝗮𝗹 𝗰𝗼𝗻𝗳𝗶𝗱𝗲𝗻𝗰𝗲 by default. NVIDIA's own +𝟰𝟭 𝗽𝗼𝗶𝗻𝘁 headline ran about 𝟴𝟱% 𝗼𝗳 𝘀𝗸𝗶𝗹𝗹𝘀 𝗼𝗻 𝗼𝗻𝗲 𝗮𝘁𝘁𝗲𝗺𝗽𝘁
+• Free runs. Cost scales with cases × agents × attempts × arms
+
+The paper's numbers are worth a look: 𝟳𝟮.𝟴% of 947 paired cases improved. Which means a real share didn't. You want to know which ones in your set.
+
+If you're going to use it, here's the order I'd go in:
+
+1. Write 10 to 20 test cases from real tasks your users run, including a few where the skill should NOT fire
+2. Run the baseline arm first, so you know what the agent does alone
+3. Run with the skill, with --𝚗-𝚊𝚝𝚝𝚎𝚖𝚙𝚝𝚜 at 3 or more
+4. Compare per case, not just the average
+5. 𝗥𝗲𝗮𝗱 𝘁𝗵𝗲 𝘁𝗿𝗮𝗰𝗲𝘀 for every case where lift was zero or negative
+
+The tool runs the experiment. Deciding what counts as "better" is still your job.
+
+Links in reply 👇
+
+
+════════ VERSION 6: ETHAN MOLLICK STYLE ════════
+
+𝗗𝗼𝗲𝘀 𝗧𝗲𝗮𝗰𝗵𝗶𝗻𝗴 𝗔𝗻 𝗔𝗜 𝗔 "𝗦𝗸𝗶𝗹𝗹" 𝗔𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝗠𝗮𝗸𝗲 𝗜𝘁 𝗕𝗲𝘁𝘁𝗲𝗿?
+
+AI agents can now be given "skills." Think of a recipe card you hand a new cook: how your team formats reports, how to use a tool, what to check before sending.
+
+People share lots of these. 𝗙𝗲𝘄 𝗽𝗲𝗼𝗽𝗹𝗲 𝗰𝗵𝗲𝗰𝗸 𝘄𝗵𝗲𝘁𝗵𝗲𝗿 𝘁𝗵𝗲 𝗿𝗲𝗰𝗶𝗽𝗲 𝗰𝗮𝗿𝗱 𝗵𝗲𝗹𝗽𝘀.
+
+NVIDIA has released a free, open-source tool called SkillEvaluator that checks. The method is simple and old: give the agent the same job twice, once with the card and once without, and compare.
+
+It also screens the card first, the way you'd check an app before installing it. Is anything unsafe in it? Does it repeat advice that's already in another card?
+
+𝗦𝗼, 𝗱𝗼 𝘀𝗸𝗶𝗹𝗹𝘀 𝗵𝗲𝗹𝗽? The evidence points both ways.
+
+NVIDIA says yes, strongly. Across more than 300 of its own skills, correctness went up by 𝟰𝟭 𝗽𝗼𝗶𝗻𝘁𝘀 on average. 𝗕𝘂𝘁 𝗡𝗩𝗜𝗗𝗜𝗔 𝗺𝗲𝗮𝘀𝘂𝗿𝗲𝗱 𝗶𝘁𝘀 𝗼𝘄𝗻 𝘀𝗸𝗶𝗹𝗹𝘀, mostly with a single try each, and AI agents don't do the same thing twice.
+
+NVIDIA's research paper is more measured. Across 𝟵𝟰𝟳 𝗽𝗮𝗶𝗿𝗲𝗱 𝘁𝗲𝘀𝘁𝘀, the skill helped in 𝟳𝟮.𝟴%. That's a solid majority, and it also means in roughly a quarter of tests it didn't help.
+
+An earlier independent study, SkillsBench, found something similar and a little surprising. 𝗦𝗸𝗶𝗹𝗹𝘀 𝘄𝗿𝗶𝘁𝘁𝗲𝗻 𝗯𝘆 𝗽𝗲𝗼𝗽𝗹𝗲 𝗵𝗲𝗹𝗽𝗲𝗱 𝗼𝗻 𝗮𝘃𝗲𝗿𝗮𝗴𝗲. 𝗦𝗸𝗶𝗹𝗹𝘀 𝘁𝗵𝗲 𝗔𝗜 𝘄𝗿𝗼𝘁𝗲 𝗳𝗼𝗿 𝗶𝘁𝘀𝗲𝗹𝗳 𝗴𝗮𝘃𝗲 𝗹𝗶𝘁𝘁𝗹𝗲 𝗼𝗿 𝗻𝗼 𝗯𝗲𝗻𝗲𝗳𝗶𝘁.
+
+What we know: good skills often help, and the effect varies a lot. What we don't know yet: how these results hold up when outside groups test them.
+
+The tool is labelled experimental, and running the full tests costs money.
+
+𝘐𝘧 𝘦𝘷𝘦𝘳𝘺 𝘈𝘐 𝘴𝘬𝘪𝘭𝘭 𝘤𝘢𝘮𝘦 𝘸𝘪𝘵𝘩 𝘢 𝘵𝘦𝘴𝘵 𝘴𝘤𝘰𝘳𝘦, 𝘸𝘰𝘶𝘭𝘥 𝘺𝘰𝘶 𝘴𝘵𝘪𝘭𝘭 𝘪𝘯𝘴𝘵𝘢𝘭𝘭 𝘵𝘩𝘦 𝘰𝘯𝘦𝘴 𝘸𝘪𝘵𝘩𝘰𝘶𝘵 𝘰𝘯𝘦?
+
+Links in reply 👇
