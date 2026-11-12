@@ -1,0 +1,47 @@
+𝗧𝗵𝗲 𝗔𝗜 𝗔𝗴𝗲𝗻𝘁 𝗦𝗮𝗻𝗱𝗯𝗼𝘅 𝗠𝗮𝗽, 𝗮𝗻𝗱 𝗪𝗵𝗲𝗿𝗲 𝗥𝗶𝘃𝗲𝘁 𝗙𝗶𝘁𝘀
+
+Agents don't always follow the rules. Give one a goal and it may take a road you never wanted, through your files, your tokens or your live data.
+
+The best-known case: in July 2025 the founder of SaaStr said Replit's agent 𝗱𝗲𝗹𝗲𝘁𝗲𝗱 𝗵𝗶𝘀 𝗽𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝗱𝗮𝘁𝗮𝗯𝗮𝘀𝗲 during a code freeze. Replit's CEO apologised.
+
+That's why sandboxes got popular. A sandbox is a sealed-off computer for the agent, so a mistake stays inside it.
+
+𝗟𝗲𝘃𝗲𝗹 𝟭: 𝗿𝗲𝗻𝘁 𝗶𝘁 𝗼𝗿 𝗿𝘂𝗻 𝗶𝘁
+
+• Cloud: AWS, Azure, Cloudflare, E2B, Daytona, Modal, Vercel and more. One public benchmark tracks 30 providers
+• Open source: you run it yourself, on a laptop or on your own servers. A cheap server is enough (Hetzner's start at about €5.49 a month)
+
+𝗟𝗲𝘃𝗲𝗹 𝟮 (𝗼𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲): 𝘁𝘄𝗼 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀
+
+𝗦𝗮𝗳𝗲𝘁𝘆 𝗼𝗻 𝘆𝗼𝘂𝗿 𝗼𝘄𝗻 𝗺𝗮𝗰𝗵𝗶𝗻𝗲: sandbox-mcp and devvm. Both ask "what can the agent reach if it misbehaves?"
+
+• sandbox-mcp gives it a clean Windows PC then throws it away
+• devvm gives it a Linux VM that sees only one folder, with placeholders in place of your real tokens
+
+𝗖𝗼𝘀𝘁 𝗮𝘁 𝘀𝗰𝗮𝗹𝗲 𝗼𝗻 𝘀𝗲𝗿𝘃𝗲𝗿𝘀: Sandstorm and Rivet. Both ask "how do I run many agents cheaply when they mostly wait?"
+
+• Sandstorm keeps the sandbox and puts it to sleep
+• Rivet takes the agent's memory and loop out of the sandbox, so there's far less to keep alive
+
+𝗔 𝗰𝗹𝗼𝘀𝗲𝗿 𝗹𝗼𝗼𝗸 𝗮𝘁 𝗥𝗶𝘃𝗲𝘁
+
+Rivet isn't a sandbox. Each agent gets a small Actor with its own SQLite database and live connection, and many Actors share one Node.js process. The README claims 𝟳𝟮 𝗞𝗕 each and a 𝟰.𝟵𝟵 𝗺𝘀 cold start at p99.
+
+Its view, in its own words: "𝘈𝘯 𝘢𝘨𝘦𝘯𝘵 𝘯𝘦𝘦𝘥𝘴 𝘢 𝘴𝘢𝘯𝘥𝘣𝘰𝘹 𝘰𝘯𝘭𝘺 𝘵𝘰 𝘳𝘶𝘯 𝘤𝘰𝘥𝘦 𝘪𝘵 𝘸𝘳𝘪𝘵𝘦𝘴." Tool-calling agents need none. Code-writing agents get Rivet's lighter agentOS, or call a full sandbox as a tool.
+
+They stack more than they compete: devvm while you build, sandbox-mcp to test on a clean Windows PC, Rivet when you ship to many users, and a Sandstorm sandbox when that agent must run code.
+
+Running a coding agent on your laptop? Start with devvm (Mac, Linux) or sandbox-mcp (Windows Pro). Shipping one to many people? Look at Rivet, and add a sandbox only if it runs code.
+
+𝗧𝗵𝗲 𝗵𝗼𝗻𝗲𝘀𝘁 𝗹𝗶𝗺𝗶𝘁𝘀, 𝗼𝗻𝗲 𝗲𝗮𝗰𝗵
+
+• sandbox-mcp: one sandbox at a time, and no Windows Home
+• devvm: no Windows, and code in the VM can still use your GitHub token through the proxy
+• Sandstorm: if 10 or more sandboxes wake at once on a small server, 𝗼𝗻𝗹𝘆 𝗮𝗯𝗼𝘂𝘁 𝟲 𝗴𝗲𝘁 𝗮𝗻𝘀𝘄𝗲𝗿𝗲𝗱
+• Rivet: TypeScript and Rust first, and no multi-region when self-hosting yet
+
+For all four, the performance numbers come from the makers themselves.
+
+𝘗𝘪𝘤𝘬 𝘣𝘺 𝘺𝘰𝘶𝘳 𝘲𝘶𝘦𝘴𝘵𝘪𝘰𝘯: "𝘸𝘩𝘢𝘵 𝘤𝘢𝘯 𝘪𝘵 𝘳𝘦𝘢𝘤𝘩?" 𝘰𝘳 "𝘸𝘩𝘢𝘵 𝘥𝘰𝘦𝘴 𝘪𝘵 𝘤𝘰𝘴𝘵 𝘸𝘩𝘪𝘭𝘦 𝘪𝘵 𝘸𝘢𝘪𝘵𝘴?"
+
+Links in the first comment 👇
