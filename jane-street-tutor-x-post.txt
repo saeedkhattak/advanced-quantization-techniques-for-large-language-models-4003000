@@ -1,0 +1,44 @@
+𝗝𝗮𝗻𝗲 𝗦𝘁𝗿𝗲𝗲𝘁'𝘀 𝗙𝗶𝗿𝘀𝘁 𝗣𝘂𝗯𝗹𝗶𝗰 𝗔𝗜 𝗦𝗸𝗶𝗹𝗹 𝗪𝗼𝗻'𝘁 𝗚𝗶𝘃𝗲 𝗬𝗼𝘂 𝘁𝗵𝗲 𝗔𝗻𝘀𝘄𝗲𝗿
+
+You ask an AI to explain something. It writes a lovely answer, you nod along, and a week later you couldn't explain it to anyone.
+
+𝗝𝗮𝗻𝗲 𝗦𝘁𝗿𝗲𝗲𝘁'𝘀 𝗳𝗶𝘅 𝗶𝘀 𝗮 𝘁𝘂𝘁𝗼𝗿 𝘁𝗵𝗮𝘁 𝗿𝗲𝗳𝘂𝘀𝗲𝘀 𝘁𝗼 𝗹𝗲𝗰𝘁𝘂𝗿𝗲.
+
+On 3 November the quant firm opened a GitHub repo called agent_skills. It holds exactly one skill, socratic-tutor. It's a single SKILL.md file of about 𝟴𝟰𝟱 𝘄𝗼𝗿𝗱𝘀. No code, no app, MIT licence.
+
+Nine days later it has 𝟱,𝟴𝟭𝟴 𝘀𝘁𝗮𝗿𝘀 𝗮𝗻𝗱 𝟰𝟬𝟮 𝗳𝗼𝗿𝗸𝘀 (as of 12 Nov).
+
+Part of that is the name. Jane Street usually keeps quiet, so a public AI release got attention fast, and the twist that it's a teacher and not a trading bot did the rest on X.
+
+𝗛𝗲𝗿𝗲'𝘀 𝘄𝗵𝗮𝘁 𝘁𝗵𝗲 𝗳𝗶𝗹𝗲 𝘁𝗲𝗹𝗹𝘀 𝘁𝗵𝗲 𝗺𝗼𝗱𝗲𝗹 𝘁𝗼 𝗱𝗼.
+
+• 𝗣𝗹𝗮𝗰𝗲𝗺𝗲𝗻𝘁 𝗳𝗶𝗿𝘀𝘁: split your topic into 4 to 10 subskills, then ask 3 to 5 questions before teaching anything.
+• 𝗔 𝘀𝗸𝗶𝗹𝗹 𝗺𝗮𝗽: every subskill sits on a 0 to 5 scale, drawn as text progress bars after each change.
+• 𝗢𝗻𝗲 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻 𝗮𝘁 𝗮 𝘁𝗶𝗺𝗲: the message ends at the question. No hints tacked on.
+• 𝗪𝗿𝗼𝗻𝗴 𝗮𝗻𝘀𝘄𝗲𝗿𝘀 𝗴𝗲𝘁 𝗮 𝗻𝗮𝗿𝗿𝗼𝘄𝗲𝗿 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻, not the answer. A direct explanation only comes after 2 or 3 failed tries, and then it re-tests you from another angle.
+• 𝗥𝗶𝗴𝗵𝘁 𝗮𝗻𝘀𝘄𝗲𝗿𝘀 𝗴𝗲𝘁 𝗽𝘂𝘀𝗵𝗯𝗮𝗰𝗸 sometimes, so you learn to defend them.
+
+It finishes only when every subskill reaches 4 out of 5, followed by a mixed final exam.
+
+𝗧𝗵𝗲 𝘀𝗺𝗮𝗹𝗹 𝗿𝘂𝗹𝗲𝘀 𝗮𝗿𝗲 𝘁𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁.
+
+• 𝗔 𝗹𝗲𝘃𝗲𝗹 𝗼𝗻𝗹𝘆 𝗴𝗼𝗲𝘀 𝘂𝗽 𝗮𝗳𝘁𝗲𝗿 𝟮 𝘀𝗲𝗽𝗮𝗿𝗮𝘁𝗲 𝗰𝗵𝗲𝗰𝗸𝘀, and one has to be "𝘶𝘯𝘱𝘳𝘰𝘮𝘱𝘵𝘦𝘥 𝘳𝘦𝘤𝘢𝘭𝘭", not repeating what you were just told.
+• It is told: "𝘋𝘰 𝘯𝘰𝘵 𝘢𝘵𝘵𝘳𝘪𝘣𝘶𝘵𝘦 𝘵𝘰 𝘵𝘩𝘦 𝘶𝘴𝘦𝘳 𝘢𝘯𝘺 𝘪𝘯𝘴𝘪𝘨𝘩𝘵 𝘵𝘩𝘦𝘺 𝘥𝘪𝘥 𝘯𝘰𝘵 𝘢𝘤𝘵𝘶𝘢𝘭𝘭𝘺 𝘦𝘹𝘱𝘳𝘦𝘴𝘴." That's a direct guard against the model flattering you.
+• 𝗟𝗲𝘃𝗲𝗹 𝟱 𝗺𝗲𝗮𝗻𝘀 𝘆𝗼𝘂 𝗰𝗮𝗻 𝘁𝗲𝗮𝗰𝗵 𝗶𝘁. You have to handle an edge case and explain it well enough that the model would trust you to teach it.
+• If it can run tools, it checks 𝘆𝗼𝘂𝗿 𝗮𝗰𝘁𝘂𝗮𝗹 𝗼𝘂𝘁𝗽𝘂𝘁 rather than your description of it.
+• It won't start a quiz when you only asked "𝘸𝘩𝘢𝘵 𝘪𝘴 𝘟". The file's reasoning: a false start costs an unwanted quiz, a confirmation costs one word.
+• "𝘴𝘢𝘷𝘦 𝘴𝘵𝘢𝘵𝘦" prints a compact block you paste into a new chat to carry on. So your progress isn't locked to one app's memory.
+
+𝗢𝗻𝗲 𝗺𝗼𝗿𝗲 𝗱𝗲𝘁𝗮𝗶𝗹. The repo ships an .ocamlformat file even though there's no OCaml in it, and the commit message is a version string like v0.18~preview.133.03+642. It looks like it went through Jane Street's usual open-source release pipeline, not a one-off upload.
+
+𝗙𝗼𝗿 𝗹𝗲𝗮𝗿𝗻𝗲𝗿𝘀: paste the file into ChatGPT, Claude or Gemini, or drop the folder into a coding agent's skills folder, and say "teach me X". Good for things you think you understand until someone asks.
+
+𝗙𝗼𝗿 𝗯𝘂𝗶𝗹𝗱𝗲𝗿𝘀: it's a clean example of a skill that is all behaviour and no code. Every rule is short and testable.
+
+Is it new? Not as an idea. ChatGPT Study Mode, Gemini Guided Learning and Claude's learning mode all teach by asking questions. What's different here is a plain, strict rulebook you can read in five minutes and run on any model.
+
+One caveat: there's no evaluation in the repo showing it teaches better. It's instructions, and how well a model follows them will vary. People have already opened pull requests for a transcript checker, an explain-first mode and a market-making simulator.
+
+𝘛𝘩𝘦 𝘣𝘦𝘴𝘵 𝘈𝘐 𝘵𝘶𝘵𝘰𝘳 𝘮𝘪𝘨𝘩𝘵 𝘣𝘦 𝘵𝘩𝘦 𝘰𝘯𝘦 𝘵𝘩𝘢𝘵 𝘮𝘢𝘬𝘦𝘴 𝘺𝘰𝘶 𝘥𝘰 𝘵𝘩𝘦 𝘵𝘩𝘪𝘯𝘬𝘪𝘯𝘨.
+
+Links in reply 👇
