@@ -1,0 +1,158 @@
+===== 1. STORY =====
+
+𝗔 𝗟𝗶𝘃𝗲 𝗠𝗮𝗽 𝗼𝗳 𝗪𝗵𝗮𝘁 𝗖𝗹𝗮𝘂𝗱𝗲 𝗖𝗼𝗱𝗲 𝗜𝘀 𝗗𝗼𝗶𝗻𝗴
+
+You give Claude Code a task and the terminal fills with lines. Read, Grep, Bash, Edit, a subagent, another Bash. By the time you've scrolled back, it's done ten more things.
+
+lot-map turns that scroll into a picture.
+
+It's a small mod that opens 𝗮 𝗹𝗶𝘃𝗲 𝗺𝗮𝗽 𝗶𝗻 𝗮 𝗽𝗮𝗻𝗲 𝗯𝗲𝘀𝗶𝗱𝗲 𝘁𝗵𝗲 𝗰𝗵𝗮𝘁. In the middle is the agent. Around it are stations: You, Model, Memory, Files, Shell, Network, Browser, Agents, Skills and Hooks.
+
+Every time Claude does something, a pulse flies from the centre to the right station.
+
+• 𝗥𝗲𝗮𝗱𝗶𝗻𝗴 𝗼𝗿 𝗲𝗱𝗶𝘁𝗶𝗻𝗴 𝗰𝗼𝗱𝗲 lights up Files
+• 𝗥𝘂𝗻𝗻𝗶𝗻𝗴 𝗮 𝗰𝗼𝗺𝗺𝗮𝗻𝗱 lights up Shell
+• 𝗙𝗲𝘁𝗰𝗵𝗶𝗻𝗴 𝗮 𝗽𝗮𝗴𝗲 lights up Network
+• 𝗦𝘂𝗯𝗮𝗴𝗲𝗻𝘁𝘀 show up as small dots circling the Agents station
+
+Errors and refusals pulse 𝗿𝗲𝗱. Parallel calls fly side by side with a count like ×3. A line traces the last few stations visited, so you can see the route, not just the latest step.
+
+There's also a ring that shows 𝗵𝗼𝘄 𝗳𝘂𝗹𝗹 𝘁𝗵𝗲 𝗰𝗼𝗻𝘁𝗲𝘅𝘁 𝘄𝗶𝗻𝗱𝗼𝘄 𝗶𝘀. It turns amber at 𝟳𝟬% and red at 𝟵𝟬%, which is a useful warning before Claude starts compacting.
+
+For users, it's a way to keep an eye on an agent without reading every line. For builders, it's an MIT-licensed TypeScript example of Claude Code's new mods feature.
+
+It's not the first agent dashboard. Agent Flow (about 1.8k stars) and disler's multi-agent observability project (about 1.6k stars) already visualise Claude Code through hooks. Both send events to a local server and show them in a browser or VS Code. lot-map's difference is that 𝗶𝘁 𝗹𝗶𝘃𝗲𝘀 𝗶𝗻𝘀𝗶𝗱𝗲 𝗖𝗹𝗮𝘂𝗱𝗲 𝗖𝗼𝗱𝗲 𝗶𝘁𝘀𝗲𝗹𝗳, with no server.
+
+Its README is specific about privacy: "𝘛𝘩𝘦 𝘮𝘰𝘥 𝘮𝘢𝘬𝘦𝘴 𝘯𝘰 𝘯𝘦𝘵𝘸𝘰𝘳𝘬 𝘳𝘦𝘲𝘶𝘦𝘴𝘵𝘴, 𝘳𝘦𝘢𝘥𝘴 𝘯𝘰 𝘧𝘪𝘭𝘦𝘴, 𝘳𝘶𝘯𝘴 𝘯𝘰 𝘱𝘳𝘰𝘤𝘦𝘴𝘴𝘦𝘴, 𝘤𝘢𝘭𝘭𝘴 𝘯𝘰 𝘮𝘰𝘥𝘦𝘭 𝘢𝘯𝘥 𝘢𝘥𝘥𝘴 𝘯𝘰𝘵𝘩𝘪𝘯𝘨 𝘵𝘰 𝘵𝘩𝘦 𝘤𝘰𝘯𝘷𝘦𝘳𝘴𝘢𝘵𝘪𝘰𝘯."
+
+Some caveats. It's 𝗳𝗼𝘂𝗿 𝗱𝗮𝘆𝘀 𝗼𝗹𝗱, at version 0.5.3. It was tested on 𝗼𝗻𝗲 𝗖𝗹𝗮𝘂𝗱𝗲 𝗖𝗼𝗱𝗲 𝘃𝗲𝗿𝘀𝗶𝗼𝗻, 𝗼𝗻 𝗺𝗮𝗰𝗢𝗦, though users report it works on Windows. In a terminal it needs 𝗮𝘁 𝗹𝗲𝗮𝘀𝘁 𝟭𝟰𝟰 𝗰𝗼𝗹𝘂𝗺𝗻𝘀. It sees every tool call's full input, even though it keeps only the names. And installing from the repo follows its main branch, so "𝘢𝘯 𝘶𝘱𝘥𝘢𝘵𝘦 𝘣𝘳𝘪𝘯𝘨𝘴 𝘸𝘩𝘢𝘵𝘦𝘷𝘦𝘳 𝘪𝘴 𝘵𝘩𝘦𝘳𝘦."
+
+𝘛𝘩𝘦 𝘮𝘰𝘳𝘦 𝘢𝘨𝘦𝘯𝘵𝘴 𝘥𝘰 𝘰𝘯 𝘵𝘩𝘦𝘪𝘳 𝘰𝘸𝘯, 𝘵𝘩𝘦 𝘮𝘰𝘳𝘦 𝘸𝘦'𝘭𝘭 𝘯𝘦𝘦𝘥 𝘵𝘰 𝘴𝘦𝘦 𝘵𝘩𝘦 𝘸𝘰𝘳𝘬, 𝘯𝘰𝘵 𝘫𝘶𝘴𝘵 𝘳𝘦𝘢𝘥 𝘢𝘣𝘰𝘶𝘵 𝘪𝘵 𝘢𝘧𝘵𝘦𝘳𝘸𝘢𝘳𝘥𝘴.
+
+Links in reply 👇
+
+===== 2. KARPATHY STYLE =====
+
+𝗪𝗮𝘁𝗰𝗵𝗶𝗻𝗴 𝗮𝗻 𝗔𝗴𝗲𝗻𝘁 𝗪𝗼𝗿𝗸, 𝗡𝗼𝘁 𝗥𝗲𝗮𝗱𝗶𝗻𝗴 𝗜𝘁𝘀 𝗟𝗼𝗴𝘀
+
+lot-map is a new Claude Code mod that draws a live map beside the chat. Every tool call becomes a pulse travelling to a station: Files, Shell, Network, Memory, Agents and so on.
+
+On the surface it's a visualiser. 𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀 𝘁𝗵𝗮𝘁 𝗶𝘁 𝗰𝗵𝗮𝗻𝗴𝗲𝘀 𝘄𝗵𝗮𝘁 𝘆𝗼𝘂 𝗻𝗼𝘁𝗶𝗰𝗲.
+
+A text log is one-dimensional. You read it top to bottom and remember the last thing. A map is spatial. You see that the agent has been hammering Shell for a minute, or that it never touched the tests, or that three subagents are circling at once.
+
+I think of it like a flight radar compared with a list of departures. Same data, but the shape tells you something the list hides.
+
+The context ring is a good example. It turns amber at 𝟳𝟬% and red at 𝟵𝟬%, so you can see a session getting heavy before it compacts.
+
+It's very young, at 𝘃𝟬.𝟱.𝟯 after four days of commits, and tested on macOS with one Claude Code version. The labels come from tool names, so a script that opens its own network connection still shows up as Shell.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘴𝘦𝘦 𝘯𝘦𝘹𝘵 𝘪𝘴 𝘢 𝘳𝘦𝘱𝘭𝘢𝘺 𝘮𝘰𝘥𝘦: 𝘵𝘩𝘦 𝘸𝘩𝘰𝘭𝘦 𝘴𝘦𝘴𝘴𝘪𝘰𝘯'𝘴 𝘳𝘰𝘶𝘵𝘦 𝘥𝘳𝘢𝘸𝘯 𝘢𝘵 𝘰𝘯𝘤𝘦, 𝘴𝘰 𝘺𝘰𝘶 𝘤𝘢𝘯 𝘴𝘱𝘰𝘵 𝘸𝘩𝘦𝘳𝘦 𝘵𝘩𝘦 𝘢𝘨𝘦𝘯𝘵 𝘸𝘢𝘯𝘥𝘦𝘳𝘦𝘥.
+
+Links in reply 👇
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗼𝗻 𝗹𝗼𝘁-𝗺𝗮𝗽, 𝗮 𝗟𝗶𝘃𝗲 𝗪𝗼𝗿𝗸 𝗠𝗮𝗽 𝗳𝗼𝗿 𝗖𝗹𝗮𝘂𝗱𝗲 𝗖𝗼𝗱𝗲
+
+lot-map is an MIT-licensed mod for Claude Code. The README sums it up as "𝘢 𝘭𝘪𝘷𝘦 𝘮𝘢𝘱 𝘰𝘧 𝘵𝘩𝘦 𝘸𝘰𝘳𝘬, 𝘪𝘯 𝘢 𝘱𝘢𝘯𝘦 𝘣𝘦𝘴𝘪𝘥𝘦 𝘵𝘩𝘦 𝘤𝘩𝘢𝘵."
+
+Install it from inside a Claude Code session:
+
+/𝚙𝚕𝚞𝚐𝚒𝚗 𝚒𝚗𝚜𝚝𝚊𝚕𝚕 𝚕𝚘𝚝-𝚖𝚊𝚙 --𝚖𝚊𝚛𝚔𝚎𝚝𝚙𝚕𝚊𝚌𝚎 𝚊𝚕𝚎𝚡𝚎𝚢𝚠/𝚕𝚘𝚝-𝚖𝚊𝚙
+
+Tool calls are sorted onto ten stations by name. Files covers Read, Write, Edit, Grep and Glob, plus file-only shell commands like 𝚌𝚊𝚝 and 𝚜𝚎𝚍. PowerShell commands such as 𝙶𝚎𝚝-𝙲𝚘𝚗𝚝𝚎𝚗𝚝 get read the same way.
+
+Two details I found interesting:
+
+• 𝗠𝗲𝗺𝗼𝗿𝘆 𝗰𝗮𝗹𝗹𝘀 𝗮𝗿𝗲 𝘀𝗽𝗹𝗶𝘁 𝗯𝘆 𝗼𝗿𝗶𝗴𝗶𝗻. Solid pulses are memory Claude asked for. Hollow dashed ones were added by a hook.
+• 𝗛𝗼𝗼𝗸𝘀 𝗽𝗮𝘀𝘀 𝗲𝘃𝗲𝗻𝘁𝘀 𝘁𝗵𝗿𝗼𝘂𝗴𝗵 𝘂𝗻𝘁𝗼𝘂𝗰𝗵𝗲𝗱. The README says each hook "𝘱𝘢𝘴𝘴𝘦𝘴 𝘵𝘩𝘦 𝘦𝘷𝘦𝘯𝘵 𝘰𝘯 𝘢𝘴 𝘪𝘵 𝘤𝘢𝘮𝘦", with no change to inputs, results or permission decisions.
+
+Things to be careful about:
+
+• 𝗜𝘁 𝗿𝗲𝗰𝗲𝗶𝘃𝗲𝘀 𝘁𝗵𝗲 𝗳𝘂𝗹𝗹 𝗶𝗻𝗽𝘂𝘁 𝗼𝗳 𝗲𝘃𝗲𝗿𝘆 𝘁𝗼𝗼𝗹 𝗰𝗮𝗹𝗹, including command lines and file text, though it only keeps names.
+• 𝗨𝗽𝗱𝗮𝘁𝗲𝘀 𝗳𝗼𝗹𝗹𝗼𝘄 𝘁𝗵𝗲 𝗺𝗮𝗶𝗻 𝗯𝗿𝗮𝗻𝗰𝗵. "𝘈𝘯 𝘶𝘱𝘥𝘢𝘵𝘦 𝘣𝘳𝘪𝘯𝘨𝘴 𝘸𝘩𝘢𝘵𝘦𝘷𝘦𝘳 𝘪𝘴 𝘵𝘩𝘦𝘳𝘦."
+• 𝗟𝗮𝗯𝗲𝗹𝘀 𝗱𝗲𝘀𝗰𝗿𝗶𝗯𝗲 𝗻𝗮𝗺𝗲𝘀, 𝗻𝗼𝘁 𝗯𝗲𝗵𝗮𝘃𝗶𝗼𝘂𝗿. A script that opens a network connection still shows as Shell.
+• 𝗧𝗲𝘀𝘁𝗲𝗱 𝗼𝗻 𝗖𝗹𝗮𝘂𝗱𝗲 𝗖𝗼𝗱𝗲 𝟮.𝟭.𝟯𝟮𝟭 𝗼𝗻 𝗺𝗮𝗰𝗢𝗦. Windows is reported by users, not tested by the author.
+• 𝗧𝗲𝗿𝗺𝗶𝗻𝗮𝗹 𝗺𝗼𝗱𝗲 𝗻𝗲𝗲𝗱𝘀 𝟭𝟰𝟰+ 𝗰𝗼𝗹𝘂𝗺𝗻𝘀 and draws text only.
+
+It's at 𝘃𝟬.𝟱.𝟯, with commits from 9 to 12 November and 𝟱𝟮𝟭 𝘀𝘁𝗮𝗿𝘀 as of 12 November. The commit history credits Claude as a co-author on much of the work.
+
+Links in reply 👇
+
+===== 4. SWYX STYLE =====
+
+𝗔𝗴𝗲𝗻𝘁 𝗢𝗯𝘀𝗲𝗿𝘃𝗮𝗯𝗶𝗹𝗶𝘁𝘆 𝗜𝘀 𝗠𝗼𝘃𝗶𝗻𝗴 𝗜𝗻𝘀𝗶𝗱𝗲 𝘁𝗵𝗲 𝗔𝗴𝗲𝗻𝘁
+
+Watching what a coding agent does has become its own category:
+
+• 𝗱𝗶𝘀𝗹𝗲𝗿'𝘀 𝗺𝘂𝗹𝘁𝗶-𝗮𝗴𝗲𝗻𝘁 𝗼𝗯𝘀𝗲𝗿𝘃𝗮𝗯𝗶𝗹𝗶𝘁𝘆: hooks send events to a Bun server and SQLite, viewed in a Vue dashboard. About 𝟭.𝟲𝗸 𝘀𝘁𝗮𝗿𝘀
+• 𝗔𝗴𝗲𝗻𝘁 𝗙𝗹𝗼𝘄: a node graph of tool calls in VS Code or the browser, fed by a local relay. About 𝟭.𝟴𝗸 𝘀𝘁𝗮𝗿𝘀, Apache 2.0
+• 𝗰𝗹𝗮𝘂𝗱𝗲-𝘁𝗿𝗮𝗰𝗲-𝗿𝗲𝗽𝗹𝗮𝘆 𝗮𝗻𝗱 𝗼𝘁𝗵𝗲𝗿𝘀: turn saved session logs into replayable traces
+
+All of these sit outside the agent. Events leave Claude Code, hit a local server, and show up in another window.
+
+𝗹𝗼𝘁-𝗺𝗮𝗽 flips that. It's a Claude Code mod, so the map renders 𝗶𝗻 𝗮 𝗽𝗮𝗻𝗲 𝗿𝗶𝗴𝗵𝘁 𝗯𝗲𝘀𝗶𝗱𝗲 𝘁𝗵𝗲 𝗰𝗵𝗮𝘁, with no server, no network calls and no extra window. It's MIT, at v0.5.3, with 𝟱𝟮𝟭 𝘀𝘁𝗮𝗿𝘀 four days in.
+
+That's only possible because Claude Code now has mods, which let plugins draw their own panes and bands.
+
+My take is that this is where agent tooling is heading. Dashboards that lived in separate apps will move into the agent's own interface, because that's where you're already looking.
+
+𝘖𝘯𝘤𝘦 𝘵𝘩𝘦 𝘢𝘨𝘦𝘯𝘵'𝘴 𝘜𝘐 𝘪𝘴 𝘢 𝘱𝘭𝘢𝘵𝘧𝘰𝘳𝘮, 𝘸𝘩𝘰 𝘣𝘶𝘪𝘭𝘥𝘴 𝘵𝘩𝘦 𝘣𝘦𝘴𝘵 𝘤𝘰𝘤𝘬𝘱𝘪𝘵 𝘧𝘰𝘳 𝘪𝘵?
+
+Links in reply 👇
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+𝗔 𝗠𝗮𝗽 𝗜𝘀 𝗡𝗼𝘁 𝗮 𝗧𝗿𝗮𝗰𝗲
+
+lot-map is a new Claude Code mod that shows a live map of tool calls, model steps, hooks and subagents in a pane beside the chat.
+
+What it gives you:
+
+• 𝗔𝘁-𝗮-𝗴𝗹𝗮𝗻𝗰𝗲 𝗮𝗰𝘁𝗶𝘃𝗶𝘁𝘆: which stations the agent is hitting right now
+• 𝗘𝗿𝗿𝗼𝗿 𝘃𝗶𝘀𝗶𝗯𝗶𝗹𝗶𝘁𝘆: failed calls and refusals pulse red
+• 𝗔 𝗰𝗼𝗻𝘁𝗲𝘅𝘁 𝗴𝗮𝘂𝗴𝗲: amber at 70%, red at 90%
+• 𝗭𝗲𝗿𝗼 𝘀𝗲𝘁𝘂𝗽 𝗼𝘃𝗲𝗿𝗵𝗲𝗮𝗱: no server, no network calls, no files read
+
+What it doesn't give you:
+
+• 𝗛𝗶𝘀𝘁𝗼𝗿𝘆. The feed keeps the last 𝟭𝟲 𝗿𝗼𝘄𝘀, and route legs fade after about a minute.
+• 𝗜𝗻𝗽𝘂𝘁𝘀 𝗮𝗻𝗱 𝗼𝘂𝘁𝗽𝘂𝘁𝘀. It shows that a call happened, not what was sent or returned.
+• 𝗕𝗲𝗵𝗮𝘃𝗶𝗼𝘂𝗿. Labels come from tool names, so a script making network calls still shows as Shell.
+• 𝗠𝗮𝘁𝘂𝗿𝗶𝘁𝘆. It's four days old and tested on one Claude Code version on macOS.
+
+So it's a dashboard light, not a debugger. If an agent run goes wrong, you'll still need the real trace.
+
+A simple way to get value from both:
+
+1. Keep lot-map open while the agent works, and watch for red pulses and the context ring.
+2. When something looks off, note the time and the station.
+3. Open the full session log and read the calls around that moment.
+4. Write down what went wrong, and turn it into a test case for next time.
+
+𝘈 𝘮𝘢𝘱 𝘵𝘦𝘭𝘭𝘴 𝘺𝘰𝘶 𝘸𝘩𝘦𝘳𝘦 𝘵𝘰 𝘭𝘰𝘰𝘬. 𝘛𝘩𝘦 𝘵𝘳𝘢𝘤𝘦 𝘵𝘦𝘭𝘭𝘴 𝘺𝘰𝘶 𝘸𝘩𝘢𝘵 𝘩𝘢𝘱𝘱𝘦𝘯𝘦𝘥.
+
+Links in reply 👇
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗖𝗮𝗻 𝗬𝗼𝘂 𝗦𝗲𝗲 𝗪𝗵𝗮𝘁 𝗬𝗼𝘂𝗿 𝗔𝗜 𝗜𝘀 𝗗𝗼𝗶𝗻𝗴?
+
+AI agents now do real work on our computers. They read files, run commands and visit websites, often faster than anyone can follow.
+
+Most of the time we only see a stream of technical text. That's a bit like supervising someone by reading their receipts after they've gone shopping.
+
+A new free add-on for Claude Code called 𝗹𝗼𝘁-𝗺𝗮𝗽 tries something different. It draws 𝗮 𝗹𝗶𝘃𝗲 𝗺𝗮𝗽 beside the chat, a bit like a subway map. The AI sits in the middle, and stations around it stand for things like files, the internet, memory and helper agents. Each action sends a pulse to the right station, and mistakes flash red.
+
+It even shows a gauge for how full the AI's working memory is getting.
+
+There's a reasonable case for this. People trust what they can see, and a picture is easier to follow than a scrolling log.
+
+But a map is a summary, not the full story. It shows 𝘸𝘩𝘦𝘳𝘦 the AI went, not exactly 𝘸𝘩𝘢𝘵 it did there. And this tool is only a few days old, built by one developer with help from the community and from Claude itself.
+
+What we know is that as agents take on more work, people want ways to watch them. What we don't know yet is which kind of view actually helps people catch mistakes.
+
+𝘐𝘧 𝘺𝘰𝘶 𝘤𝘰𝘶𝘭𝘥 𝘸𝘢𝘵𝘤𝘩 𝘺𝘰𝘶𝘳 𝘈𝘐 𝘸𝘰𝘳𝘬 𝘭𝘪𝘬𝘦 𝘢 𝘮𝘢𝘱, 𝘸𝘰𝘶𝘭𝘥 𝘺𝘰𝘶 𝘵𝘳𝘶𝘴𝘵 𝘪𝘵 𝘮𝘰𝘳𝘦, 𝘰𝘳 𝘤𝘩𝘦𝘤𝘬 𝘪𝘵 𝘭𝘦𝘴𝘴?
+
+Links in reply 👇
