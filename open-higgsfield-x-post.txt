@@ -1,0 +1,148 @@
+===== 1. STORY =====
+
+𝗧𝗵𝗲 "𝗙𝗿𝗲𝗲" 𝗛𝗶𝗴𝗴𝘀𝗳𝗶𝗲𝗹𝗱 𝗔𝗹𝘁𝗲𝗿𝗻𝗮𝘁𝗶𝘃𝗲, 𝗮𝗻𝗱 𝗪𝗵𝗮𝘁 𝗙𝗿𝗲𝗲 𝗥𝗲𝗮𝗹𝗹𝘆 𝗠𝗲𝗮𝗻𝘀
+
+AI video tools have a familiar pattern. Pick a plan, buy credits, and watch them disappear the moment you try Kling or Veo a few times.
+
+Open Higgsfield AI pitches itself as the way out. Its README calls it "𝘵𝘩𝘦 𝘧𝘳𝘦𝘦, 𝘰𝘱𝘦𝘯-𝘴𝘰𝘶𝘳𝘤𝘦 𝘢𝘭𝘵𝘦𝘳𝘯𝘢𝘵𝘪𝘷𝘦 𝘵𝘰 𝘏𝘪𝘨𝘨𝘴𝘧𝘪𝘦𝘭𝘥 𝘈𝘐."
+
+Here's what it actually is.
+
+It's a web app (plus a desktop app for Mac and Windows) with studios for 𝗶𝗺𝗮𝗴𝗲, 𝘃𝗶𝗱𝗲𝗼, 𝗹𝗶𝗽 𝘀𝘆𝗻𝗰 𝗮𝗻𝗱 "𝗰𝗶𝗻𝗲𝗺𝗮" shots. One prompt bar, lots of models: Flux, Nano Banana, Midjourney, Kling, Sora, Veo, Seedream, Wan and more. You can run it on your own machine with 𝚗𝚙𝚖 𝚛𝚞𝚗 𝚍𝚎𝚟.
+
+The important detail is in small print: "𝘗𝘰𝘸𝘦𝘳𝘦𝘥 𝘣𝘺 𝘔𝘶𝘢𝘱𝘪.𝘢𝘪."
+
+Every generation goes through 𝗠𝘂𝗮𝗽𝗶'𝘀 𝗔𝗣𝗜, 𝘂𝘀𝗶𝗻𝗴 𝘆𝗼𝘂𝗿 𝗼𝘄𝗻 𝗠𝘂𝗮𝗽𝗶 𝗸𝗲𝘆. Muapi charges pay-as-you-go credits per generation. So the app is free and MIT-licensed, 𝗯𝘂𝘁 𝘁𝗵𝗲 𝘃𝗶𝗱𝗲𝗼 𝗶𝘀𝗻'𝘁. You're swapping Higgsfield's subscription for Muapi's per-use pricing.
+
+For users, that can still be a good deal. No monthly plan, one place for many models, and you pay only for what you make.
+
+For builders, it's a handy MIT codebase to fork: a ready-made studio UI on top of one unified API.
+
+It's also not new. The main repo is Anil-matcha's Open-Higgsfield-AI, now the same codebase as Open-Generative-AI, with 𝗮𝗯𝗼𝘂𝘁 𝟯𝟰𝗸 𝘀𝘁𝗮𝗿𝘀. The link going around, Autom8AI's, is a fork with 𝗮𝗯𝗼𝘂𝘁 𝟯.𝟭𝗸. It isn't affiliated with Higgsfield, which is a separate paid product.
+
+Some caveats. "Self-hosted" means the interface runs on your machine. 𝗬𝗼𝘂𝗿 𝗽𝗿𝗼𝗺𝗽𝘁𝘀 𝗮𝗻𝗱 𝘂𝗽𝗹𝗼𝗮𝗱𝘀 𝘀𝘁𝗶𝗹𝗹 𝗴𝗼 𝘁𝗼 𝗠𝘂𝗮𝗽𝗶, so your data doesn't fully stay local. The model count is fuzzy too: the README and About text say 20+, 200+, 400+ and 600+ in different places. The desktop app isn't signed, so macOS and Windows will warn you on first launch.
+
+𝘖𝘱𝘦𝘯 𝘴𝘰𝘶𝘳𝘤𝘦 𝘜𝘐 𝘰𝘯 𝘵𝘰𝘱 𝘰𝘧 𝘢 𝘱𝘢𝘪𝘥 𝘈𝘗𝘐 𝘪𝘴 𝘴𝘵𝘪𝘭𝘭 𝘶𝘴𝘦𝘧𝘶𝘭. 𝘑𝘶𝘴𝘵 𝘥𝘰𝘯'𝘵 𝘤𝘢𝘭𝘭 𝘪𝘵 𝘧𝘳𝘦𝘦 𝘷𝘪𝘥𝘦𝘰.
+
+Links in reply 👇
+
+===== 2. KARPATHY STYLE =====
+
+𝗢𝗽𝗲𝗻 𝗛𝗶𝗴𝗴𝘀𝗳𝗶𝗲𝗹𝗱 𝗜𝘀 𝗮𝗻 𝗢𝗽𝗲𝗻 𝗙𝗿𝗼𝗻𝘁 𝗘𝗻𝗱, 𝗡𝗼𝘁 𝗢𝗽𝗲𝗻 𝗠𝗼𝗱𝗲𝗹𝘀
+
+Open Higgsfield AI is getting shared as a free replacement for Higgsfield. It's worth being clear about which layer is actually open.
+
+There are roughly three layers in an AI video product. The models that do the generating. The API that hosts and bills for them. And the app you click around in.
+
+𝗪𝗵𝗮𝘁'𝘀 𝗼𝗽𝗲𝗻 𝗵𝗲𝗿𝗲 𝗶𝘀 𝘁𝗵𝗲 𝘁𝗼𝗽 𝗹𝗮𝘆𝗲𝗿 𝗼𝗻𝗹𝘆. The studio UI is MIT licensed and you can run it locally. The middle layer is Muapi, a paid pay-as-you-go API, and every request goes through it with your key. The bottom layer is mostly closed models like Kling, Veo, Sora and Midjourney.
+
+I think of it like an open-source shop front for a wholesaler. You can rebuild the shop however you like, but you're still buying stock from the same supplier.
+
+That's not a bad thing. A good UI over one API that reaches many models is genuinely useful, and it lets you skip a monthly plan. But "self-hosted, your data stays on your machine" is a stretch when prompts and uploads leave for Muapi's servers.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘴𝘦𝘦 𝘪𝘴 𝘢 𝘷𝘦𝘳𝘴𝘪𝘰𝘯 𝘵𝘩𝘢𝘵 𝘱𝘭𝘶𝘨𝘴 𝘪𝘯 𝘭𝘰𝘤𝘢𝘭 𝘰𝘱𝘦𝘯 𝘮𝘰𝘥𝘦𝘭𝘴 𝘭𝘪𝘬𝘦 𝘞𝘢𝘯 𝘰𝘳 𝘓𝘛𝘟, 𝘴𝘰 𝘵𝘩𝘦 𝘰𝘱𝘦𝘯 𝘱𝘢𝘳𝘵 𝘨𝘰𝘦𝘴 𝘢𝘭𝘭 𝘵𝘩𝘦 𝘸𝘢𝘺 𝘥𝘰𝘸𝘯.
+
+Links in reply 👇
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗼𝗻 𝗢𝗽𝗲𝗻 𝗛𝗶𝗴𝗴𝘀𝗳𝗶𝗲𝗹𝗱 𝗔𝗜
+
+Open Higgsfield AI is an MIT-licensed web and Electron app for image, video, lip-sync and "cinema" generation. The README tagline is "𝘛𝘩𝘦 𝘧𝘳𝘦𝘦, 𝘰𝘱𝘦𝘯-𝘴𝘰𝘶𝘳𝘤𝘦 𝘢𝘭𝘵𝘦𝘳𝘯𝘢𝘵𝘪𝘷𝘦 𝘵𝘰 𝘏𝘪𝘨𝘨𝘴𝘧𝘪𝘦𝘭𝘥 𝘈𝘐."
+
+Run it locally:
+
+𝚗𝚙𝚖 𝚒𝚗𝚜𝚝𝚊𝚕𝚕 && 𝚗𝚙𝚖 𝚛𝚞𝚗 𝚍𝚎𝚟
+
+You'll need Node.js 18+ and a Muapi.ai API key.
+
+The key architectural fact: the README says it's "𝘗𝘰𝘸𝘦𝘳𝘦𝘥 𝘣𝘺 𝘔𝘶𝘢𝘱𝘪.𝘢𝘪", described as "𝘵𝘩𝘦 𝘶𝘯𝘪𝘧𝘪𝘦𝘥 𝘈𝘗𝘐 𝘧𝘰𝘳 𝘈𝘐 𝘪𝘮𝘢𝘨𝘦 𝘢𝘯𝘥 𝘷𝘪𝘥𝘦𝘰 𝘨𝘦𝘯𝘦𝘳𝘢𝘵𝘪𝘰𝘯 𝘮𝘰𝘥𝘦𝘭𝘴." Requests use a submit-then-poll pattern with an 𝚡-𝚊𝚙𝚒-𝚔𝚎𝚢 header.
+
+Two details worth noting:
+
+• 𝗔𝗣𝗜 𝗸𝗲𝘆𝘀 𝗹𝗶𝘃𝗲 𝗶𝗻 𝗯𝗿𝗼𝘄𝘀𝗲𝗿 𝗹𝗼𝗰𝗮𝗹𝗦𝘁𝗼𝗿𝗮𝗴𝗲, and the README says they're "𝘯𝘦𝘷𝘦𝘳 𝘴𝘦𝘯𝘵 𝘵𝘰 𝘢𝘯𝘺 𝘴𝘦𝘳𝘷𝘦𝘳 𝘦𝘹𝘤𝘦𝘱𝘵 𝘔𝘶𝘢𝘱𝘪."
+• 𝗚𝗲𝗻𝗲𝗿𝗮𝘁𝗶𝗼𝗻 𝗮𝗻𝗱 𝘂𝗽𝗹𝗼𝗮𝗱 𝗵𝗶𝘀𝘁𝗼𝗿𝘆 𝗮𝗿𝗲 𝗸𝗲𝗽𝘁 𝗶𝗻 𝗯𝗿𝗼𝘄𝘀𝗲𝗿 𝘀𝘁𝗼𝗿𝗮𝗴𝗲 𝘁𝗼𝗼, not on a server you control.
+
+Things to be careful about:
+
+• 𝗡𝗼𝘁 𝗮𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝗳𝗿𝗲𝗲 𝘁𝗼 𝘂𝘀𝗲. The software is free, but every generation is billed by Muapi, pay as you go.
+• "𝗬𝗼𝘂𝗿 𝗱𝗮𝘁𝗮 𝘀𝘁𝗮𝘆𝘀 𝗼𝗻 𝘆𝗼𝘂𝗿 𝗺𝗮𝗰𝗵𝗶𝗻𝗲" 𝗶𝘀 𝗼𝗻𝗹𝘆 𝗽𝗮𝗿𝘁𝗹𝘆 𝘁𝗿𝘂𝗲. Uploads become hosted URLs passed to Muapi models.
+• 𝗪𝗵𝗶𝗰𝗵 𝗿𝗲𝗽𝗼? The link going around is Autom8AI's fork (𝗮𝗯𝗼𝘂𝘁 𝟯.𝟭𝗸 𝘀𝘁𝗮𝗿𝘀). Its own install command clones Anil-matcha's repo, which has 𝗮𝗯𝗼𝘂𝘁 𝟯𝟰𝗸 𝘀𝘁𝗮𝗿𝘀 and is now the same codebase as Open-Generative-AI.
+• 𝗜𝗻𝗰𝗼𝗻𝘀𝗶𝘀𝘁𝗲𝗻𝘁 𝗺𝗼𝗱𝗲𝗹 𝗰𝗼𝘂𝗻𝘁𝘀: 20+, 200+, 400+ and 600+ appear in different places.
+• 𝗨𝗻𝘀𝗶𝗴𝗻𝗲𝗱 𝗱𝗲𝘀𝗸𝘁𝗼𝗽 𝗯𝘂𝗶𝗹𝗱𝘀, so expect Gatekeeper and SmartScreen warnings.
+• 𝗡𝗼 𝗮𝗳𝗳𝗶𝗹𝗶𝗮𝘁𝗶𝗼𝗻 𝘄𝗶𝘁𝗵 𝗛𝗶𝗴𝗴𝘀𝗳𝗶𝗲𝗹𝗱 is claimed. It's an alternative, not an official release.
+
+Links in reply 👇
+
+===== 4. SWYX STYLE =====
+
+𝗧𝗵𝗲 𝗢𝗽𝗲𝗻-𝗦𝗼𝘂𝗿𝗰𝗲 𝗪𝗿𝗮𝗽𝗽𝗲𝗿 𝗣𝗹𝗮𝘆 𝗶𝗻 𝗔𝗜 𝗩𝗶𝗱𝗲𝗼
+
+AI video has split into layers, and the money is moving between them.
+
+• 𝗖𝗹𝗼𝘀𝗲𝗱 𝘀𝘁𝘂𝗱𝗶𝗼𝘀: Higgsfield and similar apps bundle models, UI and credits into a monthly plan
+• 𝗠𝗼𝗱𝗲𝗹 𝗔𝗣𝗜𝘀: Muapi, fal and others sell pay-per-use access to many models through one key
+• 𝗟𝗼𝗰𝗮𝗹 𝗼𝗽𝗲𝗻 𝘀𝘁𝗮𝗰𝗸𝘀: ComfyUI and open models like Wan and LTX run on your own GPU
+
+Open Higgsfield AI sits in a fourth spot: 𝗮𝗻 𝗼𝗽𝗲𝗻-𝘀𝗼𝘂𝗿𝗰𝗲 𝘀𝘁𝘂𝗱𝗶𝗼 𝗨𝗜, 𝘄𝗶𝗿𝗲𝗱 𝘁𝗼 𝗼𝗻𝗲 𝗽𝗮𝗶𝗱 𝗔𝗣𝗜. MIT licensed, self-hostable, with Flux, Kling, Veo, Sora and many more behind a single prompt bar. All of it routes through Muapi, which also hosts a free online version.
+
+That's the play. Give away the interface, charge for the API calls behind it. The main repo (Anil-matcha's, now Open-Generative-AI) has 𝗮𝗯𝗼𝘂𝘁 𝟯𝟰𝗸 𝘀𝘁𝗮𝗿𝘀, so as distribution it clearly works.
+
+My take is that this is where AI video competition is heading. Studios like Higgsfield compete on workflow and taste. Open wrappers compete on price and freedom. The real fight is over who owns the API key the user types in.
+
+𝘐𝘧 𝘵𝘩𝘦 𝘜𝘐 𝘪𝘴 𝘧𝘳𝘦𝘦 𝘢𝘯𝘥 𝘵𝘩𝘦 𝘮𝘰𝘥𝘦𝘭𝘴 𝘢𝘳𝘦 𝘳𝘦𝘯𝘵𝘦𝘥, 𝘸𝘩𝘢𝘵 𝘦𝘹𝘢𝘤𝘵𝘭𝘺 𝘪𝘴 𝘵𝘩𝘦 𝘱𝘳𝘰𝘥𝘶𝘤𝘵?
+
+Links in reply 👇
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+𝗕𝗲𝗳𝗼𝗿𝗲 𝗬𝗼𝘂 𝗗𝗶𝘁𝗰𝗵 𝗛𝗶𝗴𝗴𝘀𝗳𝗶𝗲𝗹𝗱 𝗳𝗼𝗿 𝘁𝗵𝗲 "𝗙𝗿𝗲𝗲" 𝗢𝗽𝗲𝗻 𝗩𝗲𝗿𝘀𝗶𝗼𝗻
+
+Open Higgsfield AI is an MIT-licensed studio for AI image and video. It runs every request through Muapi's API with your key.
+
+What it gives you:
+
+• 𝗢𝗻𝗲 𝗶𝗻𝘁𝗲𝗿𝗳𝗮𝗰𝗲 𝗳𝗼𝗿 𝗺𝗮𝗻𝘆 𝗺𝗼𝗱𝗲𝗹𝘀, from Flux and Midjourney to Kling, Veo and Sora
+• 𝗡𝗼 𝘀𝘂𝗯𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻. You pay Muapi per generation instead
+• 𝗔 𝗰𝗼𝗱𝗲𝗯𝗮𝘀𝗲 𝘆𝗼𝘂 𝗰𝗮𝗻 𝗳𝗼𝗿𝗸, with web and desktop builds
+
+What it doesn't give you:
+
+• 𝗙𝗿𝗲𝗲 𝗴𝗲𝗻𝗲𝗿𝗮𝘁𝗶𝗼𝗻𝘀. Every image and clip is billed by Muapi.
+• 𝗙𝘂𝗹𝗹 𝗽𝗿𝗶𝘃𝗮𝗰𝘆. Prompts and uploads leave your machine for Muapi.
+• 𝗛𝗶𝗴𝗴𝘀𝗳𝗶𝗲𝗹𝗱'𝘀 𝗼𝘄𝗻 𝗳𝗲𝗮𝘁𝘂𝗿𝗲𝘀. It's not affiliated with Higgsfield, so don't expect the same presets or results.
+• 𝗖𝗹𝗮𝗿𝗶𝘁𝘆 𝗼𝗻 𝘀𝗰𝗼𝗽𝗲. The model count varies from 20+ to 600+ depending on where you read.
+
+If you're weighing a switch, work out the real numbers first:
+
+1. List the last month of what you actually generated: how many images, how many videos, which models.
+2. Price that same list on Muapi's per-model rates.
+3. Compare it with your current plan, including credits you didn't use.
+4. Run five of your usual prompts through both and compare the outputs side by side.
+5. Decide on cost per usable clip, not cost per credit.
+
+𝘈 𝘵𝘰𝘰𝘭 𝘪𝘴 𝘰𝘯𝘭𝘺 𝘧𝘳𝘦𝘦 𝘪𝘧 𝘺𝘰𝘶𝘳 𝘣𝘪𝘭𝘭 𝘨𝘰𝘦𝘴 𝘥𝘰𝘸𝘯.
+
+Links in reply 👇
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗪𝗵𝗮𝘁 𝗗𝗼𝗲𝘀 "𝗙𝗿𝗲𝗲" 𝗠𝗲𝗮𝗻 𝗶𝗻 𝗔𝗜 𝗩𝗶𝗱𝗲𝗼?
+
+AI video apps usually work like a gym membership. You pay every month, get a set number of credits, and lose what you don't use.
+
+A popular open-source project called 𝗢𝗽𝗲𝗻 𝗛𝗶𝗴𝗴𝘀𝗳𝗶𝗲𝗹𝗱 𝗔𝗜 says there's another way. It calls itself "𝘵𝘩𝘦 𝘧𝘳𝘦𝘦, 𝘰𝘱𝘦𝘯-𝘴𝘰𝘶𝘳𝘤𝘦 𝘢𝘭𝘵𝘦𝘳𝘯𝘢𝘵𝘪𝘷𝘦 𝘵𝘰 𝘏𝘪𝘨𝘨𝘴𝘧𝘪𝘦𝘭𝘥 𝘈𝘐," a well-known paid video app.
+
+It's a bit like a free universal remote. The remote costs nothing, and it works with lots of TVs. But you still pay for the channels.
+
+Here, the "channels" are AI models like Kling, Veo and Sora. The app sends your requests to a service called Muapi, which 𝗰𝗵𝗮𝗿𝗴𝗲𝘀 𝗽𝗲𝗿 𝗶𝗺𝗮𝗴𝗲 𝗼𝗿 𝘃𝗶𝗱𝗲𝗼. So you can skip the monthly plan, but you don't skip paying.
+
+There's a real case for it. If you only make a few videos a month, paying per use could cost less than a subscription. And having many models in one place is convenient.
+
+There are also things to know. Your prompts and uploads go to Muapi's servers, so it's not fully private. It isn't connected to Higgsfield. And the project's own pages disagree on how many models it includes.
+
+What we know is that "open source" in AI often means the app is open, not the AI behind it.
+
+𝘞𝘩𝘦𝘯 𝘢 𝘵𝘰𝘰𝘭 𝘴𝘢𝘺𝘴 𝘧𝘳𝘦𝘦, 𝘴𝘩𝘰𝘶𝘭𝘥 𝘸𝘦 𝘢𝘴𝘬 𝘸𝘩𝘰'𝘴 𝘱𝘢𝘺𝘪𝘯𝘨 𝘧𝘰𝘳 𝘵𝘩𝘦 𝘤𝘰𝘮𝘱𝘶𝘵𝘦𝘳𝘴?
+
+Links in reply 👇
