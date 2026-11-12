@@ -1,0 +1,52 @@
+𝗡𝗲𝗼𝟰𝗷'𝘀 𝗡𝗲𝘄 𝗚𝗿𝗮𝗽𝗵 𝗗𝗮𝘁𝗮𝗯𝗮𝘀𝗲 𝗟𝗶𝘃𝗲𝘀 𝗶𝗻 𝗮 𝗙𝗶𝗹𝗲
+
+Neo4j open-sourced Relate this week: a light embedded graph database, no server needed.
+
+My first reaction was "𝘰𝘩, 𝘢𝘯𝘰𝘵𝘩𝘦𝘳 𝘒𝘶𝘻𝘶."
+
+Kuzu did exactly this from 2022 until Apple bought it and archived the repo. LadybugDB and FalkorDB already run without a server too. So "𝗻𝗼 𝘀𝗲𝗿𝘃𝗲𝗿" 𝗶𝘀𝗻'𝘁 𝘁𝗵𝗲 𝗻𝗲𝘄𝘀.
+
+𝗪𝗵𝗮𝘁'𝘀 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝗶𝘀 𝘄𝗵𝗼 𝗶𝘁'𝘀 𝗯𝘂𝗶𝗹𝘁 𝗳𝗼𝗿. Relate assumes the main user is an AI agent, not a person. That changes a lot of small decisions.
+
+Think of a spreadsheet file versus a company database.
+
+The database is more powerful, but the spreadsheet is what you actually open, edit and email. Relate makes a graph that kind of file: open it, add connections, query it, close it.
+
+• 𝗪𝗿𝗶𝘁𝘁𝗲𝗻 𝗶𝗻 𝗥𝘂𝘀𝘁. CLI, Python, Node and browser (WASM) builds, plus Java, Go, Swift and C bindings.
+• 𝗔 𝗴𝗿𝗮𝗽𝗵 𝗶𝘀 𝗮 𝗳𝗶𝗹𝗲. One .rl file, a folder, or pure memory that's gone when the program ends.
+• 𝗖𝗿𝗮𝘀𝗵-𝘀𝗮𝗳𝗲. Every change goes to a log first, so a crash doesn't lose your work, with Parquet snapshots alongside. You can commit the file to git or email it.
+
+"Can it turn my document into a graph?"
+
+𝗡𝗼, 𝗮𝗻𝗱 𝘁𝗵𝗶𝘀 𝗶𝘀 𝘁𝗵𝗲 𝗽𝗮𝗿𝘁 𝗺𝗼𝘀𝘁 𝗽𝗲𝗼𝗽𝗹𝗲 𝘄𝗶𝗹𝗹 𝗴𝗲𝘁 𝘄𝗿𝗼𝗻𝗴.
+
+Relate stores and queries a graph. It doesn't read your text and pull out the people, companies and links. There's no LLM inside.
+
+So if you have a document and want a graph, something else does the reading:
+
+• 𝗔𝗻 𝗔𝗜 𝗮𝗴𝗲𝗻𝘁 (the intended way): Claude Code or Cursor reads the document, picks out the things and connections, and writes them into Relate with Cypher.
+• 𝗬𝗼𝘂𝗿 𝗼𝘄𝗻 𝘀𝗰𝗿𝗶𝗽𝘁: structured data like CSV or JSON loads straight in with Cypher or LOAD CSV.
+• 𝗧𝘄𝗼 𝗯𝘂𝗶𝗹𝘁-𝗶𝗻 𝗲𝘅𝘁𝗲𝗻𝘀𝗶𝗼𝗻𝘀: one turns a folder of files into a graph, one does the same for git history. No LLM needed.
+• 𝗩𝗲𝗰𝘁𝗼𝗿 𝘀𝗲𝗮𝗿𝗰𝗵: works, but you bring the embeddings.
+
+𝗧𝗵𝗲 𝗮𝗴𝗲𝗻𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗯𝘂𝗶𝗹𝗱𝗲𝗿. 𝗥𝗲𝗹𝗮𝘁𝗲 𝗶𝘀 𝘁𝗵𝗲 𝗻𝗼𝘁𝗲𝗯𝗼𝗼𝗸 𝗶𝘁 𝘄𝗿𝗶𝘁𝗲𝘀 𝗶𝗻.
+
+𝗜𝘁'𝘀 𝗻𝗼𝘁 𝘁𝗵𝗲 𝗳𝗶𝗿𝘀𝘁 𝗼𝗳 𝗶𝘁𝘀 𝗸𝗶𝗻𝗱.
+
+• LadybugDB: the community fork of Kuzu, under MIT
+• FalkorDB: has an embedded mode, under SSPL
+• CozoDB: same job, with Datalog instead of Cypher
+
+The real rival is LadybugDB: it runs inside your program, speaks Cypher, and Cognee already uses it as its default graph store.
+
+Relate's edge is Neo4j's query dialect and drivers, the round trip to Aura, and 𝗮𝗴𝗲𝗻𝘁 𝘁𝗼𝗼𝗹𝗶𝗻𝗴 𝗯𝘂𝗶𝗹𝘁 𝗶𝗻 𝗳𝗿𝗼𝗺 𝗱𝗮𝘆 𝗼𝗻𝗲.
+
+𝗛𝗼𝘄 𝘁𝗼 𝘁𝗿𝘆 𝗶𝘁
+
+• Browser playground: link in the comments.
+• The exe from the releases page: one file, run it from a terminal.
+• The Python wheel from the same page: not on PyPI yet, so download the .whl, pip install it, then "import relate".
+• The curl script: Mac and Linux only.
+• Docker: runs it as a server, the opposite of the embedded idea. Overkill for a first try.
+
+Links in the first comment 👇
