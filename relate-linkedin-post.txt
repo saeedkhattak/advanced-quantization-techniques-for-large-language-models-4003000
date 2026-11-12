@@ -6,7 +6,7 @@ My first reaction was "𝘰𝘩, 𝘢𝘯𝘰𝘵𝘩𝘦𝘳 𝘒𝘶𝘻𝘶."
 
 Kuzu did exactly this from 2022 until Apple bought it and archived the repo. LadybugDB and FalkorDB already run without a server too. So "𝗻𝗼 𝘀𝗲𝗿𝘃𝗲𝗿" 𝗶𝘀𝗻'𝘁 𝘁𝗵𝗲 𝗻𝗲𝘄𝘀.
 
-𝗪𝗵𝗮𝘁'𝘀 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝗶𝘀 𝘄𝗵𝗼 𝗶𝘁'𝘀 𝗯𝘂𝗶𝗹𝘁 𝗳𝗼𝗿. Relate assumes the main user is an AI agent, not a person. That changes a lot of small decisions.
+𝗪𝗵𝗮𝘁'𝘀 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝗶𝘀 𝘄𝗵𝗼 𝗶𝘁'𝘀 𝗯𝘂𝗶𝗹𝘁 𝗳𝗼𝗿. Relate assumes the main user is an AI agent, not a person.
 
 Think of a spreadsheet file versus a company database.
 
@@ -47,6 +47,6 @@ Relate's edge is Neo4j's query dialect and drivers, the round trip to Aura, and 
 • The exe from the releases page: one file, run it from a terminal.
 • The Python wheel from the same page: not on PyPI yet, so download the .whl, pip install it, then "import relate".
 • The curl script: Mac and Linux only.
-• Docker: runs it as a server, the opposite of the embedded idea. Overkill for a first try.
+• Docker: runs it as a server. Overkill for a first try.
 
 Links in the first comment 👇
