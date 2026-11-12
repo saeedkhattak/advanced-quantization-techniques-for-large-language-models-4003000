@@ -1,0 +1,36 @@
+𝗜 𝗠𝘂𝘁𝗲𝗱 𝗮 𝗣𝗼𝗱𝗰𝗮𝘀𝘁 𝗮𝗻𝗱 𝗔𝘀𝗸𝗲𝗱 𝗖𝗹𝗮𝘂𝗱𝗲 𝘁𝗼 𝗥𝗲𝗮𝗱 𝗧𝗵𝗲𝗶𝗿 𝗟𝗶𝗽𝘀
+
+I took a podcast clip, deleted every second of sound, and asked an AI to tell me what was said.
+
+𝗜𝘁 𝗮𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝗰𝗮𝗺𝗲 𝗯𝗮𝗰𝗸 𝘄𝗶𝘁𝗵 𝘁𝗵𝗲 𝘀𝘁𝗼𝗿𝘆.
+
+Here's what I did. I screen-recorded a short clip from Moonshots with Peter Diamandis, about 𝟱𝟬 𝘀𝗲𝗰𝗼𝗻𝗱𝘀 where the guest talks about AI chips ending up in China and the investigation around it.
+
+I stripped the audio out in CapCut. The file still had a sound track, but it was pure silence.
+
+Then I gave it to Claude (Opus 5.5) and said: lip read this.
+
+I recorded my whole screen while it worked. That's the video attached.
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗱𝗶𝗱 𝗼𝗻 𝗶𝘁𝘀 𝗼𝘄𝗻:
+
+• 𝗙𝗼𝘂𝗻𝗱 𝗮 𝗿𝗲𝗮𝗹 𝗹𝗶𝗽-𝗿𝗲𝗮𝗱𝗶𝗻𝗴 𝗺𝗼𝗱𝗲𝗹: Auto-AVSR, open-source research from Imperial College London. Code from GitHub, the 1 GB model file from Hugging Face.
+• 𝗖𝗵𝗲𝗰𝗸𝗲𝗱 𝘁𝗵𝗲 𝗱𝗼𝘄𝗻𝗹𝗼𝗮𝗱: it compared the file's fingerprint with the one in the official README before trusting it.
+• 𝗗𝗶𝗱 𝘁𝗵𝗲 𝘃𝗶𝗱𝗲𝗼 𝘄𝗼𝗿𝗸: found the scene cuts, cropped the area around the face, and split it into 𝟲 𝘀𝗵𝗼𝗿𝘁 𝗰𝗹𝗶𝗽𝘀 at the frame rate the model expects.
+• 𝗥𝗮𝗻 𝗶𝘁 𝗼𝗻 𝗮 𝗽𝗹𝗮𝗶𝗻 𝗰𝗹𝗼𝘂𝗱 𝗖𝗣𝗨. No GPU.
+
+It didn't go smoothly the whole way, which I liked. Hugging Face's download server was blocked, so it asked me to allow it. Then a safety check refused to run code downloaded from the internet, and it stopped and asked me instead of finding a way around it.
+
+𝗧𝗵𝗲𝗻 𝘁𝗵𝗲 𝘁𝗿𝗮𝗻𝘀𝗰𝗿𝗶𝗽𝘁 𝗰𝗮𝗺𝗲 𝗯𝗮𝗰𝗸.
+
+Lines like "𝘢 𝘷𝘦𝘳𝘺 𝘣𝘪𝘨 𝘥𝘦𝘢𝘭", "𝘢 𝘩𝘶𝘨𝘦 𝘯𝘶𝘮𝘣𝘦𝘳 𝘰𝘧 𝘤𝘩𝘪𝘱𝘴", "𝘊𝘩𝘪𝘯𝘦𝘴𝘦 𝘮𝘰𝘥𝘦𝘭𝘴", "𝘪𝘭𝘭𝘦𝘨𝘢𝘭 𝘪𝘮𝘱𝘰𝘳𝘵𝘴" and "𝘵𝘦𝘤𝘩𝘯𝘪𝘤𝘢𝘭𝘭𝘺 𝘱𝘳𝘰𝘣𝘢𝘣𝘭𝘺 𝘯𝘰𝘵 𝘪𝘭𝘭𝘦𝘨𝘢𝘭, 𝘮𝘢𝘺𝘣𝘦 𝘪𝘵 𝘪𝘴, 𝘮𝘢𝘺𝘣𝘦 𝘪𝘵 𝘪𝘴𝘯'𝘵… 𝘵𝘩𝘢𝘵'𝘴 𝘵𝘩𝘦 𝘱𝘢𝘳𝘵 𝘸𝘩𝘦𝘳𝘦 𝘵𝘩𝘦𝘺'𝘳𝘦 𝘫𝘶𝘴𝘵 𝘨𝘰𝘯𝘯𝘢 𝘥𝘪𝘨 𝘪𝘯."
+
+From a silent video. That part still gets me.
+
+𝗜𝘁 𝗶𝘀𝗻'𝘁 𝗽𝗲𝗿𝗳𝗲𝗰𝘁, 𝗮𝗻𝗱 𝗶𝘁 𝘁𝗼𝗹𝗱 𝗺𝗲 𝘀𝗼. Some lines were pure nonsense, like "𝘵𝘩𝘦 𝘥𝘳𝘺 𝘦𝘳𝘢 𝘰𝘧 𝘴𝘰𝘺𝘣𝘦𝘢𝘯 𝘱𝘭𝘢𝘺 𝘢𝘯𝘥 𝘵𝘩𝘦 𝘸𝘢𝘪𝘴𝘵𝘣𝘢𝘯𝘥." "Trading Chinese models" was almost certainly "training". Lip reading is hard because lots of words look the same on the lips. This model gets about 𝟭 𝘄𝗼𝗿𝗱 𝗶𝗻 𝟱 𝘄𝗿𝗼𝗻𝗴 even on clean test videos, and mine was a phone recording of a video call.
+
+So it's not a transcript. But I knew what the conversation was about, and some sentences read like real speech.
+
+A few years ago this was a research demo. 𝗡𝗼𝘄 𝗶𝘁'𝘀 𝗼𝗻𝗲 𝗽𝗿𝗼𝗺𝗽𝘁 𝗮𝗻𝗱 𝗮 𝗯𝗶𝘁 𝗼𝗳 𝗽𝗮𝘁𝗶𝗲𝗻𝗰𝗲.
+
+𝘞𝘩𝘢𝘵 𝘦𝘭𝘴𝘦 𝘪𝘴 𝘩𝘪𝘥𝘪𝘯𝘨 𝘪𝘯 𝘢𝘭𝘭 𝘵𝘩𝘦 𝘮𝘶𝘵𝘦𝘥 𝘷𝘪𝘥𝘦𝘰𝘴 𝘸𝘦 𝘴𝘤𝘳𝘰𝘭𝘭 𝘱𝘢𝘴𝘵?
