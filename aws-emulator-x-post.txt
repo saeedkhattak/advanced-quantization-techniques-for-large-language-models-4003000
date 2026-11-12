@@ -1,0 +1,150 @@
+===== 1. STORY =====
+
+𝗔𝗪𝗦 𝗝𝘂𝘀𝘁 𝗣𝘂𝘁 𝗮 𝗖𝗼𝗽𝘆 𝗼𝗳 𝗜𝘁𝘀 𝗖𝗹𝗼𝘂𝗱 𝗼𝗻 𝗬𝗼𝘂𝗿 𝗟𝗮𝗽𝘁𝗼𝗽
+
+You write code that talks to S3 or DynamoDB. To test it, you either deploy to a real account and pay, or you lean on a mock that may not behave like AWS at all.
+
+AWS's answer, released on 11 November: 𝗔𝗪𝗦 𝗘𝗺𝘂𝗹𝗮𝘁𝗼𝗿.
+
+It runs on your machine and answers the same API calls AWS does. You point the AWS CLI or an SDK at it with environment variables, and your code doesn't know the difference. It doesn't need an AWS account, and 𝘁𝗵𝗲𝗿𝗲'𝘀 𝗻𝗼 𝗲𝘅𝘁𝗿𝗮 𝘀𝗲𝗿𝘃𝗶𝗰𝗲 𝗳𝗲𝗲.
+
+There are three ways to run it:
+
+• 𝗦𝗲𝗿𝘃𝗲𝗿 𝗺𝗼𝗱𝗲: an RPM or Debian package on Linux, Docker on Mac and Windows
+• 𝗘𝗺𝗯𝗲𝗱𝗱𝗲𝗱 𝗺𝗼𝗱𝗲: inside Rust tests, one isolated emulator per test
+• 𝗔𝗴𝗲𝗻𝘁 𝘀𝗸𝗶𝗹𝗹: a coding agent installs it through the AWS CLI (2.35.0 or later)
+
+The part people are talking about is how it was made. AWS says 𝗮𝘂𝘁𝗼𝗻𝗼𝗺𝗼𝘂𝘀 𝗔𝗜 𝗮𝗴𝗲𝗻𝘁𝘀 𝘄𝗿𝗼𝘁𝗲 𝗶𝘁, and its own engineering post says no human wrote or reviewed the code. Build checks and other agents do the reviewing. The repo has 𝟮𝟵,𝟲𝟴𝟰 𝗰𝗼𝗺𝗺𝗶𝘁𝘀 on main and it doesn't accept pull requests.
+
+For users, this means cheap, fast integration tests and a sandbox a coding agent can't break.
+
+For builders, it means the code is CC0 (public domain), with one crate per AWS service, each generated from a Smithy model.
+
+It isn't the first tool of its kind. LocalStack has done this for years, Moto mocks AWS in Python, and Floci and MiniStack are newer free options. What's new is that AWS itself ships one, and that it's this wide (reports say 𝟮𝟬𝟬+ 𝘀𝗲𝗿𝘃𝗶𝗰𝗲𝘀).
+
+One caveat: coverage is far from complete. The repo's own issues folder holds 𝗺𝗼𝗿𝗲 𝘁𝗵𝗮𝗻 𝟲,𝟬𝟬𝟬 𝗻𝗼𝘁𝗲𝘀 𝗼𝗻 𝘁𝗵𝗶𝗻𝗴𝘀 𝘁𝗵𝗮𝘁 𝗱𝗼𝗻'𝘁 𝘄𝗼𝗿𝗸 𝘆𝗲𝘁. Unsupported calls reportedly return a 501. Telemetry is 𝗼𝗻 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁 (you can switch it off). Building from source needs 𝗮𝗯𝗼𝘂𝘁 𝟭𝟬𝟬 𝗚𝗕 𝗼𝗳 𝗱𝗶𝘀𝗸.
+
+𝘛𝘩𝘦 𝘦𝘮𝘶𝘭𝘢𝘵𝘰𝘳 𝘪𝘴 𝘶𝘴𝘦𝘧𝘶𝘭. 𝘛𝘩𝘦 𝘣𝘪𝘨𝘨𝘦𝘳 𝘴𝘵𝘰𝘳𝘺 𝘪𝘴 𝘢 𝘤𝘭𝘰𝘶𝘥 𝘱𝘳𝘰𝘷𝘪𝘥𝘦𝘳 𝘴𝘩𝘪𝘱𝘱𝘪𝘯𝘨 𝘢 𝘱𝘳𝘰𝘥𝘶𝘤𝘵 𝘵𝘩𝘢𝘵 𝘯𝘰 𝘩𝘶𝘮𝘢𝘯 𝘳𝘦𝘢𝘥 𝘭𝘪𝘯𝘦 𝘣𝘺 𝘭𝘪𝘯𝘦.
+
+Links in reply 👇
+
+===== 2. KARPATHY STYLE =====
+
+𝗧𝗵𝗲 𝗜𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗣𝗮𝗿𝘁 𝗼𝗳 𝗔𝗪𝗦 𝗘𝗺𝘂𝗹𝗮𝘁𝗼𝗿 𝗜𝘀𝗻'𝘁 𝘁𝗵𝗲 𝗘𝗺𝘂𝗹𝗮𝘁𝗼𝗿
+
+AWS shipped a local emulator of its APIs on 11 November. It's free and needs no account. It runs as a server, in Docker or inside Rust tests.
+
+Local AWS emulators aren't new. LocalStack and Moto have been around for years.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀 𝗵𝗼𝘄 𝗶𝘁 𝗴𝗼𝘁 𝗯𝘂𝗶𝗹𝘁. AWS says autonomous agents wrote the code, and that no human wrote or reviewed it. There are 𝟮𝟵,𝟲𝟴𝟰 𝗰𝗼𝗺𝗺𝗶𝘁𝘀 on main.
+
+I think this is the right kind of problem to hand to agents. An emulator has a spec you can test against: the real AWS. You send the same request to both and compare the responses. That gives you a loop with a clear "correct", which is what agents need most.
+
+AWS publishes a fidelity score per service with each release, based on how many tests pass. That's the honest metric here, more than any count of services.
+
+The weak spot is the long tail. The repo tracks 𝗺𝗼𝗿𝗲 𝘁𝗵𝗮𝗻 𝟲,𝟬𝟬𝟬 𝗻𝗼𝘁𝗲𝘀 𝗼𝗻 𝘁𝗵𝗶𝗻𝗴𝘀 𝘁𝗵𝗮𝘁 𝗱𝗼𝗻'𝘁 𝘄𝗼𝗿𝗸 𝘆𝗲𝘁, sitting next to more than 12,000 that were fixed. That's what agent-built software looks like imo: very wide, mostly right, and with gaps you only find by running it.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘢𝘤𝘵𝘶𝘢𝘭𝘭𝘺 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘴𝘦𝘦 𝘪𝘴 𝘵𝘩𝘦 𝘧𝘪𝘥𝘦𝘭𝘪𝘵𝘺 𝘤𝘶𝘳𝘷𝘦 𝘰𝘷𝘦𝘳 𝘵𝘪𝘮𝘦. 𝘋𝘰𝘦𝘴 𝘵𝘩𝘦 𝘨𝘢𝘱 𝘴𝘩𝘳𝘪𝘯𝘬, 𝘰𝘳 𝘭𝘦𝘷𝘦𝘭 𝘰𝘧𝘧?
+
+Links in reply 👇
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗼𝗻 𝗔𝗪𝗦 𝗘𝗺𝘂𝗹𝗮𝘁𝗼𝗿
+
+AWS released AWS Emulator on 11 November. From the README, it's a local emulator of the AWS APIs that you can test against "𝘸𝘪𝘵𝘩𝘰𝘶𝘵 𝘤𝘢𝘭𝘭𝘪𝘯𝘨 𝘈𝘞𝘚", on a laptop, a dev server or in CI.
+
+Some details I found interesting:
+
+• 𝗘𝗺𝗯𝗲𝗱𝗱𝗲𝗱 𝗺𝗼𝗱𝗲. Add it as a Rust dev-dependency and each test gets its own in-process instance. You pass its HTTP client to the SDK client.
+• 𝗚𝗮𝗽𝘀 𝗹𝗶𝘃𝗲 𝗶𝗻 𝘁𝗵𝗲 𝗿𝗲𝗽𝗼. Problems are written up as markdown files in 𝚒𝚜𝚜𝚞𝚎𝚜/𝚝𝚑𝚒𝚗𝚐𝚜-𝚝𝚑𝚊𝚝-𝚍𝚘-𝚗𝚘𝚝-𝚠𝚘𝚛𝚔/ and moved to 𝚒𝚜𝚜𝚞𝚎𝚜/𝚝𝚑𝚒𝚗𝚐𝚜-𝚝𝚑𝚊𝚝-𝚗𝚘𝚠-𝚠𝚘𝚛𝚔/ once fixed. As of today that's more than 6,000 and more than 12,000 files.
+
+The build story: AWS says autonomous agents wrote the code with no human code review. The repo doesn't accept pull requests. Bug reports go to GitHub Issues.
+
+Things to be careful about:
+
+• 𝗧𝗲𝗹𝗲𝗺𝗲𝘁𝗿𝘆 𝗶𝘀 𝗼𝗻 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁. Turn it off with --𝚝𝚎𝚕𝚎𝚖𝚎𝚝𝚛𝚢 𝚘𝚏𝚏 or 𝙴𝙼𝚄𝙻𝙰𝚃𝙾𝚁_𝚃𝙴𝙻𝙴𝙼𝙴𝚃𝚁𝚈=𝚘𝚏𝚏.
+• 𝗕𝘂𝗶𝗹𝗱𝗶𝗻𝗴 𝗳𝗿𝗼𝗺 𝘀𝗼𝘂𝗿𝗰𝗲 𝗻𝗲𝗲𝗱𝘀 𝗮𝗯𝗼𝘂𝘁 𝟭𝟬𝟬 𝗚𝗕 of disk and works on Linux only.
+• It's meant for building and testing, 𝗻𝗼𝘁 𝗽𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝗼𝗿 𝘀𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝘁𝗲𝘀𝘁𝗶𝗻𝗴.
+• The "200+ services" figure comes from coverage, not from my own count. Check the per-release fidelity scores for the services you actually use. Five of the most recent releases say "𝘚𝘤𝘰𝘳𝘦𝘴 𝘢𝘳𝘦 𝘯𝘰𝘵 𝘢𝘷𝘢𝘪𝘭𝘢𝘣𝘭𝘦 𝘧𝘰𝘳 𝘵𝘩𝘪𝘴 𝘳𝘦𝘭𝘦𝘢𝘴𝘦."
+
+License: CC0-1.0, with 𝚟𝚎𝚗𝚍𝚘𝚛/ under Apache 2.0.
+
+Links in reply 👇
+
+===== 4. SWYX STYLE =====
+
+𝗟𝗼𝗰𝗮𝗹 𝗔𝗪𝗦 𝗘𝗺𝘂𝗹𝗮𝘁𝗼𝗿𝘀 𝗝𝘂𝘀𝘁 𝗚𝗼𝘁 𝗮 𝗙𝗶𝗿𝘀𝘁-𝗣𝗮𝗿𝘁𝘆 𝗣𝗹𝗮𝘆𝗲𝗿
+
+Local cloud emulation has been a crowded corner for years:
+
+• 𝗟𝗼𝗰𝗮𝗹𝗦𝘁𝗮𝗰𝗸: the default for a long time. Its packaging changed in March 2026, and the free Hobby tier is for non-commercial use only.
+• 𝗠𝗼𝘁𝗼: Python mocks, great inside unit tests.
+• 𝗙𝗹𝗼𝗰𝗶, 𝗠𝗶𝗻𝗶𝗦𝘁𝗮𝗰𝗸: free MIT projects pitched as LocalStack replacements.
+
+Now AWS has shipped its own. 𝗔𝗪𝗦 𝗘𝗺𝘂𝗹𝗮𝘁𝗼𝗿 came out on 11 November. It's CC0, free, and reports put it at 𝟮𝟬𝟬+ 𝘀𝗲𝗿𝘃𝗶𝗰𝗲𝘀.
+
+It fits as the "official" option, and the vendor owns the ground truth. Fidelity is measured against real AWS and published with each release.
+
+Then there's the twist. AWS says 𝗮𝗴𝗲𝗻𝘁𝘀 𝘄𝗿𝗼𝘁𝗲 𝘁𝗵𝗲 𝗰𝗼𝗱𝗲, with no human review. The repo has 𝟮𝟵,𝟲𝟴𝟰 𝗰𝗼𝗺𝗺𝗶𝘁𝘀 and takes no pull requests.
+
+My take: this is where agent-built software gets its first big test, a wide, boring, spec-driven product where correctness can be checked by machine.
+
+Third-party emulators now have to compete on fit and finish, not breadth. And every cloud vendor just got a template for shipping an agent-built twin of its own API.
+
+𝘞𝘩𝘰 𝘴𝘩𝘪𝘱𝘴 𝘵𝘩𝘦 𝘯𝘦𝘹𝘵 𝘰𝘯𝘦: 𝘎𝘊𝘗 𝘰𝘳 𝘈𝘻𝘶𝘳𝘦?
+
+Links in reply 👇
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+𝗕𝗲𝗳𝗼𝗿𝗲 𝗬𝗼𝘂 𝗦𝘄𝗮𝗽 𝗬𝗼𝘂𝗿 𝗧𝗲𝘀𝘁 𝗦𝗲𝘁𝘂𝗽 𝗳𝗼𝗿 𝗔𝗪𝗦 𝗘𝗺𝘂𝗹𝗮𝘁𝗼𝗿
+
+AWS Emulator (released 11 November) runs the AWS APIs locally, free, with no account. AWS says agents wrote it.
+
+What it gives you:
+
+• 𝗧𝗵𝗲 𝗿𝗲𝗮𝗹 𝗦𝗗𝗞 𝗮𝗻𝗱 𝗖𝗟𝗜 pointed at a local endpoint
+• 𝗜𝘀𝗼𝗹𝗮𝘁𝗲𝗱 𝗶𝗻𝘀𝘁𝗮𝗻𝗰𝗲𝘀 𝗽𝗲𝗿 𝘁𝗲𝘀𝘁 if you write Rust
+• 𝗔 𝘀𝗮𝗻𝗱𝗯𝗼𝘅 𝗳𝗼𝗿 𝗰𝗼𝗱𝗶𝗻𝗴 𝗮𝗴𝗲𝗻𝘁𝘀 that can't touch your real account
+• 𝗣𝘂𝗯𝗹𝗶𝘀𝗵𝗲𝗱 𝗳𝗶𝗱𝗲𝗹𝗶𝘁𝘆 𝘀𝗰𝗼𝗿𝗲𝘀 per service, with each release
+
+What it doesn't give you:
+
+• 𝗙𝘂𝗹𝗹 𝗰𝗼𝘃𝗲𝗿𝗮𝗴𝗲. The repo tracks 𝗺𝗼𝗿𝗲 𝘁𝗵𝗮𝗻 𝟲,𝟬𝟬𝟬 𝗸𝗻𝗼𝘄𝗻 𝗴𝗮𝗽𝘀. Unsupported calls reportedly return 501.
+• 𝗣𝗿𝗼𝗼𝗳 𝗶𝘁 𝗺𝗮𝘁𝗰𝗵𝗲𝘀 𝘆𝗼𝘂𝗿 𝘂𝘀𝗲. A high service-wide score says nothing about the five calls your app depends on.
+• 𝗣𝗿𝗶𝘃𝗮𝗰𝘆 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁. Telemetry is on until you turn it off.
+
+If you're thinking of switching, here's how I'd test it:
+
+1. List the AWS calls your app actually makes, with real request shapes.
+2. Run your integration tests against real AWS once and save the results as a baseline.
+3. Run the same tests against the emulator and diff the responses, errors included.
+4. Read the failures one by one, and check them against 𝚒𝚜𝚜𝚞𝚎𝚜/𝚝𝚑𝚒𝚗𝚐𝚜-𝚝𝚑𝚊𝚝-𝚍𝚘-𝚗𝚘𝚝-𝚠𝚘𝚛𝚔/.
+5. Pin a release, and run this again each time you upgrade.
+
+𝘛𝘳𝘶𝘴𝘵 𝘵𝘩𝘦 𝘥𝘪𝘧𝘧, 𝘯𝘰𝘵 𝘵𝘩𝘦 𝘴𝘦𝘳𝘷𝘪𝘤𝘦 𝘤𝘰𝘶𝘯𝘵.
+
+Links in reply 👇
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗪𝗼𝘂𝗹𝗱 𝗬𝗼𝘂 𝗧𝗿𝘂𝘀𝘁 𝗦𝗼𝗳𝘁𝘄𝗮𝗿𝗲 𝗡𝗼 𝗛𝘂𝗺𝗮𝗻 𝗛𝗮𝘀 𝗥𝗲𝗮𝗱?
+
+AWS just released a tool that copies its cloud onto a laptop. Developers can test their code against it for free, without touching the real thing.
+
+Think of a flight simulator. Pilots practise on it because crashing it costs nothing. 𝗔𝗪𝗦 𝗘𝗺𝘂𝗹𝗮𝘁𝗼𝗿 is that for software running on Amazon's cloud.
+
+The unusual part is who built it. AWS says 𝗮𝘂𝘁𝗼𝗻𝗼𝗺𝗼𝘂𝘀 𝗔𝗜 𝗮𝗴𝗲𝗻𝘁𝘀 𝘄𝗿𝗼𝘁𝗲 𝘁𝗵𝗲 𝗰𝗼𝗱𝗲, and no human reviewed it. It isn't a demo, either. It's a public release with 𝟮𝟵,𝟲𝟴𝟰 𝗰𝗼𝗺𝗺𝗶𝘁𝘀, and 𝗮𝗯𝗼𝘂𝘁 𝟯,𝟲𝟬𝟬 𝗚𝗶𝘁𝗛𝘂𝗯 𝘀𝘁𝗮𝗿𝘀 as of 12 November.
+
+There's evidence on both sides.
+
+In its favour, AWS checks it against the real cloud and publishes a fidelity score for each service. That's a concrete, measurable standard.
+
+Against it, the project lists 𝗺𝗼𝗿𝗲 𝘁𝗵𝗮𝗻 𝟲,𝟬𝟬𝟬 𝘁𝗵𝗶𝗻𝗴𝘀 𝘁𝗵𝗮𝘁 𝗱𝗼𝗻'𝘁 𝘄𝗼𝗿𝗸 𝘆𝗲𝘁. And "no human read it" will make plenty of engineers nervous, especially in a tool that is meant to teach them how AWS behaves.
+
+What we actually know is narrow. Agents can produce very wide, testable software that a big company is willing to put its name on. We don't yet know how it holds up after months of real use.
+
+𝘐𝘧 𝘵𝘦𝘴𝘵𝘴 𝘤𝘢𝘯 𝘴𝘵𝘢𝘯𝘥 𝘪𝘯 𝘧𝘰𝘳 𝘩𝘶𝘮𝘢𝘯 𝘳𝘦𝘷𝘪𝘦𝘸 𝘩𝘦𝘳𝘦, 𝘸𝘩𝘦𝘳𝘦 𝘦𝘭𝘴𝘦 𝘸𝘪𝘭𝘭 𝘤𝘰𝘮𝘱𝘢𝘯𝘪𝘦𝘴 𝘥𝘦𝘤𝘪𝘥𝘦 𝘵𝘩𝘢𝘵 𝘵𝘩𝘦𝘺 𝘤𝘢𝘯?
+
+Links in reply 👇
