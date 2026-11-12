@@ -1,0 +1,153 @@
+===== 1. STORY =====
+
+𝗠𝗲𝗲𝘁𝗶𝗻𝗴 𝗡𝗼𝘁𝗲𝘀 𝗧𝗵𝗮𝘁 𝗡𝗲𝘃𝗲𝗿 𝗟𝗲𝗮𝘃𝗲 𝗬𝗼𝘂𝗿 𝗟𝗮𝗽𝘁𝗼𝗽
+
+You're on a call and a bot called "Notetaker" joins. Half the room relaxes and the other half starts choosing its words. Afterwards your conversation lives on someone else's server.
+
+Yogurt takes a different route. It's a free desktop app from Frigade that records the call from your own computer, so 𝗻𝗼 𝗯𝗼𝘁 𝗷𝗼𝗶𝗻𝘀 𝘁𝗵𝗲 𝗺𝗲𝗲𝘁𝗶𝗻𝗴.
+
+How it works, in three steps:
+
+• 𝗥𝗲𝗰𝗼𝗿𝗱: it captures your mic and the call audio, and you can type your own notes alongside
+• 𝗧𝗿𝗮𝗻𝘀𝗰𝗿𝗶𝗯𝗲: whisper.cpp does the speech-to-text (plus Apple's SpeechAnalyzer on supported Macs)
+• 𝗦𝘂𝗺𝗺𝗮𝗿𝗶𝘀𝗲: a local open-weight model runs through llama.cpp. It picks from the Gemma 4, gpt-oss or Qwen3 families based on your hardware
+
+The README is clear about the promise: "𝘔𝘦𝘦𝘵𝘪𝘯𝘨 𝘥𝘢𝘵𝘢 𝘴𝘵𝘢𝘺𝘴 𝘭𝘰𝘤𝘢𝘭." The app only goes online to download models and check for updates.
+
+For users, you get live transcripts, summaries, search across all your meetings, answers that link back to the source, and Markdown export. It handles 𝟵𝟵 𝗹𝗮𝗻𝗴𝘂𝗮𝗴𝗲𝘀 for transcription.
+
+For builders, it's an Electron app under MIT, and it runs a 𝗹𝗼𝗰𝗮𝗹 𝗠𝗖𝗣 𝘀𝗲𝗿𝘃𝗲𝗿 so an assistant app can read your notes if you allow it.
+
+It's not the first to try this. Granola made bot-free notes popular but runs in the cloud and isn't open source. Meetily (MIT, about 32k stars) and Anarlog, the project formerly called Hyprnote, already do local, bot-free notes. Yogurt's angle is AI that stays on your machine, with no paid tier or cloud option in the README.
+
+Some caveats. It's 𝗯𝗿𝗮𝗻𝗱 𝗻𝗲𝘄: the public repo's history starts on 11 November and it's at version 0.3.7. There are no published accuracy numbers. Setup downloads 𝗮𝗯𝗼𝘂𝘁 𝟱 𝗚𝗕, then a larger model of 𝟭𝟰 𝗚𝗕 𝗼𝗿 𝗺𝗼𝗿𝗲, and it needs 8 GB of RAM. Speaker names and calendar features are Mac only. The Windows build isn't signed yet.
+
+And the MCP server has no per-app token, so "𝘢𝘯𝘺 𝘢𝘱𝘱 𝘳𝘶𝘯𝘯𝘪𝘯𝘨 𝘶𝘯𝘥𝘦𝘳 𝘺𝘰𝘶𝘳 𝘢𝘤𝘤𝘰𝘶𝘯𝘵 𝘤𝘢𝘯 𝘳𝘦𝘢𝘥 𝘸𝘩𝘪𝘭𝘦 𝘢𝘤𝘤𝘦𝘴𝘴 𝘪𝘴 𝘰𝘯."
+
+One more thing the README says outright: no bot means nobody gets a notice, 𝘀𝗼 𝘆𝗼𝘂 𝗵𝗮𝘃𝗲 𝘁𝗼 𝘁𝗲𝗹𝗹 𝗽𝗲𝗼𝗽𝗹𝗲 𝘆𝗼𝘂'𝗿𝗲 𝗿𝗲𝗰𝗼𝗿𝗱𝗶𝗻𝗴.
+
+𝘗𝘳𝘪𝘷𝘢𝘤𝘺 𝘶𝘴𝘦𝘥 𝘵𝘰 𝘮𝘦𝘢𝘯 𝘵𝘳𝘶𝘴𝘵𝘪𝘯𝘨 𝘢 𝘤𝘰𝘮𝘱𝘢𝘯𝘺'𝘴 𝘱𝘰𝘭𝘪𝘤𝘺. 𝘏𝘦𝘳𝘦 𝘪𝘵 𝘮𝘦𝘢𝘯𝘴 𝘢 𝘮𝘰𝘥𝘦𝘭 𝘰𝘯 𝘺𝘰𝘶𝘳 𝘰𝘸𝘯 𝘮𝘢𝘤𝘩𝘪𝘯𝘦.
+
+Links in reply 👇
+
+===== 2. KARPATHY STYLE =====
+
+𝗧𝗵𝗲 𝗜𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗣𝗮𝗿𝘁 𝗼𝗳 𝗬𝗼𝗴𝘂𝗿𝘁 𝗜𝘀 𝗪𝗵𝗲𝗿𝗲 𝘁𝗵𝗲 𝗠𝗼𝗱𝗲𝗹 𝗥𝘂𝗻𝘀
+
+Yogurt is a new open-source meeting notes app from Frigade. It records calls, transcribes them and writes summaries. Nothing unusual there.
+
+𝗪𝗵𝗮𝘁'𝘀 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗶𝘀 𝘁𝗵𝗮𝘁 𝗲𝘃𝗲𝗿𝘆 𝘀𝘁𝗲𝗽 𝗿𝘂𝗻𝘀 𝗼𝗻 𝘆𝗼𝘂𝗿 𝗼𝘄𝗻 𝗺𝗮𝗰𝗵𝗶𝗻𝗲. Audio goes to whisper.cpp, text goes to a local model through llama.cpp, and the notes land in a folder on your disk.
+
+A couple of years ago this needed a server farm. Now the stated minimum is a laptop with 8 GB of RAM, and the app picks a model size (Gemma 4, gpt-oss or Qwen3) to fit the hardware.
+
+I think of it like the move from the mainframe to the PC. The capability didn't change much, but who holds the data did.
+
+The trade-off is size and quality. Setup pulls 𝗮𝗯𝗼𝘂𝘁 𝟱 𝗚𝗕 first and then 𝟭𝟰 𝗚𝗕 𝗼𝗿 𝗺𝗼𝗿𝗲. A small local model on a mid-range laptop won't summarise like a frontier model in the cloud, and the project hasn't published any numbers on how close it gets.
+
+It's also days old, at 𝘃𝟬.𝟯.𝟳, with history starting 11 November.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘴𝘦𝘦 𝘪𝘴 𝘢 𝘴𝘪𝘮𝘱𝘭𝘦 𝘴𝘪𝘥𝘦-𝘣𝘺-𝘴𝘪𝘥𝘦: 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘮𝘦𝘦𝘵𝘪𝘯𝘨 𝘴𝘶𝘮𝘮𝘢𝘳𝘪𝘴𝘦𝘥 𝘭𝘰𝘤𝘢𝘭𝘭𝘺 𝘢𝘯𝘥 𝘣𝘺 𝘢 𝘤𝘭𝘰𝘶𝘥 𝘮𝘰𝘥𝘦𝘭, 𝘴𝘤𝘰𝘳𝘦𝘥 𝘣𝘺 𝘵𝘩𝘦 𝘱𝘦𝘰𝘱𝘭𝘦 𝘸𝘩𝘰 𝘸𝘦𝘳𝘦 𝘪𝘯 𝘪𝘵.
+
+Links in reply 👇
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗼𝗻 𝗬𝗼𝗴𝘂𝗿𝘁, 𝗮 𝗟𝗼𝗰𝗮𝗹 𝗠𝗲𝗲𝘁𝗶𝗻𝗴 𝗡𝗼𝘁𝗲𝘀 𝗔𝗽𝗽
+
+Yogurt is an MIT-licensed Electron app from Frigade. The README's tagline is "𝘗𝘳𝘪𝘷𝘢𝘵𝘦 𝘈𝘐 𝘮𝘦𝘦𝘵𝘪𝘯𝘨 𝘯𝘰𝘵𝘦𝘴. 𝘍𝘳𝘦𝘦 𝘢𝘯𝘥 𝘰𝘱𝘦𝘯 𝘴𝘰𝘶𝘳𝘤𝘦."
+
+It records your mic and call audio, transcribes with whisper.cpp (and Apple SpeechAnalyzer on supported Macs), and summarises with a local model through llama.cpp. Downloads exist for macOS on Apple Silicon, Windows x64 and a Linux AppImage.
+
+Two details I found interesting:
+
+• 𝗜𝘁 𝘀𝗵𝗶𝗽𝘀 𝗮 𝗹𝗼𝗰𝗮𝗹 𝗠𝗖𝗣 𝘀𝗲𝗿𝘃𝗲𝗿. An assistant app can read your meeting notes if you allow it. Handy, but see below.
+• 𝗠𝗼𝗱𝗲𝗹 𝗰𝗵𝗼𝗶𝗰𝗲 𝗶𝘀 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗰. It picks from the Gemma 4, gpt-oss or Qwen3 families based on your hardware, and Whisper large-v3-turbo or a smaller model for transcription.
+
+Things to be careful about:
+
+• 𝗧𝗵𝗲 𝗠𝗖𝗣 𝗮𝗰𝗰𝗲𝘀𝘀 𝗵𝗮𝘀 𝗻𝗼 𝗽𝗲𝗿-𝗮𝗽𝗽 𝘁𝗼𝗸𝗲𝗻. The README says "𝘢𝘯𝘺 𝘢𝘱𝘱 𝘳𝘶𝘯𝘯𝘪𝘯𝘨 𝘶𝘯𝘥𝘦𝘳 𝘺𝘰𝘶𝘳 𝘢𝘤𝘤𝘰𝘶𝘯𝘵 𝘤𝘢𝘯 𝘳𝘦𝘢𝘥 𝘸𝘩𝘪𝘭𝘦 𝘢𝘤𝘤𝘦𝘴𝘴 𝘪𝘴 𝘰𝘯", and notes that some apps may send what they read to their own online models.
+• 𝗡𝗼𝘁 𝗳𝘂𝗹𝗹𝘆 𝗼𝗳𝗳𝗹𝗶𝗻𝗲 𝗳𝗿𝗼𝗺 𝗱𝗮𝘆 𝗼𝗻𝗲. It goes online for model downloads (𝗮𝗯𝗼𝘂𝘁 𝟱 𝗚𝗕, then 𝟭𝟰 𝗚𝗕+) and update checks.
+• 𝗧𝗵𝗲 𝗪𝗶𝗻𝗱𝗼𝘄𝘀 𝗯𝘂𝗶𝗹𝗱 𝗶𝘀𝗻'𝘁 𝗰𝗼𝗱𝗲-𝘀𝗶𝗴𝗻𝗲𝗱 𝘆𝗲𝘁, so you'll get a SmartScreen warning.
+• 𝗡𝗼 𝗮𝗰𝗰𝘂𝗿𝗮𝗰𝘆 𝗯𝗲𝗻𝗰𝗵𝗺𝗮𝗿𝗸𝘀 are published.
+• 𝗖𝗼𝗻𝘀𝗲𝗻𝘁 𝗶𝘀 𝗼𝗻 𝘆𝗼𝘂. "𝘕𝘰 𝘣𝘰𝘵 𝘫𝘰𝘪𝘯𝘴 𝘵𝘩𝘦 𝘤𝘢𝘭𝘭, 𝘴𝘰 𝘭𝘦𝘵 𝘵𝘩𝘦 𝘰𝘵𝘩𝘦𝘳 𝘱𝘦𝘰𝘱𝘭𝘦 𝘰𝘯 𝘵𝘩𝘦 𝘤𝘢𝘭𝘭 𝘬𝘯𝘰𝘸 𝘺𝘰𝘶'𝘳𝘦 𝘳𝘦𝘤𝘰𝘳𝘥𝘪𝘯𝘨."
+
+It's very new: 𝘃𝟬.𝟯.𝟳, 𝟳𝟮𝟴 𝘀𝘁𝗮𝗿𝘀 as of 12 November, and commit history starting on 11 November.
+
+Links in reply 👇
+
+===== 4. SWYX STYLE =====
+
+𝗕𝗼𝘁-𝗙𝗿𝗲𝗲, 𝗟𝗼𝗰𝗮𝗹 𝗠𝗲𝗲𝘁𝗶𝗻𝗴 𝗡𝗼𝘁𝗲𝘀 𝗜𝘀 𝗡𝗼𝘄 𝗮 𝗥𝗲𝗮𝗹 𝗖𝗮𝘁𝗲𝗴𝗼𝗿𝘆
+
+The meeting notes market has split in two.
+
+• 𝗕𝗼𝘁𝘀 𝘁𝗵𝗮𝘁 𝗷𝗼𝗶𝗻 𝘁𝗵𝗲 𝗰𝗮𝗹𝗹: the original model. Easy, but everyone sees it and the data sits in the vendor's cloud.
+• 𝗚𝗿𝗮𝗻𝗼𝗹𝗮: made bot-free notes mainstream by recording from your device. Closed source, with cloud processing.
+• 𝗠𝗲𝗲𝘁𝗶𝗹𝘆: open source (MIT), about 𝟯𝟮𝗸 𝘀𝘁𝗮𝗿𝘀, local Whisper plus Ollama by default, with a paid Pro tier.
+• 𝗔𝗻𝗮𝗿𝗹𝗼𝗴 (𝗳𝗼𝗿𝗺𝗲𝗿𝗹𝘆 𝗛𝘆𝗽𝗿𝗻𝗼𝘁𝗲): MIT community app, local or cloud AI per step, optional hosted Pro.
+
+Now there's 𝗬𝗼𝗴𝘂𝗿𝘁, from Frigade. Same bot-free idea, MIT licensed, with the AI kept 𝗹𝗼𝗰𝗮𝗹 𝗼𝗻𝗹𝘆, no paid tier in the README, and a built-in MCP server.
+
+Where it fits: the "just install it and nothing leaves the laptop" end of the market. It's also the youngest by far, at 𝘃𝟬.𝟯.𝟳 and 𝟳𝟮𝟴 𝘀𝘁𝗮𝗿𝘀.
+
+My take is that the open versions are converging on the same stack: whisper.cpp for speech, llama.cpp for summaries, and MCP to plug notes into your other AI tools.
+
+Once the stack is shared, the difference comes down to polish and trust, not features.
+
+𝘋𝘰𝘦𝘴 𝘢𝘯𝘺𝘰𝘯𝘦 𝘴𝘵𝘪𝘭𝘭 𝘯𝘦𝘦𝘥 𝘵𝘩𝘦 𝘤𝘭𝘰𝘶𝘥 𝘷𝘦𝘳𝘴𝘪𝘰𝘯 𝘧𝘰𝘳 𝘵𝘩𝘪𝘴?
+
+Links in reply 👇
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+𝗕𝗲𝗳𝗼𝗿𝗲 𝗬𝗼𝘂 𝗦𝘄𝗮𝗽 𝗬𝗼𝘂𝗿 𝗠𝗲𝗲𝘁𝗶𝗻𝗴 𝗡𝗼𝘁𝗲𝘀 𝗔𝗽𝗽 𝗳𝗼𝗿 𝗬𝗼𝗴𝘂𝗿𝘁
+
+Yogurt is a new open-source app from Frigade. It records calls without a bot and runs transcription and summaries on your own machine.
+
+What it gives you:
+
+• 𝗟𝗼𝗰𝗮𝗹 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁. Audio, transcripts and AI processing stay on your computer.
+• 𝗪𝗵𝗶𝘀𝗽𝗲𝗿 𝗳𝗼𝗿 𝘀𝗽𝗲𝗲𝗰𝗵, 𝗮 𝗹𝗼𝗰𝗮𝗹 𝗟𝗟𝗠 𝗳𝗼𝗿 𝘀𝘂𝗺𝗺𝗮𝗿𝗶𝗲𝘀. The model is chosen for your hardware.
+• 𝗦𝗲𝗮𝗿𝗰𝗵 𝗮𝗻𝗱 𝗤&𝗔 𝗮𝗰𝗿𝗼𝘀𝘀 𝗺𝗲𝗲𝘁𝗶𝗻𝗴𝘀, with links back to the source.
+• 𝗠𝗮𝗿𝗸𝗱𝗼𝘄𝗻 𝗲𝘅𝗽𝗼𝗿𝘁 and a local MCP server.
+
+What it doesn't give you:
+
+• 𝗔𝗻𝘆 𝗲𝘃𝗶𝗱𝗲𝗻𝗰𝗲 𝗼𝗻 𝗾𝘂𝗮𝗹𝗶𝘁𝘆. There are no published benchmarks for transcription or summaries.
+• 𝗔 𝗹𝗶𝗴𝗵𝘁 𝗶𝗻𝘀𝘁𝗮𝗹𝗹. About 𝟱 𝗚𝗕 of models first, then 𝟭𝟰 𝗚𝗕 𝗼𝗿 𝗺𝗼𝗿𝗲.
+• 𝗟𝗼𝗰𝗸𝗲𝗱-𝗱𝗼𝘄𝗻 𝗠𝗖𝗣 𝗮𝗰𝗰𝗲𝘀𝘀. Any app under your account can read your notes while it's switched on.
+• 𝗠𝗮𝘁𝘂𝗿𝗶𝘁𝘆. It's at 𝘃𝟬.𝟯.𝟳, and the public history starts on 11 November.
+
+If you're thinking of switching, test it on your own meetings first:
+
+1. Pick 5 past recordings that cover your usual mix: accents, cross-talk, jargon.
+2. Write down the three things each summary must get right, such as decisions, owners and dates.
+3. Run them through your current tool and through Yogurt.
+4. Read both outputs line by line against your checklist, not just the headline summary.
+5. Note what each one missed. That list tells you more than any feature table.
+
+𝘈 𝘴𝘶𝘮𝘮𝘢𝘳𝘺 𝘵𝘩𝘢𝘵 𝘴𝘰𝘶𝘯𝘥𝘴 𝘳𝘪𝘨𝘩𝘵 𝘢𝘯𝘥 𝘰𝘯𝘦 𝘵𝘩𝘢𝘵 𝘪𝘴 𝘳𝘪𝘨𝘩𝘵 𝘢𝘳𝘦𝘯'𝘵 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘵𝘩𝘪𝘯𝘨.
+
+Links in reply 👇
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗪𝗵𝗼 𝗦𝗵𝗼𝘂𝗹𝗱 𝗛𝗲𝗮𝗿 𝗬𝗼𝘂𝗿 𝗠𝗲𝗲𝘁𝗶𝗻𝗴𝘀?
+
+AI note-takers have quietly become normal at work. Most of them send your conversation to a company's servers to be transcribed and summarised.
+
+A new free app called 𝗬𝗼𝗴𝘂𝗿𝘁 tries something different. It's like having a stenographer sitting at your own desk instead of one listening in from another building. The recording, the transcript and the summary 𝗮𝗹𝗹 𝘀𝘁𝗮𝘆 𝗼𝗻 𝘆𝗼𝘂𝗿 𝗹𝗮𝗽𝘁𝗼𝗽.
+
+It uses open AI models that run on ordinary computers (8 GB of memory is the minimum), and it's open source, so anyone can check what it does.
+
+There are good reasons to like this. Sensitive conversations don't leave the building. There's no subscription, and no bot joins the call.
+
+There are also real questions. A small model on a laptop may write weaker summaries than the big cloud ones, and the makers haven't published any quality tests. The app is 𝗼𝗻𝗹𝘆 𝗱𝗮𝘆𝘀 𝗼𝗹𝗱.
+
+And because no bot appears, other people on the call won't know they're being recorded unless you tell them. The app's own guide says so plainly.
+
+What we know is that this kind of AI now fits on a normal laptop. What we don't yet know is whether the notes are good enough for people to choose privacy over convenience.
+
+𝘐𝘧 𝘺𝘰𝘶𝘳 𝘮𝘦𝘦𝘵𝘪𝘯𝘨 𝘯𝘰𝘵𝘦𝘴 𝘯𝘦𝘷𝘦𝘳 𝘭𝘦𝘧𝘵 𝘺𝘰𝘶𝘳 𝘤𝘰𝘮𝘱𝘶𝘵𝘦𝘳, 𝘸𝘰𝘶𝘭𝘥 𝘺𝘰𝘶 𝘳𝘦𝘤𝘰𝘳𝘥 𝘮𝘰𝘳𝘦 𝘮𝘦𝘦𝘵𝘪𝘯𝘨𝘴, 𝘰𝘳 𝘧𝘦𝘸𝘦𝘳?
+
+Links in reply 👇
