@@ -8,7 +8,11 @@ Now there's a second thing that goes stale: your coding agent.
 
 Its knowledge stops at its training date. And the web keeps shipping. New CSS, new HTML elements, new browser APIs, every few weeks.
 
-So the agent falls back on what it saw most, which is old code. Google's Chrome team put it plainly in the README of their new project: "𝘓𝘓𝘔 𝘵𝘳𝘢𝘪𝘯𝘪𝘯𝘨 𝘥𝘢𝘵𝘢 𝘤𝘰𝘯𝘵𝘢𝘪𝘯𝘴 𝘷𝘢𝘴𝘵 𝘢𝘮𝘰𝘶𝘯𝘵𝘴 𝘰𝘧 𝘭𝘦𝘨𝘢𝘤𝘺 𝘤𝘰𝘥𝘦."
+So the agent falls back on what it saw most, which is old code.
+
+"But models can search the web now." They can, 𝘄𝗵𝗲𝗻 𝘁𝗵𝗲𝘆 𝗱𝗲𝗰𝗶𝗱𝗲 𝘁𝗼. Search is a tool the model may or may not pick up. Asked for a news update, it searches. Asked to build a modal dialog, it usually just writes one from memory, because it feels confident. 𝗜𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗸𝗻𝗼𝘄 𝘄𝗵𝗮𝘁 𝗶𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗸𝗻𝗼𝘄. And when it does search, it often finds the same old tutorials it learned from.
+
+Google's Chrome team put it plainly in the README of their new project: "𝘓𝘓𝘔 𝘵𝘳𝘢𝘪𝘯𝘪𝘯𝘨 𝘥𝘢𝘵𝘢 𝘤𝘰𝘯𝘵𝘢𝘪𝘯𝘴 𝘷𝘢𝘴𝘵 𝘢𝘮𝘰𝘶𝘯𝘵𝘴 𝘰𝘧 𝘭𝘦𝘨𝘢𝘤𝘺 𝘤𝘰𝘥𝘦."
 
 That project is 𝗠𝗼𝗱𝗲𝗿𝗻 𝗪𝗲𝗯 𝗚𝘂𝗶𝗱𝗮𝗻𝗰𝗲. It's a set of skills, basically instruction packs, that you plug into Claude Code, Codex, Gemini, Copilot, Cursor and others. When the agent builds a web feature, it looks up the modern way first.
 
@@ -40,6 +44,8 @@ Every model has a training cutoff. Past that date it's guessing, and when it gue
 
 On the web, what it saw most often is old code. Years of jQuery-era answers outweigh the handful of examples of a CSS feature that shipped last spring.
 
+The obvious pushback is web search. But search is optional. The model reaches for it when it feels unsure, and writing a dialog box doesn't feel unsure. 𝗔 𝗺𝗼𝗱𝗲𝗹 𝗰𝗮𝗻'𝘁 𝘀𝗲𝗮𝗿𝗰𝗵 𝗳𝗼𝗿 𝗮 𝗳𝗲𝗮𝘁𝘂𝗿𝗲 𝗶𝘁 𝗵𝗮𝘀 𝗻𝗲𝘃𝗲𝗿 𝗵𝗲𝗮𝗿𝗱 𝗼𝗳. When it does search, the open web hands back mostly old answers too, so you get the same bias with extra latency.
+
 𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗼𝗳 𝗖𝗵𝗿𝗼𝗺𝗲'𝘀 𝗠𝗼𝗱𝗲𝗿𝗻 𝗪𝗲𝗯 𝗚𝘂𝗶𝗱𝗮𝗻𝗰𝗲 𝗶𝘀 𝘁𝗵𝗮𝘁 𝗶𝘁 𝘁𝗿𝗲𝗮𝘁𝘀 𝘁𝗵𝗶𝘀 𝗮𝘀 𝗮 𝗱𝗮𝘁𝗮 𝗽𝗿𝗼𝗯𝗹𝗲𝗺, 𝗻𝗼𝘁 𝗮 𝗺𝗼𝗱𝗲𝗹 𝗽𝗿𝗼𝗯𝗹𝗲𝗺. Don't retrain anything. Hand the agent a short, current guide at the moment it writes the code.
 
 I think of it like a car's sat-nav. The engine is fine. The maps are three years old, so it keeps sending you down a road that's now closed. You don't buy a new car, you update the maps.
@@ -59,6 +65,8 @@ Links in reply 👇
 Modern Web Guidance is an Apache 2.0 project from the Chrome team. The README describes it as "𝘢 𝘴𝘦𝘵 𝘰𝘧 𝘴𝘬𝘪𝘭𝘭𝘴 𝘵𝘩𝘢𝘵 𝘦𝘮𝘣𝘦𝘥 𝘸𝘦𝘣 𝘱𝘭𝘢𝘵𝘧𝘰𝘳𝘮 𝘦𝘹𝘱𝘦𝘳𝘵𝘪𝘴𝘦, 𝘣𝘦𝘴𝘵 𝘱𝘳𝘢𝘤𝘵𝘪𝘤𝘦𝘴, 𝘢𝘯𝘥 𝘣𝘳𝘰𝘸𝘴𝘦𝘳 𝘤𝘰𝘮𝘱𝘢𝘵𝘪𝘣𝘪𝘭𝘪𝘵𝘺 𝘥𝘢𝘵𝘢" into coding agents.
 
 The problem it targets, in their words: "𝘊𝘰𝘥𝘪𝘯𝘨 𝘢𝘨𝘦𝘯𝘵𝘴 𝘰𝘧𝘵𝘦𝘯 𝘥𝘦𝘧𝘢𝘶𝘭𝘵 𝘵𝘰 𝘰𝘭𝘥𝘦𝘳 𝘱𝘢𝘵𝘵𝘦𝘳𝘯𝘴 𝘣𝘦𝘤𝘢𝘶𝘴𝘦 𝘓𝘓𝘔 𝘵𝘳𝘢𝘪𝘯𝘪𝘯𝘨 𝘥𝘢𝘵𝘢 𝘤𝘰𝘯𝘵𝘢𝘪𝘯𝘴 𝘷𝘢𝘴𝘵 𝘢𝘮𝘰𝘶𝘯𝘵𝘴 𝘰𝘧 𝘭𝘦𝘨𝘢𝘤𝘺 𝘤𝘰𝘥𝘦."
+
+Web search doesn't reliably fix this. Agents call search when they think they need it, which is rarely mid-way through writing UI code, and many coding setups have it switched off. A skill is loaded by the task itself, so the check happens every time instead of sometimes.
 
 You can try it without installing anything:
 
@@ -90,6 +98,8 @@ Links in reply 👇
 
 A new layer is forming in the dev stack: knowledge packs that keep coding agents current after their training cutoff.
 
+Why not just web search? Because agents search when they choose to, results swing from run to run, and the open web is mostly old tutorials. 𝗖𝘂𝗿𝗮𝘁𝗲𝗱, 𝗮𝗹𝘄𝗮𝘆𝘀-𝗹𝗼𝗮𝗱𝗲𝗱 𝗰𝗼𝗻𝘁𝗲𝘅𝘁 𝗯𝗲𝗮𝘁𝘀 𝗵𝗼𝗽𝗲-𝗶𝘁-𝘀𝗲𝗮𝗿𝗰𝗵𝗲𝘀.
+
 • 𝗖𝗼𝗻𝘁𝗲𝘅𝘁𝟳 (𝗨𝗽𝘀𝘁𝗮𝘀𝗵): feeds agents version-specific library docs through MCP
 • 𝗩𝗲𝗻𝗱𝗼𝗿 𝘀𝗸𝗶𝗹𝗹𝘀: companies shipping their own "how to use us properly" instructions for agents
 • 𝗠𝗼𝗱𝗲𝗿𝗻 𝗪𝗲𝗯 𝗚𝘂𝗶𝗱𝗮𝗻𝗰𝗲 (𝗖𝗵𝗿𝗼𝗺𝗲): the same idea for the web platform itself, with 𝟮𝟱𝟬 𝗳𝗲𝗮𝘁𝘂𝗿𝗲𝘀 and 𝟮𝟬𝟯 𝘂𝘀𝗲 𝗰𝗮𝘀𝗲𝘀
@@ -119,6 +129,8 @@ What it gives you:
 • 𝗔 𝗹𝗲𝗴𝗮𝗰𝘆 𝘀𝗰𝗮𝗻𝗻𝗲𝗿: 𝚗𝚙𝚡 𝚖𝚘𝚍𝚎𝚛𝚗-𝚠𝚎𝚋-𝚐𝚞𝚒𝚍𝚊𝚗𝚌𝚎@𝚕𝚊𝚝𝚎𝚜𝚝 𝚕𝚎𝚐𝚊𝚌𝚢-𝚜𝚌𝚊𝚗 .
 • 𝗣𝘂𝗯𝗹𝗶𝘀𝗵𝗲𝗱 𝗲𝘃𝗮𝗹𝘀, with a dashboard
 
+Why not rely on web search instead? Because you can't eval "sometimes". The agent decides whether to search, it rarely does while writing UI code, and when it does the results are a mix of old and new. A skill gives you the same guidance on every run, which is something you can actually measure.
+
 What it doesn't give you:
 
 • 𝗜𝗻𝗱𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝘁 𝗲𝘃𝗶𝗱𝗲𝗻𝗰𝗲. The 𝟮𝟳 𝘁𝗼 𝟯𝟲 𝗽𝗼𝗶𝗻𝘁 uplift comes from the team's own tasks on their own demo apps.
@@ -147,6 +159,8 @@ Most of us know the routine. Your computer nags you to update, you grumble, you 
 AI coding agents have a similar problem, but it's less visible. They learn from a snapshot of the internet, and the snapshot gets older every day. When they build a website, they often use methods that were standard years ago.
 
 Imagine hiring a builder who learned the trade in 2015 and has never read a new building code since. The house stands, but it uses old materials and misses newer safety rules.
+
+You might ask: can't the builder just look things up? Today's AI can search the web, but 𝗶𝘁 𝗱𝗲𝗰𝗶𝗱𝗲𝘀 𝘄𝗵𝗲𝗻 𝘁𝗼 𝗯𝗼𝘁𝗵𝗲𝗿. Like a confident builder, it rarely checks on jobs it thinks it already knows. And much of what it finds online is old advice anyway.
 
 Google's Chrome team just released a fix for websites: 𝗠𝗼𝗱𝗲𝗿𝗻 𝗪𝗲𝗯 𝗚𝘂𝗶𝗱𝗮𝗻𝗰𝗲, a free add-on that gives agents an up-to-date rulebook for the web. Their tests show agents passing 𝗿𝗼𝘂𝗴𝗵𝗹𝘆 𝟯𝟬 𝗽𝗲𝗿𝗰𝗲𝗻𝘁𝗮𝗴𝗲 𝗽𝗼𝗶𝗻𝘁𝘀 𝗺𝗼𝗿𝗲 of their tasks with it.
 
