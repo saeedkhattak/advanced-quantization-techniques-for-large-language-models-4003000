@@ -24,7 +24,7 @@ The Chrome team's own evals show the gap. With the guidance, pass rates rose by 
 
 Some honest caveats.
 
-It went 𝘃𝟭.𝟬.𝟬 𝗼𝗻 𝟭𝟬 𝗡𝗼𝘃𝗲𝗺𝗯𝗲𝗿, after almost 200 automated releases since May. So the skill itself needs updating, which is the point: run 𝚗𝚙𝚡 𝚖𝚘𝚍𝚎𝚛𝚗-𝚠𝚎𝚋-𝚐𝚞𝚒𝚍𝚊𝚗𝚌𝚎@𝚕𝚊𝚝𝚎𝚜𝚝 𝚞𝚙𝚍𝚊𝚝𝚎, or switch on auto-update in Claude Code. Anonymous 𝘁𝗲𝗹𝗲𝗺𝗲𝘁𝗿𝘆 𝗶𝘀 𝗼𝗻 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁 (set 𝙳𝙸𝚂𝙰𝙱𝙻𝙴_𝚃𝙴𝙻𝙴𝙼𝙴𝚃𝚁𝚈=𝟷). And it only covers the web platform, not your libraries. Tools like Context7 fill that gap for library docs.
+It went 𝘃𝟭.𝟬.𝟬 𝗼𝗻 𝟭𝟬 𝗡𝗼𝘃𝗲𝗺𝗯𝗲𝗿, after nearly 200 numbered releases. So the skill itself needs updating, which is the point: run 𝚗𝚙𝚡 𝚖𝚘𝚍𝚎𝚛𝚗-𝚠𝚎𝚋-𝚐𝚞𝚒𝚍𝚊𝚗𝚌𝚎@𝚕𝚊𝚝𝚎𝚜𝚝 𝚞𝚙𝚍𝚊𝚝𝚎, or switch on auto-update in Claude Code. Anonymous 𝘁𝗲𝗹𝗲𝗺𝗲𝘁𝗿𝘆 𝗶𝘀 𝗼𝗻 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁 (set 𝙳𝙸𝚂𝙰𝙱𝙻𝙴_𝚃𝙴𝙻𝙴𝙼𝙴𝚃𝚁𝚈=𝟷). And it only covers the web platform, not your libraries. Tools like Context7 fill that gap for library docs.
 
 It's Apache 2.0, and the Chrome, Edge, Firefox and MDN teams are listed as stewards.
 
@@ -46,7 +46,7 @@ I think of it like a car's sat-nav. The engine is fine. The maps are three years
 
 The guides are tuned with evals, and the team prunes advice the models already get right, to save tokens. Their own numbers show a 𝟮𝟳 𝘁𝗼 𝟯𝟲 𝗽𝗼𝗶𝗻𝘁 jump in pass rates across Claude Code, Codex and Antigravity. Those are 𝘁𝗵𝗲𝗶𝗿 𝘁𝗲𝘀𝘁𝘀 𝗼𝗻 𝘁𝗵𝗲𝗶𝗿 𝗱𝗲𝗺𝗼 𝗮𝗽𝗽𝘀, so imo the direction matters more than the exact size.
 
-The catch is that the maps now need updating too. The project hit v1.0.0 on 10 November after almost 200 releases since May. A stale skill is just a newer kind of stale.
+The catch is that the maps now need updating too. The project hit v1.0.0 on 10 November after nearly 200 numbered releases. A stale skill is just a newer kind of stale.
 
 𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘴𝘦𝘦 𝘪𝘴 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘦𝘷𝘢𝘭 𝘳𝘶𝘯 𝘣𝘺 𝘴𝘰𝘮𝘦𝘰𝘯𝘦 𝘰𝘶𝘵𝘴𝘪𝘥𝘦 𝘎𝘰𝘰𝘨𝘭𝘦, 𝘰𝘯 𝘢 𝘳𝘦𝘢𝘭 𝘱𝘳𝘰𝘥𝘶𝘤𝘵𝘪𝘰𝘯 𝘤𝘰𝘥𝘦𝘣𝘢𝘴𝘦.
 
@@ -77,7 +77,7 @@ Things to be careful about:
 
 • 𝗧𝗵𝗲 𝗲𝘃𝗮𝗹𝘀 𝗮𝗿𝗲 𝘀𝗲𝗹𝗳-𝗿𝗲𝗽𝗼𝗿𝘁𝗲𝗱, run by the team on its own demo apps.
 • 𝗧𝗲𝗹𝗲𝗺𝗲𝘁𝗿𝘆 𝗶𝘀 𝗼𝗻 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁. Turn it off with 𝙳𝙸𝚂𝙰𝙱𝙻𝙴_𝚃𝙴𝙻𝙴𝙼𝙴𝚃𝚁𝚈=𝟷.
-• `𝗻𝗽𝘅 ...@𝗹𝗮𝘁𝗲𝘀𝘁` 𝗿𝘂𝗻𝘀 𝘄𝗵𝗮𝘁𝗲𝘃𝗲𝗿 𝘄𝗮𝘀 𝗽𝘂𝗯𝗹𝗶𝘀𝗵𝗲𝗱 𝗺𝗼𝘀𝘁 𝗿𝗲𝗰𝗲𝗻𝘁𝗹𝘆, so pin a version if that worries you.
+• 𝗥𝘂𝗻𝗻𝗶𝗻𝗴 `@𝗹𝗮𝘁𝗲𝘀𝘁` 𝗮𝗹𝘄𝗮𝘆𝘀 𝗽𝘂𝗹𝗹𝘀 𝘁𝗵𝗲 𝗻𝗲𝘄𝗲𝘀𝘁 𝗽𝘂𝗯𝗹𝗶𝘀𝗵, so pin a version if that worries you.
 • 𝗜𝘁 𝗰𝗼𝘃𝗲𝗿𝘀 𝘁𝗵𝗲 𝘄𝗲𝗯 𝗽𝗹𝗮𝘁𝗳𝗼𝗿𝗺 𝗼𝗻𝗹𝘆, not React or other libraries.
 
 To update: 𝚗𝚙𝚡 𝚖𝚘𝚍𝚎𝚛𝚗-𝚠𝚎𝚋-𝚐𝚞𝚒𝚍𝚊𝚗𝚌𝚎@𝚕𝚊𝚝𝚎𝚜𝚝 𝚞𝚙𝚍𝚊𝚝𝚎, or auto-update in Claude Code. It reached v1.0.0 on 10 November.
@@ -123,7 +123,7 @@ What it doesn't give you:
 
 • 𝗜𝗻𝗱𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝘁 𝗲𝘃𝗶𝗱𝗲𝗻𝗰𝗲. The 𝟮𝟳 𝘁𝗼 𝟯𝟲 𝗽𝗼𝗶𝗻𝘁 uplift comes from the team's own tasks on their own demo apps.
 • 𝗟𝗶𝗯𝗿𝗮𝗿𝘆 𝗰𝗼𝘃𝗲𝗿𝗮𝗴𝗲. It's the web platform only.
-• 𝗦𝗲𝘁-𝗮𝗻𝗱-𝗳𝗼𝗿𝗴𝗲𝘁. It released v1.0.0 on 10 November after almost 200 releases. An old copy is a stale copy.
+• 𝗦𝗲𝘁-𝗮𝗻𝗱-𝗳𝗼𝗿𝗴𝗲𝘁. It released v1.0.0 on 10 November after nearly 200 numbered releases. An old copy is a stale copy.
 • 𝗣𝗿𝗶𝘃𝗮𝗰𝘆 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁. Telemetry is on until you set 𝙳𝙸𝚂𝙰𝙱𝙻𝙴_𝚃𝙴𝙻𝙴𝙼𝙴𝚃𝚁𝚈=𝟷.
 
 How to check whether it helps on your code:
