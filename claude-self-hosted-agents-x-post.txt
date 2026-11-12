@@ -1,0 +1,178 @@
+════════ VERSION 1: STORY ════════
+
+𝗔𝗻𝘁𝗵𝗿𝗼𝗽𝗶𝗰 𝗗𝗶𝗱𝗻'𝘁 𝗥𝗲𝗺𝗼𝘃𝗲 𝗧𝗵𝗲 𝗧𝗿𝘂𝘀𝘁 𝗣𝗿𝗼𝗯𝗹𝗲𝗺. 𝗜𝘁 𝗠𝗼𝘃𝗲𝗱 𝗜𝘁.
+
+Picture a bank. Its customer data already sits in S3, in its own AWS account. Its lawyers signed off on AWS years ago.
+
+Then the bank wants a Claude agent to review flagged transactions.
+
+𝗨𝗻𝘁𝗶𝗹 𝗻𝗼𝘄, 𝘁𝗵𝗮𝘁 𝗺𝗲𝗮𝗻𝘁 𝗮𝗱𝗱𝗶𝗻𝗴 𝗮 𝘀𝗲𝗰𝗼𝗻𝗱 𝗰𝗼𝗺𝗽𝗮𝗻𝘆 𝘁𝗼 𝘁𝗵𝗲 𝘁𝗿𝘂𝘀𝘁 𝗹𝗶𝘀𝘁. Anthropic's Managed Agents ran the agent loop and stored every session's history on routes Anthropic operates. The bank could already call Claude through Bedrock, but not with Anthropic's agent harness wrapped around it.
+
+Self-hosted Claude Managed Agents changes that part.
+
+𝗧𝗵𝗲 𝗯𝗮𝗻𝗸 𝗻𝗼𝘄 𝗿𝘂𝗻𝘀 𝘁𝗵𝗲 𝗮𝗴𝗲𝗻𝘁 𝘀𝗲𝗿𝘃𝗶𝗰𝗲 𝗶𝘁𝘀𝗲𝗹𝗳: the API, the agent loop, and the session history in its own PostgreSQL database. The sandboxes where tools run are its own too. All of it can sit in its own cloud account or its own data centre.
+
+The model is the part that doesn't move. Anthropic's docs say it plainly: "𝘍𝘰𝘳 𝘦𝘢𝘤𝘩 𝘮𝘰𝘥𝘦𝘭 𝘤𝘢𝘭𝘭, 𝘵𝘩𝘦 𝘴𝘦𝘳𝘷𝘦𝘳 𝘴𝘦𝘯𝘥𝘴 𝘵𝘩𝘦 𝘤𝘰𝘯𝘷𝘦𝘳𝘴𝘢𝘵𝘪𝘰𝘯 𝘴𝘰 𝘧𝘢𝘳, 𝘪𝘯𝘤𝘭𝘶𝘥𝘪𝘯𝘨 𝘵𝘰𝘰𝘭 𝘪𝘯𝘱𝘶𝘵𝘴 𝘢𝘯𝘥 𝘵𝘰𝘰𝘭 𝘳𝘦𝘴𝘶𝘭𝘵𝘴, 𝘵𝘰 𝘺𝘰𝘶𝘳 𝘪𝘯𝘧𝘦𝘳𝘦𝘯𝘤𝘦 𝘱𝘳𝘰𝘷𝘪𝘥𝘦𝘳."
+
+𝗦𝗼 𝘁𝗵𝗲 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻 𝗶𝘀 𝘄𝗵𝗼 𝘁𝗵𝗮𝘁 𝗽𝗿𝗼𝘃𝗶𝗱𝗲𝗿 𝗶𝘀. The options are the Claude API, Amazon Bedrock, Claude on Google Cloud (Google managed), Microsoft Foundry, or your own gateway.
+
+On Bedrock, AWS says model providers "𝘥𝘰𝘯'𝘵 𝘩𝘢𝘷𝘦 𝘢𝘤𝘤𝘦𝘴𝘴 𝘵𝘰 𝘈𝘮𝘢𝘻𝘰𝘯 𝘉𝘦𝘥𝘳𝘰𝘤𝘬 𝘭𝘰𝘨𝘴 𝘰𝘳 𝘵𝘰 𝘤𝘶𝘴𝘵𝘰𝘮𝘦𝘳 𝘱𝘳𝘰𝘮𝘱𝘵𝘴 𝘢𝘯𝘥 𝘤𝘰𝘮𝘱𝘭𝘦𝘵𝘪𝘰𝘯𝘴." The bank never adds Anthropic to the list. It keeps trusting the company it already trusts.
+
+𝗙𝗼𝗿 𝘂𝘀𝗲𝗿𝘀: this is mostly about companies that already live on AWS, Google Cloud or Azure. For them, the approval story gets much simpler.
+
+𝗙𝗼𝗿 𝗯𝘂𝗶𝗹𝗱𝗲𝗿𝘀: you now run a server, a database, workers and every upgrade. Some features don't exist on your server, like webhooks and scheduled runs. On Bedrock, the built-in web search and web fetch tools don't work either.
+
+𝗔 𝗳𝗲𝘄 𝗹𝗶𝗺𝗶𝘁𝘀 𝘄𝗼𝗿𝘁𝗵 𝘀𝗮𝘆𝗶𝗻𝗴 𝗼𝘂𝘁 𝗹𝗼𝘂𝗱.
+
+• 𝗧𝗵𝗲 𝗱𝗮𝘁𝗮 𝘀𝘁𝗶𝗹𝗹 𝗹𝗲𝗮𝘃𝗲𝘀 𝘁𝗵𝗲 𝗯𝘂𝗶𝗹𝗱𝗶𝗻𝗴 on every model call. It just goes to your cloud, not to Anthropic
+• 𝗥𝗲𝘁𝗲𝗻𝘁𝗶𝗼𝗻 𝗳𝗼𝗹𝗹𝗼𝘄𝘀 𝘆𝗼𝘂𝗿 𝗽𝗿𝗼𝘃𝗶𝗱𝗲𝗿. AWS notes some models on Bedrock may keep data up to 30 days for trust-and-safety checks, so read the terms for Claude specifically
+• 𝗔𝘇𝘂𝗿𝗲 𝗵𝗮𝘀 𝗮 𝗰𝗮𝘁𝗰𝗵. Claude in Foundry comes Anthropic-hosted or Azure-hosted, and only the Azure-hosted one keeps processing on Azure
+• 𝗔 𝗰𝗼𝗺𝗽𝗮𝗻𝘆 𝘄𝗶𝘁𝗵 𝗻𝗼 𝗰𝗹𝗼𝘂𝗱 𝗴𝗮𝗶𝗻𝘀 𝗺𝘂𝗰𝗵 𝗹𝗲𝘀𝘀. Its sessions stay home, but every model call still goes to Anthropic. Fully offline Claude isn't on offer, so air-gapped teams still need open-weight models
+
+Access goes through the Anthropic account team.
+
+𝗧𝗵𝗶𝘀 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗺𝗮𝗸𝗲 𝗮𝗴𝗲𝗻𝘁𝘀 𝘁𝗿𝘂𝘀𝘁𝗹𝗲𝘀𝘀. 𝗜𝘁 𝗹𝗲𝘁𝘀 𝗰𝗼𝗺𝗽𝗮𝗻𝗶𝗲𝘀 𝘁𝗿𝘂𝘀𝘁 𝘁𝗵𝗲 𝗰𝗹𝗼𝘂𝗱 𝘁𝗵𝗲𝘆 𝗮𝗹𝗿𝗲𝗮𝗱𝘆 𝘀𝗶𝗴𝗻𝗲𝗱 𝘄𝗶𝘁𝗵, 𝗶𝗻𝘀𝘁𝗲𝗮𝗱 𝗼𝗳 𝗮𝗱𝗱𝗶𝗻𝗴 𝗼𝗻𝗲 𝗺𝗼𝗿𝗲.
+
+Links in reply 👇
+
+
+════════ VERSION 2: KARPATHY STYLE ════════
+
+𝗦𝗲𝗹𝗳-𝗛𝗼𝘀𝘁𝗲𝗱 𝗔𝗴𝗲𝗻𝘁𝘀 𝗔𝗻𝗱 𝗧𝗵𝗲 𝗧𝗿𝘂𝘀𝘁 𝗚𝗿𝗮𝗽𝗵
+
+Been thinking about what "self-hosted" really means for Claude Managed Agents.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝘄𝗵𝗲𝗿𝗲 𝘁𝗵𝗲 𝗮𝗴𝗲𝗻𝘁 𝗿𝘂𝗻𝘀, 𝗶𝘁'𝘀 𝘄𝗵𝗼 𝘀𝗲𝗲𝘀 𝘁𝗵𝗲 𝗺𝗼𝗱𝗲𝗹 𝗰𝗮𝗹𝗹𝘀.
+
+An agent has three pieces. The sandbox, where tools touch files. The service, which runs the loop and stores the history. And the model, which does the thinking.
+
+With this release, a company can host the first two itself. The third can't move. Claude's weights don't ship to anyone's data centre, so every step still sends the conversation to whoever serves the model.
+
+I find it useful to think of it as a trust graph. Before, an enterprise on AWS had two edges: AWS and Anthropic. Now it can route model calls through Bedrock, where AWS says model providers don't see prompts or completions. 𝗧𝗵𝗲 𝗔𝗻𝘁𝗵𝗿𝗼𝗽𝗶𝗰 𝗲𝗱𝗴𝗲 𝗱𝗶𝘀𝗮𝗽𝗽𝗲𝗮𝗿𝘀. 𝗧𝗵𝗲 𝗔𝗪𝗦 𝗲𝗱𝗴𝗲 𝘄𝗮𝘀 𝗮𝗹𝗿𝗲𝗮𝗱𝘆 𝘁𝗵𝗲𝗿𝗲.
+
+So nothing became trustless. One edge got deleted, imo.
+
+That deletion matters a lot if your data already lives in S3. It matters much less if you run your own racks and use no cloud. Your sessions stay home, but model calls still go to Anthropic, so the edge you wanted gone is still there.
+
+There's a small detail I like. Microsoft Foundry offers Claude both Anthropic-hosted and Azure-hosted, and only the second keeps processing on Azure. Same logo, different edge.
+
+𝗪𝗵𝗮𝘁 𝗜'𝗱 𝗮𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝘄𝗮𝗻𝘁 𝘁𝗼 𝘀𝗲𝗲: 𝘢 𝘱𝘶𝘣𝘭𝘪𝘤 𝘵𝘢𝘣𝘭𝘦 𝘴𝘩𝘰𝘸𝘪𝘯𝘨, 𝘧𝘰𝘳 𝘦𝘷𝘦𝘳𝘺 𝘳𝘰𝘶𝘵𝘦, 𝘸𝘩𝘰 𝘤𝘢𝘯 𝘵𝘦𝘤𝘩𝘯𝘪𝘤𝘢𝘭𝘭𝘺 𝘳𝘦𝘢𝘥 𝘢 𝘱𝘳𝘰𝘮𝘱𝘵, 𝘢𝘯𝘥 𝘧𝘰𝘳 𝘩𝘰𝘸 𝘭𝘰𝘯𝘨.
+
+Links in reply 👇
+
+
+════════ VERSION 3: SIMON WILLISON STYLE ════════
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗦𝗲𝗹𝗳-𝗛𝗼𝘀𝘁𝗲𝗱 𝗖𝗹𝗮𝘂𝗱𝗲 𝗠𝗮𝗻𝗮𝗴𝗲𝗱 𝗔𝗴𝗲𝗻𝘁𝘀
+
+Anthropic now lets enterprises run Claude Managed Agents on their own infrastructure. The docs put it like this:
+
+"𝘠𝘰𝘶 𝘩𝘰𝘴𝘵 𝘵𝘩𝘦 𝘴𝘦𝘳𝘷𝘪𝘤𝘦 𝘢𝘯𝘥 𝘵𝘩𝘦 𝘴𝘢𝘯𝘥𝘣𝘰𝘹𝘦𝘴. 𝘛𝘩𝘦 𝘮𝘰𝘥𝘦𝘭 𝘳𝘶𝘯𝘴 𝘢𝘵 𝘈𝘯𝘵𝘩𝘳𝘰𝘱𝘪𝘤 𝘰𝘳 𝘢𝘵 𝘢 𝘱𝘳𝘰𝘷𝘪𝘥𝘦𝘳 𝘵𝘩𝘢𝘵 𝘺𝘰𝘶 𝘤𝘩𝘰𝘰𝘴𝘦."
+
+There are now three ways to run it:
+
+• 𝗖𝗹𝗼𝘂𝗱 𝘀𝗮𝗻𝗱𝗯𝗼𝘅𝗲𝘀 (𝗱𝗲𝗳𝗮𝘂𝗹𝘁): Anthropic hosts everything
+• 𝗦𝗲𝗹𝗳-𝗵𝗼𝘀𝘁𝗲𝗱 𝘀𝗮𝗻𝗱𝗯𝗼𝘅𝗲𝘀: your sandboxes, Anthropic's service and model
+• 𝗦𝗲𝗹𝗳-𝗵𝗼𝘀𝘁𝗲𝗱 𝗠𝗮𝗻𝗮𝗴𝗲𝗱 𝗔𝗴𝗲𝗻𝘁𝘀: your sandboxes and service, model at Anthropic or a provider you pick
+
+"The service" means the API, the agent loop and the session storage, which uses PostgreSQL 16 or later.
+
+𝗧𝗵𝗲 𝘀𝗲𝘁𝘁𝗶𝗻𝗴 𝘁𝗵𝗮𝘁 𝗺𝗮𝘁𝘁𝗲𝗿𝘀 𝗺𝗼𝘀𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗶𝗻𝗳𝗲𝗿𝗲𝗻𝗰𝗲 𝗽𝗿𝗼𝘃𝗶𝗱𝗲𝗿. The options are the Claude API (default), Amazon Bedrock, Claude on Google Cloud (Google managed), Microsoft Foundry, or your own gateway.
+
+That choice decides who sees your data, because the docs say each model call sends "𝘵𝘩𝘦 𝘤𝘰𝘯𝘷𝘦𝘳𝘴𝘢𝘵𝘪𝘰𝘯 𝘴𝘰 𝘧𝘢𝘳, 𝘪𝘯𝘤𝘭𝘶𝘥𝘪𝘯𝘨 𝘵𝘰𝘰𝘭 𝘪𝘯𝘱𝘶𝘵𝘴 𝘢𝘯𝘥 𝘵𝘰𝘰𝘭 𝘳𝘦𝘴𝘶𝘭𝘵𝘴" to that provider.
+
+𝗧𝗵𝗶𝗻𝗴𝘀 𝘁𝗼 𝗯𝗲 𝗰𝗮𝗿𝗲𝗳𝘂𝗹 𝗮𝗯𝗼𝘂𝘁:
+
+• 𝗕𝗲𝗱𝗿𝗼𝗰𝗸 𝗸𝗲𝗲𝗽𝘀 𝗔𝗻𝘁𝗵𝗿𝗼𝗽𝗶𝗰 𝗼𝘂𝘁. AWS says model providers can't access Bedrock logs, prompts or completions
+• 𝗙𝗼𝘂𝗻𝗱𝗿𝘆 𝗱𝗲𝗽𝗲𝗻𝗱𝘀 𝗼𝗻 𝘁𝗵𝗲 𝗱𝗲𝗽𝗹𝗼𝘆𝗺𝗲𝗻𝘁. Microsoft offers an Anthropic-hosted version that may process data outside Azure, and an Azure-hosted one that doesn't
+• 𝗥𝗲𝘁𝗲𝗻𝘁𝗶𝗼𝗻 𝗶𝘀 𝘁𝗵𝗲 𝗽𝗿𝗼𝘃𝗶𝗱𝗲𝗿'𝘀. AWS says some Bedrock models may keep data up to 30 days for trust-and-safety checks
+• 𝗙𝗲𝗮𝘁𝘂𝗿𝗲 𝗴𝗮𝗽𝘀: no webhooks, no scheduled deployments, no Files API. On Bedrock, the web search and web fetch tools aren't offered to the model
+• 𝗡𝗼𝘁 𝗮𝗶𝗿-𝗴𝗮𝗽𝗽𝗲𝗱. Model calls always leave your network
+
+Access is through your Anthropic account team. Further reading: the "Differences from the hosted service" page in the docs.
+
+Links in reply 👇
+
+
+════════ VERSION 4: SWYX STYLE ════════
+
+𝗔𝗴𝗲𝗻𝘁 𝗣𝗹𝗮𝘁𝗳𝗼𝗿𝗺𝘀 𝗔𝗿𝗲 𝗙𝗼𝗹𝗹𝗼𝘄𝗶𝗻𝗴 𝗧𝗵𝗲 𝗗𝗮𝘁𝗮𝗯𝗮𝘀𝗲 𝗣𝗹𝗮𝘆𝗯𝗼𝗼𝗸
+
+Every big cloud service ends up with a "run it yourself" edition. Databases did it. CI did it. Now agent platforms are doing it.
+
+𝗔𝗻𝘁𝗵𝗿𝗼𝗽𝗶𝗰 𝗻𝗼𝘄 𝗼𝗳𝗳𝗲𝗿𝘀 𝘁𝗵𝗮𝘁 𝗲𝗱𝗶𝘁𝗶𝗼𝗻 𝗳𝗼𝗿 𝗖𝗹𝗮𝘂𝗱𝗲 𝗠𝗮𝗻𝗮𝗴𝗲𝗱 𝗔𝗴𝗲𝗻𝘁𝘀, and the trust model is the interesting part.
+
+How the options stack up now:
+
+• 𝗛𝗼𝘀𝘁𝗲𝗱 𝗠𝗮𝗻𝗮𝗴𝗲𝗱 𝗔𝗴𝗲𝗻𝘁𝘀: Anthropic runs the loop, the storage and the model
+• 𝗦𝗲𝗹𝗳-𝗵𝗼𝘀𝘁𝗲𝗱 𝘀𝗮𝗻𝗱𝗯𝗼𝘅𝗲𝘀 (𝗠𝗮𝘆): tools run on your side, the loop stays with Anthropic
+• 𝗦𝗲𝗹𝗳-𝗵𝗼𝘀𝘁𝗲𝗱 𝗠𝗮𝗻𝗮𝗴𝗲𝗱 𝗔𝗴𝗲𝗻𝘁𝘀: loop, storage and tools on your side, model wherever you choose
+• 𝗢𝗽𝗲𝗻-𝘄𝗲𝗶𝗴𝗵𝘁 𝗺𝗼𝗱𝗲𝗹𝘀 𝗼𝗻 𝘆𝗼𝘂𝗿 𝗼𝘄𝗻 𝗵𝗮𝗿𝗱𝘄𝗮𝗿𝗲: the only way nothing leaves the building
+
+The third option is where it gets clever. The model can be called through Bedrock, Google Cloud or Microsoft Foundry. 𝗔𝗻𝘁𝗵𝗿𝗼𝗽𝗶𝗰 𝘀𝘁𝗼𝗽𝘀 𝗮𝘀𝗸𝗶𝗻𝗴 𝘁𝗼 𝗯𝗲 𝘁𝗿𝘂𝘀𝘁𝗲𝗱 𝗱𝗶𝗿𝗲𝗰𝘁𝗹𝘆. It rides on the trust enterprises already gave AWS, Google and Microsoft.
+
+On Bedrock, AWS says model providers can't see prompts or completions. On Foundry, you get that only with the Azure-hosted deployment.
+
+The catch is clear. A company with no cloud gets much less, because its model calls still go to Anthropic. And air-gapped teams are still on open weights.
+
+My take: 𝗶𝗻 𝗲𝗻𝘁𝗲𝗿𝗽𝗿𝗶𝘀𝗲 𝗔𝗜, 𝘁𝗵𝗲 𝗰𝗹𝗼𝘂𝗱 𝗰𝗼𝗻𝘁𝗿𝗮𝗰𝘁 𝗶𝘀 𝗯𝗲𝗰𝗼𝗺𝗶𝗻𝗴 𝘁𝗵𝗲 𝘁𝗿𝘂𝘀𝘁 𝗹𝗮𝘆𝗲𝗿. Model labs that plug into it win the regulated deals. Labs that can't will keep selling to everyone else.
+
+Links in reply 👇
+
+
+════════ VERSION 5: HAMEL HUSAIN STYLE ════════
+
+𝗦𝗲𝗹𝗳-𝗛𝗼𝘀𝘁𝗲𝗱 𝗗𝗼𝗲𝘀𝗻'𝘁 𝗠𝗲𝗮𝗻 𝗣𝗿𝗶𝘃𝗮𝘁𝗲. 𝗖𝗵𝗲𝗰𝗸 𝗬𝗼𝘂𝗿 𝗗𝗮𝘁𝗮 𝗣𝗮𝘁𝗵.
+
+Anthropic now lets you run Claude Managed Agents on your own infrastructure. Before your security team signs off, be precise about what that buys you.
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗴𝗶𝘃𝗲𝘀 𝘆𝗼𝘂:
+
+• 𝗬𝗼𝘂𝗿 𝘀𝘁𝗼𝗿𝗮𝗴𝗲: agents, sessions and full history in your own PostgreSQL
+• 𝗬𝗼𝘂𝗿 𝘀𝗮𝗻𝗱𝗯𝗼𝘅𝗲𝘀: tools run in your containers, next to your data
+• 𝗬𝗼𝘂𝗿 𝗰𝗵𝗼𝗶𝗰𝗲 𝗼𝗳 𝗺𝗼𝗱𝗲𝗹 𝗿𝗼𝘂𝘁𝗲: Claude API, Bedrock, Google Cloud, Foundry or your own gateway
+• 𝗭𝗲𝗿𝗼 𝗗𝗮𝘁𝗮 𝗥𝗲𝘁𝗲𝗻𝘁𝗶𝗼𝗻 𝗲𝗹𝗶𝗴𝗶𝗯𝗶𝗹𝗶𝘁𝘆, which the hosted version doesn't have
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗴𝗶𝘃𝗲 𝘆𝗼𝘂:
+
+• 𝗟𝗼𝗰𝗮𝗹 𝗶𝗻𝗳𝗲𝗿𝗲𝗻𝗰𝗲. Every model call sends the conversation, tool inputs and tool results to the provider
+• 𝗨𝗻𝗶𝗳𝗼𝗿𝗺 𝗽𝗿𝗶𝘃𝗮𝗰𝘆 𝗮𝗰𝗿𝗼𝘀𝘀 𝗰𝗹𝗼𝘂𝗱𝘀. On Foundry, the Anthropic-hosted deployment may process data outside Azure
+• 𝗙𝗲𝗮𝘁𝘂𝗿𝗲 𝗽𝗮𝗿𝗶𝘁𝘆. No webhooks or scheduled runs, and on Bedrock the web search and web fetch tools don't work
+• 𝗟𝗲𝘀𝘀 𝗼𝗽𝘀. You run the server, the database, the workers and every upgrade
+
+𝗪𝗵𝗮𝘁 𝗜'𝗱 𝗰𝗵𝗲𝗰𝗸 𝗯𝗲𝗳𝗼𝗿𝗲 𝘀𝗮𝘆𝗶𝗻𝗴 𝘆𝗲𝘀:
+
+1. Draw the data path for one session, from your app to the model and back
+2. Write down which company can read the prompt at each hop
+3. Read the retention terms for Claude on your provider. AWS says some models may keep data up to 30 days
+4. Run the same task on hosted and self-hosted, and compare the outputs and the missing tools
+5. Read the session logs in your own database, so you know what gets stored
+
+If your data already lives in one cloud, this can cut a vendor from your review. If you need air-gapped, it won't help.
+
+Links in reply 👇
+
+
+════════ VERSION 6: ETHAN MOLLICK STYLE ════════
+
+𝗖𝗮𝗻 𝗔 𝗖𝗼𝗺𝗽𝗮𝗻𝘆 𝗨𝘀𝗲 𝗔𝗜 𝗔𝗴𝗲𝗻𝘁𝘀 𝗪𝗶𝘁𝗵𝗼𝘂𝘁 𝗧𝗿𝘂𝘀𝘁𝗶𝗻𝗴 𝗧𝗵𝗲 𝗔𝗜 𝗟𝗮𝗯?
+
+Here's a question big companies keep asking: if we let an AI agent read our files, who else gets to see them?
+
+Anthropic's new answer is self-hosted Claude Managed Agents. The company runs the agent on its own systems and keeps the agent's records itself.
+
+But the agent still has to "think," and the thinking happens in the AI model. 𝗘𝘃𝗲𝗿𝘆 𝘀𝘁𝗲𝗽, 𝘁𝗵𝗲 𝗰𝗼𝗻𝘃𝗲𝗿𝘀𝗮𝘁𝗶𝗼𝗻 𝗶𝘀 𝘀𝗲𝗻𝘁 𝘁𝗼 𝘁𝗵𝗲 𝗺𝗼𝗱𝗲𝗹.
+
+Think of it like hiring a consultant who works in your office but calls a specialist for every decision. Who is on the other end of that call?
+
+Now the company can choose. It can be Anthropic, or it can be a cloud company it already uses, like Amazon, Google or Microsoft. On Amazon's service, AWS says the AI company can't see the prompts or answers.
+
+𝗦𝗼 𝘁𝗵𝗲 𝘁𝗿𝘂𝘀𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗱𝗶𝘀𝗮𝗽𝗽𝗲𝗮𝗿. 𝗜𝘁 𝗺𝗼𝘃𝗲𝘀 𝘁𝗼 𝘀𝗼𝗺𝗲𝗼𝗻𝗲 𝘆𝗼𝘂 𝗮𝗹𝗿𝗲𝗮𝗱𝘆 𝘁𝗿𝘂𝘀𝘁. For a bank that keeps everything on AWS, that's a real change. One less company to vet.
+
+There's another side. A company that runs its own computers, with no cloud, keeps its records at home but still sends every step to Anthropic. And an organisation that can't let anything leave the building still can't use Claude at all.
+
+What we know: this makes AI agents easier to approve for cloud-heavy companies. What we don't know yet: how many will move real, sensitive work onto them.
+
+𝘐𝘴 "𝘵𝘳𝘶𝘴𝘵 𝘵𝘩𝘦 𝘤𝘭𝘰𝘶𝘥 𝘺𝘰𝘶 𝘢𝘭𝘳𝘦𝘢𝘥𝘺 𝘶𝘴𝘦" 𝘨𝘰𝘰𝘥 𝘦𝘯𝘰𝘶𝘨𝘩, 𝘰𝘳 𝘪𝘴 𝘪𝘵 𝘫𝘶𝘴𝘵 𝘢 𝘮𝘰𝘳𝘦 𝘤𝘰𝘮𝘧𝘰𝘳𝘵𝘢𝘣𝘭𝘦 𝘷𝘦𝘳𝘴𝘪𝘰𝘯 𝘰𝘧 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘵𝘳𝘶𝘴𝘵?
+
+Links in reply 👇
