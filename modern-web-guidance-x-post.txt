@@ -1,0 +1,159 @@
+===== 1. STORY =====
+
+𝗬𝗼𝘂𝗿 𝗖𝗼𝗱𝗶𝗻𝗴 𝗔𝗴𝗲𝗻𝘁 𝗡𝗲𝗲𝗱𝘀 𝗨𝗽𝗱𝗮𝘁𝗲𝘀 𝗡𝗼𝘄, 𝗡𝗼𝘁 𝗝𝘂𝘀𝘁 𝗬𝗼𝘂𝗿 𝗟𝗮𝗽𝘁𝗼𝗽
+
+For years the ritual was Windows Update. Restart, wait, carry on with the latest fixes.
+
+Now there's a second thing that goes stale: your coding agent.
+
+Its knowledge stops at its training date. And the web keeps shipping. New CSS, new HTML elements, new browser APIs, every few weeks.
+
+So the agent falls back on what it saw most, which is old code. Google's Chrome team put it plainly in the README of their new project: "𝘓𝘓𝘔 𝘵𝘳𝘢𝘪𝘯𝘪𝘯𝘨 𝘥𝘢𝘵𝘢 𝘤𝘰𝘯𝘵𝘢𝘪𝘯𝘴 𝘷𝘢𝘴𝘵 𝘢𝘮𝘰𝘶𝘯𝘵𝘴 𝘰𝘧 𝘭𝘦𝘨𝘢𝘤𝘺 𝘤𝘰𝘥𝘦."
+
+That project is 𝗠𝗼𝗱𝗲𝗿𝗻 𝗪𝗲𝗯 𝗚𝘂𝗶𝗱𝗮𝗻𝗰𝗲. It's a set of skills, basically instruction packs, that you plug into Claude Code, Codex, Gemini, Copilot, Cursor and others. When the agent builds a web feature, it looks up the modern way first.
+
+It covers 𝟮𝟱𝟬 𝘄𝗲𝗯 𝗳𝗲𝗮𝘁𝘂𝗿𝗲𝘀 and 𝟮𝟬𝟯 𝗿𝗲𝗮𝗹 𝘂𝘀𝗲 𝗰𝗮𝘀𝗲𝘀, from popovers and dialogs to passkeys, safe HTML handling and Temporal for dates. It also checks Baseline data, so it knows which features browsers actually support today.
+
+What do you miss if your agent never gets this kind of update?
+
+• 𝗕𝗶𝗴𝗴𝗲𝗿, 𝘀𝗹𝗼𝘄𝗲𝗿 𝘀𝗶𝘁𝗲𝘀: it pulls in old libraries and polyfills for things the browser now does natively
+• 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗴𝗮𝗽𝘀: older ways of inserting HTML are an easy route for XSS, and there's a newer Sanitizer API for that
+• 𝗧𝗲𝗰𝗵 𝗱𝗲𝗯𝘁 𝗼𝗻 𝗱𝗮𝘆 𝗼𝗻𝗲: brand-new code that's already a generation behind
+
+The Chrome team's own evals show the gap. With the guidance, pass rates rose by 𝟮𝟳 𝘁𝗼 𝟯𝟲 𝗽𝗲𝗿𝗰𝗲𝗻𝘁𝗮𝗴𝗲 𝗽𝗼𝗶𝗻𝘁𝘀. Claude Code went from 𝟱𝟳% 𝘁𝗼 𝟴𝟴% in one run. These are 𝘁𝗵𝗲 𝘁𝗲𝗮𝗺'𝘀 𝗼𝘄𝗻 𝘁𝗲𝘀𝘁𝘀, 𝗼𝗻 𝘁𝗵𝗲𝗶𝗿 𝗼𝘄𝗻 𝗱𝗲𝗺𝗼 𝗮𝗽𝗽𝘀, so treat them as a strong signal, not proof.
+
+Some honest caveats.
+
+It went 𝘃𝟭.𝟬.𝟬 𝗼𝗻 𝟭𝟬 𝗡𝗼𝘃𝗲𝗺𝗯𝗲𝗿, after almost 200 automated releases since May. So the skill itself needs updating, which is the point: run 𝚗𝚙𝚡 𝚖𝚘𝚍𝚎𝚛𝚗-𝚠𝚎𝚋-𝚐𝚞𝚒𝚍𝚊𝚗𝚌𝚎@𝚕𝚊𝚝𝚎𝚜𝚝 𝚞𝚙𝚍𝚊𝚝𝚎, or switch on auto-update in Claude Code. Anonymous 𝘁𝗲𝗹𝗲𝗺𝗲𝘁𝗿𝘆 𝗶𝘀 𝗼𝗻 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁 (set 𝙳𝙸𝚂𝙰𝙱𝙻𝙴_𝚃𝙴𝙻𝙴𝙼𝙴𝚃𝚁𝚈=𝟷). And it only covers the web platform, not your libraries. Tools like Context7 fill that gap for library docs.
+
+It's Apache 2.0, and the Chrome, Edge, Firefox and MDN teams are listed as stewards.
+
+𝘞𝘪𝘯𝘥𝘰𝘸𝘴 𝘜𝘱𝘥𝘢𝘵𝘦 𝘬𝘦𝘱𝘵 𝘺𝘰𝘶𝘳 𝘮𝘢𝘤𝘩𝘪𝘯𝘦 𝘤𝘶𝘳𝘳𝘦𝘯𝘵. 𝘈𝘨𝘦𝘯𝘵 𝘶𝘱𝘥𝘢𝘵𝘦𝘴 𝘯𝘰𝘸 𝘬𝘦𝘦𝘱 𝘺𝘰𝘶𝘳 𝘤𝘰𝘥𝘦 𝘤𝘶𝘳𝘳𝘦𝘯𝘵.
+
+Links in reply 👇
+
+===== 2. KARPATHY STYLE =====
+
+𝗬𝗼𝘂𝗿 𝗔𝗴𝗲𝗻𝘁 𝗛𝗮𝘀 𝗮 𝗞𝗻𝗼𝘄𝗹𝗲𝗱𝗴𝗲 𝗗𝗮𝘁𝗲, 𝗮𝗻𝗱 𝘁𝗵𝗲 𝗪𝗲𝗯 𝗗𝗼𝗲𝘀𝗻'𝘁 𝗪𝗮𝗶𝘁
+
+Every model has a training cutoff. Past that date it's guessing, and when it guesses it reaches for whatever it saw most often.
+
+On the web, what it saw most often is old code. Years of jQuery-era answers outweigh the handful of examples of a CSS feature that shipped last spring.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗼𝗳 𝗖𝗵𝗿𝗼𝗺𝗲'𝘀 𝗠𝗼𝗱𝗲𝗿𝗻 𝗪𝗲𝗯 𝗚𝘂𝗶𝗱𝗮𝗻𝗰𝗲 𝗶𝘀 𝘁𝗵𝗮𝘁 𝗶𝘁 𝘁𝗿𝗲𝗮𝘁𝘀 𝘁𝗵𝗶𝘀 𝗮𝘀 𝗮 𝗱𝗮𝘁𝗮 𝗽𝗿𝗼𝗯𝗹𝗲𝗺, 𝗻𝗼𝘁 𝗮 𝗺𝗼𝗱𝗲𝗹 𝗽𝗿𝗼𝗯𝗹𝗲𝗺. Don't retrain anything. Hand the agent a short, current guide at the moment it writes the code.
+
+I think of it like a car's sat-nav. The engine is fine. The maps are three years old, so it keeps sending you down a road that's now closed. You don't buy a new car, you update the maps.
+
+The guides are tuned with evals, and the team prunes advice the models already get right, to save tokens. Their own numbers show a 𝟮𝟳 𝘁𝗼 𝟯𝟲 𝗽𝗼𝗶𝗻𝘁 jump in pass rates across Claude Code, Codex and Antigravity. Those are 𝘁𝗵𝗲𝗶𝗿 𝘁𝗲𝘀𝘁𝘀 𝗼𝗻 𝘁𝗵𝗲𝗶𝗿 𝗱𝗲𝗺𝗼 𝗮𝗽𝗽𝘀, so imo the direction matters more than the exact size.
+
+The catch is that the maps now need updating too. The project hit v1.0.0 on 10 November after almost 200 releases since May. A stale skill is just a newer kind of stale.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘴𝘦𝘦 𝘪𝘴 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘦𝘷𝘢𝘭 𝘳𝘶𝘯 𝘣𝘺 𝘴𝘰𝘮𝘦𝘰𝘯𝘦 𝘰𝘶𝘵𝘴𝘪𝘥𝘦 𝘎𝘰𝘰𝘨𝘭𝘦, 𝘰𝘯 𝘢 𝘳𝘦𝘢𝘭 𝘱𝘳𝘰𝘥𝘶𝘤𝘵𝘪𝘰𝘯 𝘤𝘰𝘥𝘦𝘣𝘢𝘴𝘦.
+
+Links in reply 👇
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗼𝗻 𝗖𝗵𝗿𝗼𝗺𝗲'𝘀 𝗠𝗼𝗱𝗲𝗿𝗻 𝗪𝗲𝗯 𝗚𝘂𝗶𝗱𝗮𝗻𝗰𝗲
+
+Modern Web Guidance is an Apache 2.0 project from the Chrome team. The README describes it as "𝘢 𝘴𝘦𝘵 𝘰𝘧 𝘴𝘬𝘪𝘭𝘭𝘴 𝘵𝘩𝘢𝘵 𝘦𝘮𝘣𝘦𝘥 𝘸𝘦𝘣 𝘱𝘭𝘢𝘵𝘧𝘰𝘳𝘮 𝘦𝘹𝘱𝘦𝘳𝘵𝘪𝘴𝘦, 𝘣𝘦𝘴𝘵 𝘱𝘳𝘢𝘤𝘵𝘪𝘤𝘦𝘴, 𝘢𝘯𝘥 𝘣𝘳𝘰𝘸𝘴𝘦𝘳 𝘤𝘰𝘮𝘱𝘢𝘵𝘪𝘣𝘪𝘭𝘪𝘵𝘺 𝘥𝘢𝘵𝘢" into coding agents.
+
+The problem it targets, in their words: "𝘊𝘰𝘥𝘪𝘯𝘨 𝘢𝘨𝘦𝘯𝘵𝘴 𝘰𝘧𝘵𝘦𝘯 𝘥𝘦𝘧𝘢𝘶𝘭𝘵 𝘵𝘰 𝘰𝘭𝘥𝘦𝘳 𝘱𝘢𝘵𝘵𝘦𝘳𝘯𝘴 𝘣𝘦𝘤𝘢𝘶𝘴𝘦 𝘓𝘓𝘔 𝘵𝘳𝘢𝘪𝘯𝘪𝘯𝘨 𝘥𝘢𝘵𝘢 𝘤𝘰𝘯𝘵𝘢𝘪𝘯𝘴 𝘷𝘢𝘴𝘵 𝘢𝘮𝘰𝘶𝘯𝘵𝘴 𝘰𝘧 𝘭𝘦𝘨𝘢𝘤𝘺 𝘤𝘰𝘥𝘦."
+
+You can try it without installing anything:
+
+𝚗𝚙𝚡 𝚖𝚘𝚍𝚎𝚛𝚗-𝚠𝚎𝚋-𝚐𝚞𝚒𝚍𝚊𝚗𝚌𝚎@𝚕𝚊𝚝𝚎𝚜𝚝 𝚕𝚎𝚐𝚊𝚌𝚢-𝚜𝚌𝚊𝚗 .
+
+That scans a project for legacy patterns. There's also 𝚜𝚎𝚊𝚛𝚌𝚑 and 𝚛𝚎𝚝𝚛𝚒𝚎𝚟𝚎 for single guides.
+
+Two details I found interesting:
+
+• 𝗧𝗵𝗲 𝗴𝘂𝗶𝗱𝗲𝘀 𝗮𝗿𝗲 𝗽𝗿𝘂𝗻𝗲𝗱 𝘂𝘀𝗶𝗻𝗴 𝗲𝘃𝗮𝗹𝘀. Advice the models already handle well gets removed, which keeps token cost down.
+• 𝗜𝘁 𝗿𝗲𝘀𝗽𝗲𝗰𝘁𝘀 𝗕𝗮𝘀𝗲𝗹𝗶𝗻𝗲. Origin Trial and unstable features are off unless you opt in through a .𝚖𝚠𝚐𝚛𝚌 file.
+
+The evals: about 𝟮𝟬𝟱 𝘁𝗼 𝟮𝟭𝟱 𝘁𝗮𝘀𝗸𝘀 per run, graded by Playwright. Pass rates went from 𝟱𝟳% 𝘁𝗼 𝟴𝟴% for Claude Code and from 𝟱𝟮% 𝘁𝗼 𝟴𝟱% for Codex CLI in early November runs.
+
+Things to be careful about:
+
+• 𝗧𝗵𝗲 𝗲𝘃𝗮𝗹𝘀 𝗮𝗿𝗲 𝘀𝗲𝗹𝗳-𝗿𝗲𝗽𝗼𝗿𝘁𝗲𝗱, run by the team on its own demo apps.
+• 𝗧𝗲𝗹𝗲𝗺𝗲𝘁𝗿𝘆 𝗶𝘀 𝗼𝗻 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁. Turn it off with 𝙳𝙸𝚂𝙰𝙱𝙻𝙴_𝚃𝙴𝙻𝙴𝙼𝙴𝚃𝚁𝚈=𝟷.
+• `𝗻𝗽𝘅 ...@𝗹𝗮𝘁𝗲𝘀𝘁` 𝗿𝘂𝗻𝘀 𝘄𝗵𝗮𝘁𝗲𝘃𝗲𝗿 𝘄𝗮𝘀 𝗽𝘂𝗯𝗹𝗶𝘀𝗵𝗲𝗱 𝗺𝗼𝘀𝘁 𝗿𝗲𝗰𝗲𝗻𝘁𝗹𝘆, so pin a version if that worries you.
+• 𝗜𝘁 𝗰𝗼𝘃𝗲𝗿𝘀 𝘁𝗵𝗲 𝘄𝗲𝗯 𝗽𝗹𝗮𝘁𝗳𝗼𝗿𝗺 𝗼𝗻𝗹𝘆, not React or other libraries.
+
+To update: 𝚗𝚙𝚡 𝚖𝚘𝚍𝚎𝚛𝚗-𝚠𝚎𝚋-𝚐𝚞𝚒𝚍𝚊𝚗𝚌𝚎@𝚕𝚊𝚝𝚎𝚜𝚝 𝚞𝚙𝚍𝚊𝚝𝚎, or auto-update in Claude Code. It reached v1.0.0 on 10 November.
+
+Links in reply 👇
+
+===== 4. SWYX STYLE =====
+
+𝗔𝗴𝗲𝗻𝘁 𝗨𝗽𝗱𝗮𝘁𝗲𝘀 𝗔𝗿𝗲 𝘁𝗵𝗲 𝗡𝗲𝘄 𝗣𝗮𝘁𝗰𝗵 𝗧𝘂𝗲𝘀𝗱𝗮𝘆
+
+A new layer is forming in the dev stack: knowledge packs that keep coding agents current after their training cutoff.
+
+• 𝗖𝗼𝗻𝘁𝗲𝘅𝘁𝟳 (𝗨𝗽𝘀𝘁𝗮𝘀𝗵): feeds agents version-specific library docs through MCP
+• 𝗩𝗲𝗻𝗱𝗼𝗿 𝘀𝗸𝗶𝗹𝗹𝘀: companies shipping their own "how to use us properly" instructions for agents
+• 𝗠𝗼𝗱𝗲𝗿𝗻 𝗪𝗲𝗯 𝗚𝘂𝗶𝗱𝗮𝗻𝗰𝗲 (𝗖𝗵𝗿𝗼𝗺𝗲): the same idea for the web platform itself, with 𝟮𝟱𝟬 𝗳𝗲𝗮𝘁𝘂𝗿𝗲𝘀 and 𝟮𝟬𝟯 𝘂𝘀𝗲 𝗰𝗮𝘀𝗲𝘀
+
+Modern Web Guidance matters because of who's behind it. The Chrome, Edge, Firefox and MDN teams are listed as stewards, so this is the browser makers telling agents how the web works now.
+
+It hit 𝘃𝟭.𝟬.𝟬 𝗼𝗻 𝟭𝟬 𝗡𝗼𝘃𝗲𝗺𝗯𝗲𝗿. Self-reported evals show pass rates up 𝟮𝟳 𝘁𝗼 𝟯𝟲 𝗽𝗼𝗶𝗻𝘁𝘀 across Claude Code, Codex and Antigravity.
+
+My take is that "keep your agent updated" is about to become routine hygiene, like OS updates. The model is the operating system, and skills are the patches.
+
+The awkward part is that patches pile up. Every library and platform will want a skill in your agent's context, and someone has to decide which ones stay current.
+
+𝘞𝘩𝘰 𝘮𝘢𝘯𝘢𝘨𝘦𝘴 𝘵𝘩𝘦 𝘶𝘱𝘥𝘢𝘵𝘦 𝘲𝘶𝘦𝘶𝘦 𝘸𝘩𝘦𝘯 𝘺𝘰𝘶𝘳 𝘢𝘨𝘦𝘯𝘵 𝘩𝘢𝘴 40 𝘴𝘬𝘪𝘭𝘭𝘴?
+
+Links in reply 👇
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+𝗕𝗲𝗳𝗼𝗿𝗲 𝗬𝗼𝘂 𝗧𝗿𝘂𝘀𝘁 𝗬𝗼𝘂𝗿 𝗔𝗴𝗲𝗻𝘁'𝘀 𝗪𝗲𝗯 𝗖𝗼𝗱𝗲, 𝗖𝗵𝗲𝗰𝗸 𝗜𝘁𝘀 𝗞𝗻𝗼𝘄𝗹𝗲𝗱𝗴𝗲 𝗗𝗮𝘁𝗲
+
+Chrome's Modern Web Guidance gives coding agents current guidance on web features, so they stop writing yesterday's patterns.
+
+What it gives you:
+
+• 𝟮𝟱𝟬 𝗺𝗼𝗱𝗲𝗿𝗻 𝗳𝗲𝗮𝘁𝘂𝗿𝗲𝘀 𝗮𝗻𝗱 𝟮𝟬𝟯 𝘂𝘀𝗲 𝗰𝗮𝘀𝗲𝘀, in short guides the agent looks up
+• 𝗕𝗮𝘀𝗲𝗹𝗶𝗻𝗲-𝗮𝘄𝗮𝗿𝗲 𝗮𝗱𝘃𝗶𝗰𝗲, so it knows what browsers actually support
+• 𝗔 𝗹𝗲𝗴𝗮𝗰𝘆 𝘀𝗰𝗮𝗻𝗻𝗲𝗿: 𝚗𝚙𝚡 𝚖𝚘𝚍𝚎𝚛𝚗-𝚠𝚎𝚋-𝚐𝚞𝚒𝚍𝚊𝚗𝚌𝚎@𝚕𝚊𝚝𝚎𝚜𝚝 𝚕𝚎𝚐𝚊𝚌𝚢-𝚜𝚌𝚊𝚗 .
+• 𝗣𝘂𝗯𝗹𝗶𝘀𝗵𝗲𝗱 𝗲𝘃𝗮𝗹𝘀, with a dashboard
+
+What it doesn't give you:
+
+• 𝗜𝗻𝗱𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝘁 𝗲𝘃𝗶𝗱𝗲𝗻𝗰𝗲. The 𝟮𝟳 𝘁𝗼 𝟯𝟲 𝗽𝗼𝗶𝗻𝘁 uplift comes from the team's own tasks on their own demo apps.
+• 𝗟𝗶𝗯𝗿𝗮𝗿𝘆 𝗰𝗼𝘃𝗲𝗿𝗮𝗴𝗲. It's the web platform only.
+• 𝗦𝗲𝘁-𝗮𝗻𝗱-𝗳𝗼𝗿𝗴𝗲𝘁. It released v1.0.0 on 10 November after almost 200 releases. An old copy is a stale copy.
+• 𝗣𝗿𝗶𝘃𝗮𝗰𝘆 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁. Telemetry is on until you set 𝙳𝙸𝚂𝙰𝙱𝙻𝙴_𝚃𝙴𝙻𝙴𝙼𝙴𝚃𝚁𝚈=𝟷.
+
+How to check whether it helps on your code:
+
+1. Pick 10 real tickets from your backlog that touch UI: a modal, a form, a date picker, some untrusted HTML.
+2. Run your agent on them without the skill and save the output.
+3. Install it, run the same tickets again, and keep everything else the same.
+4. Diff the two. Count libraries added, bundle size, and anything that sets HTML directly.
+5. Read the agent's traces to see whether it actually looked the guide up, or just ignored it.
+
+𝘐𝘧 𝘵𝘩𝘦 𝘢𝘨𝘦𝘯𝘵 𝘯𝘦𝘷𝘦𝘳 𝘰𝘱𝘦𝘯𝘴 𝘵𝘩𝘦 𝘨𝘶𝘪𝘥𝘦, 𝘵𝘩𝘦 𝘶𝘱𝘥𝘢𝘵𝘦 𝘥𝘪𝘥𝘯'𝘵 𝘩𝘢𝘱𝘱𝘦𝘯.
+
+Links in reply 👇
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗜𝘀 "𝗔𝗴𝗲𝗻𝘁 𝗨𝗽𝗱𝗮𝘁𝗲" 𝘁𝗵𝗲 𝗡𝗲𝘄 𝗪𝗶𝗻𝗱𝗼𝘄𝘀 𝗨𝗽𝗱𝗮𝘁𝗲?
+
+Most of us know the routine. Your computer nags you to update, you grumble, you restart, and it's patched against the latest problems.
+
+AI coding agents have a similar problem, but it's less visible. They learn from a snapshot of the internet, and the snapshot gets older every day. When they build a website, they often use methods that were standard years ago.
+
+Imagine hiring a builder who learned the trade in 2015 and has never read a new building code since. The house stands, but it uses old materials and misses newer safety rules.
+
+Google's Chrome team just released a fix for websites: 𝗠𝗼𝗱𝗲𝗿𝗻 𝗪𝗲𝗯 𝗚𝘂𝗶𝗱𝗮𝗻𝗰𝗲, a free add-on that gives agents an up-to-date rulebook for the web. Their tests show agents passing 𝗿𝗼𝘂𝗴𝗵𝗹𝘆 𝟯𝟬 𝗽𝗲𝗿𝗰𝗲𝗻𝘁𝗮𝗴𝗲 𝗽𝗼𝗶𝗻𝘁𝘀 𝗺𝗼𝗿𝗲 of their tasks with it.
+
+There are things to weigh. Those tests were run by the makers themselves. The add-on collects anonymous usage data unless you switch it off. And it only covers how browsers work, not every tool a developer uses.
+
+What we do know is that an agent is only as current as what it's been told. If nobody updates it, it quietly falls further behind every month, and the code it writes shows it.
+
+𝘐𝘧 𝘴𝘰𝘧𝘵𝘸𝘢𝘳𝘦 𝘤𝘢𝘯 𝘯𝘰𝘸 𝘸𝘳𝘪𝘵𝘦 𝘴𝘰𝘧𝘵𝘸𝘢𝘳𝘦, 𝘸𝘩𝘰 𝘮𝘢𝘬𝘦𝘴 𝘴𝘶𝘳𝘦 𝘪𝘵'𝘴 𝘳𝘦𝘢𝘥𝘪𝘯𝘨 𝘵𝘩𝘪𝘴 𝘺𝘦𝘢𝘳'𝘴 𝘮𝘢𝘯𝘶𝘢𝘭?
+
+Links in reply 👇
