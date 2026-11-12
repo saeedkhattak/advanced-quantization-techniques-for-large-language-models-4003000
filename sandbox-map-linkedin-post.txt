@@ -8,7 +8,7 @@ That's why sandboxes got popular. A sandbox is a sealed-off computer for the age
 
 𝗟𝗲𝘃𝗲𝗹 𝟭: 𝗿𝗲𝗻𝘁 𝗶𝘁 𝗼𝗿 𝗿𝘂𝗻 𝗶𝘁
 
-• Cloud: AWS, Azure, Cloudflare, E2B, Daytona, Modal, Vercel and more. One public benchmark tracks 30 providers
+• Cloud: AWS, Azure, Cloudflare, E2B, Daytona, Modal, Vercel. One public benchmark tracks 30 providers
 • Open source: you run it yourself, on a laptop or on your own servers. A cheap server is enough (Hetzner's start at about €5.49 a month)
 
 𝗟𝗲𝘃𝗲𝗹 𝟮 (𝗼𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲): 𝘁𝘄𝗼 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀
