@@ -38,7 +38,7 @@ Yogurt is a new open-source meeting notes app from Frigade. It records calls, tr
 
 𝗪𝗵𝗮𝘁'𝘀 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗶𝘀 𝘁𝗵𝗮𝘁 𝗲𝘃𝗲𝗿𝘆 𝘀𝘁𝗲𝗽 𝗿𝘂𝗻𝘀 𝗼𝗻 𝘆𝗼𝘂𝗿 𝗼𝘄𝗻 𝗺𝗮𝗰𝗵𝗶𝗻𝗲. Audio goes to whisper.cpp, text goes to a local model through llama.cpp, and the notes land in a folder on your disk.
 
-A couple of years ago this needed a server farm. Now the stated minimum is a laptop with 8 GB of RAM, and the app picks a model size (Gemma 4, gpt-oss or Qwen3) to fit the hardware.
+Most note-takers send audio to a data centre for this. Yogurt's stated minimum is a laptop with 8 GB of RAM, and it picks a model size (Gemma 4, gpt-oss or Qwen3) to fit the hardware.
 
 I think of it like the move from the mainframe to the PC. The capability didn't change much, but who holds the data did.
 
