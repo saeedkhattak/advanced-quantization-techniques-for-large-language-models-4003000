@@ -1,0 +1,27 @@
+𝗛𝗲𝗿𝗲'𝘀 𝘁𝗵𝗲 𝗺𝗮𝗽.
+
+Running a fake cloud on your laptop isn't a new idea. Developers have done it for years so they can test code without paying for AWS or breaking something real.
+
+The four best-known tools are 𝗮𝗹𝗹 𝗔𝗪𝗦-𝗳𝗼𝗰𝘂𝘀𝗲𝗱. Azure and Google Cloud have their own options, but they come mostly one service at a time (Azurite for Azure Storage, the gcloud emulators for Pub/Sub and Firestore).
+
+𝗟𝗼𝗰𝗮𝗹𝗦𝘁𝗮𝗰𝗸: 𝘄𝗮𝘀 𝗼𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲, 𝗻𝗼𝘄 𝗽𝗮𝗶𝗱
+
+For years this was the default. A free Community edition, paid Pro tiers on top. In March 2026 the company archived the open-source repo, and the free plan is now 𝗻𝗼𝗻-𝗰𝗼𝗺𝗺𝗲𝗿𝗰𝗶𝗮𝗹 𝘂𝘀𝗲 𝗼𝗻𝗹𝘆.
+
+𝗠𝗼𝘁𝗼: 𝗼𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲
+
+A Python library run by the community. You add one decorator to a test and your AWS calls get answered in memory. Still free, still maintained.
+
+𝗙𝗹𝗼𝗰𝗶: 𝗼𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲 (𝗠𝗜𝗧)
+
+Built as a drop-in swap for LocalStack's old free edition. 𝗧𝗵𝗶𝘀 𝗶𝘀 𝘁𝗵𝗲 𝗼𝗻𝗲 𝘁𝗵𝗮𝘁 𝘁𝗼𝗼𝗸 𝗼𝗳𝗳 after LocalStack went paid, with about 𝟯𝟭𝗸 𝗚𝗶𝘁𝗛𝘂𝗯 𝘀𝘁𝗮𝗿𝘀 today.
+
+𝗠𝗶𝗻𝗶𝗦𝘁𝗮𝗰𝗸: 𝗼𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲 (𝗠𝗜𝗧)
+
+Smaller, written in Python, with the tagline "𝘧𝘳𝘦𝘦 𝘧𝘰𝘳𝘦𝘷𝘦𝘳". Same story as Floci on a smaller scale, around 𝟱𝗸 𝘀𝘁𝗮𝗿𝘀.
+
+𝗦𝗼 𝘄𝗵𝗲𝗿𝗲 𝗱𝗼𝗲𝘀 𝗔𝗪𝗦'𝘀 𝗼𝘄𝗻 𝗳𝗶𝘁?
+
+AWS Emulator is the first one made by the cloud provider itself. Free, public domain, and reportedly covering 𝟮𝟬𝟬+ 𝘀𝗲𝗿𝘃𝗶𝗰𝗲𝘀.
+
+The community spent this year filling the hole LocalStack left. Now AWS has walked into that hole itself, and 𝗻𝗲𝗶𝘁𝗵𝗲𝗿 𝗠𝗶𝗰𝗿𝗼𝘀𝗼𝗳𝘁 𝗻𝗼𝗿 𝗚𝗼𝗼𝗴𝗹𝗲 𝗵𝗮𝘀 𝗱𝗼𝗻𝗲 𝘁𝗵𝗲 𝘀𝗮𝗺𝗲 𝘆𝗲𝘁.
