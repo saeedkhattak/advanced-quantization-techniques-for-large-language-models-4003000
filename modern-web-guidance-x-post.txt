@@ -85,7 +85,7 @@ Things to be careful about:
 
 • 𝗧𝗵𝗲 𝗲𝘃𝗮𝗹𝘀 𝗮𝗿𝗲 𝘀𝗲𝗹𝗳-𝗿𝗲𝗽𝗼𝗿𝘁𝗲𝗱, run by the team on its own demo apps.
 • 𝗧𝗲𝗹𝗲𝗺𝗲𝘁𝗿𝘆 𝗶𝘀 𝗼𝗻 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁. Turn it off with 𝙳𝙸𝚂𝙰𝙱𝙻𝙴_𝚃𝙴𝙻𝙴𝙼𝙴𝚃𝚁𝚈=𝟷.
-• 𝗥𝘂𝗻𝗻𝗶𝗻𝗴 `@𝗹𝗮𝘁𝗲𝘀𝘁` 𝗮𝗹𝘄𝗮𝘆𝘀 𝗽𝘂𝗹𝗹𝘀 𝘁𝗵𝗲 𝗻𝗲𝘄𝗲𝘀𝘁 𝗽𝘂𝗯𝗹𝗶𝘀𝗵, so pin a version if that worries you.
+• 𝗥𝘂𝗻𝗻𝗶𝗻𝗴 @𝗹𝗮𝘁𝗲𝘀𝘁 𝗮𝗹𝘄𝗮𝘆𝘀 𝗽𝘂𝗹𝗹𝘀 𝘁𝗵𝗲 𝗻𝗲𝘄𝗲𝘀𝘁 𝗽𝘂𝗯𝗹𝗶𝘀𝗵, so pin a version if that worries you.
 • 𝗜𝘁 𝗰𝗼𝘃𝗲𝗿𝘀 𝘁𝗵𝗲 𝘄𝗲𝗯 𝗽𝗹𝗮𝘁𝗳𝗼𝗿𝗺 𝗼𝗻𝗹𝘆, not React or other libraries.
 
 To update: 𝚗𝚙𝚡 𝚖𝚘𝚍𝚎𝚛𝚗-𝚠𝚎𝚋-𝚐𝚞𝚒𝚍𝚊𝚗𝚌𝚎@𝚕𝚊𝚝𝚎𝚜𝚝 𝚞𝚙𝚍𝚊𝚝𝚎, or auto-update in Claude Code. It reached v1.0.0 on 10 November.
