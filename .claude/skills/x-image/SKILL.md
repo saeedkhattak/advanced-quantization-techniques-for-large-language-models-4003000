@@ -22,6 +22,24 @@ Both are **1:1**, and that's what makes them fill the column: X shows a 1200 squ
 video and a 4096 square image at the same size. When the user asks for a video or GIF,
 also offer the 4096x4096 still card of the same content.
 
+## A screenshot the user sends: give the SAME image back, dark and square
+
+When the user sends a screenshot (an app, a search result, a chat, a dashboard) and asks
+for an X image, **do not rebuild it as a card.** They want their screenshot, unchanged in
+content and layout, on a dark background at 4096x4096. Never add a headline, chips,
+captions or first-person lines, and never drop or re-crop parts of the page.
+
+`python3 <skill dir>/dark_screenshot.py <in.png> "<working dir>/<name>-x.png" --crop L,T,R,B --keep L,T,R,B`
+
+- It flips the screenshot to dark (lightness inverted, colours and highlights kept),
+  scales it to the full 4096 width and centres it on a matching dark square.
+- `--crop` only to remove the browser's URL/tab bar (URLs can hold session tokens).
+- `--keep` for each photo thumbnail (original pixel coordinates) so photos aren't flipped.
+- Read the result and compare it with the original before sending: every element the
+  user captured (menus, highlights, side panels) must still be there.
+
+Build a card (below) only for a repo, paper or news article, or when the user asks for one.
+
 ## Why square, not tall
 
 On desktop, X caps an image's displayed height at about the width of the post
