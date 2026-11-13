@@ -10,6 +10,18 @@ they approved is a **square 4096x4096 PNG** in GitHub's dark theme, laid out lik
 README: title, the project's real logo, badges, a short description, a table, a code
 block, and the source URL at the bottom.
 
+## Size rules (the user approved these; always follow them)
+
+| Output | Size | Why |
+|---|---|---|
+| Still image | **4096x4096 PNG** | Largest square X accepts for images; fills the full post column |
+| Scrolling video | **1200x1200 MP4** | Largest square X accepts for video (X caps video at 1920x1200 or 1200x1900) |
+| GIF | Square, under 15 MB | X's GIF limit; `scroll_video.py` shrinks it to fit |
+
+Both are **1:1**, and that's what makes them fill the column: X shows a 1200 square
+video and a 4096 square image at the same size. When the user asks for a video or GIF,
+also offer the 4096x4096 still card of the same content.
+
 ## Why square, not tall
 
 On desktop, X caps an image's displayed height at about the width of the post
