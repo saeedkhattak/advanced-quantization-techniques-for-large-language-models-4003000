@@ -1,0 +1,26 @@
+𝗧𝗵𝗼𝘂𝗴𝗵𝘁𝘀 𝗢𝗻 𝗦𝗲𝗹𝗳-𝗛𝗼𝘀𝘁𝗲𝗱 𝗖𝗹𝗮𝘂𝗱𝗲 𝗔𝗴𝗲𝗻𝘁𝘀: 𝗧𝗿𝘂𝘀𝘁 𝗠𝗼𝘃𝗲𝗱, 𝗡𝗼𝘁 𝗥𝗲𝗺𝗼𝘃𝗲𝗱
+
+𝗜𝗳 𝘆𝗼𝘂𝗿 𝗱𝗮𝘁𝗮 𝗮𝗹𝗿𝗲𝗮𝗱𝘆 𝗹𝗶𝘃𝗲𝘀 𝗼𝗻 𝗔𝗪𝗦, 𝗚𝗼𝗼𝗴𝗹𝗲 𝗖𝗹𝗼𝘂𝗱 𝗼𝗿 𝗔𝘇𝘂𝗿𝗲, 𝘁𝗵𝗶𝘀 𝗶𝘀 𝗳𝗼𝗿 𝘆𝗼𝘂. If you want nothing to leave your building, the key thing hasn't changed: every model call still goes out.
+
+Think of a consultant moved into your office. Your desk, your files, your notes. But for every decision, they still phone their expert. 𝘕𝘰𝘸 𝘺𝘰𝘶 𝘫𝘶𝘴𝘵 𝘤𝘩𝘰𝘰𝘴𝘦 𝘵𝘩𝘦 𝘱𝘩𝘰𝘯𝘦 𝘭𝘪𝘯𝘦.
+
+𝗛𝗼𝘄 𝘄𝗲 𝗴𝗼𝘁 𝗵𝗲𝗿𝗲, 𝗶𝗻 𝟯 𝗽𝗵𝗮𝘀𝗲𝘀:
+
+1/ 𝗔𝗽𝗿𝗶𝗹, 𝗠𝗮𝗻𝗮𝗴𝗲𝗱 𝗔𝗴𝗲𝗻𝘁𝘀: everything runs at Anthropic. Your documents are uploaded there, the agent works on them there, and Anthropic keeps the full record.
+𝘛𝘩𝘦 𝘤𝘰𝘯𝘴𝘶𝘭𝘵𝘢𝘯𝘵 𝘵𝘢𝘬𝘦𝘴 𝘺𝘰𝘶𝘳 𝘧𝘪𝘭𝘦𝘴 𝘣𝘢𝘤𝘬 𝘵𝘰 𝘵𝘩𝘦𝘪𝘳 𝘰𝘧𝘧𝘪𝘤𝘦.
+
+2/ 𝗠𝗮𝘆, 𝘀𝗲𝗹𝗳-𝗵𝗼𝘀𝘁𝗲𝗱 𝘀𝗮𝗻𝗱𝗯𝗼𝘅𝗲𝘀: the agent opens your documents on your own servers or cloud account. But what it reads is still sent to Anthropic, which decides each step and keeps the record.
+𝘛𝘩𝘦𝘺 𝘴𝘪𝘵 𝘢𝘵 𝘺𝘰𝘶𝘳 𝘥𝘦𝘴𝘬, 𝘣𝘶𝘵 𝘳𝘦𝘢𝘥 𝘦𝘢𝘤𝘩 𝘱𝘢𝘨𝘦 𝘢𝘭𝘰𝘶𝘥 𝘵𝘰 𝘵𝘩𝘦𝘪𝘳 𝘧𝘪𝘳𝘮.
+
+3/ 𝗡𝗼𝘄, 𝘀𝗲𝗹𝗳-𝗵𝗼𝘀𝘁𝗲𝗱 𝗠𝗮𝗻𝗮𝗴𝗲𝗱 𝗔𝗴𝗲𝗻𝘁𝘀: the agent, its steps and its full record stay on your side, in your own database. Only the model calls leave, carrying what the agent has read. You pick where they go: Anthropic, or Claude on Bedrock, Google Cloud or Azure. On Bedrock, AWS says model providers can't see prompts, so Anthropic is out of the path. On Azure, only the Azure-hosted deployment does that.
+𝘠𝘰𝘶𝘳 𝘥𝘦𝘴𝘬, 𝘺𝘰𝘶𝘳 𝘯𝘰𝘵𝘦𝘴. 𝘖𝘯𝘭𝘺 𝘵𝘩𝘦 𝘱𝘩𝘰𝘯𝘦 𝘤𝘢𝘭𝘭 𝘭𝘦𝘢𝘷𝘦𝘴.
+
+The way I read it, each phase answered the next objection from security teams: run it near our data, keep our records with us, don't make us vet another vendor.
+
+𝗪𝗵𝗼 𝗴𝗮𝗶𝗻𝘀 𝗺𝗼𝘀𝘁: companies already committed to one cloud. A bank with its data in S3 can keep all of it inside AWS, with no new vendor to approve. Retention follows that provider, so check Claude's terms there.
+
+𝗪𝗵𝗮𝘁'𝘀 𝘀𝘁𝗶𝗹𝗹 𝗻𝗼𝘁 𝗽𝗼𝘀𝘀𝗶𝗯𝗹𝗲: running Claude fully in-house with nothing leaving. The model isn't offered for that, so open-weight models on your own servers are still the only option.
+
+𝘛𝘩𝘦 𝘮𝘰𝘥𝘦𝘭 𝘯𝘦𝘷𝘦𝘳 𝘮𝘰𝘷𝘦𝘥. 𝘖𝘯𝘭𝘺 𝘸𝘩𝘰 𝘺𝘰𝘶 𝘵𝘳𝘶𝘴𝘵 𝘸𝘪𝘵𝘩 𝘪𝘵 𝘥𝘪𝘥.
+
+Links in reply 👇
