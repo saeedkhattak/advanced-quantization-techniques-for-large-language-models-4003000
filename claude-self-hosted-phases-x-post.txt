@@ -1,0 +1,28 @@
+𝗧𝗵𝗼𝘂𝗴𝗵𝘁𝘀 𝗢𝗻 𝗦𝗲𝗹𝗳-𝗛𝗼𝘀𝘁𝗲𝗱 𝗖𝗹𝗮𝘂𝗱𝗲 𝗠𝗮𝗻𝗮𝗴𝗲𝗱 𝗔𝗴𝗲𝗻𝘁𝘀
+
+Who this is for, up front.
+
+𝗜𝗳 𝘆𝗼𝘂𝗿 𝗱𝗮𝘁𝗮 𝗮𝗻𝗱 𝗽𝗿𝗼𝗰𝗲𝘀𝘀𝗶𝗻𝗴 𝗮𝗹𝗿𝗲𝗮𝗱𝘆 𝗹𝗶𝘃𝗲 𝗼𝗻 𝗔𝗪𝗦, 𝗚𝗼𝗼𝗴𝗹𝗲 𝗖𝗹𝗼𝘂𝗱 𝗼𝗿 𝗔𝘇𝘂𝗿𝗲, 𝘁𝗵𝗶𝘀 𝗶𝘀 𝗳𝗼𝗿 𝘆𝗼𝘂.
+
+If you want everything on your own servers with nothing leaving the building, 𝘁𝗵𝗲 𝗸𝗲𝘆 𝘁𝗵𝗶𝗻𝗴 𝗵𝗮𝘀𝗻'𝘁 𝗰𝗵𝗮𝗻𝗴𝗲𝗱. Your agent's records can now stay with you, but every model call still goes out to Anthropic.
+
+Think of it like moving a consultant into your office. Your desk, your files, your notes. But for every decision, they still phone their expert. 𝘕𝘰𝘸 𝘺𝘰𝘶 𝘫𝘶𝘴𝘵 𝘨𝘦𝘵 𝘵𝘰 𝘤𝘩𝘰𝘰𝘴𝘦 𝘸𝘩𝘪𝘤𝘩 𝘱𝘩𝘰𝘯𝘦 𝘭𝘪𝘯𝘦.
+
+𝗛𝗼𝘄 𝗶𝘁 𝗺𝗼𝘃𝗲𝗱, 𝗶𝗻 𝟯 𝗽𝗵𝗮𝘀𝗲𝘀:
+
+• 𝗔𝗽𝗿𝗶𝗹, 𝗠𝗮𝗻𝗮𝗴𝗲𝗱 𝗔𝗴𝗲𝗻𝘁𝘀: Anthropic runs everything: the sandbox where tools run, the agent loop that decides the next step, the session history and the model. Your files go into Anthropic's sandbox, and every step is stored on its side. Quick to start, but your security team has to trust Anthropic with all of it.
+𝘛𝘩𝘦 𝘤𝘰𝘯𝘴𝘶𝘭𝘵𝘢𝘯𝘵 𝘸𝘰𝘳𝘬𝘴 𝘧𝘳𝘰𝘮 𝘵𝘩𝘦𝘪𝘳 𝘰𝘸𝘯 𝘰𝘧𝘧𝘪𝘤𝘦, 𝘸𝘪𝘵𝘩 𝘤𝘰𝘱𝘪𝘦𝘴 𝘰𝘧 𝘺𝘰𝘶𝘳 𝘧𝘪𝘭𝘦𝘴.
+
+• 𝗠𝗮𝘆, 𝘀𝗲𝗹𝗳-𝗵𝗼𝘀𝘁𝗲𝗱 𝘀𝗮𝗻𝗱𝗯𝗼𝘅𝗲𝘀: the tools move to your servers. The agent reads files and runs commands inside your network, next to your data. But Anthropic still runs the loop, and keeps the full history of what the agent read and did. So whatever the agent opens still ends up in records held by Anthropic.
+𝘛𝘩𝘦 𝘤𝘰𝘯𝘴𝘶𝘭𝘵𝘢𝘯𝘵 𝘴𝘪𝘵𝘴 𝘢𝘵 𝘺𝘰𝘶𝘳 𝘥𝘦𝘴𝘬, 𝘣𝘶𝘵 𝘵𝘩𝘦𝘪𝘳 𝘧𝘪𝘳𝘮 𝘬𝘦𝘦𝘱𝘴 𝘵𝘩𝘦 𝘯𝘰𝘵𝘦𝘴.
+
+• 𝗡𝗼𝘄, 𝘀𝗲𝗹𝗳-𝗵𝗼𝘀𝘁𝗲𝗱 𝗠𝗮𝗻𝗮𝗴𝗲𝗱 𝗔𝗴𝗲𝗻𝘁𝘀: you run the whole service. Tools, loop, and the session history in your own PostgreSQL database, in your cloud account or your own data centre. Only the model calls leave. They go to Anthropic, or through Bedrock, Google Cloud or Azure. On Bedrock, AWS says model providers can't see prompts or completions, so Anthropic is out of the path. On Azure, that holds only for the Azure-hosted Claude deployment.
+𝘠𝘰𝘶𝘳 𝘥𝘦𝘴𝘬, 𝘺𝘰𝘶𝘳 𝘧𝘪𝘭𝘦𝘴, 𝘺𝘰𝘶𝘳 𝘯𝘰𝘵𝘦𝘴. 𝘖𝘯𝘭𝘺 𝘵𝘩𝘦 𝘱𝘩𝘰𝘯𝘦 𝘤𝘢𝘭𝘭 𝘭𝘦𝘢𝘷𝘦𝘴.
+
+𝗪𝗵𝘆 𝘁𝗵𝗶𝘀 𝗼𝗿𝗱𝗲𝗿: the way I read it, each step answered the next objection from security teams. First "run it next to our data", then "keep our records with us", then "don't make us vet one more company".
+
+𝗪𝗵𝗼 𝗴𝗮𝗶𝗻𝘀 𝗺𝗼𝘀𝘁: companies that already trust one cloud. A bank with its data in S3 can keep the agent, its records and its model calls inside AWS. No new vendor to approve. Retention follows that provider, so read the terms for Claude there.
+
+𝗪𝗵𝗮𝘁 𝗻𝗲𝘃𝗲𝗿 𝗺𝗼𝘃𝗲𝗱: 𝘵𝘩𝘦 𝘮𝘰𝘥𝘦𝘭. 𝘌𝘷𝘦𝘳𝘺 𝘴𝘵𝘦𝘱 𝘴𝘵𝘪𝘭𝘭 𝘴𝘦𝘯𝘥𝘴 𝘵𝘩𝘦 𝘤𝘰𝘯𝘷𝘦𝘳𝘴𝘢𝘵𝘪𝘰𝘯 𝘰𝘶𝘵.
+
+Links in reply 👇
