@@ -1,0 +1,153 @@
+════════ VERSION 1: STORY ════════
+
+𝗠𝗶𝗰𝗿𝗼𝘀𝗼𝗳𝘁 𝗔𝗱𝗱𝗲𝗱 𝗔 𝗟𝗼𝗰𝗸 𝗧𝗼 𝗪𝗶𝗻𝗱𝗼𝘄𝘀. 𝗔 𝗥𝗲𝘀𝗲𝗮𝗿𝗰𝗵𝗲𝗿 𝗦𝗮𝘆𝘀 𝗧𝗵𝗲 𝗟𝗼𝗰𝗸 𝗜𝘀 𝗧𝗵𝗲 𝗪𝗮𝘆 𝗜𝗻.
+
+Windows has a logging driver called CLFS (clfs.sys). Attackers have abused it for years to go from a normal user to full control of the machine.
+
+So Microsoft hardened it. Updates from late October 2025 added a signature check to CLFS log files, on Windows 11 25H2 and Windows Server 2025. The driver signs each log and refuses ones that were tampered with.
+
+𝗢𝗻 𝗡𝗼𝘃 𝟭𝟬, 𝗣𝗮𝘁𝗰𝗵 𝗧𝘂𝗲𝘀𝗱𝗮𝘆, 𝗮 𝗿𝗲𝘀𝗲𝗮𝗿𝗰𝗵𝗲𝗿 𝗸𝗻𝗼𝘄𝗻 𝗮𝘀 𝗡𝗶𝗴𝗵𝘁𝗺𝗮𝗿𝗲 𝗘𝗰𝗹𝗶𝗽𝘀𝗲 𝗽𝘂𝗯𝗹𝗶𝘀𝗵𝗲𝗱 𝗮𝗻 𝗲𝘅𝗽𝗹𝗼𝗶𝘁 𝗰𝗮𝗹𝗹𝗲𝗱 𝗦𝗶𝗴𝗻𝗗𝗿𝗼𝗽 𝘁𝗵𝗮𝘁 𝘁𝗮𝗿𝗴𝗲𝘁𝘀 𝘁𝗵𝗮𝘁 𝘃𝗲𝗿𝘆 𝗰𝗵𝗲𝗰𝗸.
+
+How it works, according to the write-ups:
+
+• 𝗔 𝗰𝗿𝗮𝗳𝘁𝗲𝗱 𝗹𝗼𝗴: the attacker, already running as a normal user, prepares a special log file
+• 𝗔 𝗯𝗼𝗿𝗿𝗼𝘄𝗲𝗱 𝗵𝗮𝗻𝗱: a privileged process is tricked into opening it. The published chain uses Microsoft Defender
+• 𝗧𝗵𝗲 𝘀𝗹𝗶𝗽: while authenticating the log, the driver creates its companion signature file as SYSTEM, in a place the attacker can write to
+
+From there, a standard user can reach 𝗦𝗬𝗦𝗧𝗘𝗠, 𝘁𝗵𝗲 𝗵𝗶𝗴𝗵𝗲𝘀𝘁 𝗽𝗿𝗶𝘃𝗶𝗹𝗲𝗴𝗲 𝗼𝗻 𝗪𝗶𝗻𝗱𝗼𝘄𝘀.
+
+𝗙𝗼𝗿 𝘂𝘀𝗲𝗿𝘀: this is not a remote attack. Someone needs code running on your PC first, through malware or a stolen login. It turns a small break-in into a full takeover.
+
+𝗙𝗼𝗿 𝗮𝗱𝗺𝗶𝗻𝘀: there's 𝗻𝗼 𝗽𝗮𝘁𝗰𝗵 𝗮𝗻𝗱 𝗻𝗼 𝗖𝗩𝗘 𝘆𝗲𝘁, and Microsoft hasn't commented publicly. Turning the CLFS check off isn't a fix either, because that re-opens the older attacks it was built to stop.
+
+A few cautions. The researcher tested it on Windows 11 26H2 and experimental Server 2025 builds, and 𝗰𝗹𝗮𝗶𝗺𝘀 𝗮𝗯𝗼𝘂𝘁 𝟴𝟬% 𝗼𝗳 𝗪𝗶𝗻𝗱𝗼𝘄𝘀 𝗶𝗻𝘀𝘁𝗮𝗹𝗹𝘀 𝗮𝗿𝗲 𝗲𝘅𝗽𝗼𝘀𝗲𝗱, 𝘄𝗶𝘁𝗵 𝗻𝗼 𝗱𝗮𝘁𝗮 𝗯𝗲𝗵𝗶𝗻𝗱 𝘁𝗵𝗮𝘁 𝗻𝘂𝗺𝗯𝗲𝗿. Nobody independent has confirmed the exploit so far, and no attacks using it have been reported.
+
+𝘌𝘷𝘦𝘳𝘺 𝘯𝘦𝘸 𝘴𝘦𝘤𝘶𝘳𝘪𝘵𝘺 𝘧𝘦𝘢𝘵𝘶𝘳𝘦 𝘪𝘴 𝘢𝘭𝘴𝘰 𝘯𝘦𝘸 𝘤𝘰𝘥𝘦, 𝘢𝘯𝘥 𝘯𝘦𝘸 𝘤𝘰𝘥𝘦 𝘤𝘢𝘯 𝘣𝘦 𝘢𝘵𝘵𝘢𝘤𝘬𝘦𝘥.
+
+Links in reply 👇
+
+
+════════ VERSION 2: KARPATHY STYLE ════════
+
+𝗔 𝗠𝗶𝘁𝗶𝗴𝗮𝘁𝗶𝗼𝗻 𝗜𝘀 𝗔𝗹𝘀𝗼 𝗔𝘁𝘁𝗮𝗰𝗸 𝗦𝘂𝗿𝗳𝗮𝗰𝗲
+
+Reading about SignDrop, the new Windows zero-day, and one idea keeps standing out.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝗮𝗻𝗼𝘁𝗵𝗲𝗿 𝗖𝗟𝗙𝗦 𝗯𝘂𝗴, 𝗶𝘁'𝘀 𝘄𝗵𝗲𝗿𝗲 𝘁𝗵𝗲 𝗯𝘂𝗴 𝗹𝗶𝘃𝗲𝘀. CLFS (the Windows log driver) was exploited so often that Microsoft added an authentication layer in October 2025: every log file gets a signature, and the driver checks it. SignDrop reportedly goes through that layer.
+
+The claimed chain is short. A normal user prepares a crafted log. A privileged process, Defender in the public version, gets nudged into opening it. While checking the log, the driver writes its signature file as SYSTEM, somewhere the user controls. That's the foothold.
+
+It's like fitting a new lock and leaving the installer's key under the mat. The door got stronger and the lock became the weak part.
+
+Some calibration. This is local only, so the attacker needs code running on the machine already. The researcher tested Windows 11 26H2 and experimental Server 2025 builds. The "80% of Windows installs" figure is the researcher's guess, imo not worth repeating as fact.
+
+And as of Nov 13 there's no CVE, no patch, no Microsoft statement, no independent test and no reported attacks.
+
+I think the lesson is general: security code runs with the highest privilege and handles hostile input by design, so it deserves the hardest review.
+
+𝗪𝗵𝗮𝘁 𝗜'𝗱 𝗮𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝘄𝗮𝗻𝘁 𝘁𝗼 𝘀𝗲𝗲: 𝘔𝘪𝘤𝘳𝘰𝘴𝘰𝘧𝘵'𝘴 𝘰𝘸𝘯 𝘢𝘤𝘤𝘰𝘶𝘯𝘵 𝘰𝘧 𝘩𝘰𝘸 𝘵𝘩𝘦 𝘤𝘩𝘦𝘤𝘬 𝘤𝘳𝘦𝘢𝘵𝘦𝘴 𝘵𝘩𝘢𝘵 𝘧𝘪𝘭𝘦, 𝘢𝘯𝘥 𝘢 𝘧𝘪𝘹 𝘵𝘩𝘢𝘵 𝘥𝘰𝘦𝘴𝘯'𝘵 𝘮𝘦𝘢𝘯 𝘴𝘸𝘪𝘵𝘤𝘩𝘪𝘯𝘨 𝘵𝘩𝘦 𝘱𝘳𝘰𝘵𝘦𝘤𝘵𝘪𝘰𝘯 𝘰𝘧𝘧.
+
+Links in reply 👇
+
+
+════════ VERSION 3: SIMON WILLISON STYLE ════════
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗦𝗶𝗴𝗻𝗗𝗿𝗼𝗽, 𝗔𝗻 𝗨𝗻𝗽𝗮𝘁𝗰𝗵𝗲𝗱 𝗪𝗶𝗻𝗱𝗼𝘄𝘀 𝗣𝗿𝗶𝘃𝗶𝗹𝗲𝗴𝗲 𝗘𝘀𝗰𝗮𝗹𝗮𝘁𝗶𝗼𝗻
+
+SignDrop is a publicly released exploit for the Windows Common Log File System driver, clfs.sys. It was published on Nov 10, 2026 (Patch Tuesday) by a researcher known as Nightmare Eclipse.
+
+It's a local privilege escalation: a standard user ends up with SYSTEM.
+
+𝗧𝗵𝗲 𝘁𝗮𝗿𝗴𝗲𝘁 𝗶𝘀 𝗮 𝘀𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗳𝗲𝗮𝘁𝘂𝗿𝗲. Microsoft's support article describes it as a mitigation "𝘸𝘩𝘪𝘤𝘩 𝘢𝘥𝘥𝘴 𝘢 𝘩𝘢𝘴𝘩-𝘣𝘢𝘴𝘦𝘥 𝘮𝘦𝘴𝘴𝘢𝘨𝘦 𝘢𝘶𝘵𝘩𝘦𝘯𝘵𝘪𝘤𝘢𝘵𝘪𝘰𝘯 𝘤𝘰𝘥𝘦 (𝘏𝘔𝘈𝘊) 𝘵𝘰 𝘵𝘩𝘦 𝘶𝘯𝘥𝘦𝘳𝘭𝘺𝘪𝘯𝘨 𝘧𝘪𝘭𝘦𝘴 𝘰𝘧 𝘢 𝘊𝘓𝘍𝘚 𝘭𝘰𝘨𝘧𝘪𝘭𝘦." It shipped in late October 2025 updates for Windows 11 25H2 and Windows Server 2025.
+
+The reported chain:
+
+• 𝗦𝘁𝗲𝗽 𝗼𝗻𝗲: a normal user crafts a log file
+• 𝗦𝘁𝗲𝗽 𝘁𝘄𝗼: a privileged process (Microsoft Defender, in the published code) is coerced into opening it
+• 𝗦𝘁𝗲𝗽 𝘁𝗵𝗿𝗲𝗲: the driver creates the log's authentication file as SYSTEM, with attacker-controlled permissions
+
+One detail from Microsoft's docs matters here. The feature starts in a learning mode and moves to enforcement after 90 days.
+
+𝗧𝗵𝗶𝗻𝗴𝘀 𝘁𝗼 𝗯𝗲 𝗰𝗮𝗿𝗲𝗳𝘂𝗹 𝗮𝗯𝗼𝘂𝘁:
+
+• 𝗡𝗼𝘁 𝗰𝗼𝗻𝗳𝗶𝗿𝗺𝗲𝗱. No CVE, no Microsoft advisory, no independent test, as of Nov 13
+• 𝗡𝗼 𝗿𝗲𝗽𝗼𝗿𝘁𝗲𝗱 𝗮𝘁𝘁𝗮𝗰𝗸𝘀 using it so far
+• 𝗧𝗵𝗲 "𝟴𝟬% 𝗼𝗳 𝗪𝗶𝗻𝗱𝗼𝘄𝘀 𝗶𝗻𝘀𝘁𝗮𝗹𝗹𝘀" 𝗳𝗶𝗴𝘂𝗿𝗲 is the researcher's estimate, without data
+• 𝗧𝗲𝘀𝘁𝗲𝗱 𝗯𝘂𝗶𝗹𝗱𝘀 were Windows 11 26H2 and experimental Server 2025, per the researcher
+• 𝗗𝗶𝘀𝗮𝗯𝗹𝗶𝗻𝗴 𝘁𝗵𝗲 𝗺𝗶𝘁𝗶𝗴𝗮𝘁𝗶𝗼𝗻 removes this path but re-exposes older CLFS attacks. Microsoft's docs advise against it
+
+Links in reply 👇
+
+
+════════ VERSION 4: SWYX STYLE ════════
+
+𝗗𝗿𝗼𝗽 𝗗𝗮𝘆 𝗜𝘀 𝗧𝗵𝗲 𝗡𝗲𝘄 𝗣𝗮𝘁𝗰𝗵 𝗧𝘂𝗲𝘀𝗱𝗮𝘆
+
+November's pattern in security: researchers publishing working exploits with no vendor fix ready.
+
+• 𝗡-𝗮𝗯𝗹𝗲 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 (𝗡𝗼𝘃 𝟴 𝘁𝗼 𝟭𝟮): exploits for 33 flaws, then new chains against the fresh hotfix
+• 𝗪𝗶𝗻𝗱𝗼𝘄𝘀 𝗦𝗶𝗴𝗻𝗗𝗿𝗼𝗽 (𝗡𝗼𝘃 𝟭𝟬): a privilege escalation in the CLFS driver, released on Patch Tuesday itself
+• 𝗕𝗼𝘁𝗵: public code first, vendor response later
+
+SignDrop stands out because of what it attacks. Microsoft added signature checks to CLFS log files in October 2025, after years of CLFS exploits. 𝗦𝗶𝗴𝗻𝗗𝗿𝗼𝗽 𝗿𝗲𝗽𝗼𝗿𝘁𝗲𝗱𝗹𝘆 𝘁𝘂𝗿𝗻𝘀 𝘁𝗵𝗮𝘁 𝗰𝗵𝗲𝗰𝗸 𝗶𝗻𝘁𝗼 𝘁𝗵𝗲 𝗿𝗼𝘂𝘁𝗲 𝘁𝗼 𝗦𝗬𝗦𝗧𝗘𝗠, by getting a privileged process like Defender to open a crafted log.
+
+It's local only, so it needs a foothold first. That still matters, because privilege escalation is the step that turns one infected user account into a compromised machine.
+
+Status as of Nov 13: no CVE, no patch, no Microsoft comment, no independent confirmation, no known attacks. The researcher's "80% of Windows" claim has no data behind it.
+
+My take: 𝘁𝗵𝗲 𝗴𝗮𝗽 𝗯𝗲𝘁𝘄𝗲𝗲𝗻 "𝗲𝘅𝗽𝗹𝗼𝗶𝘁 𝗶𝘀 𝗽𝘂𝗯𝗹𝗶𝗰" 𝗮𝗻𝗱 "𝗳𝗶𝘅 𝗲𝘅𝗶𝘀𝘁𝘀" 𝗶𝘀 𝘄𝗵𝗲𝗿𝗲 𝗱𝗲𝗳𝗲𝗻𝗱𝗲𝗿𝘀 𝗻𝗼𝘄 𝗹𝗶𝘃𝗲. Detection and least privilege matter more when patches arrive second.
+
+Links in reply 👇
+
+
+════════ VERSION 5: HAMEL HUSAIN STYLE ════════
+
+𝗦𝗶𝗴𝗻𝗗𝗿𝗼𝗽: 𝗪𝗵𝗮𝘁'𝘀 𝗖𝗹𝗮𝗶𝗺𝗲𝗱, 𝗪𝗵𝗮𝘁'𝘀 𝗖𝗼𝗻𝗳𝗶𝗿𝗺𝗲𝗱, 𝗪𝗵𝗮𝘁 𝗧𝗼 𝗗𝗼
+
+A public exploit called SignDrop says it takes a normal Windows user to SYSTEM through the CLFS log driver. Before you panic or shrug, separate the claims from the evidence.
+
+𝗪𝗵𝗮𝘁'𝘀 𝗰𝗹𝗮𝗶𝗺𝗲𝗱:
+
+• 𝗧𝗵𝗲 𝗿𝗼𝘂𝘁𝗲: abuse of the CLFS log authentication check added in October 2025
+• 𝗧𝗵𝗲 𝘁𝗿𝗶𝗰𝗸: a privileged process (Defender, in the public code) opens a crafted log, and the driver writes a file as SYSTEM where the user can reach it
+• 𝗧𝗵𝗲 𝗿𝗲𝗮𝗰𝗵: "about 80%" of Windows installs, per the researcher
+
+𝗪𝗵𝗮𝘁'𝘀 𝗰𝗼𝗻𝗳𝗶𝗿𝗺𝗲𝗱:
+
+• 𝗧𝗵𝗲 𝗰𝗼𝗱𝗲 𝗶𝘀 𝗽𝘂𝗯𝗹𝗶𝗰, published Nov 10
+• 𝗡𝗼 𝗽𝗮𝘁𝗰𝗵, 𝗻𝗼 𝗖𝗩𝗘, 𝗻𝗼 𝗠𝗶𝗰𝗿𝗼𝘀𝗼𝗳𝘁 𝘀𝘁𝗮𝘁𝗲𝗺𝗲𝗻𝘁 as of Nov 13
+• 𝗡𝗼 𝗶𝗻𝗱𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝘁 𝘁𝗲𝘀𝘁 and no reported attacks
+• 𝗜𝘁'𝘀 𝗹𝗼𝗰𝗮𝗹 𝗼𝗻𝗹𝘆. An attacker needs to run code on the machine first
+
+𝗪𝗵𝗮𝘁 𝗜'𝗱 𝗱𝗼 𝘁𝗵𝗶𝘀 𝘄𝗲𝗲𝗸:
+
+1. Don't disable the CLFS mitigation. It blocks older, proven attacks
+2. Note which machines run Windows 11 25H2 or later and Server 2025
+3. Watch for new, unexpected log-related files created by SYSTEM in user-writable folders
+4. Tighten who can run unsigned code on those machines
+5. Check Microsoft's Security Update Guide before the next Patch Tuesday
+
+Treat the 80% number as marketing until someone measures it.
+
+Links in reply 👇
+
+
+════════ VERSION 6: ETHAN MOLLICK STYLE ════════
+
+𝗖𝗮𝗻 𝗔 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗨𝗽𝗴𝗿𝗮𝗱𝗲 𝗠𝗮𝗸𝗲 𝗔 𝗦𝘆𝘀𝘁𝗲𝗺 𝗟𝗲𝘀𝘀 𝗦𝗮𝗳𝗲?
+
+Windows keeps certain records in special log files. For years, attackers used weaknesses in how Windows handles those files to take over computers.
+
+Microsoft's answer, in late 2025, was sensible: put a tamper seal on every log file, and have Windows check the seal.
+
+Now a security researcher has published a tool called SignDrop that, by their account, uses the seal-checking itself to take full control of a PC. Think of a guard who checks every visitor's badge, and a visitor who learns that the badge desk will print a master key if asked in the right way.
+
+𝗧𝘄𝗼 𝘁𝗵𝗶𝗻𝗴𝘀 𝗮𝗿𝗲 𝘄𝗼𝗿𝘁𝗵 𝗸𝗻𝗼𝘄𝗶𝗻𝗴. It can't be done from across the internet. The attacker already needs a foothold on the computer, for example through a malicious download. And there's no fix yet: Microsoft hasn't released a patch or commented publicly.
+
+The evidence is thin in both directions. The tool is public, so anyone can study it. But no independent expert has confirmed it works as described, no attacks have been reported, and the researcher's claim that 80% of Windows computers are exposed comes with no data.
+
+What we know: the code exists and targets a real, recent security feature. What we don't: how reliable it is, and how fast Microsoft will respond.
+
+𝘐𝘧 𝘦𝘢𝘤𝘩 𝘯𝘦𝘸 𝘴𝘢𝘧𝘦𝘨𝘶𝘢𝘳𝘥 𝘤𝘢𝘯 𝘢𝘭𝘴𝘰 𝘣𝘦𝘤𝘰𝘮𝘦 𝘢 𝘯𝘦𝘸 𝘸𝘢𝘺 𝘪𝘯, 𝘩𝘰𝘸 𝘴𝘩𝘰𝘶𝘭𝘥 𝘸𝘦 𝘫𝘶𝘥𝘨𝘦 𝘸𝘩𝘦𝘵𝘩𝘦𝘳 𝘢 𝘴𝘺𝘴𝘵𝘦𝘮 𝘪𝘴 𝘨𝘦𝘵𝘵𝘪𝘯𝘨 𝘴𝘢𝘧𝘦𝘳?
+
+Links in reply 👇
