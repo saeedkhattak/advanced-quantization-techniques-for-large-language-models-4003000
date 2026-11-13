@@ -38,6 +38,13 @@ captions or first-person lines, and never drop or re-crop parts of the page.
 - Read the result and compare it with the original before sending: every element the
   user captured (menus, highlights, side panels) must still be there.
 
+**Fill the square.** A wide screenshot leaves big empty bands above and below, and the
+user doesn't want those. After flipping to dark, cut the screenshot into its real blocks
+and re-place them so they fill the 4096 square: the main column (tabs, query, answer,
+map, menus, highlights) scaled up large, and any side panel (e.g. source links) laid as
+a row underneath. Use only pixels from the screenshot; drop only empty margins and the
+URL bar. `example-fill-square.py` is the layout used for the Google AI Mode screenshot.
+
 Build a card (below) only for a repo, paper or news article, or when the user asks for one.
 
 ## Why square, not tall
