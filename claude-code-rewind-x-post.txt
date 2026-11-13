@@ -1,0 +1,144 @@
+=== 1. STORY ===
+
+𝗦𝘁𝗼𝗽 𝗖𝗼𝗿𝗿𝗲𝗰𝘁𝗶𝗻𝗴 𝗖𝗹𝗮𝘂𝗱𝗲 𝗖𝗼𝗱𝗲. 𝗥𝗲𝘄𝗶𝗻𝗱 𝗜𝘁.
+
+Claude Code goes down the wrong path. A few turns later you type "no, not like that, do it differently".
+
+That fixes the direction. 𝗧𝗵𝗲 𝗱𝗲𝗮𝗱 𝗲𝗻𝗱 𝘀𝘁𝗮𝘆𝘀 𝗶𝗻 𝘁𝗵𝗲 𝗰𝗼𝗻𝘃𝗲𝗿𝘀𝗮𝘁𝗶𝗼𝗻.
+
+Claude Code sends the full conversation with every request, so each later turn carries the failed attempt and your correction along with it.
+
+There's a cheaper move. Press 𝙴𝚜𝚌 twice on an empty prompt, or run /𝚛𝚎𝚠𝚒𝚗𝚍. Pick the prompt where things went wrong and choose 𝗥𝗲𝘀𝘁𝗼𝗿𝗲 𝗰𝗼𝗻𝘃𝗲𝗿𝘀𝗮𝘁𝗶𝗼𝗻. Choose 𝗥𝗲𝘀𝘁𝗼𝗿𝗲 𝗰𝗼𝗱𝗲 𝗮𝗻𝗱 𝗰𝗼𝗻𝘃𝗲𝗿𝘀𝗮𝘁𝗶𝗼𝗻 if you want the file edits undone as well.
+
+The conversation is cut back to that point, and your original prompt lands in the input box again so you can rewrite it with what you just learned.
+
+The part few people know: 𝗮 𝗿𝗲𝘄𝗶𝗻𝗱 𝗸𝗲𝗲𝗽𝘀 𝘁𝗵𝗲 𝗽𝗿𝗼𝗺𝗽𝘁 𝗰𝗮𝗰𝗵𝗲. The docs say it truncates back to a prefix that is already cached, while /𝚌𝚘𝚖𝚙𝚊𝚌𝚝 has to build a new one.
+
+A few limits, straight from the docs:
+
+• 𝗦𝗵𝗲𝗹𝗹 𝗰𝗵𝗮𝗻𝗴𝗲𝘀: a file that only Bash commands touched isn't tracked. Git is still your undo there.
+• 𝗦𝘂𝗯𝗮𝗴𝗲𝗻𝘁 𝗲𝗱𝗶𝘁𝘀: usually not restored.
+• 𝗕𝗲𝗳𝗼𝗿𝗲 𝘆𝗼𝘂 𝗾𝘂𝗶𝘁: send one prompt first, or the rewound messages can come back.
+
+𝘈 𝘤𝘰𝘳𝘳𝘦𝘤𝘵𝘪𝘰𝘯 𝘢𝘥𝘥𝘴 𝘵𝘰 𝘵𝘩𝘦 𝘱𝘪𝘭𝘦. 𝘈 𝘳𝘦𝘸𝘪𝘯𝘥 𝘵𝘢𝘬𝘦𝘴 𝘵𝘩𝘦 𝘱𝘪𝘭𝘦 𝘢𝘸𝘢𝘺.
+
+Links in reply 👇
+
+=== 2. KARPATHY STYLE ===
+
+𝗔 𝗖𝗼𝗿𝗿𝗲𝗰𝘁𝗶𝗼𝗻 𝗜𝘀 𝗔𝗻 𝗔𝗽𝗽𝗲𝗻𝗱. 𝗔 𝗥𝗲𝘄𝗶𝗻𝗱 𝗜𝘀 𝗔 𝗧𝗿𝘂𝗻𝗰𝗮𝘁𝗲.
+
+A Claude Code session is basically an append-only log. Every request re-sends the whole log, and the model reads all of it.
+
+So when it goes wrong and you reply "no, do it differently", you haven't removed anything. You've appended a third thing after the mistake. The wrong file reads and the wrong edits are still there on every later turn.
+
+The git analogy fits well. Correcting is 𝚐𝚒𝚝 𝚛𝚎𝚟𝚎𝚛𝚝: the bad commit and its undo both stay in history. /𝚛𝚎𝚠𝚒𝚗𝚍 (or 𝙴𝚜𝚌 twice on an empty prompt) is closer to 𝚐𝚒𝚝 𝚛𝚎𝚜𝚎𝚝: history ends before the mistake.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗰𝗮𝗰𝗵𝗲. Prompt caching matches on the start of the request. Cutting the end off a log leaves a prefix that was already cached, so the next turn is a cache hit. /𝚌𝚘𝚖𝚙𝚊𝚌𝚝 rewrites the history, which means a new prefix and a rebuild.
+
+imo this makes rewind the cheapest way to delete a mistake, and an underused one.
+
+It's a session-level tool with gaps: Bash-only file changes and most subagent edits aren't restored.
+
+𝘞𝘩𝘢𝘵 𝘸𝘰𝘶𝘭𝘥 𝘣𝘦 𝘯𝘪𝘤𝘦 𝘯𝘦𝘹𝘵: 𝘵𝘩𝘦 𝘵𝘰𝘰𝘭 𝘪𝘵𝘴𝘦𝘭𝘧 𝘴𝘶𝘨𝘨𝘦𝘴𝘵𝘪𝘯𝘨 𝘢 𝘳𝘦𝘸𝘪𝘯𝘥 𝘢𝘧𝘵𝘦𝘳 𝘵𝘩𝘦 𝘴𝘦𝘤𝘰𝘯𝘥 𝘤𝘰𝘳𝘳𝘦𝘤𝘵𝘪𝘰𝘯.
+
+Links in reply 👇
+
+=== 3. SIMON WILLISON STYLE ===
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 /𝗿𝗲𝘄𝗶𝗻𝗱 𝗜𝗻 𝗖𝗹𝗮𝘂𝗱𝗲 𝗖𝗼𝗱𝗲, 𝗔𝗻𝗱 𝗪𝗵𝘆 𝗜𝘁'𝘀 𝗖𝗵𝗲𝗮𝗽𝗲𝗿 𝗧𝗵𝗮𝗻 "𝗡𝗼, 𝗧𝗿𝘆 𝗔𝗴𝗮𝗶𝗻"
+
+What it is: /𝚛𝚎𝚠𝚒𝚗𝚍, or 𝙴𝚜𝚌 twice when the prompt input is empty, opens a menu listing the prompts you've sent. Pick one and choose what to restore: code and conversation, conversation only, or code only. Two more options summarize part of the conversation.
+
+The detail worth knowing is in the prompt caching docs:
+
+"𝘙𝘦𝘸𝘪𝘯𝘥𝘪𝘯𝘨 𝘵𝘳𝘶𝘯𝘤𝘢𝘵𝘦𝘴 𝘣𝘢𝘤𝘬 𝘵𝘰 𝘢 𝘱𝘳𝘦𝘧𝘪𝘹 𝘵𝘩𝘢𝘵 𝘪𝘴 𝘢𝘭𝘳𝘦𝘢𝘥𝘺 𝘤𝘢𝘤𝘩𝘦𝘥, 𝘳𝘢𝘵𝘩𝘦𝘳 𝘵𝘩𝘢𝘯 𝘣𝘶𝘪𝘭𝘥𝘪𝘯𝘨 𝘢 𝘯𝘦𝘸 𝘰𝘯𝘦 𝘢𝘴 𝘤𝘰𝘮𝘱𝘢𝘤𝘵𝘪𝘰𝘯 𝘥𝘰𝘦𝘴."
+
+So a rewind shortens the context and the next request still hits the cache. Compaction can't do both.
+
+The best practices page explains why correcting is the worse habit:
+
+"𝘢 𝘵𝘩𝘪𝘳𝘥 𝘤𝘰𝘳𝘳𝘦𝘤𝘵𝘪𝘰𝘯 𝘮𝘰𝘴𝘵𝘭𝘺 𝘢𝘥𝘥𝘴 𝘵𝘰 𝘢 𝘤𝘰𝘯𝘷𝘦𝘳𝘴𝘢𝘵𝘪𝘰𝘯 𝘵𝘩𝘢𝘵 𝘢𝘭𝘳𝘦𝘢𝘥𝘺 𝘤𝘰𝘯𝘵𝘢𝘪𝘯𝘴 𝘵𝘸𝘰 𝘧𝘢𝘪𝘭𝘦𝘥 𝘢𝘵𝘵𝘦𝘮𝘱𝘵𝘴 𝘧𝘰𝘳 𝘊𝘭𝘢𝘶𝘥𝘦 𝘵𝘰 𝘬𝘦𝘦𝘱 𝘳𝘦-𝘳𝘦𝘢𝘥𝘪𝘯𝘨."
+
+Things to be careful about:
+
+• 𝗕𝗮𝘀𝗵: files changed only by shell commands aren't tracked.
+• 𝗦𝘂𝗯𝗮𝗴𝗲𝗻𝘁𝘀: their edits usually aren't captured in checkpoints.
+• 𝗛𝗶𝘀𝘁𝗼𝗿𝘆 𝗱𝗲𝗽𝘁𝗵: file snapshots are kept for the 𝟭𝟬𝟬 𝗺𝗼𝘀𝘁 𝗿𝗲𝗰𝗲𝗻𝘁 checkpoints.
+• 𝗘𝘅𝗶𝘁𝗶𝗻𝗴: rewound messages can return if you quit before sending another prompt.
+• 𝗗𝗼𝘂𝗯𝗹𝗲 𝗘𝘀𝗰 𝘄𝗶𝘁𝗵 𝘁𝗲𝘅𝘁 𝘁𝘆𝗽𝗲𝗱: it clears the text instead. Up recalls it.
+
+The docs are clear that this is 𝗻𝗼𝘁 𝗮 𝗿𝗲𝗽𝗹𝗮𝗰𝗲𝗺𝗲𝗻𝘁 𝗳𝗼𝗿 𝘃𝗲𝗿𝘀𝗶𝗼𝗻 𝗰𝗼𝗻𝘁𝗿𝗼𝗹.
+
+Links in reply 👇
+
+=== 4. SWYX STYLE ===
+
+𝗨𝗻𝗱𝗼 𝗜𝘀 𝗡𝗼𝘄 𝗔 𝗖𝗼𝗻𝘁𝗲𝘅𝘁 𝗧𝗼𝗼𝗹
+
+There's a category forming around context hygiene in coding agents: commands whose job is to decide what the model re-reads on every turn.
+
+Claude Code has several, and they cost different amounts.
+
+• /𝗰𝗹𝗲𝗮𝗿: drops everything. Free, and you start from nothing.
+• /𝗰𝗼𝗺𝗽𝗮𝗰𝘁: replaces history with a summary. It has to read the conversation to do that, and the result is a new cache prefix.
+• 𝗦𝘂𝗺𝗺𝗮𝗿𝗶𝘇𝗲 𝗳𝗿𝗼𝗺 𝗵𝗲𝗿𝗲: sits inside the rewind menu. The docs call it a targeted compact.
+• 𝗦𝘂𝗯𝗮𝗴𝗲𝗻𝘁𝘀: verbose work happens elsewhere and only a summary comes back.
+• /𝗿𝗲𝘄𝗶𝗻𝗱: cuts the conversation back to an earlier prompt. The remaining prefix is 𝗮𝗹𝗿𝗲𝗮𝗱𝘆 𝗰𝗮𝗰𝗵𝗲𝗱.
+
+That last one is the odd one out. It removes a specific bad stretch with no summarizing request, and the cache stays warm.
+
+Most people file 𝙴𝚜𝚌 𝙴𝚜𝚌 under "undo my files". The stronger use is deleting a dead end before it gets re-read for the rest of the session, which a "no, do it differently" message never does.
+
+One gap to know: it doesn't restore Bash-only file changes or most subagent edits.
+
+𝘔𝘺 𝘳𝘦𝘢𝘥: 𝘢𝘨𝘦𝘯𝘵𝘴 𝘸𝘪𝘭𝘭 𝘣𝘦 𝘫𝘶𝘥𝘨𝘦𝘥 𝘰𝘯 𝘩𝘰𝘸 𝘸𝘦𝘭𝘭 𝘵𝘩𝘦𝘺 𝘧𝘰𝘳𝘨𝘦𝘵, 𝘢𝘯𝘥 𝘤𝘩𝘦𝘤𝘬𝘱𝘰𝘪𝘯𝘵𝘴 𝘢𝘳𝘦 𝘸𝘩𝘦𝘳𝘦 𝘵𝘩𝘢𝘵 𝘴𝘵𝘢𝘳𝘵𝘴.
+
+Links in reply 👇
+
+=== 5. HAMEL HUSAIN STYLE ===
+
+𝗗𝗼𝗻'𝘁 𝗧𝗮𝗸𝗲 𝗧𝗵𝗲 𝗥𝗲𝘄𝗶𝗻𝗱 𝗧𝗶𝗽 𝗢𝗻 𝗙𝗮𝗶𝘁𝗵. 𝗠𝗲𝗮𝘀𝘂𝗿𝗲 𝗜𝘁.
+
+The claim going around: in Claude Code, rewinding a wrong turn is cheaper than correcting it.
+
+The mechanism is documented. Whether it matters for your sessions is something you can check in a few minutes.
+
+𝗪𝗵𝗮𝘁 𝗿𝗲𝘄𝗶𝗻𝗱 𝗴𝗶𝘃𝗲𝘀 𝘆𝗼𝘂: the conversation is cut back to an earlier prompt, so the dead end is gone from context. The docs also say the remaining prefix is already cached, so the next request is a cache hit.
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗴𝗶𝘃𝗲 𝘆𝗼𝘂: a number. The docs give no figure for how much this saves. It also won't restore files changed only by Bash, or most subagent edits.
+
+A simple way to test it:
+
+• 𝗕𝗮𝘀𝗲𝗹𝗶𝗻𝗲: when Claude goes wrong, run /𝚌𝚘𝚗𝚝𝚎𝚡𝚝 and note the size.
+• 𝗔𝗿𝗺 𝗔: correct it with a message, finish the task, run /𝚌𝚘𝚗𝚝𝚎𝚡𝚝 again.
+• 𝗔𝗿𝗺 𝗕: on a similar miss, press 𝙴𝚜𝚌 twice, pick the prompt, restore the conversation, rewrite the prompt, finish, check /𝚌𝚘𝚗𝚝𝚎𝚡𝚝.
+• 𝗖𝗮𝗰𝗵𝗲: open /𝚞𝚜𝚊𝚐𝚎 and read the Prompt cache line for misses after each arm.
+
+Then read the transcripts. Did Arm B repeat the same mistake because the lesson was deleted with it? If so, put the lesson in the rewritten prompt.
+
+𝘚𝘮𝘢𝘭𝘭 𝘤𝘰𝘯𝘵𝘦𝘹𝘵 𝘪𝘴 𝘰𝘯𝘭𝘺 𝘢 𝘸𝘪𝘯 𝘪𝘧 𝘵𝘩𝘦 𝘢𝘯𝘴𝘸𝘦𝘳 𝘪𝘴 𝘴𝘵𝘪𝘭𝘭 𝘳𝘪𝘨𝘩𝘵.
+
+Links in reply 👇
+
+=== 6. ETHAN MOLLICK STYLE ===
+
+𝗪𝗵𝗮𝘁 𝗛𝗮𝗽𝗽𝗲𝗻𝘀 𝗧𝗼 𝗔 𝗠𝗶𝘀𝘁𝗮𝗸𝗲 𝗔𝗳𝘁𝗲𝗿 𝗬𝗼𝘂 𝗖𝗼𝗿𝗿𝗲𝗰𝘁 𝗔𝗻 𝗔𝗜?
+
+Most people assume that once you tell an AI "no, not like that", the mistake is behind you.
+
+In a coding agent like Claude Code, it isn't. 𝗧𝗵𝗲 𝘄𝗵𝗼𝗹𝗲 𝗰𝗼𝗻𝘃𝗲𝗿𝘀𝗮𝘁𝗶𝗼𝗻 𝗶𝘀 𝘀𝗲𝗻𝘁 𝗮𝗴𝗮𝗶𝗻 𝘄𝗶𝘁𝗵 𝗲𝘃𝗲𝗿𝘆 𝗿𝗲𝗾𝘂𝗲𝘀𝘁, wrong turn included. Imagine a meeting where, before each new question, someone reads the full minutes aloud, including the twenty minutes spent on an idea everyone dropped.
+
+Claude Code has a quieter option. Press 𝙴𝚜𝚌 twice on an empty prompt (or type /𝚛𝚎𝚠𝚒𝚗𝚍), choose the message where things went off track, and the conversation returns to that moment. The detour is removed from what the model reads next.
+
+There are two sides to this.
+
+Rewinding gives the model a cleaner page, and the documentation says it keeps the cached part of the conversation usable, which compacting does not.
+
+It also erases whatever was learned during the detour. Sometimes a failed attempt is useful information. If you rewind, you have to carry that lesson forward yourself, in the new prompt.
+
+𝗪𝗵𝗮𝘁 𝘄𝗲 𝗮𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝗸𝗻𝗼𝘄: how the feature works and what it can't undo (shell commands, most subagent edits). The docs don't say how much it saves.
+
+𝘐𝘧 𝘧𝘰𝘳𝘨𝘦𝘵𝘵𝘪𝘯𝘨 𝘪𝘴 𝘵𝘩𝘪𝘴 𝘶𝘴𝘦𝘧𝘶𝘭 𝘧𝘰𝘳 𝘮𝘢𝘤𝘩𝘪𝘯𝘦𝘴, 𝘸𝘩𝘰 𝘴𝘩𝘰𝘶𝘭𝘥 𝘥𝘦𝘤𝘪𝘥𝘦 𝘸𝘩𝘢𝘵 𝘵𝘩𝘦𝘺 𝘧𝘰𝘳𝘨𝘦𝘵?
+
+Links in reply 👇
