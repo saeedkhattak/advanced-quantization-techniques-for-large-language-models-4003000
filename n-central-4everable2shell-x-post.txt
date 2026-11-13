@@ -1,0 +1,163 @@
+════════ VERSION 1: STORY ════════
+
+𝗡-𝗮𝗯𝗹𝗲 𝗣𝗮𝘁𝗰𝗵𝗲𝗱 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 𝗢𝗻 𝗠𝗼𝗻𝗱𝗮𝘆. 𝗕𝘆 𝗧𝗵𝘂𝗿𝘀𝗱𝗮𝘆, 𝗧𝗵𝗲 𝗣𝗮𝘁𝗰𝗵 𝗪𝗮𝘀𝗻'𝘁 𝗘𝗻𝗼𝘂𝗴𝗵.
+
+If you run IT for small businesses, there's a good chance a tool like N-central sits in the middle of it. One server, trusted by every machine it manages.
+
+That's why this week went badly.
+
+𝗢𝗻 𝗡𝗼𝘃 𝟴, 𝗮 𝗿𝗲𝘀𝗲𝗮𝗿𝗰𝗵𝗲𝗿 𝗽𝘂𝗯𝗹𝗶𝘀𝗵𝗲𝗱 𝘄𝗼𝗿𝗸𝗶𝗻𝗴 𝗲𝘅𝗽𝗹𝗼𝗶𝘁𝘀 𝗳𝗼𝗿 𝟯𝟯 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 𝗳𝗹𝗮𝘄𝘀. No quiet heads-up first. N-able disputes how it was disclosed, took its hosted N-central offline, and told on-prem customers to shut their servers down.
+
+𝗢𝗻 𝗡𝗼𝘃 𝟭𝟬, 𝗡-𝗮𝗯𝗹𝗲 𝘀𝗵𝗶𝗽𝗽𝗲𝗱 𝟮𝟬𝟮𝟲.𝟰 𝗛𝗙𝟮, fixing seven CVEs.
+
+𝗢𝗻 𝗡𝗼𝘃 𝟭𝟭 𝗮𝗻𝗱 𝟭𝟮, 𝘁𝗵𝗲 𝘀𝗮𝗺𝗲 𝗿𝗲𝘀𝗲𝗮𝗿𝗰𝗵𝗲𝗿 𝗽𝘂𝗯𝗹𝗶𝘀𝗵𝗲𝗱 𝘁𝘄𝗼 𝗺𝗼𝗿𝗲 𝗰𝗵𝗮𝗶𝗻𝘀, tested against that new hotfix (build 2026.4.1.26):
+
+• 𝟰𝗘𝘃𝗲𝗿𝗔𝗯𝗹𝗲𝟮𝗦𝗵𝗲𝗹𝗹: no login needed, and it ends with root on the N-central server
+• 𝗔𝗴𝗲𝗻𝘁𝟮𝗦𝗵𝗲𝗹𝗹: commands as Windows SYSTEM on managed machines, given the appliance ID
+
+There's a condition. 4EverAble2Shell needs N-central's 𝗟𝗲𝗴𝗮𝗰𝘆 𝗔𝗣𝗜 𝘁𝘂𝗿𝗻𝗲𝗱 𝗼𝗻. It's off by default, and the researcher's own notes admit they'd left it on from earlier testing.
+
+The chain also leans on an old part. It abuses 𝗖𝗩𝗘-𝟮𝟬𝟮𝟲-𝟵𝟬𝟰𝟯𝟲 𝗶𝗻 𝗔𝗽𝗮𝗰𝗵𝗲 𝗔𝘅𝗶𝘀 𝟭.𝘅, a SOAP library that's end-of-life and won't get an official fix.
+
+Then the attacks. BleepingComputer reports, citing its sources, that 𝗮𝘁 𝗹𝗲𝗮𝘀𝘁 𝟮𝟭 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 𝘀𝗲𝗿𝘃𝗲𝗿𝘀 𝘄𝗲𝗿𝗲 𝗿𝘂𝗻𝗻𝗶𝗻𝗴 𝗫𝗠𝗥𝗶𝗴 𝗰𝗿𝘆𝗽𝘁𝗼 𝗺𝗶𝗻𝗲𝗿𝘀 by midday Nov 12, 𝟭𝟵 𝗼𝗳 𝘁𝗵𝗲𝗺 𝗼𝗻 𝘁𝗵𝗲 𝗯𝗿𝗮𝗻𝗱-𝗻𝗲𝘄 𝗵𝗼𝘁𝗳𝗶𝘅. Previdian saw probing start soon after the PoC went public.
+
+𝗧𝗵𝗲 𝗲𝘃𝗶𝗱𝗲𝗻𝗰𝗲 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗮𝗹𝗹 𝗮𝗴𝗿𝗲𝗲, 𝘁𝗵𝗼𝘂𝗴𝗵. N-able's advisory said it had seen no signs of compromise from the new flaws. Huntress's code review backs the root chain, but it didn't observe attacks. The Hacker News called exploitation unconfirmed.
+
+𝗙𝗼𝗿 𝗮𝗱𝗺𝗶𝗻𝘀: check the Legacy API on every N-central server and turn it off. N-able also paused its Intune integration as a precaution.
+
+𝗙𝗼𝗿 𝗯𝘂𝗶𝗹𝗱𝗲𝗿𝘀: if an end-of-life library is reachable without a login, a fresh hotfix around it may not be the last one.
+
+The bigger point is speed. 𝘗𝘶𝘣𝘭𝘪𝘤 𝘦𝘹𝘱𝘭𝘰𝘪𝘵 𝘵𝘰 𝘧𝘪𝘳𝘴𝘵 𝘱𝘳𝘰𝘣𝘦𝘴 𝘵𝘰𝘰𝘬 𝘩𝘰𝘶𝘳𝘴, 𝘯𝘰𝘵 𝘸𝘦𝘦𝘬𝘴.
+
+Links in reply 👇
+
+
+════════ VERSION 2: KARPATHY STYLE ════════
+
+𝗧𝗵𝗲 𝗣𝗮𝘁𝗰𝗵 𝗚𝗮𝗽 𝗜𝘀 𝗡𝗼𝘄 𝗠𝗲𝗮𝘀𝘂𝗿𝗲𝗱 𝗜𝗻 𝗛𝗼𝘂𝗿𝘀
+
+Thinking about the N-central week from first principles.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝘁𝗵𝗲 𝗯𝘂𝗴 𝗰𝗼𝘂𝗻𝘁, 𝗶𝘁'𝘀 𝘁𝗵𝗲 𝗰𝗹𝗼𝗰𝗸. Exploits for 33 flaws went public on Nov 8. N-able shipped a hotfix on Nov 10. New chains that work against that hotfix were public by Nov 11 and 12, and probing started within hours, per Previdian.
+
+The classic model was: disclose, patch, then attackers reverse the patch over days or weeks. Here the exploit came first and the patch was the thing being chased.
+
+There's a second idea I keep coming back to. An RMM server is a master key. One box that every managed machine trusts. So a single unauthenticated root bug there is worth more than many bugs elsewhere.
+
+And the root cause is old code. The chain uses CVE-2026-90436 in Apache Axis 1.x, which is end-of-life with no official fix coming. A product can be fully patched and still carry a dead library on an exposed path.
+
+Some honesty about the details. 4EverAble2Shell needs the Legacy API enabled, which is off by default. The researcher says they'd left it on during testing. So default installs on HF2 aren't hit by this chain.
+
+The exploitation numbers are contested too. BleepingComputer reports at least 21 servers running XMRig miners, 19 on the latest hotfix. N-able said it saw no signs of compromise, and Huntress only confirmed the chain in code. imo both can be true for a while.
+
+𝗪𝗵𝗮𝘁 𝗜'𝗱 𝗮𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝘄𝗮𝗻𝘁 𝘁𝗼 𝘀𝗲𝗲: 𝘢 𝘤𝘰𝘶𝘯𝘵 𝘰𝘧 𝘩𝘰𝘸 𝘮𝘢𝘯𝘺 𝘪𝘯𝘵𝘦𝘳𝘯𝘦𝘵-𝘧𝘢𝘤𝘪𝘯𝘨 𝘕-𝘤𝘦𝘯𝘵𝘳𝘢𝘭 𝘴𝘦𝘳𝘷𝘦𝘳𝘴 𝘩𝘢𝘷𝘦 𝘵𝘩𝘦 𝘓𝘦𝘨𝘢𝘤𝘺 𝘈𝘗𝘐 𝘰𝘯. 𝘛𝘩𝘢𝘵 𝘯𝘶𝘮𝘣𝘦𝘳 𝘪𝘴 𝘵𝘩𝘦 𝘳𝘦𝘢𝘭 𝘣𝘭𝘢𝘴𝘵 𝘳𝘢𝘥𝘪𝘶𝘴.
+
+Links in reply 👇
+
+
+════════ VERSION 3: SIMON WILLISON STYLE ════════
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝟰𝗘𝘃𝗲𝗿𝗔𝗯𝗹𝗲𝟮𝗦𝗵𝗲𝗹𝗹 𝗔𝗻𝗱 𝗧𝗵𝗲 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 𝗛𝗼𝘁𝗳𝗶𝘅
+
+N-central is N-able's remote monitoring and management platform. This week it got two rounds of public exploits.
+
+Timeline, as reported:
+
+• 𝗡𝗼𝘃 𝟴: a researcher publishes PoCs for 33 N-central flaws ("Able2Shell")
+• 𝗡𝗼𝘃 𝟭𝟬: N-able ships 2026.4 HF2, fixing seven CVEs
+• 𝗡𝗼𝘃 𝟭𝟭 𝘁𝗼 𝟭𝟮: two new chains, 4EverAble2Shell and Agent2Shell, tested against HF2 (build 2026.4.1.26)
+
+The researcher's README says the chain was "𝘷𝘦𝘳𝘪𝘧𝘪𝘦𝘥 𝘢𝘨𝘢𝘪𝘯𝘴𝘵 𝘕-𝘢𝘣𝘭𝘦 𝘕-𝘤𝘦𝘯𝘵𝘳𝘢𝘭 𝘈𝘱𝘱𝘭𝘪𝘢𝘯𝘤𝘦 2026.4.1.26 𝘏𝘍2", and then adds the important caveat:
+
+"𝘓𝘦𝘨𝘢𝘤𝘺 𝘈𝘗𝘐 𝘯𝘦𝘦𝘥𝘴 𝘵𝘰 𝘣𝘦 𝘦𝘯𝘢𝘣𝘭𝘦𝘥; 𝘍𝘰𝘳𝘨𝘰𝘵 𝘵𝘩𝘪𝘴 𝘸𝘢𝘴 𝘵𝘶𝘳𝘯𝘦𝘥 𝘰𝘯 𝘥𝘶𝘳𝘪𝘯𝘨 𝘦𝘢𝘳𝘭𝘪𝘦𝘳 𝘵𝘦𝘴𝘵𝘪𝘯𝘨 𝘧𝘰𝘳 𝘰𝘵𝘩𝘦𝘳 𝘷𝘶𝘭𝘯𝘦𝘳𝘢𝘣𝘪𝘭𝘪𝘵𝘪𝘦𝘴."
+
+So 𝗮 𝗱𝗲𝗳𝗮𝘂𝗹𝘁 𝗛𝗙𝟮 𝗶𝗻𝘀𝘁𝗮𝗹𝗹 𝘄𝗶𝘁𝗵 𝘁𝗵𝗲 𝗟𝗲𝗴𝗮𝗰𝘆 𝗔𝗣𝗜 𝗼𝗳𝗳 𝗶𝘀 𝗻𝗼𝘁 𝗲𝘅𝗽𝗼𝘀𝗲𝗱 to 4EverAble2Shell.
+
+𝗧𝗵𝗲 𝘁𝗲𝗰𝗵𝗻𝗶𝗰𝗮𝗹𝗹𝘆 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 is the dependency. The chain goes through CVE-2026-90436, a deserialization flaw in Apache Axis 1.x. Axis 1.x is end-of-life and the project has said it won't ship a fixing release.
+
+𝗧𝗵𝗶𝗻𝗴𝘀 𝘁𝗼 𝗯𝗲 𝗰𝗮𝗿𝗲𝗳𝘂𝗹 𝗮𝗯𝗼𝘂𝘁:
+
+• 𝗘𝘅𝗽𝗹𝗼𝗶𝘁𝗮𝘁𝗶𝗼𝗻 𝗰𝗹𝗮𝗶𝗺𝘀 𝗰𝗼𝗻𝗳𝗹𝗶𝗰𝘁. BleepingComputer reports at least 21 servers with XMRig miners, 19 on HF2. N-able's advisory said it saw no signs of compromise. Huntress's review was code analysis, not observed attacks
+• 𝗗𝗶𝘀𝗰𝗹𝗼𝘀𝘂𝗿𝗲 𝗶𝘀 𝗱𝗶𝘀𝗽𝘂𝘁𝗲𝗱. N-able disputes how the original flaws were reported
+• 𝗔𝗴𝗲𝗻𝘁𝟮𝗦𝗵𝗲𝗹𝗹 targets managed Windows machines and needs the appliance ID
+
+N-able's guidance: disable the Legacy API, and confirm it's off. It also temporarily disabled its Intune integration.
+
+Links in reply 👇
+
+
+════════ VERSION 4: SWYX STYLE ════════
+
+𝗥𝗠𝗠 𝗧𝗼𝗼𝗹𝘀 𝗔𝗿𝗲 𝗧𝗵𝗲 𝗡𝗲𝘄 𝗘𝗱𝗴𝗲 𝗗𝗲𝘃𝗶𝗰𝗲𝘀
+
+For years, the riskiest boxes on a network were VPNs and firewalls. Internet-facing, trusted by everything.
+
+𝗥𝗲𝗺𝗼𝘁𝗲 𝗺𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁 𝘀𝗲𝗿𝘃𝗲𝗿𝘀 𝗻𝗼𝘄 𝘀𝗶𝘁 𝗶𝗻 𝘁𝗵𝗲 𝘀𝗮𝗺𝗲 𝘀𝗽𝗼𝘁, and this week N-central showed why.
+
+The pattern across 2026:
+
+• 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 (𝗔𝘂𝗴 𝘁𝗼 𝗦𝗲𝗽): a run of emergency hotfixes, including a CVSS 10 pre-auth RCE that was exploited
+• 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 (𝗡𝗼𝘃 𝟴): public exploits for 33 flaws, hosted service taken offline
+• 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 (𝗡𝗼𝘃 𝟭𝟭 𝘁𝗼 𝟭𝟮): new chains that work against the fresh hotfix, if the Legacy API is on
+• 𝗖𝗼𝗻𝗳𝗹𝘂𝗲𝗻𝗰𝗲 𝗗𝗮𝘁𝗮 𝗖𝗲𝗻𝘁𝗲𝗿: hit by the same Apache Axis 1.x flaw, CVE-2026-90436
+
+The common thread is old components on paths you can reach from the internet. Axis 1.x is end-of-life with no official fix.
+
+The speed is the other story. Probing started hours after the PoC dropped, per Previdian. BleepingComputer reports at least 21 servers mining crypto, 19 on the newest hotfix. N-able said it saw no signs of compromise, so treat the count as reported, not confirmed.
+
+My take: 𝗠𝗦𝗣 𝘁𝗼𝗼𝗹𝗶𝗻𝗴 𝗶𝘀 𝗯𝗲𝗰𝗼𝗺𝗶𝗻𝗴 𝘁𝗵𝗲 𝘀𝗼𝗳𝘁 𝗰𝗲𝗻𝘁𝗿𝗲 𝗼𝗳 𝘀𝗺𝗮𝗹𝗹-𝗯𝘂𝘀𝗶𝗻𝗲𝘀𝘀 𝘀𝗲𝗰𝘂𝗿𝗶𝘁𝘆. One server reaches hundreds of customer machines, so attackers will keep coming back to it. Vendors that drop dead dependencies, and turn off legacy APIs for good, will be the ones MSPs trust.
+
+Links in reply 👇
+
+
+════════ VERSION 5: HAMEL HUSAIN STYLE ════════
+
+𝗬𝗼𝘂𝗿 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 𝗜𝘀 𝗣𝗮𝘁𝗰𝗵𝗲𝗱. 𝗖𝗵𝗲𝗰𝗸 𝗧𝗵𝗲 𝗟𝗲𝗴𝗮𝗰𝘆 𝗔𝗣𝗜 𝗔𝗻𝘆𝘄𝗮𝘆.
+
+N-able shipped N-central 2026.4 HF2 on Nov 10. Within two days, new public exploits were tested against it.
+
+𝗪𝗵𝗮𝘁 𝗛𝗙𝟮 𝗴𝗶𝘃𝗲𝘀 𝘆𝗼𝘂:
+
+• 𝗙𝗶𝘅𝗲𝘀 𝗳𝗼𝗿 𝘀𝗲𝘃𝗲𝗻 𝗖𝗩𝗘𝘀 from the Nov 8 disclosure of 33 flaws
+• 𝗣𝗿𝗼𝘁𝗲𝗰𝘁𝗶𝗼𝗻 𝗳𝗿𝗼𝗺 𝟰𝗘𝘃𝗲𝗿𝗔𝗯𝗹𝗲𝟮𝗦𝗵𝗲𝗹𝗹 𝗶𝗳 𝘁𝗵𝗲 𝗟𝗲𝗴𝗮𝗰𝘆 𝗔𝗣𝗜 𝗶𝘀 𝗼𝗳𝗳, which is the default
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗴𝗶𝘃𝗲 𝘆𝗼𝘂:
+
+• 𝗣𝗿𝗼𝘁𝗲𝗰𝘁𝗶𝗼𝗻 𝘄𝗶𝘁𝗵 𝘁𝗵𝗲 𝗟𝗲𝗴𝗮𝗰𝘆 𝗔𝗣𝗜 𝗼𝗻. The researcher's chain runs unauthenticated to root in that case
+• 𝗔 𝗳𝗶𝘅 𝗳𝗼𝗿 𝗔𝗽𝗮𝗰𝗵𝗲 𝗔𝘅𝗶𝘀 𝟭.𝘅. The chain uses CVE-2026-90436, and Axis 1.x is end-of-life
+• 𝗖𝗲𝗿𝘁𝗮𝗶𝗻𝘁𝘆 𝗮𝗯𝗼𝘂𝘁 𝗮𝘁𝘁𝗮𝗰𝗸𝘀. BleepingComputer reports at least 21 servers running XMRig, 19 on HF2. N-able said it saw no compromise. Huntress confirmed the chain in code only
+
+𝗪𝗵𝗮𝘁 𝗜'𝗱 𝗱𝗼 𝘁𝗵𝗶𝘀 𝘄𝗲𝗲𝗸:
+
+1. List every N-central server you run, including the forgotten test box
+2. Check the Legacy API on each one and turn it off
+3. Look for XMRig or unknown mining processes, and unusual CPU use
+4. Review Windows agents for unexpected SYSTEM-level commands (the Agent2Shell risk)
+5. Read N-able's latest advisory before restoring internet access
+
+The researcher left the Legacy API on by accident. Assume someone in your team did too.
+
+Links in reply 👇
+
+
+════════ VERSION 6: ETHAN MOLLICK STYLE ════════
+
+𝗪𝗵𝗮𝘁 𝗛𝗮𝗽𝗽𝗲𝗻𝘀 𝗪𝗵𝗲𝗻 𝗛𝗮𝗰𝗸𝗲𝗿𝘀 𝗠𝗼𝘃𝗲 𝗙𝗮𝘀𝘁𝗲𝗿 𝗧𝗵𝗮𝗻 𝗧𝗵𝗲 𝗙𝗶𝘅?
+
+Many small businesses don't have their own IT team. They hire a provider, who manages all their computers from one central tool.
+
+That tool is like a building's master key. Whoever holds it can open every door.
+
+This week, one of those tools, N-able's N-central, had a rough few days. A researcher published ways to break into it. The company released a fix two days later. Then the same researcher published new attacks that worked on the fixed version.
+
+𝗧𝗵𝗲𝗿𝗲'𝘀 𝗮 𝗰𝗮𝘁𝗰𝗵 𝘁𝗵𝗮𝘁 𝗺𝗮𝘁𝘁𝗲𝗿𝘀. The newest attack only works if an older feature, the "Legacy API", is switched on. It's off by default.
+
+Did attackers actually use it? The evidence goes both ways. BleepingComputer reports at least 21 servers secretly mining cryptocurrency, 19 of them on the newest fix. N-able said it had seen no signs of compromise. A security firm, Huntress, confirmed the attack works on paper but hadn't seen it used.
+
+What we know: a public exploit led to probing within hours. What we don't know: how many businesses were actually affected.
+
+There's also a quieter lesson. The weak spot came from an old piece of software, Apache Axis 1.x, that no longer gets official fixes.
+
+𝘐𝘧 𝘵𝘩𝘦 𝘧𝘪𝘹 𝘤𝘢𝘯 𝘣𝘦 𝘣𝘦𝘢𝘵𝘦𝘯 𝘪𝘯 𝘵𝘸𝘰 𝘥𝘢𝘺𝘴, 𝘪𝘴 𝘱𝘢𝘵𝘤𝘩𝘪𝘯𝘨 𝘴𝘵𝘪𝘭𝘭 𝘦𝘯𝘰𝘶𝘨𝘩, 𝘰𝘳 𝘥𝘰 𝘤𝘰𝘮𝘱𝘢𝘯𝘪𝘦𝘴 𝘯𝘦𝘦𝘥 𝘵𝘰 𝘴𝘸𝘪𝘵𝘤𝘩 𝘰𝘧𝘧 𝘦𝘷𝘦𝘳𝘺𝘵𝘩𝘪𝘯𝘨 𝘵𝘩𝘦𝘺 𝘥𝘰𝘯'𝘵 𝘶𝘴𝘦?
+
+Links in reply 👇
