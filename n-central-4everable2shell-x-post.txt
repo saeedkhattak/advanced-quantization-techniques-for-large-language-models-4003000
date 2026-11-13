@@ -6,7 +6,7 @@ If you run IT for small businesses, there's a good chance a tool like N-central 
 
 That's why this week went badly.
 
-𝗢𝗻 𝗡𝗼𝘃 𝟴, 𝗮 𝗿𝗲𝘀𝗲𝗮𝗿𝗰𝗵𝗲𝗿 𝗽𝘂𝗯𝗹𝗶𝘀𝗵𝗲𝗱 𝘄𝗼𝗿𝗸𝗶𝗻𝗴 𝗲𝘅𝗽𝗹𝗼𝗶𝘁𝘀 𝗳𝗼𝗿 𝟯𝟯 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 𝗳𝗹𝗮𝘄𝘀. No quiet heads-up first. N-able disputes how it was disclosed, took its hosted N-central offline, and told on-prem customers to shut their servers down.
+𝗢𝗻 𝗡𝗼𝘃 𝟴, 𝗮 𝗿𝗲𝘀𝗲𝗮𝗿𝗰𝗵𝗲𝗿 𝗽𝘂𝗯𝗹𝗶𝘀𝗵𝗲𝗱 𝘄𝗼𝗿𝗸𝗶𝗻𝗴 𝗲𝘅𝗽𝗹𝗼𝗶𝘁𝘀 𝗳𝗼𝗿 𝟯𝟯 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 𝗳𝗹𝗮𝘄𝘀. N-able disputes how the flaws were disclosed, took its hosted N-central offline, and told on-prem customers to shut their servers down.
 
 𝗢𝗻 𝗡𝗼𝘃 𝟭𝟬, 𝗡-𝗮𝗯𝗹𝗲 𝘀𝗵𝗶𝗽𝗽𝗲𝗱 𝟮𝟬𝟮𝟲.𝟰 𝗛𝗙𝟮, fixing seven CVEs.
 
@@ -99,7 +99,7 @@ The pattern across 2026:
 • 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 (𝗔𝘂𝗴 𝘁𝗼 𝗦𝗲𝗽): a run of emergency hotfixes, including a CVSS 10 pre-auth RCE
 • 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 (𝗡𝗼𝘃 𝟴): public exploits for 33 flaws, hosted service taken offline
 • 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 (𝗡𝗼𝘃 𝟭𝟭 𝘁𝗼 𝟭𝟮): new chains that work against the fresh hotfix, if the Legacy API is on
-• 𝗖𝗼𝗻𝗳𝗹𝘂𝗲𝗻𝗰𝗲 𝗗𝗮𝘁𝗮 𝗖𝗲𝗻𝘁𝗲𝗿: hit by the same Apache Axis 1.x flaw, CVE-2026-90436
+• 𝗖𝗼𝗻𝗳𝗹𝘂𝗲𝗻𝗰𝗲 𝗗𝗮𝘁𝗮 𝗖𝗲𝗻𝘁𝗲𝗿: also affected by the same Apache Axis 1.x flaw, CVE-2026-90436
 
 The common thread is old components on paths you can reach from the internet. Axis 1.x is end-of-life with no official fix.
 
