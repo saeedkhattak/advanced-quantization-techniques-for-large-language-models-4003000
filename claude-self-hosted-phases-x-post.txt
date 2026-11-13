@@ -23,6 +23,8 @@ Think of it like moving a consultant into your office. Your desk, your files, yo
 
 𝗪𝗵𝗼 𝗴𝗮𝗶𝗻𝘀 𝗺𝗼𝘀𝘁: companies that already trust one cloud. A bank with its data in S3 can keep the agent, its records and its model calls inside AWS. No new vendor to approve. Retention follows that provider, so read the terms for Claude there.
 
+𝗪𝗵𝗮𝘁'𝘀 𝘀𝘁𝗶𝗹𝗹 𝗻𝗼𝘁 𝗽𝗼𝘀𝘀𝗶𝗯𝗹𝗲: running the agent fully on your own machines with nothing leaving. Claude's model isn't offered for companies to run in-house, so for that you're still left with open-weight models on your own servers.
+
 𝗪𝗵𝗮𝘁 𝗻𝗲𝘃𝗲𝗿 𝗺𝗼𝘃𝗲𝗱: 𝘵𝘩𝘦 𝘮𝘰𝘥𝘦𝘭. 𝘌𝘷𝘦𝘳𝘺 𝘴𝘵𝘦𝘱 𝘴𝘵𝘪𝘭𝘭 𝘴𝘦𝘯𝘥𝘴 𝘵𝘩𝘦 𝘤𝘰𝘯𝘷𝘦𝘳𝘴𝘢𝘵𝘪𝘰𝘯 𝘰𝘶𝘵.
 
 Links in reply 👇
