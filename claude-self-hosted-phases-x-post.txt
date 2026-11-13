@@ -10,8 +10,8 @@ Think of it like moving a consultant into your office. Your desk, your files, yo
 
 𝗛𝗼𝘄 𝗶𝘁 𝗺𝗼𝘃𝗲𝗱, 𝗶𝗻 𝟯 𝗽𝗵𝗮𝘀𝗲𝘀:
 
-• 𝗔𝗽𝗿𝗶𝗹, 𝗠𝗮𝗻𝗮𝗴𝗲𝗱 𝗔𝗴𝗲𝗻𝘁𝘀: Anthropic runs everything: the sandbox where tools run, the agent loop that decides the next step, the session history and the model. Your files go into Anthropic's sandbox, and every step is stored on its side. Quick to start, but your security team has to trust Anthropic with all of it.
-𝘛𝘩𝘦 𝘤𝘰𝘯𝘴𝘶𝘭𝘵𝘢𝘯𝘵 𝘸𝘰𝘳𝘬𝘴 𝘧𝘳𝘰𝘮 𝘵𝘩𝘦𝘪𝘳 𝘰𝘸𝘯 𝘰𝘧𝘧𝘪𝘤𝘦, 𝘸𝘪𝘵𝘩 𝘤𝘰𝘱𝘪𝘦𝘴 𝘰𝘧 𝘺𝘰𝘶𝘳 𝘧𝘪𝘭𝘦𝘴.
+• 𝗔𝗽𝗿𝗶𝗹, 𝗠𝗮𝗻𝗮𝗴𝗲𝗱 𝗔𝗴𝗲𝗻𝘁𝘀: Anthropic runs everything. Your documents are uploaded to Anthropic's servers, where the agent opens them and runs its commands. Each time it reads a document, the contents go to the model, which decides the next step, and Anthropic keeps a full record of everything the agent read and did. Quick to start, but your security team has to trust Anthropic with your documents, the work done on them and the record of it all.
+𝘛𝘩𝘦 𝘤𝘰𝘯𝘴𝘶𝘭𝘵𝘢𝘯𝘵 𝘵𝘢𝘬𝘦𝘴 𝘤𝘰𝘱𝘪𝘦𝘴 𝘰𝘧 𝘺𝘰𝘶𝘳 𝘧𝘪𝘭𝘦𝘴 𝘣𝘢𝘤𝘬 𝘵𝘰 𝘵𝘩𝘦𝘪𝘳 𝘰𝘸𝘯 𝘰𝘧𝘧𝘪𝘤𝘦, 𝘢𝘯𝘥 𝘵𝘩𝘦𝘪𝘳 𝘧𝘪𝘳𝘮 𝘬𝘦𝘦𝘱𝘴 𝘵𝘩𝘦 𝘯𝘰𝘵𝘦𝘴.
 
 • 𝗠𝗮𝘆, 𝘀𝗲𝗹𝗳-𝗵𝗼𝘀𝘁𝗲𝗱 𝘀𝗮𝗻𝗱𝗯𝗼𝘅𝗲𝘀: the tools move to infrastructure you control, your cloud account or your own servers. The agent opens your documents and runs commands there, next to your data. But every time it reads a document, the contents are sent back to Anthropic, which decides the next step and keeps a full record of everything the agent read and did. So your documents are opened on your side, but what's in them still ends up stored by Anthropic.
 𝘛𝘩𝘦 𝘤𝘰𝘯𝘴𝘶𝘭𝘵𝘢𝘯𝘵 𝘴𝘪𝘵𝘴 𝘢𝘵 𝘺𝘰𝘶𝘳 𝘥𝘦𝘴𝘬, 𝘣𝘶𝘵 𝘳𝘦𝘢𝘥𝘴 𝘦𝘢𝘤𝘩 𝘱𝘢𝘨𝘦 𝘢𝘭𝘰𝘶𝘥 𝘵𝘰 𝘵𝘩𝘦𝘪𝘳 𝘧𝘪𝘳𝘮, 𝘸𝘩𝘪𝘤𝘩 𝘬𝘦𝘦𝘱𝘴 𝘵𝘩𝘦 𝘯𝘰𝘵𝘦𝘴.
