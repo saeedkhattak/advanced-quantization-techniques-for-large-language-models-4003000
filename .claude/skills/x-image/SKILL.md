@@ -56,6 +56,14 @@ side. **Don't make tall or wide versions unless the user asks.**
    top and bottom margins and exits with `FIX:` if content overflows, touches the edge,
    leaves lots of empty space, or the file is over 5 MB. Adjust the size variables in
    `:root` (or cut/add a block) and re-render until it prints `OK`.
+   **Photo-heavy cards** (a news hero image, a screenshot photo) can go over 5 MB as PNG.
+   Then keep the 4096x4096 size and save a high-quality JPEG instead:
+   `python3 -c "from PIL import Image; Image.open('out.png').convert('RGB').save('<name>-x.jpg', quality=92, optimize=True, subsampling=0)"`
+   (about 2 MB for the N-central card). Never shrink the pixel size to get under the limit.
+   **News articles:** use the article's headline as the `h1`, its own hero image (cropped
+   from the screenshot), its opening paragraphs word for word, and "Source: <outlet> ·
+   <domain>" as the footer. Use the outlet's or story's colour for `--accent` (red for
+   security news).
 5. **Look at the PNG yourself** (Read the file) before sending. Check that nothing is cut
    off, that the text is readable when the image is shown about 500 px wide, and that the
    margins look even.
