@@ -1,6 +1,6 @@
 ---
 name: x-image
-description: Make a dark, GitHub-README-style image card for an X (Twitter) post at 4096x4096, the largest size X accepts and the shape that fills the full width of the post column on desktop and phone. Use whenever the user asks for an "image for X", "picture for the tweet", "X image", "make it an image", a screenshot/README to post with a tweet, or to turn a repo, paper, article or screenshot into a post image. Also use when they send a light screenshot and ask for a dark version for X.
+description: Make a dark, GitHub-README-style image card for an X (Twitter) post at 4096x4096, the largest size X accepts and the shape that fills the full width of the post column on desktop and phone. Use whenever the user asks for an "image for X", "picture for the tweet", "X image", "make it an image", a screenshot/README to post with a tweet, or to turn a repo, paper, article or screenshot into a post image. Also use when they send a light screenshot and ask for a dark version for X, or ask to stitch screenshots, or for a scrolling GIF/MP4/video/animation of a page or article for X.
 ---
 
 # X image card (4096x4096, dark)
@@ -61,6 +61,34 @@ leaving empty space. With more, cut a block before going below `--p:17px`.
 
 `example-skillevaluator.html` (with `example-wordmark.svg`) is the approved card, built
 from the template. Render it to see the target look before making a new one.
+
+## Scrolling video (stitch screenshots into a dark scrolling MP4/GIF)
+
+Use this when the user sends several screenshots of one page or article, or asks for a
+scrolling GIF, MP4 or animation. The same two rules apply: **dark background** and
+**square, as big as X allows**. For video, X's maximum is 1920x1200 or 1200x1900, so
+**1200x1200 is the largest square**. Don't use 4096 for video.
+
+1. **Rebuild the page in dark, don't paste light screenshots.** Read the text off each
+   screenshot and write it into a tall HTML page with `body{width:1200px}`, in the same
+   dark palette as the card (`#0d1117` background, `#e6edf3` text, a soft glow in the
+   source's brand colour). Keep the source's own words; you may cut whole sentences,
+   and drop any sentence the screenshot cuts off mid-way.
+2. **Reuse real images from the screenshots** (logos, icons, diagrams): crop them with PIL.
+   Put a light diagram on dark with CSS `filter: invert(1) hue-rotate(180deg)`, which keeps
+   brand colours roughly right. Never redraw or invent a diagram.
+3. **Mark gaps honestly.** If the screenshots aren't consecutive, put a centred `•••`
+   between the parts instead of pretending it's one continuous page.
+4. **Fill the square edge to edge.** No title bar or browser frame around the page; the
+   content is the video. Put the source (publication, title, date) as a small muted
+   footer at the end of the page. Leave out browser chrome, nav bars and scrollbars.
+5. **Render the tall page:** `node <skill dir>/render_tall.js page.html tall.png`
+6. **Make the video:** `python3 <skill dir>/scroll_video.py tall.png "<working dir>/<name>-scroll.mp4" --gif "<working dir>/<name>-scroll.gif"`
+   It holds the top for 1.5 s, eases down, holds the bottom, eases back up, and shrinks
+   the GIF until it's under X's 15 MB GIF limit.
+7. **Check the first and a bottom frame** (`ffmpeg -i x.mp4 -frames:v 1 top.png`,
+   `ffmpeg -sseof -9 -i x.mp4 -frames:v 1 bottom.png`) before sending. **Recommend the
+   MP4:** it's sharper and much smaller than the GIF.
 
 ## Rules
 
