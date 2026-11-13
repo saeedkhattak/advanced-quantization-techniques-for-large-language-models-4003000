@@ -1,0 +1,166 @@
+===== 1. STORY =====
+
+𝗧𝗵𝗲 𝗔𝗜 𝗘𝘅𝗽𝗹𝗮𝗶𝗻𝗲𝗱 𝗜𝘁 𝗥𝗶𝗴𝗵𝘁. 𝗧𝗵𝗲𝗻 𝗜𝘁 𝗗𝗿𝗲𝘄 𝗜𝘁 𝗪𝗿𝗼𝗻𝗴.
+
+A student asks why we have seasons. The AI tutor writes the correct answer on a whiteboard, draws two Earths around the Sun, and labels the one leaning toward the Sun "𝘕𝘰𝘳𝘵𝘩: 𝘸𝘪𝘯𝘵𝘦𝘳".
+
+That board is real. It comes from whiteboard-ai-tutor, a new open-source project that tests 𝘀𝗶𝘅 𝗺𝗼𝗱𝗲𝗹𝘀 as whiteboard teachers.
+
+𝗛𝗼𝘄 𝘁𝗵𝗲 𝘁𝘂𝘁𝗼𝗿 𝘄𝗼𝗿𝗸𝘀
+
+The model never touches a canvas. It streams small JSON steps, each with one line of narration and a few drawing operations. A player in the browser turns them into handwriting.
+
+There are only six operations: write, line, rect, ellipse, path and erase. When the student interrupts, the app sends the question plus a text list of everything on the board, and the model continues from there.
+
+𝗪𝗵𝗮𝘁 𝘁𝗵𝗲 𝘁𝗲𝘀𝘁 𝗳𝗼𝘂𝗻𝗱
+
+The same prompt went to six models on eight scenarios, 𝟮𝟴𝟴 𝗰𝗮𝗹𝗹𝘀 in total. 64 finished boards were reviewed blind and 𝟰𝟰 𝗽𝗮𝘀𝘀𝗲𝗱.
+
+• 𝗠𝗼𝘀𝘁 𝗮𝗰𝗰𝘂𝗿𝗮𝘁𝗲: Gemini 4 Argon passed 11 of 11, but the first stroke takes about 8 s
+• 𝗙𝗮𝘀𝘁𝗲𝘀𝘁 𝗼𝗳 𝘁𝗵𝗲 𝘁𝗼𝗽 𝗳𝗼𝘂𝗿: Claude Sonnet 5.5 starts in about 2.8 s and passed 7 of 11
+• 𝗖𝗵𝗲𝗮𝗽𝗲𝘀𝘁 𝘁𝗵𝗮𝘁 𝗵𝗲𝗹𝗱 𝘂𝗽: Claude Haiku 5.5 passed 9 of 11 at about $0.002 per lesson
+• 𝗕𝗹𝗮𝗻𝗸 𝗯𝗼𝗮𝗿𝗱𝘀: DeepSeek V4.1 Flash drew nothing in 7 of 24 calls with thinking off
+
+Of the 20 failed boards, 𝟭𝟮 𝗳𝗮𝗶𝗹𝗲𝗱 𝗯𝗲𝗰𝗮𝘂𝘀𝗲 𝘁𝗵𝗲 𝗳𝗶𝗴𝘂𝗿𝗲 𝗰𝗼𝗻𝘁𝗿𝗮𝗱𝗶𝗰𝘁𝗲𝗱 𝘁𝗵𝗲 𝘁𝗲𝘅𝘁. Across all 64 boards the review found only two loosely worded sentences.
+
+𝗙𝗼𝗿 𝗯𝘂𝗶𝗹𝗱𝗲𝗿𝘀
+
+The repo's own linter flagged 41 boards and the blind review passed 26 of them. The author's next idea is higher-level operations like 𝚖𝚊𝚛𝚔_𝚒𝚗𝚝𝚎𝚛𝚜𝚎𝚌𝚝𝚒𝚘𝚗(𝚊, 𝚋), so code computes the positions and the model doesn't.
+
+One caveat: the reviewer was another LLM, and the planned human audit of 18 boards 𝗵𝗮𝘀 𝗻𝗼𝘁 𝗯𝗲𝗲𝗻 𝗱𝗼𝗻𝗲 𝘆𝗲𝘁. Eleven boards per model is also too few to rank the middle of the table.
+
+𝘛𝘩𝘦 𝘮𝘰𝘥𝘦𝘭𝘴 𝘬𝘯𝘰𝘸 𝘵𝘩𝘦 𝘭𝘦𝘴𝘴𝘰𝘯. 𝘛𝘩𝘦𝘺 𝘤𝘢𝘯'𝘵 𝘺𝘦𝘵 𝘱𝘭𝘢𝘤𝘦 𝘢 𝘥𝘰𝘵 𝘸𝘩𝘦𝘳𝘦 𝘵𝘸𝘰 𝘭𝘪𝘯𝘦𝘴 𝘤𝘳𝘰𝘴𝘴.
+
+Links in reply 👇
+
+===== 2. KARPATHY STYLE =====
+
+𝗧𝗵𝗲 𝗧𝘂𝘁𝗼𝗿 𝗜𝘀 𝗮 𝗣𝗿𝗼𝘁𝗼𝗰𝗼𝗹, 𝗡𝗼𝘁 𝗮 𝗠𝗼𝗱𝗲𝗹
+
+There's a nice small repo called whiteboard-ai-tutor. An LLM teaches on a whiteboard: it writes, draws, erases, and the student can cut in.
+
+It looks like a new model capability. 𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀 𝘁𝗵𝗮𝘁 𝗶𝘁'𝘀 𝗮𝗯𝗼𝘂𝘁 𝟲 𝗱𝗿𝗮𝘄𝗶𝗻𝗴 𝗼𝗽𝗲𝗿𝗮𝘁𝗶𝗼𝗻𝘀 𝗮𝗻𝗱 𝗮 𝗝𝗦𝗢𝗡 𝘀𝘁𝗿𝗲𝗮𝗺. The model emits steps (a line of narration plus ops like write, line, ellipse, erase) and a browser player draws them as handwriting. No JSON mode, no tool calling, just text.
+
+Think of someone describing a diagram over the phone while a friend draws it. They never see the paper.
+
+And that's exactly where it breaks. The author ran one prompt on six models, 288 calls, and had 64 boards reviewed blind. 𝟰𝟰 𝗽𝗮𝘀𝘀𝗲𝗱. Of the 20 failures, 𝟭𝟮 𝘄𝗲𝗿𝗲 𝗳𝗶𝗴𝘂𝗿𝗲𝘀 𝘁𝗵𝗮𝘁 𝗰𝗼𝗻𝘁𝗿𝗮𝗱𝗶𝗰𝘁𝗲𝗱 𝘁𝗵𝗲 𝘁𝗲𝘅𝘁: the season label on the wrong Earth, the equilibrium point 35 to 80 px away from where the lines actually cross. The written statements were almost never wrong.
+
+So the models know the lesson and can't do the coordinate arithmetic reliably. I think that's the expected result when a language model has to pick x and y by hand.
+
+More thinking didn't fix it. On three of the six models the first stroke then took 𝟯𝟬 𝘁𝗼 𝟭𝟮𝟬 𝘀, and 23 calls hit the 8,000-token cap before the board was finished.
+
+Caveats: 11 boards per model, one prompt (written in Chinese), an LLM reviewer, and 𝗻𝗼 𝗵𝘂𝗺𝗮𝗻 𝗮𝘂𝗱𝗶𝘁 𝘆𝗲𝘁. Gemini 4 Argon at 11 of 11 against DeepSeek with thinking off at 4 or 5 of 10 is a real gap. The middle of the table isn't.
+
+What I'd want to see next is what the README already proposes: ops like 𝚖𝚊𝚛𝚔_𝚒𝚗𝚝𝚎𝚛𝚜𝚎𝚌𝚝𝚒𝚘𝚗(𝚊, 𝚋) where code computes the point, and a second pass where the model looks at a screenshot of its own board.
+
+Links in reply 👇
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗼𝗻 𝘄𝗵𝗶𝘁𝗲𝗯𝗼𝗮𝗿𝗱-𝗮𝗶-𝘁𝘂𝘁𝗼𝗿
+
+whiteboard-ai-tutor is an MIT-licensed repo, first committed on 2026-11-11. The README describes it as "𝘈𝘯 𝘰𝘱𝘦𝘯-𝘴𝘰𝘶𝘳𝘤𝘦 𝘈𝘐 𝘵𝘶𝘵𝘰𝘳 𝘵𝘩𝘢𝘵 𝘵𝘦𝘢𝘤𝘩𝘦𝘴 𝘰𝘯 𝘢 𝘸𝘩𝘪𝘵𝘦𝘣𝘰𝘢𝘳𝘥 — 𝘢𝘯𝘥 𝘢 𝘣𝘦𝘯𝘤𝘩𝘮𝘢𝘳𝘬 𝘰𝘧 𝘸𝘩𝘪𝘤𝘩 𝘓𝘓𝘔 𝘥𝘰𝘦𝘴 𝘪𝘵 𝘣𝘦𝘴𝘵."
+
+It is not a hosted app. The player replays recorded lessons, and new ones need your own API keys.
+
+𝗧𝗵𝗲 𝗽𝗿𝗼𝘁𝗼𝗰𝗼𝗹 𝗶𝘀 𝘁𝗶𝗻𝘆
+
+The model streams plain-text JSON, with no JSON mode and no tool calling. Each step has a 𝚜𝚊𝚢 string and a list of ops. There are six ops (𝚠𝚛𝚒𝚝𝚎, 𝚕𝚒𝚗𝚎, 𝚛𝚎𝚌𝚝, 𝚎𝚕𝚕𝚒𝚙𝚜𝚎, 𝚙𝚊𝚝𝚑, 𝚎𝚛𝚊𝚜𝚎) on a 1600 × 900 board.
+
+Because the first op is usable as soon as it arrives, the fastest models show a first stroke after 𝘁𝘄𝗼 𝘁𝗼 𝗳𝗼𝘂𝗿 𝘀𝗲𝗰𝗼𝗻𝗱𝘀.
+
+𝗧𝗵𝗲 𝗳𝗶𝗻𝗱𝗶𝗻𝗴 𝘄𝗼𝗿𝘁𝗵 𝗿𝗲𝗮𝗱𝗶𝗻𝗴
+
+From the README: "𝘛𝘩𝘦 𝘸𝘰𝘳𝘥𝘴 𝘢𝘳𝘦 𝘳𝘪𝘨𝘩𝘵; 𝘵𝘩𝘦 𝘱𝘪𝘤𝘵𝘶𝘳𝘦𝘴 𝘢𝘳𝘦 𝘸𝘳𝘰𝘯𝘨." Of 64 blind-reviewed boards, 44 passed. Of the 20 that failed, 𝟭𝟮 𝗵𝗮𝗱 𝗮 𝗳𝗶𝗴𝘂𝗿𝗲 𝘁𝗵𝗮𝘁 𝗰𝗼𝗻𝘁𝗿𝗮𝗱𝗶𝗰𝘁𝗲𝗱 𝗶𝘁𝘀 𝗼𝘄𝗻 𝘁𝗲𝘅𝘁.
+
+The linter result is also useful. It flagged 41 of 64 boards for hard errors, and the blind review 𝗽𝗮𝘀𝘀𝗲𝗱 𝟮𝟲 𝗼𝗳 𝘁𝗵𝗼𝘀𝗲.
+
+𝗧𝗵𝗶𝗻𝗴𝘀 𝘁𝗼 𝗯𝗲 𝗰𝗮𝗿𝗲𝗳𝘂𝗹 𝗮𝗯𝗼𝘂𝘁
+
+• 𝗦𝗮𝗺𝗽𝗹𝗲 𝘀𝗶𝘇𝗲: 11 boards per model. The README says 9, 8 and 7 out of 11 can't be told apart
+• 𝗥𝗲𝘃𝗶𝗲𝘄𝗲𝗿: an LLM (Claude Fable 5.2) from the same vendor as two of the tested models
+• 𝗛𝘂𝗺𝗮𝗻 𝗮𝘂𝗱𝗶𝘁: docs/METHOD.md says it "𝘩𝘢𝘴 𝘯𝘰𝘵 𝘣𝘦𝘦𝘯 𝘤𝘢𝘳𝘳𝘪𝘦𝘥 𝘰𝘶𝘵 𝘺𝘦𝘵", and the latest README commit removed the audit status
+• 𝗣𝗿𝗼𝗺𝗽𝘁: one frozen prompt, written in Chinese
+• 𝗟𝗮𝘁𝗲𝗻𝗰𝘆: measured from one desktop, with Claude and Gemini routed through OpenRouter
+
+Leaderboard for the record: Gemini 4 Argon 11/11, Claude Haiku 5.5 9/11, Gemini 3.8 Flash 8/11, Claude Sonnet 5.5 7/11, DeepSeek V4 Pro 5/10, DeepSeek V4.1 Flash 4/10.
+
+Every run is in the repo, raw output included, and the whole benchmark cost $𝟰.𝟴𝟯. That makes it cheap to check or rerun.
+
+Links in reply 👇
+
+===== 4. SWYX STYLE =====
+
+𝗚𝗲𝗻𝗲𝗿𝗮𝘁𝗶𝘃𝗲 𝗪𝗵𝗶𝘁𝗲𝗯𝗼𝗮𝗿𝗱𝘀 𝗛𝗮𝘃𝗲 𝗮 𝗚𝗲𝗼𝗺𝗲𝘁𝗿𝘆 𝗣𝗿𝗼𝗯𝗹𝗲𝗺
+
+Chat tutors answer in text. The newer idea is a tutor that draws while it talks, and a small open-source repo just put numbers on how well that works.
+
+Where the pieces sit:
+
+• 𝗖𝗵𝗮𝘁𝗧𝘂𝘁𝗼𝗿: an AGPL-3.0 app with about 1.3k GitHub stars that gives the model a whiteboard through tools, with GeoGebra for the math canvas
+• 𝘄𝗵𝗶𝘁𝗲𝗯𝗼𝗮𝗿𝗱-𝗮𝗶-𝘁𝘂𝘁𝗼𝗿: MIT, two days old, no app. A six-op JSON protocol, a player, and a benchmark of six models on it
+
+The second one is an eval for the category, not another app. One frozen prompt, 288 calls, 64 boards reviewed blind, 𝟰𝟰 𝗽𝗮𝘀𝘀𝗲𝗱.
+
+The split is clean. Gemini 4 Argon is the quality pick at 𝟭𝟭 𝗼𝗳 𝟭𝟭, with a first stroke after about 8 s. Claude Sonnet 5.5 is the speed pick at about 𝟮.𝟴 𝘀, with 7 of 11. Claude Haiku 5.5 is the cost pick at about $𝟬.𝟬𝟬𝟮 𝗽𝗲𝗿 𝗹𝗲𝘀𝘀𝗼𝗻, with 9 of 11. No model takes all three.
+
+Then the failure analysis: 𝟭𝟮 𝗼𝗳 𝟮𝟬 𝗳𝗮𝗶𝗹𝗲𝗱 𝗯𝗼𝗮𝗿𝗱𝘀 𝗵𝗮𝗱 𝗮 𝗳𝗶𝗴𝘂𝗿𝗲 𝘁𝗵𝗮𝘁 𝗰𝗼𝗻𝘁𝗿𝗮𝗱𝗶𝗰𝘁𝗲𝗱 𝘁𝗵𝗲 𝘁𝗲𝘅𝘁. Written statements were almost never wrong.
+
+Read that next to ChatTutor's design. One project hands the geometry to a math engine. The other lets the model choose raw pixel coordinates, measures what goes wrong, and proposes ops like 𝚖𝚊𝚛𝚔_𝚒𝚗𝚝𝚎𝚛𝚜𝚎𝚌𝚝𝚒𝚘𝚗(𝚊, 𝚋) as the fix.
+
+The usual caveats apply: 11 boards per model, an LLM reviewer, 𝗻𝗼 𝗵𝘂𝗺𝗮𝗻 𝗮𝘂𝗱𝗶𝘁 𝘆𝗲𝘁, one prompt.
+
+My read: 𝘵𝘩𝘦 𝘮𝘰𝘥𝘦𝘭 𝘴𝘩𝘰𝘶𝘭𝘥 𝘴𝘢𝘺 𝘸𝘩𝘢𝘵 𝘵𝘰 𝘥𝘳𝘢𝘸, 𝘢𝘯𝘥 𝘤𝘰𝘥𝘦 𝘴𝘩𝘰𝘶𝘭𝘥 𝘥𝘦𝘤𝘪𝘥𝘦 𝘸𝘩𝘦𝘳𝘦 𝘪𝘵 𝘨𝘰𝘦𝘴.
+
+Links in reply 👇
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+𝗬𝗼𝘂𝗿 𝗟𝗶𝗻𝘁𝗲𝗿 𝗜𝘀 𝗡𝗼𝘁 𝗬𝗼𝘂𝗿 𝗘𝘃𝗮𝗹
+
+whiteboard-ai-tutor is a small benchmark of six LLMs teaching on a whiteboard. The most useful table in it has nothing to do with which model won.
+
+The author wrote an automatic linter for the boards: off-board objects, overlapping text, strokes crossing labels. Then 64 boards went through a blind review against a fixed rubric.
+
+The linter flagged 𝟰𝟭 𝗼𝗳 𝟲𝟰 𝗯𝗼𝗮𝗿𝗱𝘀 for hard errors. The blind review 𝗽𝗮𝘀𝘀𝗲𝗱 𝟮𝟲 𝗼𝗳 𝘁𝗵𝗼𝘀𝗲. And 5 boards the linter called clean were wrong.
+
+It punished rich diagrams, where labels sit near lines. It couldn't see the main failure at all, a figure that disagrees with its own text. That was 𝟭𝟮 𝗼𝗳 𝘁𝗵𝗲 𝟮𝟬 𝗳𝗮𝗶𝗹𝗲𝗱 𝗯𝗼𝗮𝗿𝗱𝘀. Gemini 4 Argon scored 21 to 29% linter-clean and passed 11 of 11 in review.
+
+𝗪𝗵𝗮𝘁 𝘁𝗵𝗲 𝗿𝗲𝗽𝗼 𝗴𝗶𝘃𝗲𝘀 𝘆𝗼𝘂: every raw output from 288 calls, 64 rendered boards with per-board notes, a rubric, and a blind setup where scores were written to disk before model names were revealed.
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗴𝗶𝘃𝗲 𝘆𝗼𝘂: a human-verified judge. The reviewer was an LLM, and the 18-board human audit sheet exists but 𝗵𝗮𝘀𝗻'𝘁 𝗯𝗲𝗲𝗻 𝗳𝗶𝗹𝗹𝗲𝗱 𝗶𝗻. There are also only 11 boards per model.
+
+If you build something like this, the order matters:
+
+• 𝗟𝗼𝗼𝗸 𝗳𝗶𝗿𝘀𝘁: open the boards and read them yourself. The gallery is public
+• 𝗡𝗮𝗺𝗲 𝘁𝗵𝗲 𝗳𝗮𝗶𝗹𝘂𝗿𝗲: here it's "figure contradicts text", not "bad layout"
+• 𝗖𝗵𝗲𝗰𝗸 𝘁𝗵𝗲 𝗷𝘂𝗱𝗴𝗲: compare the LLM reviewer with human verdicts on a sample before trusting it
+• 𝗧𝗵𝗲𝗻 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗲: only the checks that agree with those verdicts
+
+The whole run cost $4.83. Looking at 64 boards costs an afternoon.
+
+Links in reply 👇
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗖𝗮𝗻 𝗮𝗻 𝗔𝗜 𝗧𝗲𝗮𝗰𝗵 𝗮𝘁 𝗮 𝗪𝗵𝗶𝘁𝗲𝗯𝗼𝗮𝗿𝗱?
+
+A good teacher doesn't only talk. They write, sketch, rub something out, and stop when a hand goes up. So how close is AI to doing that?
+
+A small open-source experiment gives a partial answer. Six AI models got the same instructions and the same questions (why we have seasons, why the Pythagorean theorem works, what happens to price when demand rises). Each had to teach on a whiteboard.
+
+The models can't see the board. They work like someone giving drawing directions over the phone: "𝘸𝘳𝘪𝘵𝘦 𝘵𝘩𝘪𝘴 𝘩𝘦𝘳𝘦, 𝘥𝘳𝘢𝘸 𝘢 𝘤𝘪𝘳𝘤𝘭𝘦 𝘵𝘩𝘦𝘳𝘦". A program does the actual drawing.
+
+𝗧𝗵𝗲 𝗴𝗼𝗼𝗱 𝗻𝗲𝘄𝘀: all six could do it, and of 64 boards checked blind, 𝟰𝟰 𝗽𝗮𝘀𝘀𝗲𝗱. When a student interrupted, 𝗮𝗹𝗹 𝟮𝟰 𝗯𝗼𝗮𝗿𝗱𝘀 𝗮𝗻𝘀𝘄𝗲𝗿𝗲𝗱 𝘁𝗵𝗲 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻.
+
+𝗧𝗵𝗲 𝗹𝗲𝘀𝘀 𝗴𝗼𝗼𝗱 𝗻𝗲𝘄𝘀: the drawings. Of the 20 boards that failed, 𝟭𝟮 𝗵𝗮𝗱 𝗮 𝗽𝗶𝗰𝘁𝘂𝗿𝗲 𝘁𝗵𝗮𝘁 𝗰𝗼𝗻𝘁𝗿𝗮𝗱𝗶𝗰𝘁𝗲𝗱 𝘁𝗵𝗲 𝘄𝗼𝗿𝗱𝘀. One tutor explained the seasons correctly and then labelled the wrong Earth as winter. Almost every written sentence was fine.
+
+And in 11 of those 24 interruptions, the AI wrote over the existing drawing or wiped the board to start again. Some of the wiped boards were still clear lessons. The ones written over the old figure all failed.
+
+Some care is needed here. This is one prompt, eight questions and about 11 boards per model, and the judge was another AI. 𝗡𝗼 𝗵𝘂𝗺𝗮𝗻 𝗵𝗮𝘀 𝗮𝘂𝗱𝗶𝘁𝗲𝗱 𝘁𝗵𝗲 𝗿𝗲𝘀𝘂𝗹𝘁𝘀 𝘆𝗲𝘁.
+
+Still, the pattern is worth noticing. The AI seems to understand the lesson better than it can draw it.
+
+𝘈 𝘴𝘵𝘶𝘥𝘦𝘯𝘵 𝘵𝘳𝘶𝘴𝘵𝘴 𝘵𝘩𝘦 𝘱𝘪𝘤𝘵𝘶𝘳𝘦 𝘢𝘴 𝘮𝘶𝘤𝘩 𝘢𝘴 𝘵𝘩𝘦 𝘸𝘰𝘳𝘥𝘴. 𝘞𝘰𝘶𝘭𝘥 𝘵𝘩𝘦𝘺 𝘤𝘢𝘵𝘤𝘩 𝘵𝘩𝘦 𝘸𝘳𝘰𝘯𝘨 𝘭𝘢𝘣𝘦𝘭?
+
+Links in reply 👇
