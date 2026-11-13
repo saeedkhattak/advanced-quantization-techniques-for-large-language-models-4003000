@@ -1,6 +1,6 @@
 ════════ VERSION 1: STORY ════════
 
-𝗡-𝗮𝗯𝗹𝗲 𝗣𝗮𝘁𝗰𝗵𝗲𝗱 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 𝗢𝗻 𝗠𝗼𝗻𝗱𝗮𝘆. 𝗕𝘆 𝗧𝗵𝘂𝗿𝘀𝗱𝗮𝘆, 𝗧𝗵𝗲 𝗣𝗮𝘁𝗰𝗵 𝗪𝗮𝘀𝗻'𝘁 𝗘𝗻𝗼𝘂𝗴𝗵.
+𝗡-𝗮𝗯𝗹𝗲 𝗣𝗮𝘁𝗰𝗵𝗲𝗱 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 𝗢𝗻 𝗧𝘂𝗲𝘀𝗱𝗮𝘆. 𝗕𝘆 𝗧𝗵𝘂𝗿𝘀𝗱𝗮𝘆, 𝗡𝗲𝘄 𝗘𝘅𝗽𝗹𝗼𝗶𝘁𝘀 𝗪𝗲𝗿𝗲 𝗢𝘂𝘁.
 
 If you run IT for small businesses, there's a good chance a tool like N-central sits in the middle of it. One server, trusted by every machine it manages.
 
@@ -96,7 +96,7 @@ For years, the riskiest boxes on a network were VPNs and firewalls. Internet-fac
 
 The pattern across 2026:
 
-• 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 (𝗔𝘂𝗴 𝘁𝗼 𝗦𝗲𝗽): a run of emergency hotfixes, including a CVSS 10 pre-auth RCE that was exploited
+• 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 (𝗔𝘂𝗴 𝘁𝗼 𝗦𝗲𝗽): a run of emergency hotfixes, including a CVSS 10 pre-auth RCE
 • 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 (𝗡𝗼𝘃 𝟴): public exploits for 33 flaws, hosted service taken offline
 • 𝗡-𝗰𝗲𝗻𝘁𝗿𝗮𝗹 (𝗡𝗼𝘃 𝟭𝟭 𝘁𝗼 𝟭𝟮): new chains that work against the fresh hotfix, if the Legacy API is on
 • 𝗖𝗼𝗻𝗳𝗹𝘂𝗲𝗻𝗰𝗲 𝗗𝗮𝘁𝗮 𝗖𝗲𝗻𝘁𝗲𝗿: hit by the same Apache Axis 1.x flaw, CVE-2026-90436
