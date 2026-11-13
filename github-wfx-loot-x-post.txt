@@ -1,0 +1,157 @@
+════════ VERSION 1: STORY ════════
+
+𝟰,𝟴𝟯𝟳 𝗛𝗶𝗷𝗮𝗰𝗸𝗲𝗱 𝗚𝗶𝘁𝗛𝘂𝗯 𝗔𝗰𝗰𝗼𝘂𝗻𝘁𝘀, 𝗢𝗻𝗲 𝗣𝘂𝗹𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁 𝗔𝘁 𝗔 𝗧𝗶𝗺𝗲
+
+You get a pull request titled "𝘥𝘰𝘤𝘴: 𝘥𝘦𝘱𝘦𝘯𝘥𝘦𝘯𝘤𝘺 𝘢𝘶𝘥𝘪𝘵 𝘯𝘰𝘵𝘦𝘴". It looks like housekeeping. Most people would leave it for later.
+
+That's the trick behind a campaign Aikido Security calls 𝘄𝗳𝘅-𝗹𝗼𝗼𝘁.
+
+𝗜𝘁 𝘀𝘁𝗮𝗿𝘁𝗲𝗱 𝗮𝗿𝗼𝘂𝗻𝗱 𝟭𝟮:𝟰𝟱 𝗨𝗧𝗖 𝗼𝗻 𝗡𝗼𝘃 𝟭𝟬. An attacker used stolen credentials for 𝟰,𝟴𝟯𝟳 𝗚𝗶𝘁𝗛𝘂𝗯 𝗮𝗰𝗰𝗼𝘂𝗻𝘁𝘀 and opened probe pull requests in 𝟲𝟭,𝟳𝟲𝟰 𝗿𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝗶𝗲𝘀. Help Net Security reports 92% of those PRs were still open at last count.
+
+The PR on its own does nothing. StepSecurity points out the malware only ran where the account's permissions and the repo's setup let it.
+
+Where it did run, it moved fast:
+
+• 𝗚𝗿𝗮𝗯𝘀 𝗲𝘃𝗲𝗿𝘆𝘁𝗵𝗶𝗻𝗴: GitHub Actions secrets, runtime tokens, cloud credential files, shell histories, and AI keys for OpenAI, Anthropic and Hugging Face
+• 𝗚𝗼𝗲𝘀 𝗳𝗼𝗿 𝘁𝗵𝗲 𝗰𝗹𝗼𝘂𝗱: swaps GitHub OIDC tokens for AWS, Google Cloud and Azure sessions
+• 𝗦𝘁𝗮𝘆𝘀 𝗶𝗻: Aikido says it's built to rewrite trust policies and add federated access, like Entra ID credentials named 𝚠𝚏𝚡-𝚌𝚒-*
+• 𝗖𝗹𝗲𝗮𝗻𝘀 𝘂𝗽: reverts the commit and deletes the workflow run and its logs, in under a minute per reports
+
+𝗧𝗵𝗲 𝗽𝗮𝘆𝗹𝗼𝗮𝗱 𝗿𝗮𝗻 𝗶𝗻 𝗮𝘁 𝗹𝗲𝗮𝘀𝘁 𝟭,𝟴𝟬𝟲 𝗿𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝗶𝗲𝘀, and a later Aikido tally put it at 1,835. SafeDep counted 8,093 repos with malicious commits, but a commit isn't the same as code that ran.
+
+𝗙𝗼𝗿 𝗺𝗮𝗶𝗻𝘁𝗮𝗶𝗻𝗲𝗿𝘀: search for a 𝚠𝚏𝚡-𝚍𝚘𝚌𝚜 branch, that PR title, or commits like "ci: refresh build cache" and "chore: add ci helper". If the payload ran, treat every secret and cloud role that workflow could reach as stolen.
+
+𝗙𝗼𝗿 𝗯𝘂𝗶𝗹𝗱𝗲𝗿𝘀: an OIDC trust that accepts any branch is the bridge from a GitHub account to your cloud.
+
+This isn't new territory. GhostAction in October and Megalodon in May used the same playbook. 𝗢𝗻𝗲 𝗯𝗶𝗴 𝘂𝗻𝗸𝗻𝗼𝘄𝗻: Aikido hasn't said how the attacker got the 4,837 credentials.
+
+𝘠𝘰𝘶𝘳 𝘊𝘐 𝘩𝘢𝘴 𝘵𝘩𝘦 𝘬𝘦𝘺𝘴 𝘵𝘰 𝘺𝘰𝘶𝘳 𝘤𝘭𝘰𝘶𝘥, 𝘴𝘰 𝘢𝘯𝘺𝘰𝘯𝘦 𝘸𝘩𝘰 𝘤𝘢𝘯 𝘱𝘶𝘴𝘩 𝘵𝘰 𝘪𝘵 𝘥𝘰𝘦𝘴 𝘵𝘰𝘰.
+
+Links in reply 👇
+
+
+════════ VERSION 2: KARPATHY STYLE ════════
+
+𝗬𝗼𝘂𝗿 𝗖𝗜 𝗜𝘀 𝗔 𝗖𝗿𝗲𝗱𝗲𝗻𝘁𝗶𝗮𝗹 𝗩𝗲𝗻𝗱𝗶𝗻𝗴 𝗠𝗮𝗰𝗵𝗶𝗻𝗲
+
+Thinking about wfx-loot from the attacker's side.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝘁𝗵𝗲 𝟰,𝟴𝟯𝟳 𝗮𝗰𝗰𝗼𝘂𝗻𝘁𝘀, 𝗶𝘁'𝘀 𝘄𝗵𝗮𝘁 𝗮 𝘄𝗿𝗶𝘁𝗲-𝗰𝗮𝗽𝗮𝗯𝗹𝗲 𝗮𝗰𝗰𝗼𝘂𝗻𝘁 𝗶𝘀 𝘄𝗼𝗿𝘁𝗵. A CI runner holds deploy keys, cloud roles and API keys, because that's its job. So push access to a repo is close to cloud access, once OIDC is wired up.
+
+The attacker's loop is simple. Open a harmless-looking PR in a repo you can reach. If the workflow runs, collect every secret in memory and on disk, trade the GitHub OIDC token for AWS, Google Cloud or Azure sessions, then delete the run and its logs.
+
+Aikido counts probes in 61,764 repos and a payload that ran in at least 1,806 (a later tally says 1,835). That's roughly 3%. Small rate, huge haul, because every hit is a bundle of keys.
+
+I think the analogy is a vending machine. You don't break the glass. You just need a coin it accepts, and here the coin is any account it trusts.
+
+The AI angle matters to me too. The stealer looks for OpenAI, Anthropic and Hugging Face keys alongside cloud credentials. AI keys are now in the same class as AWS keys: billable, and worth stealing.
+
+What's still unknown is the start of it all. How 4,837 GitHub credentials were stolen in the first place hasn't been explained.
+
+𝗪𝗵𝗮𝘁 𝗜'𝗱 𝗮𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝘄𝗮𝗻𝘁 𝘁𝗼 𝘀𝗲𝗲: 𝘊𝘐 𝘵𝘩𝘢𝘵 𝘨𝘦𝘵𝘴 𝘴𝘩𝘰𝘳𝘵-𝘭𝘪𝘷𝘦𝘥, 𝘯𝘢𝘳𝘳𝘰𝘸𝘭𝘺 𝘴𝘤𝘰𝘱𝘦𝘥 𝘤𝘳𝘦𝘥𝘦𝘯𝘵𝘪𝘢𝘭𝘴 𝘱𝘦𝘳 𝘫𝘰𝘣, 𝘴𝘰 𝘢 𝘴𝘵𝘰𝘭𝘦𝘯 𝘳𝘶𝘯 𝘨𝘪𝘷𝘦𝘴 𝘺𝘰𝘶 𝘰𝘯𝘦 𝘬𝘦𝘺, 𝘯𝘰𝘵 𝘵𝘩𝘦 𝘸𝘩𝘰𝘭𝘦 𝘳𝘪𝘯𝘨.
+
+Links in reply 👇
+
+
+════════ VERSION 3: SIMON WILLISON STYLE ════════
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝘄𝗳𝘅-𝗹𝗼𝗼𝘁, 𝗧𝗵𝗲 𝗚𝗶𝘁𝗛𝘂𝗯 𝗔𝗰𝘁𝗶𝗼𝗻𝘀 𝗦𝗲𝗰𝗿𝗲𝘁 𝗦𝘁𝗲𝗮𝗹𝗲𝗿
+
+Aikido Security found a campaign it calls wfx-loot. Their summary on X:
+
+"4,800+ 𝘤𝘰𝘮𝘱𝘳𝘰𝘮𝘪𝘴𝘦𝘥 𝘢𝘤𝘤𝘰𝘶𝘯𝘵𝘴 𝘢𝘵𝘵𝘦𝘮𝘱𝘵𝘦𝘥 𝘵𝘰 𝘱𝘶𝘴𝘩 𝘮𝘢𝘭𝘪𝘤𝘪𝘰𝘶𝘴 𝘸𝘰𝘳𝘬𝘧𝘭𝘰𝘸𝘴 𝘵𝘰 61𝘬+ 𝘳𝘦𝘱𝘰𝘴. 𝘗𝘢𝘺𝘭𝘰𝘢𝘥 𝘥𝘶𝘮𝘱𝘴 𝘢𝘭𝘭 𝘊𝘐 𝘴𝘦𝘤𝘳𝘦𝘵𝘴, 𝘮𝘦𝘮𝘰𝘳𝘺, 𝘖𝘐𝘋𝘊 & 𝘤𝘰𝘮𝘮𝘪𝘵 𝘴𝘦𝘤𝘳𝘦𝘵𝘴, 𝘵𝘩𝘦𝘯 𝘪𝘯𝘴𝘵𝘢𝘯𝘵𝘭𝘺 𝘥𝘦𝘭𝘦𝘵𝘦𝘴 𝘳𝘶𝘯 𝘭𝘰𝘨𝘴."
+
+The numbers, as reported:
+
+• 𝟰,𝟴𝟯𝟳 GitHub accounts used, with stolen credentials
+• 𝟲𝟭,𝟳𝟲𝟰 repositories probed with pull requests
+• 𝗔𝘁 𝗹𝗲𝗮𝘀𝘁 𝟭,𝟴𝟬𝟲 repos where the payload ran (later tally: 1,835)
+• 𝟴,𝟬𝟵𝟯 repos with malicious commits, per SafeDep, which isn't the same as execution
+
+𝗧𝗵𝗲 𝗴𝗲𝗻𝘂𝗶𝗻𝗲𝗹𝘆 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗰𝗹𝗼𝘂𝗱 𝗽𝗶𝘃𝗼𝘁. The payload trades GitHub OIDC tokens for AWS, Google Cloud and Azure sessions, and Aikido says it can rewrite trust policies and create federated access. Look for Entra ID federated credentials named 𝚠𝚏𝚡-𝚌𝚒-* that you didn't create.
+
+Indicators you can search for: a 𝚠𝚏𝚡-𝚍𝚘𝚌𝚜 branch, a PR titled "docs: dependency audit notes", and commits like "ci: refresh build cache", "chore: add ci helper" or "chore: add dependency audit workflow".
+
+𝗧𝗵𝗶𝗻𝗴𝘀 𝘁𝗼 𝗯𝗲 𝗰𝗮𝗿𝗲𝗳𝘂𝗹 𝗮𝗯𝗼𝘂𝘁:
+
+• 𝗖𝗼𝘂𝗻𝘁𝘀 𝗮𝗿𝗲 𝗺𝗼𝘃𝗶𝗻𝗴. Different outlets report 1,806, 1,835 and about 1,970
+• 𝗜𝗻𝗶𝘁𝗶𝗮𝗹 𝗮𝗰𝗰𝗲𝘀𝘀 𝗶𝘀 𝘂𝗻𝗸𝗻𝗼𝘄𝗻. Aikido doesn't say how the credentials were obtained
+• 𝗣𝗿𝗼𝗯𝗲𝘀 𝗮𝗿𝗲𝗻'𝘁 𝗯𝗿𝗲𝗮𝗰𝗵𝗲𝘀. StepSecurity notes the PR alone does nothing without the right permissions and setup
+
+Links in reply 👇
+
+
+════════ VERSION 4: SWYX STYLE ════════
+
+𝗚𝗶𝘁𝗛𝘂𝗯 𝗔𝗰𝗰𝗼𝘂𝗻𝘁𝘀 𝗔𝗿𝗲 𝗧𝗵𝗲 𝗡𝗲𝘄 𝗣𝗵𝗶𝘀𝗵𝗶𝗻𝗴 𝗧𝗮𝗿𝗴𝗲𝘁
+
+2026 has turned into the year of the CI secret stealer. Same idea each time: get into GitHub accounts, then make CI hand over its keys.
+
+The runs so far:
+
+• 𝗠𝗲𝗴𝗮𝗹𝗼𝗱𝗼𝗻 (𝗠𝗮𝘆): malicious commits pushed to about 5,500 repos in hours
+• 𝗚𝗵𝗲𝗶𝘀𝘁 (𝗪𝗶𝘇): 13,500+ malicious branches across 850+ compromised accounts
+• 𝗚𝗵𝗼𝘀𝘁𝗔𝗰𝘁𝗶𝗼𝗻 (𝗢𝗰𝘁𝗼𝗯𝗲𝗿): credential-stealing workflows planted across tens of thousands of repos
+• 𝘄𝗳𝘅-𝗹𝗼𝗼𝘁 (𝗡𝗼𝘃 𝟭𝟬): 4,837 accounts, probes in 61,764 repos, payload ran in at least 1,806
+
+wfx-loot raises two things. It goes straight for the cloud by swapping GitHub OIDC tokens for AWS, Google Cloud and Azure sessions. And it covers its tracks by deleting workflow runs and logs within a minute.
+
+It also collects OpenAI, Anthropic and Hugging Face keys. AI credentials are now a standard line on the shopping list.
+
+Aikido doesn't tie wfx-loot to the earlier campaigns, and it hasn't said how the 4,837 credentials were stolen.
+
+My take: 𝘁𝗵𝗲 𝗱𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿 𝗮𝗰𝗰𝗼𝘂𝗻𝘁 𝗶𝘀 𝗻𝗼𝘄 𝘁𝗵𝗲 𝗽𝗲𝗿𝗶𝗺𝗲𝘁𝗲𝗿. The next defaults that matter are short-lived CI credentials and OIDC trust tied to protected branches.
+
+Links in reply 👇
+
+
+════════ VERSION 5: HAMEL HUSAIN STYLE ════════
+
+𝗖𝗵𝗲𝗰𝗸 𝗬𝗼𝘂𝗿 𝗥𝗲𝗽𝗼𝘀 𝗙𝗼𝗿 𝘄𝗳𝘅-𝗹𝗼𝗼𝘁 𝗕𝗲𝗳𝗼𝗿𝗲 𝗬𝗼𝘂 𝗥𝗲𝗮𝗱 𝗔𝗻𝘆𝘁𝗵𝗶𝗻𝗴 𝗘𝗹𝘀𝗲
+
+wfx-loot used 4,837 stolen GitHub accounts to probe 61,764 repos. The payload ran in at least 1,806. Here's what the reporting does and doesn't tell you.
+
+𝗪𝗵𝗮𝘁 𝘆𝗼𝘂 𝗸𝗻𝗼𝘄:
+
+• 𝗧𝗵𝗲 𝘀𝗶𝗴𝗻𝘀: a 𝚠𝚏𝚡-𝚍𝚘𝚌𝚜 branch, the PR "docs: dependency audit notes", commits like "ci: refresh build cache" or "chore: add ci helper"
+• 𝗪𝗵𝗮𝘁 𝗶𝘁 𝘁𝗮𝗸𝗲𝘀: CI secrets, runtime tokens, cloud credential files, shell histories, OpenAI, Anthropic and Hugging Face keys
+• 𝗪𝗵𝗲𝗿𝗲 𝗶𝘁 𝗴𝗼𝗲𝘀 𝗻𝗲𝘅𝘁: OIDC swaps into AWS, Google Cloud and Azure
+
+𝗪𝗵𝗮𝘁 𝘆𝗼𝘂 𝗱𝗼𝗻'𝘁 𝗸𝗻𝗼𝘄:
+
+• 𝗪𝗵𝗲𝘁𝗵𝗲𝗿 𝘆𝗼𝘂𝗿𝘀 𝗿𝗮𝗻. It deletes the workflow run and its logs, so a clean Actions tab proves nothing
+• 𝗛𝗼𝘄 𝘁𝗵𝗲 𝗮𝗰𝗰𝗼𝘂𝗻𝘁𝘀 𝘄𝗲𝗿𝗲 𝘀𝘁𝗼𝗹𝗲𝗻. Aikido hasn't said
+• 𝗧𝗵𝗲 𝗳𝗶𝗻𝗮𝗹 𝗰𝗼𝘂𝗻𝘁. Reports range from 1,806 to about 1,970 repos
+
+𝗪𝗵𝗮𝘁 𝗜'𝗱 𝗱𝗼 𝘁𝗼𝗱𝗮𝘆:
+
+1. Search every repo and org for the branch, PR title and commit messages above
+2. Check your audit log for deleted workflow runs since Nov 10
+3. If anything matches, rotate every secret that workflow could reach, cloud and AI keys included
+4. Look for federated credentials or trust policy changes you didn't make, such as Entra ID 𝚠𝚏𝚡-𝚌𝚒-*
+5. Tie OIDC cloud roles to protected branches only
+
+Assume the logs are gone. Your audit trail and your cloud console are what's left.
+
+Links in reply 👇
+
+
+════════ VERSION 6: ETHAN MOLLICK STYLE ════════
+
+𝗪𝗵𝗮𝘁 𝗜𝗳 𝗧𝗵𝗲 𝗛𝗮𝗰𝗸𝗲𝗿 𝗗𝗼𝗲𝘀𝗻'𝘁 𝗡𝗲𝗲𝗱 𝗬𝗼𝘂𝗿 𝗣𝗮𝘀𝘀𝘄𝗼𝗿𝗱, 𝗝𝘂𝘀𝘁 𝗬𝗼𝘂𝗿 𝗖𝗼𝘄𝗼𝗿𝗸𝗲𝗿'𝘀?
+
+Software teams use automated systems that build and ship their code. To do that job, those systems hold the keys to everything: cloud accounts, databases, AI services.
+
+This week, security firm Aikido described a campaign that went after exactly those keys.
+
+The attacker had login details for 𝟰,𝟴𝟯𝟳 𝗚𝗶𝘁𝗛𝘂𝗯 𝗮𝗰𝗰𝗼𝘂𝗻𝘁𝘀. Think of it as having a staff badge for thousands of offices. With those, they dropped a harmless-looking note into 𝟲𝟭,𝟳𝟲𝟰 𝗰𝗼𝗱𝗲 𝗽𝗿𝗼𝗷𝗲𝗰𝘁𝘀. In projects where the account had enough access, the note triggered code that copied every key it could find, then wiped its own records.
+
+𝗜𝘁 𝘄𝗼𝗿𝗸𝗲𝗱 𝗶𝗻 𝗮𝘁 𝗹𝗲𝗮𝘀𝘁 𝟭,𝟴𝟬𝟲 𝗽𝗿𝗼𝗷𝗲𝗰𝘁𝘀, according to Aikido. Among the stolen items: cloud logins for Amazon, Google and Microsoft, and keys for AI services like OpenAI and Anthropic.
+
+There's a reassuring side. Most of the 61,764 attempts did nothing, because the account didn't have enough access. And the warning signs are now public.
+
+What we know: the method, the scale, and what it steals. What we don't know: how the attacker got 4,837 logins in the first place.
+
+𝘐𝘧 𝘰𝘯𝘦 𝘵𝘦𝘢𝘮𝘮𝘢𝘵𝘦'𝘴 𝘴𝘵𝘰𝘭𝘦𝘯 𝘭𝘰𝘨𝘪𝘯 𝘤𝘢𝘯 𝘰𝘱𝘦𝘯 𝘺𝘰𝘶𝘳 𝘤𝘰𝘮𝘱𝘢𝘯𝘺'𝘴 𝘤𝘭𝘰𝘶𝘥, 𝘪𝘴 𝘵𝘩𝘦 𝘸𝘦𝘢𝘬 𝘱𝘰𝘪𝘯𝘵 𝘵𝘩𝘦 𝘤𝘰𝘥𝘦, 𝘰𝘳 𝘵𝘩𝘦 𝘵𝘳𝘶𝘴𝘵 𝘸𝘦 𝘨𝘪𝘷𝘦 𝘵𝘰 𝘦𝘷𝘦𝘳𝘺 𝘢𝘤𝘤𝘰𝘶𝘯𝘵?
+
+Links in reply 👇
