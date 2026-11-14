@@ -1,0 +1,187 @@
+===== 1. STORY =====
+
+𝗬𝗼𝘂𝗿 𝗔𝗜 𝗧𝗼𝗼𝗹𝘀 𝗘𝗮𝗰𝗵 𝗞𝗲𝗲𝗽 𝗧𝗵𝗲𝗶𝗿 𝗢𝘄𝗻 𝗡𝗼𝘁𝗲𝗯𝗼𝗼𝗸. 𝗮𝘂𝘁𝗼𝗠𝗮𝘁𝗲 𝗚𝗶𝘃𝗲𝘀 𝗧𝗵𝗲𝗺 𝗢𝗻𝗲.
+
+Open Claude Desktop in the morning and explain your project. Open Cursor after lunch and explain it again. Neither one knows what the other was told, and the files you dropped into one chat don't exist in the next.
+
+autoMate is an open-source project (MIT) that puts 𝗼𝗻𝗲 𝘀𝘁𝗼𝗿𝗲 𝗯𝗲𝗵𝗶𝗻𝗱 𝗮𝗹𝗹 𝗼𝗳 𝘁𝗵𝗲𝗺. Its README calls it "𝘈 𝘴𝘮𝘢𝘳𝘵 𝘕𝘈𝘚 𝘧𝘰𝘳 𝘈𝘐."
+
+𝗛𝗼𝘄 𝗶𝘁 𝘄𝗼𝗿𝗸𝘀
+
+It runs on your own machine at 127.0.0.1:8765 and keeps everything in a folder, ~/.𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚎/, in SQLite. Your AI clients connect to it over MCP (the standard way AI apps call outside tools).
+
+After that, each client can use the same tools:
+
+• 𝗡𝗼𝘁𝗲𝘀: markdown documents with tags
+• 𝗙𝗶𝗹𝗲𝘀: a vault that stores each file once, on a path you choose (an external SSD works)
+• 𝗠𝗲𝗺𝗼𝗿𝘆: small key-value facts any client can read or write
+• 𝗦𝗲𝗮𝗿𝗰𝗵: 𝚜𝚎𝚊𝚛𝚌𝚑.𝚏𝚒𝚗𝚍, keyword search (BM25) over notes and files together
+• 𝗥𝗲𝗺𝗶𝗻𝗱𝗲𝗿𝘀: pushed to your phone through a web app
+
+So a note Claude Desktop writes today is there for Cursor tomorrow.
+
+𝗜𝗳 𝘆𝗼𝘂 𝗷𝘂𝘀𝘁 𝘂𝘀𝗲 𝗔𝗜 𝘁𝗼𝗼𝗹𝘀
+
+Setup is the nice part. Settings has a "𝘊𝘰𝘱𝘺 𝘪𝘯𝘴𝘵𝘢𝘭𝘭 𝘵𝘦𝘹𝘵" button. It gives you one block of text with your URL and token filled in, written so that another AI can read it and edit the right config file for you.
+
+𝗜𝗳 𝘆𝗼𝘂 𝗯𝘂𝗶𝗹𝗱 𝘁𝗵𝗶𝗻𝗴𝘀
+
+It's more than memory. The same server exposes shell, script, browser and desktop tools, 𝟯𝟭 𝗦𝗮𝗮𝗦 𝗶𝗻𝘁𝗲𝗴𝗿𝗮𝘁𝗶𝗼𝗻𝘀 and a catalog of 𝟮𝟱 𝗟𝗟𝗠 𝗽𝗿𝗼𝘃𝗶𝗱𝗲𝗿𝘀. That's a lot of surface for one token.
+
+𝗜𝘁 𝗶𝘀𝗻'𝘁 𝘁𝗵𝗲 𝗳𝗶𝗿𝘀𝘁 𝘁𝗼 𝘁𝗿𝘆 𝘁𝗵𝗶𝘀
+
+Basic Memory already keeps AI memory as plain Markdown files on your disk, and Mem0's OpenMemory MCP pitches a shared local memory for MCP clients. autoMate's difference is the bundle: files, reminders and executors sit next to the memory.
+
+𝗔 𝗳𝗲𝘄 𝗰𝗮𝘃𝗲𝗮𝘁𝘀
+
+The README publishes 𝗻𝗼 𝗯𝗲𝗻𝗰𝗵𝗺𝗮𝗿𝗸𝘀 𝗼𝗿 𝗲𝘃𝗮𝗹𝘀. The MCP token can call 𝚜𝚑𝚎𝚕𝚕.𝚎𝚡𝚎𝚌, and the README itself says to treat it like a password. Encryption is described for API keys and tokens; the README doesn't say your notes are encrypted. Audio transcription is a Pro feature, and a paid cloud tier is described as upcoming.
+
+𝘛𝘩𝘦 𝘮𝘰𝘥𝘦𝘭 𝘺𝘰𝘶 𝘶𝘴𝘦 𝘸𝘪𝘭𝘭 𝘬𝘦𝘦𝘱 𝘤𝘩𝘢𝘯𝘨𝘪𝘯𝘨. 𝘠𝘰𝘶𝘳 𝘯𝘰𝘵𝘦𝘴 𝘴𝘩𝘰𝘶𝘭𝘥𝘯'𝘵 𝘩𝘢𝘷𝘦 𝘵𝘰 𝘮𝘰𝘷𝘦 𝘦𝘷𝘦𝘳𝘺 𝘵𝘪𝘮𝘦 𝘪𝘵 𝘥𝘰𝘦𝘴.
+
+Links in reply 👇
+
+===== 2. KARPATHY STYLE =====
+
+𝗧𝗵𝗲 𝗠𝗲𝗺𝗼𝗿𝘆 𝗦𝗵𝗼𝘂𝗹𝗱 𝗢𝘂𝘁𝗹𝗶𝘃𝗲 𝗧𝗵𝗲 𝗖𝗵𝗮𝘁 𝗔𝗽𝗽
+
+Reading the autoMate README (open source, MIT). It calls itself "𝘈 𝘴𝘮𝘢𝘳𝘵 𝘕𝘈𝘚 𝘧𝘰𝘳 𝘈𝘐", and I think the name is better than it first sounds.
+
+The interesting part isn't the tool list. It's 𝘄𝗵𝗲𝗿𝗲 𝘁𝗵𝗲 𝘀𝘁𝗮𝘁𝗲 𝗹𝗶𝘃𝗲𝘀.
+
+Today each chat client is a little computer with its own disk. Claude Desktop has one, Cursor has another, and nothing is mounted between them. So you become the sync protocol, copying context from window to window by hand.
+
+autoMate flips that around. One process on your machine (127.0.0.1:8765) owns a folder, ~/.𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚎/, backed by SQLite. Clients mount it over MCP and get notes, a file vault, key-value memory, reminders and 𝚜𝚎𝚊𝚛𝚌𝚑.𝚏𝚒𝚗𝚍, which is BM25 keyword search over notes and files. The client becomes a thin terminal. Swap it and the disk stays.
+
+Small detail I liked: a "𝘊𝘰𝘱𝘺 𝘪𝘯𝘴𝘵𝘢𝘭𝘭 𝘵𝘦𝘹𝘵" button that produces setup instructions written for an AI to read. Docs for the model, not for you.
+
+Where I'd be careful, imo:
+
+• 𝗧𝗵𝗲 𝘀𝗮𝗺𝗲 𝘁𝗼𝗸𝗲𝗻 𝗿𝗲𝗮𝗰𝗵𝗲𝘀 𝘀𝗵𝗲𝗹𝗹.𝗲𝘅𝗲𝗰. A shared notebook and a remote shell are very different risk levels, and here they sit behind one Bearer token.
+• 𝗦𝗰𝗼𝗽𝗲. It also ships desktop control, browser control, 𝟯𝟭 𝗦𝗮𝗮𝗦 𝗶𝗻𝘁𝗲𝗴𝗿𝗮𝘁𝗶𝗼𝗻𝘀 and 𝟮𝟱 𝗟𝗟𝗠 𝗽𝗿𝗼𝘃𝗶𝗱𝗲𝗿𝘀. That's a lot for a young codebase to keep correct.
+• 𝗘𝘃𝗶𝗱𝗲𝗻𝗰𝗲. There are no evals in the README, so "it remembers" is a design claim right now.
+
+It's also an old idea in new clothes. Basic Memory does the memory part with plain Markdown files.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘴𝘦𝘦 𝘪𝘴 𝘵𝘩𝘦 𝘣𝘰𝘳𝘪𝘯𝘨 𝘷𝘦𝘳𝘴𝘪𝘰𝘯: 𝘫𝘶𝘴𝘵 𝘵𝘩𝘦 𝘴𝘵𝘰𝘳𝘦, 𝘢 𝘵𝘪𝘯𝘺 𝘵𝘰𝘰𝘭 𝘴𝘶𝘳𝘧𝘢𝘤𝘦, 𝘢𝘯𝘥 𝘢 𝘵𝘦𝘴𝘵 𝘴𝘩𝘰𝘸𝘪𝘯𝘨 𝘵𝘩𝘢𝘵 𝘤𝘭𝘪𝘦𝘯𝘵 𝘉 𝘳𝘦𝘢𝘭𝘭𝘺 𝘧𝘪𝘯𝘥𝘴 𝘸𝘩𝘢𝘵 𝘤𝘭𝘪𝘦𝘯𝘵 𝘈 𝘸𝘳𝘰𝘵𝘦.
+
+Links in reply 👇
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗮𝘂𝘁𝗼𝗠𝗮𝘁𝗲, "𝗔 𝗦𝗺𝗮𝗿𝘁 𝗡𝗔𝗦 𝗙𝗼𝗿 𝗔𝗜"
+
+autoMate is an MIT-licensed Python project by GitHub user yuruotong1, at 𝗮𝗯𝗼𝘂𝘁 𝟰,𝟬𝟬𝟬 𝘀𝘁𝗮𝗿𝘀 as of 14 Nov 2026. The README opens with:
+
+"𝘈 𝘴𝘮𝘢𝘳𝘵 𝘕𝘈𝘚 𝘧𝘰𝘳 𝘈𝘐. 𝘕𝘰𝘵𝘦𝘴 · 𝘧𝘪𝘭𝘦𝘴 · 𝘳𝘦𝘮𝘪𝘯𝘥𝘦𝘳𝘴 · 𝘮𝘦𝘮𝘰𝘳𝘺 · 40+ 𝘵𝘰𝘰𝘭𝘴."
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗶𝘀
+
+A FastAPI server that binds to 127.0.0.1 and exposes its tools as MCP over HTTP at /𝚖𝚌𝚙/. Data lives under ~/.𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚎/ in SQLite. You point OpenClaw, Claude Desktop, Cursor or Cline at it and they all read and write the same notes, files and memory.
+
+𝗧𝘄𝗼 𝘁𝗵𝗶𝗻𝗴𝘀 𝗜 𝗳𝗼𝘂𝗻𝗱 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴
+
+• 𝗦𝗲𝘁𝘂𝗽 𝘁𝗲𝘅𝘁 𝘄𝗿𝗶𝘁𝘁𝗲𝗻 𝗳𝗼𝗿 𝗮 𝗺𝗼𝗱𝗲𝗹. Settings has a "Copy install text" button. The README says the text is "𝘸𝘳𝘪𝘵𝘵𝘦𝘯 𝘴𝘰 𝘢𝘯 𝘈𝘐 𝘳𝘦𝘢𝘥𝘦𝘳 𝘤𝘢𝘯 𝘧𝘪𝘯𝘥 𝘵𝘩𝘦 𝘳𝘪𝘨𝘩𝘵 𝘴𝘦𝘤𝘵𝘪𝘰𝘯 𝘢𝘯𝘥 𝘦𝘥𝘪𝘵 𝘵𝘩𝘦 𝘳𝘪𝘨𝘩𝘵 𝘤𝘰𝘯𝘧𝘪𝘨."
+• 𝗦𝗲𝗮𝗿𝗰𝗵 𝗶𝘀 𝗽𝗹𝗮𝗶𝗻 𝗦𝗤𝗟𝗶𝘁𝗲. 𝚜𝚎𝚊𝚛𝚌𝚑.𝚏𝚒𝚗𝚍 is described as SQLite FTS5 BM25 across notes and files in one call. The README calls it hybrid retrieval, but there is no mention of embeddings.
+
+The file vault is content-addressed with deduplication, and the storage path is configurable.
+
+𝗧𝗵𝗶𝗻𝗴𝘀 𝘁𝗼 𝗯𝗲 𝗰𝗮𝗿𝗲𝗳𝘂𝗹 𝗮𝗯𝗼𝘂𝘁
+
+The README is direct about the token: "𝘢𝘯𝘺𝘰𝘯𝘦 𝘸𝘪𝘵𝘩 𝘵𝘩𝘪𝘴 𝘵𝘰𝘬𝘦𝘯 𝘤𝘢𝘯 𝘤𝘢𝘭𝘭 𝘢𝘶𝘵𝘰𝘔𝘢𝘵𝘦'𝘴 𝘵𝘰𝘰𝘭𝘴, 𝘪𝘯𝘤𝘭𝘶𝘥𝘪𝘯𝘨 𝘴𝘩𝘦𝘭𝘭.𝘦𝘹𝘦𝘤."
+
+Fernet encryption is listed for API keys, OAuth tokens and push subscriptions. It doesn't say notes or files are encrypted at rest.
+
+𝗡𝗼 𝗯𝗲𝗻𝗰𝗵𝗺𝗮𝗿𝗸𝘀 𝗼𝗿 𝘁𝗲𝘀𝘁𝘀 𝗼𝗳 𝗿𝗲𝗰𝗮𝗹𝗹 are published. The numbers in the README are counts: 31 SaaS integrations, 25 LLM providers.
+
+The version numbers disagree a little. The README status says v4.5.7, the newest release is v4.6.0, and the last commit on master is from 𝟭𝟳 𝗦𝗲𝗽 𝟮𝟬𝟮𝟲.
+
+𝗥𝗲𝗹𝗮𝘁𝗲𝗱 𝘄𝗼𝗿𝗸
+
+Basic Memory (AGPL-3.0) stores memory as Markdown files with a SQLite index. Mem0's OpenMemory MCP is described as a local-first shared memory server.
+
+Links in reply 👇
+
+===== 4. SWYX STYLE =====
+
+𝗠𝗲𝗺𝗼𝗿𝘆 𝗜𝘀 𝗠𝗼𝘃𝗶𝗻𝗴 𝗢𝘂𝘁 𝗢𝗳 𝗧𝗵𝗲 𝗖𝗵𝗮𝘁 𝗔𝗽𝗽
+
+There's a category forming that I'd call bring-your-own-memory. The chat client stops being where your context lives and becomes 𝗼𝗻𝗲 𝗼𝗳 𝘀𝗲𝘃𝗲𝗿𝗮𝗹 𝗳𝗿𝗼𝗻𝘁 𝗲𝗻𝗱𝘀 𝘁𝗼 𝗶𝘁. MCP is what made that practical, because every serious client now speaks it.
+
+A quick map:
+
+• 𝗕𝗮𝘀𝗶𝗰 𝗠𝗲𝗺𝗼𝗿𝘆: memory as Markdown files on your disk with a SQLite index, AGPL-3.0
+• 𝗢𝗽𝗲𝗻𝗠𝗲𝗺𝗼𝗿𝘆 𝗠𝗖𝗣 (𝗠𝗲𝗺𝟬): pitched as a local-first shared memory server for MCP clients
+• 𝗺𝗰𝗽-𝗺𝗲𝗺𝗼𝗿𝘆-𝘀𝗲𝗿𝘃𝗶𝗰𝗲: a self-hosted memory backend with REST and MCP
+• 𝗮𝘂𝘁𝗼𝗠𝗮𝘁𝗲: memory plus a file vault, reminders, search and local executors in one server, MIT
+
+autoMate is the maximalist entry. Its README calls it "𝘈 𝘴𝘮𝘢𝘳𝘵 𝘕𝘈𝘚 𝘧𝘰𝘳 𝘈𝘐", and it means the NAS part: a content-addressed file vault with a configurable path, notes, key-value memory, BM25 search over all of it, stored in ~/.𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚎/ on your machine.
+
+Then it keeps going, with shell, browser and desktop tools, 𝟯𝟭 𝗦𝗮𝗮𝗦 𝗶𝗻𝘁𝗲𝗴𝗿𝗮𝘁𝗶𝗼𝗻𝘀 and 𝟮𝟱 𝗟𝗟𝗠 𝗽𝗿𝗼𝘃𝗶𝗱𝗲𝗿𝘀.
+
+The detail that shows where onboarding is heading is a "𝘊𝘰𝘱𝘺 𝘪𝘯𝘴𝘵𝘢𝘭𝘭 𝘵𝘦𝘹𝘵" button whose output is meant to be pasted into another AI, which then does the config.
+
+𝗧𝗵𝗲 𝘁𝗿𝗮𝗱𝗲-𝗼𝗳𝗳 𝗶𝘀 𝘁𝗵𝗲 𝗯𝘂𝗻𝗱𝗹𝗲. One Bearer token covers your notes and 𝚜𝚑𝚎𝚕𝚕.𝚎𝚡𝚎𝚌. The README publishes no evals, and the last commit on master is from 17 Sep 2026, so check how active it is before you depend on it.
+
+My take: the memory products that last will be the ones that stay small and stay readable by every client. 𝘛𝘩𝘦 𝘮𝘰𝘥𝘦𝘭 𝘷𝘦𝘯𝘥𝘰𝘳𝘴 𝘸𝘪𝘭𝘭 𝘬𝘦𝘦𝘱 𝘧𝘪𝘨𝘩𝘵𝘪𝘯𝘨 𝘰𝘷𝘦𝘳 𝘵𝘩𝘦 𝘤𝘩𝘢𝘵 𝘸𝘪𝘯𝘥𝘰𝘸, 𝘢𝘯𝘥 𝘵𝘩𝘦 𝘴𝘵𝘰𝘳𝘦 𝘣𝘦𝘩𝘪𝘯𝘥 𝘪𝘵 𝘪𝘴 𝘰𝘱𝘦𝘯 𝘨𝘳𝘰𝘶𝘯𝘥.
+
+Links in reply 👇
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+𝗦𝗵𝗮𝗿𝗲𝗱 𝗔𝗜 𝗠𝗲𝗺𝗼𝗿𝘆 𝗦𝗼𝘂𝗻𝗱𝘀 𝗚𝗿𝗲𝗮𝘁. 𝗧𝗲𝘀𝘁 𝗜𝘁 𝗙𝗶𝗿𝘀𝘁.
+
+autoMate is an open-source (MIT) server that sits behind Claude Desktop, Cursor, Cline and OpenClaw and gives them one shared store. The README calls it "𝘈 𝘴𝘮𝘢𝘳𝘵 𝘕𝘈𝘚 𝘧𝘰𝘳 𝘈𝘐."
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗴𝗶𝘃𝗲𝘀 𝘆𝗼𝘂
+
+• 𝗢𝗻𝗲 𝗹𝗼𝗰𝗮𝗹 𝘀𝘁𝗼𝗿𝗲: ~/.𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚎/, SQLite, server bound to 127.0.0.1
+• 𝗦𝗵𝗮𝗿𝗲𝗱 𝘁𝗼𝗼𝗹𝘀 𝗼𝘃𝗲𝗿 𝗠𝗖𝗣: notes, a deduplicated file vault, key-value memory, reminders
+• 𝗢𝗻𝗲 𝘀𝗲𝗮𝗿𝗰𝗵 𝗰𝗮𝗹𝗹: 𝚜𝚎𝚊𝚛𝚌𝚑.𝚏𝚒𝚗𝚍, BM25 keyword search over notes and files
+• 𝗘𝗮𝘀𝘆 𝘄𝗶𝗿𝗶𝗻𝗴: a "Copy install text" button with setup text an AI can follow
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗴𝗶𝘃𝗲 𝘆𝗼𝘂
+
+Any evidence that retrieval works on your data. 𝗧𝗵𝗲 𝗥𝗘𝗔𝗗𝗠𝗘 𝗵𝗮𝘀 𝗻𝗼 𝗯𝗲𝗻𝗰𝗵𝗺𝗮𝗿𝗸𝘀 𝗮𝗻𝗱 𝗻𝗼 𝗲𝘃𝗮𝗹𝘀. BM25 is keyword matching, so a question worded differently from the note can miss.
+
+It also doesn't separate risk. The same Bearer token that reads notes can call 𝚜𝚑𝚎𝚕𝚕.𝚎𝚡𝚎𝚌. The README says to treat it like a password, and I'd take that literally.
+
+Encryption is listed for API keys and tokens, not for the notes themselves.
+
+𝗕𝗲𝗳𝗼𝗿𝗲 𝘆𝗼𝘂 𝘁𝗿𝘂𝘀𝘁 𝗶𝘁, 𝗿𝘂𝗻 𝘁𝗵𝗶𝘀
+
+• 𝗪𝗿𝗶𝘁𝗲 𝟮𝟬 𝗳𝗮𝗰𝘁𝘀 through one client, in your own words
+• 𝗔𝘀𝗸 𝗳𝗼𝗿 𝘁𝗵𝗲𝗺 𝗳𝗿𝗼𝗺 𝗮 𝘀𝗲𝗰𝗼𝗻𝗱 𝗰𝗹𝗶𝗲𝗻𝘁, phrased differently each time
+• 𝗦𝗲𝘁 𝗮 𝗯𝗮𝘀𝗲𝗹𝗶𝗻𝗲: the same 20 questions against a plain text file pasted into context
+• 𝗖𝗼𝗺𝗽𝗮𝗿𝗲 𝗵𝗶𝘁 𝗿𝗮𝘁𝗲𝘀, then read the traces for every miss and see what 𝚜𝚎𝚊𝚛𝚌𝚑.𝚏𝚒𝚗𝚍 was actually asked
+
+If the plain file wins, you've saved yourself a server. If autoMate wins, you now have a number to quote.
+
+𝘈 𝘮𝘦𝘮𝘰𝘳𝘺 𝘭𝘢𝘺𝘦𝘳 𝘦𝘢𝘳𝘯𝘴 𝘪𝘵𝘴 𝘱𝘭𝘢𝘤𝘦 𝘰𝘯𝘭𝘺 𝘸𝘩𝘦𝘯 𝘵𝘩𝘦 𝘴𝘦𝘤𝘰𝘯𝘥 𝘤𝘭𝘪𝘦𝘯𝘵 𝘧𝘪𝘯𝘥𝘴 𝘸𝘩𝘢𝘵 𝘵𝘩𝘦 𝘧𝘪𝘳𝘴𝘵 𝘰𝘯𝘦 𝘸𝘳𝘰𝘵𝘦.
+
+Links in reply 👇
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗪𝗵𝗼 𝗦𝗵𝗼𝘂𝗹𝗱 𝗛𝗼𝗹𝗱 𝗬𝗼𝘂𝗿 𝗔𝗜'𝘀 𝗠𝗲𝗺𝗼𝗿𝘆?
+
+Most people who use AI seriously now use more than one tool. And each tool has its own memory, like a set of assistants who never talk to each other. You brief one in the morning and start over with the next.
+
+One answer is to stop keeping memory inside the assistants at all.
+
+That's the idea behind autoMate, an open-source project whose README calls it "𝘈 𝘴𝘮𝘢𝘳𝘵 𝘕𝘈𝘚 𝘧𝘰𝘳 𝘈𝘐." Think of it as 𝗮 𝗳𝗶𝗹𝗶𝗻𝗴 𝗰𝗮𝗯𝗶𝗻𝗲𝘁 𝗶𝗻 𝘆𝗼𝘂𝗿 𝗼𝘄𝗻 𝗵𝗼𝘂𝘀𝗲. Any assistant you let in can open the drawers: your notes, your files, a list of facts worth remembering, your reminders. It runs on your computer and stores everything in a folder there.
+
+Hire a different assistant next month and the cabinet stays where it is.
+
+There's a clever touch in the setup. One button copies instructions that are written for an AI, so you can hand them to your assistant and ask it to connect itself.
+
+Now the other side.
+
+𝗪𝗲 𝗱𝗼𝗻'𝘁 𝗸𝗻𝗼𝘄 𝗵𝗼𝘄 𝘄𝗲𝗹𝗹 𝗶𝘁 𝘄𝗼𝗿𝗸𝘀. The project publishes no tests of whether an assistant reliably finds what another one saved. The search is keyword-based, which is fast but can miss a note that uses different words.
+
+The cabinet also comes with keys to the rest of the house. The same access that reads notes can run commands on your computer, and the project's own README warns you to guard that access like a password.
+
+It isn't alone either. Basic Memory and Mem0's OpenMemory are working on the same problem in simpler forms.
+
+𝘐𝘧 𝘰𝘶𝘳 𝘸𝘰𝘳𝘬𝘪𝘯𝘨 𝘮𝘦𝘮𝘰𝘳𝘺 𝘸𝘪𝘵𝘩 𝘈𝘐 𝘦𝘯𝘥𝘴 𝘶𝘱 𝘪𝘯 𝘢 𝘧𝘰𝘭𝘥𝘦𝘳 𝘸𝘦 𝘰𝘸𝘯, 𝘩𝘰𝘸 𝘮𝘶𝘤𝘩 𝘥𝘰𝘦𝘴 𝘪𝘵 𝘮𝘢𝘵𝘵𝘦𝘳 𝘸𝘩𝘪𝘤𝘩 𝘈𝘐 𝘸𝘦'𝘳𝘦 𝘵𝘢𝘭𝘬𝘪𝘯𝘨 𝘵𝘰?
+
+Links in reply 👇
