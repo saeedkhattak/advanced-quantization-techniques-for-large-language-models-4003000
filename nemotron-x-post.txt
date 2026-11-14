@@ -1,0 +1,208 @@
+===== 1. STORY =====
+
+𝗪𝗵𝗼 𝗦𝗮𝗶𝗱 𝗧𝗵𝗮𝘁? 𝗔𝗻 𝗢𝗽𝗲𝗻 𝗠𝗼𝗱𝗲𝗹 𝗡𝗼𝘄 𝗔𝗻𝘀𝘄𝗲𝗿𝘀 𝗕𝗲𝘀𝘁
+
+Anyone who has read an AI meeting summary knows this mistake. The words are right, but they're pinned on the wrong person.
+
+That job has a name, speaker diarization. It labels each word as Speaker 1, Speaker 2 and so on. The usual accuracy score, word error rate, doesn't measure it at all.
+
+Artificial Analysis has now started ranking speech-to-text services on it. 𝗧𝗵𝗲 𝘁𝗼𝗽 𝘀𝗽𝗼𝘁 𝘄𝗲𝗻𝘁 𝘁𝗼 𝗮𝗻 𝗼𝗽𝗲𝗻-𝘄𝗲𝗶𝗴𝗵𝘁 𝗺𝗼𝗱𝗲𝗹, 𝗡𝘃𝗶𝗱𝗶𝗮'𝘀 𝗡𝗲𝗺𝗼𝘁𝗿𝗼𝗻 𝟯.𝟱 𝗧𝗿𝗮𝗻𝘀𝗰𝗿𝗶𝗯𝗲.
+
+𝗛𝗼𝘄 𝗧𝗵𝗲 𝗧𝗲𝘀𝘁 𝗪𝗼𝗿𝗸𝘀
+
+The score is called WDER, word diarization error rate. Take every word in the correct transcript. Count the ones given to the wrong speaker, plus the ones missed. Divide by the total.
+
+The test set is 𝟵𝟳 𝗘𝗻𝗴𝗹𝗶𝘀𝗵 𝗰𝗼𝗻𝘃𝗲𝗿𝘀𝗮𝘁𝗶𝗼𝗻𝘀, about 6.8 hours, with two to eight speakers. The models get no hint about how many people are talking.
+
+𝗧𝗵𝗲 𝗥𝗲𝘀𝘂𝗹𝘁𝘀 (𝗟𝗼𝘄𝗲𝗿 𝗜𝘀 𝗕𝗲𝘁𝘁𝗲𝗿)
+
+• Nemotron 3.5 Transcribe from Nvidia: 𝟯.𝟯%
+
+• Voxtral Small Transcribe 3 from Mistral: 𝟳.𝟱%
+
+• MAI-Transcribe-2 from Microsoft: 𝟴.𝟴%
+
+The gap grows in crowded rooms. Nemotron goes from 𝟭.𝟳% with two speakers to 𝟱.𝟲% with five to eight. Every other service in the index passed 10% in that group.
+
+𝗜𝗳 𝗬𝗼𝘂 𝗨𝘀𝗲 𝗧𝗿𝗮𝗻𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻 𝗧𝗼𝗼𝗹𝘀
+
+A speaker mistake does more damage than a typo. A doctor's instruction filed under the patient changes what the record means. For meetings with many voices, this is the number to ask a vendor about.
+
+𝗜𝗳 𝗬𝗼𝘂 𝗕𝘂𝗶𝗹𝗱 𝗧𝗵𝗲𝗺
+
+The weights are on Hugging Face under the OpenMDW-1.1 license, and Nvidia's model card says it's ready for commercial use. It's a 34B-parameter model with about 4.3B active, and the reference setup is one H100 with 80 GB. It covers 40 languages and recordings up to an hour.
+
+It isn't the fastest. Microsoft's model ran at 𝟯𝟭𝟯.𝟵𝘅 real time for $1.67 per 1,000 minutes, against Nemotron's 63.5x.
+
+The speaker part isn't new either. It comes from Nvidia's Nemotron 3 Diarization model from September, a roughly 100M-parameter encoder that's built into this one.
+
+𝗔 𝗙𝗲𝘄 𝗟𝗶𝗺𝗶𝘁𝘀
+
+𝗧𝗵𝗲 𝘁𝗲𝘀𝘁 𝗶𝘀 𝗘𝗻𝗴𝗹𝗶𝘀𝗵 𝗼𝗻𝗹𝘆, 𝗮𝗻𝗱 𝗺𝗼𝘀𝘁 𝗼𝗳 𝘁𝗵𝗲 𝗮𝘂𝗱𝗶𝗼 𝗶𝘀 𝗽𝗿𝗶𝘃𝗮𝘁𝗲, so nobody outside can rerun it. The score comes from one hosted endpoint (DeepInfra), which may not match every way of running the model.
+
+And the labels only separate voices. Nvidia's card says they "𝘥𝘰 𝘯𝘰𝘵 𝘦𝘴𝘵𝘢𝘣𝘭𝘪𝘴𝘩 𝘳𝘦𝘢𝘭-𝘸𝘰𝘳𝘭𝘥 𝘪𝘥𝘦𝘯𝘵𝘪𝘵𝘺."
+
+𝘎𝘦𝘵𝘵𝘪𝘯𝘨 𝘵𝘩𝘦 𝘸𝘰𝘳𝘥𝘴 𝘳𝘪𝘨𝘩𝘵 𝘸𝘢𝘴 𝘵𝘩𝘦 𝘰𝘭𝘥 𝘵𝘦𝘴𝘵. 𝘎𝘦𝘵𝘵𝘪𝘯𝘨 𝘵𝘩𝘦 𝘴𝘱𝘦𝘢𝘬𝘦𝘳 𝘳𝘪𝘨𝘩𝘵 𝘪𝘴 𝘵𝘩𝘦 𝘰𝘯𝘦 𝘮𝘦𝘦𝘵𝘪𝘯𝘨 𝘵𝘰𝘰𝘭𝘴 𝘩𝘢𝘷𝘦 𝘵𝘰 𝘱𝘢𝘴𝘴 𝘯𝘰𝘸.
+
+Links in reply 👇
+
+
+===== 2. KARPATHY STYLE =====
+
+𝗪𝗼𝗿𝗱 𝗘𝗿𝗿𝗼𝗿 𝗥𝗮𝘁𝗲 𝗪𝗮𝘀 𝗛𝗶𝗱𝗶𝗻𝗴 𝗔 𝗪𝗵𝗼𝗹𝗲 𝗙𝗮𝗶𝗹𝘂𝗿𝗲 𝗠𝗼𝗱𝗲
+
+Artificial Analysis added a diarization index to its speech-to-text leaderboard. Nvidia's Nemotron 3.5 Transcribe is on top at 𝟯.𝟯%, with Mistral's Voxtral Small Transcribe 3 at 7.5% and Microsoft's MAI-Transcribe-2 at 8.8%.
+
+The ranking is fine, but I think the metric is the more interesting part.
+
+The usual diarization score (DER) measures seconds of audio given to the wrong speaker. That makes it sensitive to exactly where a word's timestamp starts and ends. WDER asks something simpler: 𝗳𝗼𝗿 𝗲𝗮𝗰𝗵 𝘄𝗼𝗿𝗱, 𝘄𝗮𝘀 𝗶𝘁 𝗮𝘁𝘁𝗮𝗰𝗵𝗲𝗱 𝘁𝗼 𝘁𝗵𝗲 𝗿𝗶𝗴𝗵𝘁 𝗽𝗲𝗿𝘀𝗼𝗻? Wrong-speaker words plus missed words, divided by all the words.
+
+It's like grading a court stenographer on whether each line sits under the right name, and ignoring how precisely the clock was stamped.
+
+What I find telling is how the error grows. Nemotron is at 𝟭.𝟳% with two speakers and 𝟱.𝟲% with five to eight. Everyone else in the index goes past 10% in that last band. Two-person calls look close to solved. Rooms don't.
+
+On the architecture, Nvidia put a speaker encoder (from its earlier Nemotron 3 Diarization model) next to the speech encoder and fed both into one language model, 34B parameters with about 4.3B active. So the model that writes the words also sees who's speaking. Imo that's a plausible reason it does well here, though this benchmark can't prove it.
+
+Now the caveats. 𝟵𝟳 𝗰𝗼𝗻𝘃𝗲𝗿𝘀𝗮𝘁𝗶𝗼𝗻𝘀, 𝗘𝗻𝗴𝗹𝗶𝘀𝗵 𝗼𝗻𝗹𝘆, 𝗺𝗼𝘀𝘁𝗹𝘆 𝗽𝗿𝗶𝘃𝗮𝘁𝗲 𝗮𝘂𝗱𝗶𝗼. Nemotron was tested through a single DeepInfra endpoint. And it runs at 63.5x real time against MAI-Transcribe-2's 313.9x.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘭𝘪𝘬𝘦 𝘵𝘰 𝘴𝘦𝘦 𝘯𝘦𝘹𝘵 𝘪𝘴 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘵𝘢𝘣𝘭𝘦 𝘧𝘰𝘳 𝘯𝘰𝘯-𝘌𝘯𝘨𝘭𝘪𝘴𝘩 𝘢𝘶𝘥𝘪𝘰, 𝘢𝘯𝘥 𝘧𝘰𝘳 𝘰𝘷𝘦𝘳𝘭𝘢𝘱𝘱𝘪𝘯𝘨 𝘴𝘱𝘦𝘦𝘤𝘩 𝘳𝘦𝘱𝘰𝘳𝘵𝘦𝘥 𝘰𝘯 𝘪𝘵𝘴 𝘰𝘸𝘯.
+
+Links in reply 👇
+
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗔𝗿𝘁𝗶𝗳𝗶𝗰𝗶𝗮𝗹 𝗔𝗻𝗮𝗹𝘆𝘀𝗶𝘀'𝘀 𝗡𝗲𝘄 𝗗𝗶𝗮𝗿𝗶𝘇𝗮𝘁𝗶𝗼𝗻 𝗜𝗻𝗱𝗲𝘅
+
+Artificial Analysis now ranks non-streaming speech-to-text APIs on speaker attribution. These notes draw on AlphaSignal's summary of it and on Nvidia's model card.
+
+The metric is WDER, word diarization error rate: words given to the wrong speaker plus missed words, over all scored reference words. Fillers such as "uh" are excluded. Backchannels such as "mm-hmm" are scored.
+
+The three leaders listed:
+
+• Nemotron 3.5 Transcribe (Nvidia): 𝟯.𝟯%, 63.5x speed, open weights with no listed price
+
+• Voxtral Small Transcribe 3 (Mistral): 𝟳.𝟱%, 60.1x, $4.00 per 1,000 minutes
+
+• MAI-Transcribe-2 (Microsoft): 𝟴.𝟴%, 313.9x, $1.67 per 1,000 minutes
+
+Two details are worth a closer look.
+
+𝗧𝗵𝗲 𝘀𝗽𝗲𝗮𝗸𝗲𝗿 𝗯𝗮𝗻𝗱𝘀. The index averages three groups equally (2 speakers, 3 to 4, 5 to 8), so easy two-person calls can't hide bad results in big meetings. Nemotron goes from 𝟭.𝟳% to 𝟱.𝟲% across them.
+
+𝗪𝗵𝗮𝘁 𝘁𝗵𝗲 𝗺𝗼𝗱𝗲𝗹 𝗶𝘀. Nvidia's card calls it "𝘢𝘯 𝘰𝘱𝘦𝘯-𝘸𝘦𝘪𝘨𝘩𝘵, 𝘰𝘧𝘧𝘭𝘪𝘯𝘦 𝘴𝘱𝘦𝘦𝘤𝘩 𝘢𝘯𝘥 𝘢𝘶𝘥𝘪𝘰 𝘮𝘰𝘥𝘦𝘭 𝘧𝘰𝘳 𝘵𝘳𝘢𝘯𝘴𝘤𝘳𝘪𝘱𝘵𝘪𝘰𝘯 𝘪𝘯 40 𝘭𝘢𝘯𝘨𝘶𝘢𝘨𝘦𝘴, 𝘸𝘪𝘵𝘩 𝘴𝘶𝘱𝘱𝘰𝘳𝘵 𝘧𝘰𝘳 𝘳𝘦𝘤𝘰𝘳𝘥𝘪𝘯𝘨𝘴 𝘶𝘱 𝘵𝘰 𝘰𝘯𝘦 𝘩𝘰𝘶𝘳." It has 34B total parameters with about 4.3B active, an OpenMDW-1.1 license, and a release date of October 28. Its speaker encoder is the earlier Nemotron-3-Diarization model.
+
+𝗧𝗵𝗶𝗻𝗴𝘀 𝗧𝗼 𝗕𝗲 𝗖𝗮𝗿𝗲𝗳𝘂𝗹 𝗔𝗯𝗼𝘂𝘁
+
+• 𝗘𝗻𝗴𝗹𝗶𝘀𝗵 𝗼𝗻𝗹𝘆: 97 conversations, about 6.8 hours
+
+• 𝗠𝗼𝘀𝘁𝗹𝘆 𝗵𝗲𝗹𝗱 𝗼𝘂𝘁: only the NOTSOFAR-1 subset is public, so the result can't be independently reproduced
+
+• 𝗢𝗻𝗲 𝗲𝗻𝗱𝗽𝗼𝗶𝗻𝘁: the Nemotron score was measured on DeepInfra
+
+• 𝗟𝗮𝗯𝗲𝗹𝘀, 𝗻𝗼𝘁 𝗶𝗱𝗲𝗻𝘁𝗶𝘁𝗶𝗲𝘀: the card says speaker labels "𝘥𝘰 𝘯𝘰𝘵 𝘦𝘴𝘵𝘢𝘣𝘭𝘪𝘴𝘩 𝘳𝘦𝘢𝘭-𝘸𝘰𝘳𝘭𝘥 𝘪𝘥𝘦𝘯𝘵𝘪𝘵𝘺"
+
+• 𝗖𝗹𝗼𝘀𝗲 𝗿𝗮𝗻𝗸𝘀: results carry 95% confidence intervals
+
+• 𝗛𝗮𝗿𝗱𝗲𝗿 𝗮𝘂𝗱𝗶𝗼, 𝗵𝗶𝗴𝗵𝗲𝗿 𝗲𝗿𝗿𝗼𝗿: Nvidia's own card reports 𝟮𝟱.𝟵𝟭% 𝗰𝗽𝗪𝗘𝗥 on NOTSOFAR-1 with a single distant microphone. That's self-reported and a different metric (it includes word errors too), but it shows far-field meetings are still hard
+
+• 𝗧𝗵𝗲 𝗵𝗲𝗮𝗱𝗹𝗶𝗻𝗲: "beats every API" means every API in this index
+
+Links in reply 👇
+
+
+===== 4. SWYX STYLE =====
+
+𝗦𝗽𝗲𝗮𝗸𝗲𝗿 𝗔𝘁𝘁𝗿𝗶𝗯𝘂𝘁𝗶𝗼𝗻 𝗜𝘀 𝗧𝗵𝗲 𝗡𝗲𝘄 𝗦𝗽𝗲𝗲𝗰𝗵 𝗕𝗲𝗻𝗰𝗵𝗺𝗮𝗿𝗸
+
+Speech-to-text has been ranked on word error rate for years. Artificial Analysis just added a second axis, a diarization index that scores whether each word is given to the right speaker.
+
+That turns "who said it" into something you can shop on. Here's where the three listed leaders sit.
+
+• Nemotron 3.5 Transcribe (Nvidia): 𝟯.𝟯% error, open weights, so you self-host or pick a host
+
+• Voxtral Small Transcribe 3 (Mistral): 𝟳.𝟱%, the best score among priced APIs at $4 per 1,000 minutes
+
+• MAI-Transcribe-2 (Microsoft): 𝟴.𝟴%, the speed option at 313.9x real time and $1.67 per 1,000 minutes
+
+So there's an accuracy pick, a price pick and a speed pick, and they're three different models.
+
+𝗧𝗵𝗲 𝗼𝗽𝗲𝗻-𝘄𝗲𝗶𝗴𝗵𝘁 𝗺𝗼𝗱𝗲𝗹 𝗹𝗲𝗮𝗱𝘀, 𝗮𝗻𝗱 𝗯𝘆 𝘁𝗵𝗲 𝘄𝗶𝗱𝗲𝘀𝘁 𝗺𝗮𝗿𝗴𝗶𝗻 𝘄𝗵𝗲𝗿𝗲 𝗶𝘁'𝘀 𝗵𝗮𝗿𝗱𝗲𝘀𝘁. With five to eight speakers Nemotron scores 𝟱.𝟲% while every other entry in the index is above 10%.
+
+It's a big model for speech: 34B parameters with about 4.3B active, released October 28 under OpenMDW-1.1, with one H100 as the reference hardware. The speaker encoder was carried over from Nvidia's September diarization model.
+
+Some caveats. The set is 𝟵𝟳 𝗘𝗻𝗴𝗹𝗶𝘀𝗵 𝗰𝗼𝗻𝘃𝗲𝗿𝘀𝗮𝘁𝗶𝗼𝗻𝘀, 𝗺𝗼𝘀𝘁𝗹𝘆 𝗽𝗿𝗶𝘃𝗮𝘁𝗲 𝗮𝘂𝗱𝗶𝗼, and the Nemotron number comes from one DeepInfra endpoint. Streaming isn't covered at all.
+
+My read: word accuracy stops being the buying question. 𝗧𝗵𝗲 𝗿𝗼𝗼𝗺 𝗶𝘀, meaning how many people are in it and how many microphones.
+
+Links in reply 👇
+
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+𝟯.𝟯% 𝗢𝗻 𝗦𝗼𝗺𝗲𝗼𝗻𝗲 𝗘𝗹𝘀𝗲'𝘀 𝗔𝘂𝗱𝗶𝗼 𝗜𝘀𝗻'𝘁 𝗬𝗼𝘂𝗿 𝗡𝘂𝗺𝗯𝗲𝗿
+
+Artificial Analysis now scores speech-to-text APIs on speaker attribution. Nvidia's Nemotron 3.5 Transcribe leads at 𝟯.𝟯% 𝗪𝗗𝗘𝗥, ahead of Voxtral Small Transcribe 3 at 7.5% and MAI-Transcribe-2 at 8.8%.
+
+It's a good benchmark. It's also 97 conversations that aren't yours.
+
+𝗪𝗵𝗮𝘁 𝗜𝘁 𝗚𝗶𝘃𝗲𝘀 𝗬𝗼𝘂
+
+• A metric that fits the problem: wrong-speaker words plus missed words, over all words
+
+• Results split by speaker count. Nemotron scores 𝟭.𝟳% with two speakers and 𝟱.𝟲% with five to eight
+
+• Speed and price next to accuracy: 63.5x for Nemotron, 313.9x and $1.67 per 1,000 minutes for MAI-Transcribe-2
+
+• An independent run, not a vendor's own chart
+
+𝗪𝗵𝗮𝘁 𝗜𝘁 𝗗𝗼𝗲𝘀𝗻'𝘁
+
+• 𝗔𝗻𝘆 𝗹𝗮𝗻𝗴𝘂𝗮𝗴𝗲 𝗯𝘂𝘁 𝗘𝗻𝗴𝗹𝗶𝘀𝗵
+
+• Audio you can inspect. Most of the set is private
+
+• Streaming, latency to first word, or rate limits
+
+• Your deployment. Nemotron was measured on one DeepInfra endpoint, and self-hosting the 34B model means your own GPU (one H100 is Nvidia's reference)
+
+So run it on your own recordings before switching anything.
+
+• 𝗖𝗼𝗹𝗹𝗲𝗰𝘁: 20 of your real recordings, grouped by speaker count
+
+• 𝗟𝗮𝗯𝗲𝗹: who said each word, for a few minutes of each
+
+• 𝗕𝗮𝘀𝗲𝗹𝗶𝗻𝗲: run your current provider first
+
+• 𝗖𝗼𝗺𝗽𝗮𝗿𝗲: run the candidate with the same settings and no speaker count given
+
+• 𝗥𝗲𝗮𝗱 𝘁𝗵𝗲 𝗲𝗿𝗿𝗼𝗿𝘀: look at the wrong-speaker words. Are they at turn changes, in overlaps, or on short replies like "yeah"?
+
+That last step tells you more than the percentage does. 𝗔 𝟯% 𝗲𝗿𝗿𝗼𝗿 𝘁𝗵𝗮𝘁 𝗮𝗹𝘄𝗮𝘆𝘀 𝗹𝗮𝗻𝗱𝘀 𝗼𝗻 𝘁𝗵𝗲 𝗰𝘂𝘀𝘁𝗼𝗺𝗲𝗿'𝘀 "𝘆𝗲𝘀" 𝗶𝘀 𝘄𝗼𝗿𝘀𝗲 𝘁𝗵𝗮𝗻 𝗮 𝟲% 𝗲𝗿𝗿𝗼𝗿 𝘀𝗽𝗿𝗲𝗮𝗱 𝗮𝗰𝗿𝗼𝘀𝘀 𝗳𝗶𝗹𝗹𝗲𝗿.
+
+Links in reply 👇
+
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗖𝗮𝗻 𝗔𝗜 𝗙𝗶𝗻𝗮𝗹𝗹𝘆 𝗧𝗲𝗹𝗹 𝗪𝗵𝗼'𝘀 𝗧𝗮𝗹𝗸𝗶𝗻𝗴?
+
+AI has become very good at writing down what was said. It's been much weaker at a question people find easy: who said it?
+
+A new ranking from Artificial Analysis measures exactly that. It played 97 recorded English conversations, with two to eight people in each, to a set of transcription services. Then it checked every word to see if it was credited to the right speaker.
+
+Think of the minutes of a meeting. Every sentence can be word-perfect, and the minutes are still wrong if the manager's decision is written under the intern's name.
+
+𝗧𝗵𝗲 𝗯𝗲𝘀𝘁 𝗿𝗲𝘀𝘂𝗹𝘁 𝗰𝗮𝗺𝗲 𝗳𝗿𝗼𝗺 𝗮 𝗺𝗼𝗱𝗲𝗹 𝗮𝗻𝘆𝗼𝗻𝗲 𝗰𝗮𝗻 𝗱𝗼𝘄𝗻𝗹𝗼𝗮𝗱, Nvidia's Nemotron 3.5 Transcribe. It put about 𝟯.𝟯% of words under the wrong speaker or missed them. The next two listed, from Mistral and Microsoft, were at 7.5% and 8.8%.
+
+Group size mattered a lot. With two people, Nemotron's error was 𝟭.𝟳%. With five to eight it was 𝟱.𝟲%, and every other service in the ranking was above 10%.
+
+There are reasons for caution. 𝗧𝗵𝗲 𝘁𝗲𝘀𝘁 𝗶𝘀 𝗘𝗻𝗴𝗹𝗶𝘀𝗵 𝗼𝗻𝗹𝘆, 𝗮𝗻𝗱 𝗺𝗼𝘀𝘁 𝗼𝗳 𝘁𝗵𝗲 𝗿𝗲𝗰𝗼𝗿𝗱𝗶𝗻𝗴𝘀 𝗮𝗿𝗲 𝗽𝗿𝗶𝘃𝗮𝘁𝗲, so outsiders can't check it. The model was tested through one hosting company. It's also slower than Microsoft's, and running it yourself needs a serious graphics card.
+
+One more thing worth knowing: these systems separate voices, they don't recognise people. The output says "Speaker 1" and "Speaker 2". Nvidia's own documentation says the labels "𝘥𝘰 𝘯𝘰𝘵 𝘦𝘴𝘵𝘢𝘣𝘭𝘪𝘴𝘩 𝘳𝘦𝘢𝘭-𝘸𝘰𝘳𝘭𝘥 𝘪𝘥𝘦𝘯𝘵𝘪𝘵𝘺."
+
+So we know machines are getting good at splitting a conversation between voices, at least in English and in this test.
+
+𝘐𝘧 𝘢 𝘳𝘦𝘤𝘰𝘳𝘥 𝘰𝘧 𝘸𝘩𝘰 𝘴𝘢𝘪𝘥 𝘸𝘩𝘢𝘵 𝘣𝘦𝘤𝘰𝘮𝘦𝘴 𝘤𝘩𝘦𝘢𝘱 𝘢𝘯𝘥 𝘯𝘦𝘢𝘳𝘭𝘺 𝘢𝘶𝘵𝘰𝘮𝘢𝘵𝘪𝘤, 𝘸𝘩𝘪𝘤𝘩 𝘤𝘰𝘯𝘷𝘦𝘳𝘴𝘢𝘵𝘪𝘰𝘯𝘴 𝘸𝘪𝘭𝘭 𝘱𝘦𝘰𝘱𝘭𝘦 𝘴𝘵𝘪𝘭𝘭 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘬𝘦𝘦𝘱 𝘰𝘧𝘧 𝘵𝘩𝘦 𝘳𝘦𝘤𝘰𝘳𝘥?
+
+Links in reply 👇
