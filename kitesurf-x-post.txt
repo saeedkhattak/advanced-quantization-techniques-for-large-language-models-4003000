@@ -1,0 +1,214 @@
+===== 1. STORY =====
+
+𝗖𝗹𝗼𝘂𝗱𝗳𝗹𝗮𝗿𝗲 𝗕𝘂𝗶𝗹𝘁 𝗔 𝗕𝗿𝗼𝘄𝘀𝗲𝗿 𝗪𝗶𝘁𝗵 𝗡𝗼 𝗖𝗵𝗿𝗼𝗺𝗲 𝗜𝗻𝘀𝗶𝗱𝗲, 𝗧𝗵𝗲𝗻 𝗚𝗮𝘃𝗲 𝗜𝘁 𝗔𝘄𝗮𝘆
+
+When an AI agent "opens" a web page, there's usually a full copy of Chrome running behind it. Chrome was built for people. It carries a lot that software doesn't need, and it eats memory.
+
+Cloudflare's answer is Kitesurf, a browser engine written for agents. 𝗢𝗻 𝗡𝗼𝘃𝗲𝗺𝗯𝗲𝗿 𝟭𝟮 𝗶𝘁 𝘄𝗲𝗻𝘁 𝗼𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲 𝘂𝗻𝗱𝗲𝗿 𝗔𝗽𝗮𝗰𝗵𝗲 𝟮.𝟬.
+
+𝗪𝗵𝗮𝘁 𝗜𝘁 𝗗𝗼𝗲𝘀
+
+It reads HTML and CSS, runs the page's JavaScript, lays the page out and draws it. It can hand back a screenshot or a PDF. There's no Chrome and no container. Each page runs in its own small Cloudflare Worker.
+
+It also speaks the Chrome DevTools Protocol, the language tools use to remote-control Chrome. So Puppeteer connects to it as if it were Chrome.
+
+𝗧𝗵𝗲 𝗡𝘂𝗺𝗯𝗲𝗿𝘀 𝗔𝗿𝗲 𝗖𝗹𝗼𝘂𝗱𝗳𝗹𝗮𝗿𝗲'𝘀 𝗢𝘄𝗻
+
+These come from its August launch post: medians over 14 URLs, against a warm Chromium pool.
+
+• 𝗖𝗣𝗨 𝗳𝗼𝗿 𝗮 𝘀𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁: 380 ms against 1,173 ms
+
+• 𝗠𝗲𝗺𝗼𝗿𝘆 𝗳𝗼𝗿 𝗮 𝘀𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁: 57.8 MiB against 271.0 MiB
+
+• 𝗠𝗲𝗺𝗼𝗿𝘆 𝗳𝗼𝗿 𝗛𝗧𝗠𝗟 𝗲𝘅𝘁𝗿𝗮𝗰𝘁𝗶𝗼𝗻: 39.4 MiB against 273.7 MiB, which is 𝟳𝘅 𝗹𝗲𝘀𝘀
+
+• 𝗧𝗶𝗺𝗲 𝘁𝗼 𝗳𝗶𝗻𝗶𝘀𝗵 𝗮 𝘀𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁: 1,148 ms against 637 ms, which is 𝟭.𝟴𝘅 𝘀𝗹𝗼𝘄𝗲𝗿
+
+Cheaper to run, slower to finish. Cloudflare says both.
+
+𝗜𝗳 𝗬𝗼𝘂 𝗥𝘂𝗻 𝗔𝗴𝗲𝗻𝘁𝘀
+
+Memory decides how many browser sessions fit on one machine. A browser that needs a fifth of it changes what it costs to give every agent its own.
+
+𝗜𝗳 𝗬𝗼𝘂 𝗕𝘂𝗶𝗹𝗱
+
+Clone the repo, run 𝚙𝚗𝚙𝚖 𝚛𝚞𝚗 𝚍𝚎𝚟, and point Puppeteer at port 8787. Running it locally is free. Deploying it to your own Cloudflare account needs a Workers Paid plan.
+
+𝗪𝗵𝗮𝘁 𝗜𝘁 𝗦𝘁𝗮𝗻𝗱𝘀 𝗢𝗻
+
+Kitesurf isn't written from nothing. Layout comes from Blitz, CSS from Servo's Stylo, and a JavaScript fallback from Boa, all Rust compiled to WebAssembly.
+
+Cloudflare also says AI agents did much of the work, with the Web Platform Tests as their goalposts. By late September it passed 𝟳𝟯𝟬,𝟬𝟬𝟬+ of those subtests.
+
+𝗪𝗵𝗲𝗿𝗲 𝗜𝘁 𝗦𝘁𝗼𝗽𝘀
+
+𝗧𝗵𝗲 𝗥𝗘𝗔𝗗𝗠𝗘 𝗰𝗮𝗹𝗹𝘀 𝗶𝘁 "𝘢𝘯 𝘦𝘹𝘱𝘦𝘳𝘪𝘮𝘦𝘯𝘵𝘢𝘭 𝘣𝘳𝘰𝘸𝘴𝘦𝘳 𝘦𝘯𝘨𝘪𝘯𝘦." Cloudflare lists video, WebGL, bot-challenge pages and long logged-in sessions as things it can't do yet.
+
+It also has no login of its own. Anyone who finds your deployment's address can browse through it on your bill, so Cloudflare tells you to put an access layer in front first.
+
+𝘛𝘩𝘦 𝘸𝘦𝘣 𝘩𝘢𝘴 𝘢 𝘴𝘦𝘤𝘰𝘯𝘥 𝘬𝘪𝘯𝘥 𝘰𝘧 𝘷𝘪𝘴𝘪𝘵𝘰𝘳 𝘯𝘰𝘸, 𝘢𝘯𝘥 𝘪𝘵'𝘴 𝘴𝘵𝘢𝘳𝘵𝘪𝘯𝘨 𝘵𝘰 𝘨𝘦𝘵 𝘪𝘵𝘴 𝘰𝘸𝘯 𝘣𝘳𝘰𝘸𝘴𝘦𝘳𝘴.
+
+Links in reply 👇
+
+
+===== 2. KARPATHY STYLE =====
+
+𝗔 𝗕𝗿𝗼𝘄𝘀𝗲𝗿 𝗔𝘀 𝗔 𝗙𝘂𝗻𝗰𝘁𝗶𝗼𝗻 𝗖𝗮𝗹𝗹
+
+Cloudflare open-sourced Kitesurf this week, its browser engine for agents that runs on Workers with no Chrome underneath. Apache 2.0. I've been reading the launch posts and the README.
+
+The headline is efficiency. In Cloudflare's own benchmark (14 URLs, against a warm Chromium pool) it used 𝟯.𝟭𝘅 𝗹𝗲𝘀𝘀 𝗖𝗣𝗨 and 𝟰.𝟳𝘅 𝗹𝗲𝘀𝘀 𝗺𝗲𝗺𝗼𝗿𝘆 for a screenshot. It was also 𝟭.𝟴𝘅 𝘀𝗹𝗼𝘄𝗲𝗿 on the clock, which they report right next to the wins.
+
+I think the more interesting idea is statelessness. Chrome is an application: long-lived, full of state, something a person lives in. Kitesurf treats a page load as closer to a function call. Cloudflare's phrase is "𝘢𝘯 𝘦𝘱𝘩𝘦𝘮𝘦𝘳𝘢𝘭, 𝘧𝘶𝘭𝘭𝘺-𝘪𝘴𝘰𝘭𝘢𝘵𝘦𝘥, 𝘴𝘵𝘢𝘵𝘦𝘭𝘦𝘴𝘴 𝘦𝘯𝘨𝘪𝘯𝘦 𝘥𝘦𝘴𝘪𝘨𝘯𝘦𝘥 𝘵𝘰 𝘦𝘹𝘪𝘴𝘵 𝘰𝘯𝘭𝘺 𝘧𝘰𝘳 𝘵𝘩𝘦 𝘥𝘶𝘳𝘢𝘵𝘪𝘰𝘯 𝘰𝘧 𝘢 𝘵𝘢𝘴𝘬."
+
+It's the difference between an apartment and a hotel room. Nobody cleans your apartment between visits. A hotel room is reset for every guest, and that's what you want when the guest is an agent reading a page it shouldn't trust.
+
+Once nothing needs to survive, a lot gets simple. A stuck renderer can be killed and the request replayed. A thousand copies can run at once. Each page sits in its own isolate.
+
+The second thing worth noting is how it was built. Cloudflare says AI agents did much of the implementation against the Web Platform Tests, with humans on architecture and review. 𝗔 𝗵𝘂𝗴𝗲 𝗽𝘂𝗯𝗹𝗶𝗰 𝘁𝗲𝘀𝘁 𝘀𝘂𝗶𝘁𝗲 𝗮𝗰𝘁𝗲𝗱 𝗮𝘀 𝘁𝗵𝗲 𝘀𝗽𝗲𝗰. They reported 730,000+ passing subtests in September.
+
+Imo that count is also the weak spot. Cloudflare writes that these tests "𝘮𝘦𝘢𝘴𝘶𝘳𝘦 𝘤𝘰𝘯𝘧𝘰𝘳𝘮𝘢𝘯𝘤𝘦 𝘵𝘰 𝘞3𝘊 𝘴𝘵𝘢𝘯𝘥𝘢𝘳𝘥𝘴, 𝘯𝘰𝘵 𝘢 𝘣𝘳𝘰𝘸𝘴𝘦𝘳'𝘴 𝘢𝘣𝘪𝘭𝘪𝘵𝘺 𝘵𝘰 𝘳𝘦𝘯𝘥𝘦𝘳 𝘢𝘯𝘥 𝘪𝘯𝘵𝘦𝘳𝘢𝘤𝘵 𝘸𝘪𝘵𝘩 𝘳𝘦𝘢𝘭-𝘸𝘰𝘳𝘭𝘥 𝘸𝘦𝘣𝘴𝘪𝘵𝘦𝘴." And the README still says experimental: no video, no WebGL, no bot-challenge pages.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘴𝘦𝘦 𝘪𝘴 𝘢 𝘱𝘶𝘣𝘭𝘪𝘤 𝘯𝘶𝘮𝘣𝘦𝘳 𝘧𝘰𝘳 𝘳𝘦𝘢𝘭 𝘴𝘪𝘵𝘦𝘴: 𝘰𝘧 𝘵𝘩𝘦 𝘵𝘰𝘱 𝘧𝘦𝘸 𝘵𝘩𝘰𝘶𝘴𝘢𝘯𝘥 𝘱𝘢𝘨𝘦𝘴, 𝘩𝘰𝘸 𝘮𝘢𝘯𝘺 𝘥𝘰𝘦𝘴 𝘪𝘵 𝘭𝘰𝘢𝘥 𝘸𝘦𝘭𝘭 𝘦𝘯𝘰𝘶𝘨𝘩 𝘧𝘰𝘳 𝘢𝘯 𝘢𝘨𝘦𝘯𝘵 𝘵𝘰 𝘧𝘪𝘯𝘪𝘴𝘩 𝘢 𝘵𝘢𝘴𝘬?
+
+Links in reply 👇
+
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗞𝗶𝘁𝗲𝘀𝘂𝗿𝗳, 𝗖𝗹𝗼𝘂𝗱𝗳𝗹𝗮𝗿𝗲'𝘀 𝗢𝗽𝗲𝗻 𝗦𝗼𝘂𝗿𝗰𝗲 𝗕𝗿𝗼𝘄𝘀𝗲𝗿 𝗘𝗻𝗴𝗶𝗻𝗲
+
+Cloudflare released the Kitesurf source on November 12 under Apache 2.0. From the README:
+
+"𝘒𝘪𝘵𝘦𝘴𝘶𝘳𝘧 𝘪𝘴 𝘢𝘯 𝘦𝘹𝘱𝘦𝘳𝘪𝘮𝘦𝘯𝘵𝘢𝘭 𝘣𝘳𝘰𝘸𝘴𝘦𝘳 𝘦𝘯𝘨𝘪𝘯𝘦 𝘵𝘩𝘢𝘵 𝘳𝘶𝘯𝘴 𝘰𝘯 𝘊𝘭𝘰𝘶𝘥𝘧𝘭𝘢𝘳𝘦 𝘞𝘰𝘳𝘬𝘦𝘳𝘴. 𝘐𝘵 𝘱𝘢𝘳𝘴𝘦𝘴 𝘏𝘛𝘔𝘓, 𝘢𝘱𝘱𝘭𝘪𝘦𝘴 𝘊𝘚𝘚, 𝘳𝘶𝘯𝘴 𝘱𝘢𝘨𝘦 𝘑𝘢𝘷𝘢𝘚𝘤𝘳𝘪𝘱𝘵, 𝘢𝘯𝘥 𝘳𝘦𝘯𝘥𝘦𝘳𝘴 𝘴𝘤𝘳𝘦𝘦𝘯𝘴𝘩𝘰𝘵𝘴 𝘸𝘪𝘵𝘩𝘰𝘶𝘵 𝘊𝘩𝘳𝘰𝘮𝘦 𝘰𝘳 𝘢 𝘣𝘳𝘰𝘸𝘴𝘦𝘳 𝘤𝘰𝘯𝘵𝘢𝘪𝘯𝘦𝘳."
+
+It was announced on August 6 and got WebMCP support on September 28. The repo had 𝟲𝟬𝟳 𝘀𝘁𝗮𝗿𝘀 when I checked on November 14.
+
+Two things stand out.
+
+𝗜𝘁 𝘀𝗽𝗲𝗮𝗸𝘀 𝗖𝗗𝗣. The README: "𝘒𝘪𝘵𝘦𝘴𝘶𝘳𝘧 𝘴𝘱𝘦𝘢𝘬𝘴 𝘵𝘩𝘦 𝘊𝘩𝘳𝘰𝘮𝘦 𝘋𝘦𝘷𝘛𝘰𝘰𝘭𝘴 𝘗𝘳𝘰𝘵𝘰𝘤𝘰𝘭 (𝘊𝘋𝘗), 𝘴𝘰 𝘺𝘰𝘶 𝘤𝘢𝘯 𝘶𝘴𝘦 𝘪𝘵 𝘸𝘪𝘵𝘩 𝘊𝘋𝘗 𝘤𝘭𝘪𝘦𝘯𝘵𝘴 𝘴𝘶𝘤𝘩 𝘢𝘴 𝘗𝘶𝘱𝘱𝘦𝘵𝘦𝘦𝘳." You connect Puppeteer to 𝚠𝚜://𝟷𝟸𝟽.𝟶.𝟶.𝟷:𝟾𝟽𝟾𝟽/𝚍𝚎𝚟𝚝𝚘𝚘𝚕𝚜/𝚋𝚛𝚘𝚠𝚜𝚎𝚛 and the rest of your script stays the same. Chrome DevTools itself can attach to it too.
+
+𝗜𝘁'𝘀 𝗮𝘀𝘀𝗲𝗺𝗯𝗹𝗲𝗱 𝗳𝗿𝗼𝗺 𝗲𝘅𝗶𝘀𝘁𝗶𝗻𝗴 𝗥𝘂𝘀𝘁 𝗽𝗿𝗼𝗷𝗲𝗰𝘁𝘀. Blitz for HTML, DOM, layout and painting. Stylo for CSS. Boa for JavaScript, used only as a last resort. Linebender libraries for text and graphics, and Krilla for PDF. All compiled to WebAssembly, with patches kept in 𝚜𝚌𝚛𝚒𝚙𝚝𝚜/𝚙𝚊𝚝𝚌𝚑𝚎𝚜/.
+
+Cloudflare's August benchmark (self-reported, medians of five runs over 14 URLs, against a warm Chromium pool):
+
+• 𝗖𝗣𝗨, 𝘀𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁: 380 ms against 1,173 ms
+
+• 𝗠𝗲𝗺𝗼𝗿𝘆, 𝗛𝗧𝗠𝗟 𝗲𝘅𝘁𝗿𝗮𝗰𝘁𝗶𝗼𝗻: 39.4 MiB against 273.7 MiB
+
+• 𝗪𝗮𝗹𝗹 𝘁𝗶𝗺𝗲, 𝘀𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁: 1,148 ms against 637 ms, so 𝟭.𝟴𝘅 𝘀𝗹𝗼𝘄𝗲𝗿
+
+𝗧𝗵𝗶𝗻𝗴𝘀 𝗧𝗼 𝗕𝗲 𝗖𝗮𝗿𝗲𝗳𝘂𝗹 𝗔𝗯𝗼𝘂𝘁
+
+• 𝗡𝗼 𝗮𝘂𝘁𝗵𝗲𝗻𝘁𝗶𝗰𝗮𝘁𝗶𝗼𝗻: the README warns "𝘋𝘰 𝘯𝘰𝘵 𝘥𝘦𝘱𝘭𝘰𝘺 𝘒𝘪𝘵𝘦𝘴𝘶𝘳𝘧 𝘸𝘪𝘵𝘩𝘰𝘶𝘵 𝘢𝘶𝘵𝘩𝘦𝘯𝘵𝘪𝘤𝘢𝘵𝘪𝘰𝘯 𝘪𝘯 𝘧𝘳𝘰𝘯𝘵 𝘰𝘧 𝘪𝘵." A default workers.dev address is public and predictable
+
+• 𝗣𝗮𝗶𝗱 𝗽𝗹𝗮𝗻 𝘁𝗼 𝗱𝗲𝗽𝗹𝗼𝘆: it needs Dynamic Workers, which are part of Workers Paid. Local development works without it
+
+• 𝗡𝗼𝘁 𝗳𝘂𝗹𝗹 𝗖𝗵𝗿𝗼𝗺𝗲: the README says "𝘚𝘰𝘮𝘦 𝘊𝘩𝘳𝘰𝘮𝘦 𝘋𝘦𝘷𝘛𝘰𝘰𝘭𝘴 𝘧𝘦𝘢𝘵𝘶𝘳𝘦𝘴 𝘥𝘰 𝘯𝘰𝘵 𝘸𝘰𝘳𝘬 𝘺𝘦𝘵"
+
+• 𝗞𝗻𝗼𝘄𝗻 𝗴𝗮𝗽𝘀: video, WebGL, bot-challenge handshakes and long authenticated sessions, per the launch post
+
+• 𝗢𝗹𝗱 𝗻𝘂𝗺𝗯𝗲𝗿𝘀: the benchmark is from August and hasn't been independently reproduced that I could find
+
+• 𝗧𝗲𝘀𝘁 𝗰𝗼𝘂𝗻𝘁𝘀: 730,000+ Web Platform Test subtests passed as of September, which measures standards conformance and not real sites
+
+Links in reply 👇
+
+
+===== 4. SWYX STYLE =====
+
+𝗔𝗴𝗲𝗻𝘁 𝗕𝗿𝗼𝘄𝘀𝗲𝗿𝘀 𝗔𝗿𝗲 𝗦𝗽𝗹𝗶𝘁𝘁𝗶𝗻𝗴 𝗔𝘄𝗮𝘆 𝗙𝗿𝗼𝗺 𝗖𝗵𝗿𝗼𝗺𝗲
+
+For two years "a browser for agents" meant Chrome in the cloud with an API on top. Kitesurf going open source on November 12 is a sign that's changing.
+
+Here's roughly how the options divide.
+
+• 𝗛𝗼𝘀𝘁𝗲𝗱 𝗖𝗵𝗿𝗼𝗺𝗶𝘂𝗺: services like Browserbase run real Chrome for you. Full compatibility, full weight
+
+• 𝗪𝗿𝗮𝗽𝗽𝗲𝗱 𝗖𝗵𝗿𝗼𝗺𝗶𝘂𝗺 𝘆𝗼𝘂 𝗵𝗼𝘀𝘁: Steel puts an agent API around headless Chrome, open source
+
+• 𝗡𝗲𝘄 𝗲𝗻𝗴𝗶𝗻𝗲, 𝗻𝗼 𝗽𝗶𝘅𝗲𝗹𝘀: Lightpanda is written in Zig, runs JavaScript and builds the DOM, but doesn't draw the page
+
+• 𝗡𝗲𝘄 𝗲𝗻𝗴𝗶𝗻𝗲, 𝘄𝗶𝘁𝗵 𝗽𝗶𝘅𝗲𝗹𝘀: Kitesurf lays out and paints the page, returns screenshots and PDFs, and runs on Cloudflare Workers
+
+Kitesurf's place is the last one, and it's the only one of these tied to a single cloud.
+
+The numbers Cloudflare published in August explain the bet. Against a warm Chromium pool on 14 URLs it used 𝟰.𝟳𝘅 𝗹𝗲𝘀𝘀 𝗺𝗲𝗺𝗼𝗿𝘆 for a screenshot and 𝟳𝘅 𝗹𝗲𝘀𝘀 for HTML extraction. It was 𝟭.𝟴𝘅 𝘀𝗹𝗼𝘄𝗲𝗿 in wall-clock time. All of that is self-reported.
+
+Two details are easy to miss. Every one of these tools speaks the Chrome DevTools Protocol, so 𝗖𝗵𝗿𝗼𝗺𝗲'𝘀 𝗿𝗲𝗺𝗼𝘁𝗲-𝗰𝗼𝗻𝘁𝗿𝗼𝗹 𝗹𝗮𝗻𝗴𝘂𝗮𝗴𝗲 𝗵𝗮𝘀 𝗯𝗲𝗰𝗼𝗺𝗲 𝘁𝗵𝗲 𝘀𝘁𝗮𝗻𝗱𝗮𝗿𝗱 𝗲𝘃𝗲𝗻 𝘄𝗵𝗲𝗿𝗲 𝗖𝗵𝗿𝗼𝗺𝗲 𝗶𝘁𝘀𝗲𝗹𝗳 𝗶𝘀 𝗴𝗼𝗻𝗲. And Cloudflare says AI agents wrote much of Kitesurf against the Web Platform Tests, which is its own data point about what a small team can now attempt.
+
+The limits are real. It's labelled experimental. There's no video, WebGL or bot-challenge support yet. Deploying needs a Workers Paid plan, and it ships with no authentication.
+
+My read: the browser is splitting into two products. One is for people and optimises for features. The other is for agents and 𝗼𝗽𝘁𝗶𝗺𝗶𝘀𝗲𝘀 𝗳𝗼𝗿 𝗰𝗼𝘀𝘁 𝗽𝗲𝗿 𝗽𝗮𝗴𝗲.
+
+Links in reply 👇
+
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+𝟳𝘅 𝗟𝗲𝘀𝘀 𝗠𝗲𝗺𝗼𝗿𝘆 𝗗𝗼𝗲𝘀𝗻'𝘁 𝗠𝗮𝘁𝘁𝗲𝗿 𝗜𝗳 𝗬𝗼𝘂𝗿 𝗣𝗮𝗴𝗲𝘀 𝗗𝗼𝗻'𝘁 𝗟𝗼𝗮𝗱
+
+Cloudflare open-sourced Kitesurf, a browser engine for agents that runs on Workers without Chrome. The benchmark is appealing. Before moving anything to it, look at what was measured.
+
+𝗪𝗵𝗮𝘁 𝗬𝗼𝘂 𝗚𝗲𝘁
+
+• An Apache 2.0 engine you can run locally with 𝚙𝚗𝚙𝚖 𝚛𝚞𝚗 𝚍𝚎𝚟
+
+• A Chrome DevTools Protocol endpoint, so Puppeteer scripts connect unchanged
+
+• Screenshots, PDFs and HTML extraction
+
+• Cloudflare's own August numbers against a warm Chromium pool: 𝟯.𝟭𝘅 𝗹𝗲𝘀𝘀 𝗖𝗣𝗨 and 𝟰.𝟳𝘅 𝗹𝗲𝘀𝘀 𝗺𝗲𝗺𝗼𝗿𝘆 for a screenshot, 𝟳𝘅 𝗹𝗲𝘀𝘀 𝗺𝗲𝗺𝗼𝗿𝘆 for HTML extraction
+
+𝗪𝗵𝗮𝘁 𝗬𝗼𝘂 𝗗𝗼𝗻'𝘁
+
+• 𝗦𝗽𝗲𝗲𝗱. The same benchmark shows it 1.8x slower on screenshots and 1.7x slower on extraction
+
+• A success rate. The test was 14 URLs, and the post doesn't say how often a page came out right
+
+• Video, WebGL, bot-challenge pages or long logged-in sessions
+
+• Authentication. The README says not to deploy it without an access layer in front
+
+• A production label. The README's word is experimental
+
+Passing 730,000+ standards subtests (Cloudflare's September figure) tells you about standards. It doesn't tell you about the sites your agent visits.
+
+So measure that directly.
+
+• 𝗣𝗶𝗰𝗸 𝗽𝗮𝗴𝗲𝘀: 50 URLs your agent really uses, including the awkward ones
+
+• 𝗕𝗮𝘀𝗲𝗹𝗶𝗻𝗲: run each task in Chromium and save the screenshot and extracted text
+
+• 𝗥𝘂𝗻 𝗞𝗶𝘁𝗲𝘀𝘂𝗿𝗳: same Puppeteer script, different connection address
+
+• 𝗖𝗼𝗺𝗽𝗮𝗿𝗲: did the task finish, and does the extracted text match?
+
+• 𝗥𝗲𝗮𝗱 𝘁𝗵𝗲 𝗳𝗮𝗶𝗹𝘂𝗿𝗲𝘀: open the bad screenshots. Is it one missing feature or twenty different ones?
+
+𝗜𝗳 𝟰𝟱 𝗼𝗳 𝟱𝟬 𝗽𝗮𝘀𝘀, 𝘁𝗵𝗲 𝗺𝗲𝗺𝗼𝗿𝘆 𝘀𝗮𝘃𝗶𝗻𝗴 𝗶𝘀 𝗿𝗲𝗮𝗹 𝗺𝗼𝗻𝗲𝘆. 𝗜𝗳 𝟮𝟬 𝗽𝗮𝘀𝘀, 𝗶𝘁'𝘀 𝗮 𝘀𝗮𝘃𝗶𝗻𝗴 𝗼𝗻 𝘄𝗼𝗿𝗸 𝘆𝗼𝘂 𝗰𝗮𝗻'𝘁 𝘀𝗵𝗶𝗽.
+
+Links in reply 👇
+
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗪𝗵𝗮𝘁 𝗗𝗼𝗲𝘀 𝗔 𝗪𝗲𝗯 𝗕𝗿𝗼𝘄𝘀𝗲𝗿 𝗟𝗼𝗼𝗸 𝗟𝗶𝗸𝗲 𝗪𝗵𝗲𝗻 𝗧𝗵𝗲 𝗨𝘀𝗲𝗿 𝗜𝘀𝗻'𝘁 𝗛𝘂𝗺𝗮𝗻?
+
+Every browser you've used was designed around a person: tabs, a back button, saved passwords, smooth video. AI agents visit websites too, and they need almost none of that.
+
+Until now most agents have borrowed our browser anyway. Behind the scenes they start a hidden copy of Chrome, which is a bit like renting a whole family car to deliver one letter.
+
+Cloudflare has built something smaller. It's called Kitesurf, and on November 12 the company released its code for anyone to use. It loads a page, runs the page's code and can take a picture of the result, with no Chrome involved.
+
+𝗕𝘆 𝗖𝗹𝗼𝘂𝗱𝗳𝗹𝗮𝗿𝗲'𝘀 𝗼𝘄𝗻 𝗺𝗲𝗮𝘀𝘂𝗿𝗲𝗺𝗲𝗻𝘁𝘀, 𝗶𝘁 𝘂𝘀𝗲𝗱 𝗯𝗲𝘁𝘄𝗲𝗲𝗻 𝟯 𝗮𝗻𝗱 𝟳 𝘁𝗶𝗺𝗲𝘀 𝗹𝗲𝘀𝘀 𝗺𝗲𝗺𝗼𝗿𝘆 𝗮𝗻𝗱 𝗽𝗿𝗼𝗰𝗲𝘀𝘀𝗶𝗻𝗴 𝘁𝗵𝗮𝗻 𝗖𝗵𝗿𝗼𝗺𝗲 on a small test of 14 web pages. That matters because companies want to run thousands of these agents at once, and each one needs a browser.
+
+The same test found it was 𝗻𝗲𝗮𝗿𝗹𝘆 𝘁𝘄𝗶𝗰𝗲 𝗮𝘀 𝘀𝗹𝗼𝘄 to finish a page. And it can't yet handle video, 3D graphics or sites that check whether you're a robot. Cloudflare's own documentation calls it "𝘦𝘹𝘱𝘦𝘳𝘪𝘮𝘦𝘯𝘵𝘢𝘭."
+
+There's a second story inside this one. Building a browser has long been seen as one of the hardest jobs in software. Cloudflare says AI agents wrote much of this one, working through a huge public set of tests while people directed and checked the work.
+
+So here's what we know. A capable company can now build a working, limited browser quickly, and it chose to build it for machines.
+
+𝘐𝘧 𝘮𝘰𝘳𝘦 𝘢𝘯𝘥 𝘮𝘰𝘳𝘦 𝘷𝘪𝘴𝘪𝘵𝘰𝘳𝘴 𝘵𝘰 𝘢 𝘸𝘦𝘣𝘴𝘪𝘵𝘦 𝘢𝘳𝘦 𝘴𝘰𝘧𝘵𝘸𝘢𝘳𝘦, 𝘸𝘩𝘰 𝘸𝘪𝘭𝘭 𝘸𝘦𝘣𝘴𝘪𝘵𝘦𝘴 𝘣𝘦 𝘥𝘦𝘴𝘪𝘨𝘯𝘦𝘥 𝘧𝘰𝘳?
+
+Links in reply 👇
