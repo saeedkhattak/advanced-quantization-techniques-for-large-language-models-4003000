@@ -1,0 +1,213 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;font:14px system-ui}</style></head><body><title>AI Memory Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one project in the middle, five kinds of memory around it; pick a want, the map and the panel answer together. Single dark look by request. */
+:root{
+  color-scheme: dark;
+  --bg:#0a0e16; --surface:#111827; --raise:#172033; --line:#27324a;
+  --fg:#e9eef7; --mut:#93a1b8; --dim:#5d6a82;
+  --capture:#f3b94d; --service:#5ec9ff; --graph:#b693ff; --notes:#7fe0a4; --hub:#ff8d73;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Inter","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"DejaVu Sans Mono",monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 40px;
+  background-image:radial-gradient(ellipse 70% 50% at 30% 0%,rgba(94,201,255,.07),transparent 70%)}
+.wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,4.2vw,2.6rem);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+.lede{color:var(--mut);max-width:62ch;margin:10px 0 0}
+.lede b{color:var(--fg);font-weight:600}
+.ask{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin:0 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 .92rem var(--body);color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .2s,border-color .2s}
+.chip i{width:9px;height:9px;border-radius:50%;background:var(--c);flex:none}
+.chip:hover{border-color:var(--c)}
+.chip[aria-pressed="true"]{background:var(--raise);border-color:var(--c);box-shadow:0 0 0 1px var(--c) inset}
+:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+.grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:26px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+.map{margin:0;position:relative}
+.map svg{display:block;width:100%;height:auto;max-width:100%}
+.play{position:absolute;right:0;top:0;font:500 .75rem var(--mono);color:var(--mut);background:transparent;border:1px solid var(--line);border-radius:6px;padding:5px 9px;cursor:pointer}
+.play:hover{color:var(--fg);border-color:var(--mut)}
+
+/* map */
+.spoke{stroke:var(--line);stroke-width:1.5;fill:none}
+.flow{stroke:var(--c);stroke-width:2;fill:none;stroke-dasharray:3 13;stroke-linecap:round;opacity:.35;animation:flow 2.2s linear infinite}
+.node{cursor:pointer;transition:opacity .35s}
+.node .disc{fill:var(--surface);stroke:var(--c);stroke-width:1.5}
+.node .halo{fill:none;stroke:var(--c);stroke-width:1;opacity:0}
+.node .nm{font:600 15px var(--body);fill:var(--fg);text-anchor:middle}
+.node .tl{font:400 12.5px var(--mono);fill:var(--mut);text-anchor:middle}
+.g *{vector-effect:non-scaling-stroke}
+@media (max-width:560px){.node .nm{font-size:19px}.node .tl{font-size:15px}.core .c1{font-size:17px}.core .c2{font-size:13px}}
+.s{stroke:var(--c);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.f{fill:var(--c)}
+.faint{opacity:.35}
+.dimmed .node:not(.on){opacity:.62}
+.dimmed .flow:not(.on){opacity:.12}
+.flow.on{opacity:1;stroke-width:2.5;animation-duration:1.1s}
+.node.on .disc{fill:var(--raise);stroke-width:2.5}
+.node.on .halo{opacity:.5;animation:halo 2.4s ease-out infinite}
+.core .disc{fill:var(--raise);stroke:var(--fg);stroke-width:1.5}
+.core text{text-anchor:middle;fill:var(--fg)}
+.core .c1{font:600 15px var(--display)}
+.core .c2{font:400 11px var(--mono);fill:var(--mut)}
+.anim{transform-box:fill-box;transform-origin:center}
+.left{transform-box:fill-box;transform-origin:left center}
+
+@keyframes flow{to{stroke-dashoffset:-32}}
+@keyframes halo{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.28);opacity:0}}
+@keyframes ring{0%{transform:scale(.5);opacity:.9}100%{transform:scale(2.3);opacity:0}}
+@keyframes write{0%,8%{transform:scaleX(0)}40%,88%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:.15}}
+@keyframes send{0%{transform:translate(0,0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translate(var(--dx),var(--dy));opacity:0}}
+@keyframes draw{0%,5%{stroke-dashoffset:1}40%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:1}}
+@keyframes pop{0%,10%{transform:scale(.4);opacity:.3}35%,85%{transform:scale(1);opacity:1}100%{transform:scale(.4);opacity:.3}}
+@keyframes cell{0%,18%{fill-opacity:.85}25%,100%{fill-opacity:.12}}
+.ring{animation:ring 2.4s ease-out infinite}
+.wr{animation:write 4s ease-in-out infinite}
+.bl{animation:blink 1.1s steps(1) infinite}
+.pk{animation:send 1.8s ease-in-out infinite}
+.ed{stroke-dasharray:1;animation:draw 4.5s ease-in-out infinite}
+.pp{animation:pop 4.5s ease-in-out infinite}
+.cl{fill:var(--c);fill-opacity:.12;animation:cell 4s linear infinite}
+
+/* panel */
+.panel{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:10px;padding:22px 22px 20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.eyebrow{font:500 .74rem var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--c);margin:0}
+.panel h2{font-family:var(--display);font-weight:700;font-size:1.5rem;line-height:1.15;margin:4px 0 0;text-wrap:balance}
+.panel p{margin:0}
+.scene{color:var(--fg)}
+.kv{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.kv div{border-left:2px solid var(--line);padding-left:12px}
+.kv dt{font:500 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:2px}
+.kv dd{margin:0;color:var(--fg)}
+.tools{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.tools li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:baseline}
+.tools a{color:var(--fg);font-weight:600;text-decoration:underline;text-decoration-color:var(--c);text-underline-offset:4px}
+.tools a:hover{color:var(--c)}
+.tools .n{font:400 .85rem var(--mono);color:var(--mut);font-variant-numeric:tabular-nums}
+.tools .bar{grid-column:1/-1;height:5px;background:var(--raise);border-radius:3px;overflow:hidden}
+.tools .bar b{display:block;height:100%;background:var(--c);border-radius:3px;transition:width .6s ease}
+.tools .d{grid-column:1/-1;color:var(--mut);font-size:.92rem}
+.note{color:var(--mut);font-size:.85rem;max-width:80ch;margin:0}
+.note a{color:var(--mut)}
+@media (prefers-reduced-motion:reduce){.flow,.ring,.wr,.bl,.pk,.ed,.pp,.cl,.node.on .halo{animation:none}.ed{stroke-dashoffset:0}.cl{fill-opacity:.4}.tools .bar b{transition:none}}
+</style>
+
+<main class="wrap">
+  <header>
+    <h1>AI memory tools solve different problems</h1>
+    <p class="lede">You explain your project to Claude. Tomorrow you open Codex, and by Friday you're in Cursor explaining it again. Seven open-source projects promise to fix that, and they do it in five different ways. The example project here is <b>a restaurant ordering app</b>.</p>
+  </header>
+
+  <div>
+    <p class="ask" id="asklabel">What do you want to happen?</p>
+    <div class="chips" id="chips" role="group" aria-labelledby="asklabel"></div>
+  </div>
+
+  <div class="grid">
+    <figure class="map">
+      <button class="play" id="play" type="button" aria-pressed="true">Pause tour</button>
+      <svg id="svg" viewBox="0 0 720 660" role="img" aria-label="Map with your project in the middle and five kinds of AI memory around it"></svg>
+    </figure>
+    <section class="panel" id="panel" aria-live="polite"></section>
+  </div>
+
+  <p class="note">Star counts are from GitHub on 14 Nov 2026 and measure attention, not usage. Each description follows the project's own README; none has an independent head-to-head test that I found. The groups overlap.</p>
+</main>
+
+<script>
+(function(){
+var MAX=117000;
+var CATS=[
+ {id:"capture",color:"--capture",want:"Remember the work I did",name:"Automatic remembering",tl:"Claude-Mem · Hindsight",
+  scene:"You fix a bug where customers get charged twice. Next session, the agent already knows what caused it and how you fixed it. You wrote no handover.",
+  auto:"The session itself is captured. Claude-Mem's hooks pass each tool call to a local worker that takes notes. Hindsight's coding-agents package builds memory from git history and past sessions.",
+  check:"Capture depends on the agent. Claude-Mem records Claude Code, Codex, Cursor and OpenCode; Copilot CLI, Goose, Roo Code and Warp can only search.",
+  tools:[{n:"Claude-Mem",s:116979,u:"https://github.com/thedotmack/claude-mem",d:"Apache-2.0. Local SQLite plus semantic search."},
+         {n:"Hindsight",s:60993,u:"https://github.com/vectorize-io/hindsight",d:"MIT. Reports LongMemEval results on its own page."}],
+  glyph:'<circle class="s anim ring" cx="0" cy="-12" r="9"/><circle class="s anim ring" style="animation-delay:1.2s" cx="0" cy="-12" r="9"/><circle class="f bl" cx="0" cy="-12" r="6"/>'+
+        '<rect class="f left wr" x="-26" y="16" width="52" height="4" rx="2"/><rect class="f left wr" style="animation-delay:.5s" x="-26" y="26" width="38" height="4" rx="2"/><rect class="f left wr" style="animation-delay:1s" x="-26" y="36" width="46" height="4" rx="2"/>'},
+ {id:"service",color:"--service",want:"One store all my agents can query",name:"Shared memory service",tl:"Mem0 · Supermemory",
+  scene:"Claude, Codex and Cursor should all retrieve the same project facts: prices include VAT, orders need confirmation, payments use Stripe.",
+  auto:"It depends on the plugin. Mem0's basic usage is an explicit memory.add call from your code. Supermemory says it runs in the background once a plugin is installed.",
+  check:"Look at the plugin for each agent you use. Supermemory links separate ones for Claude Code, Cursor, Codex and OpenCode.",
+  tools:[{n:"Mem0",s:68952,u:"https://github.com/mem0ai/mem0",d:"Apache-2.0. Self-hosted server or cloud."},
+         {n:"Supermemory",s:31616,u:"https://github.com/supermemoryai/supermemory",d:"MIT. Cloud, or run it locally."}],
+  glyph:'<path class="s faint" d="M-30-28L-10 10M0-32L0 10M30-28L10 10"/><circle class="s" cx="-30" cy="-28" r="6"/><circle class="s" cx="0" cy="-32" r="6"/><circle class="s" cx="30" cy="-28" r="6"/>'+
+        '<rect class="s" x="-24" y="12" width="48" height="24" rx="5"/><path class="s faint" d="M-14 20H14M-14 28H8"/>'+
+        '<circle class="f pk" style="--dx:20px;--dy:38px" cx="-30" cy="-28" r="3.5"/><circle class="f pk" style="--dx:0px;--dy:42px;animation-delay:.6s" cx="0" cy="-32" r="3.5"/><circle class="f pk" style="--dx:-20px;--dy:38px;animation-delay:1.2s" cx="30" cy="-28" r="3.5"/>'},
+ {id:"graph",color:"--graph",want:"Link things that belong together",name:"Connected knowledge",tl:"Cognee · Graphiti",
+  scene:"Your information is spread across menus, supplier documents, code and conversations. You want to connect an ingredient to its supplier, the dishes that use it, and the reason for a substitution.",
+  auto:"A pipeline builds the graph from what you feed it, so relationships can be followed as well as text being found.",
+  check:"Graphiti needs a graph database you supply, and its reference MCP server has no authentication.",
+  tools:[{n:"Cognee",s:33307,u:"https://github.com/topoteretes/cognee",d:"Apache-2.0. A graph you host, with vector search."},
+         {n:"Graphiti",s:32805,u:"https://github.com/getzep/graphiti",d:"Apache-2.0. Works on Neo4j, FalkorDB or Neptune."}],
+  glyph:'<path class="s ed" pathLength="1" d="M-28-22L0 0"/><path class="s ed" pathLength="1" style="animation-delay:.35s" d="M0 0L28-26"/><path class="s ed" pathLength="1" style="animation-delay:.7s" d="M0 0L30 22"/><path class="s ed" pathLength="1" style="animation-delay:1.05s" d="M0 0L-20 28"/><path class="s ed" pathLength="1" style="animation-delay:1.4s" d="M-28-22L-20 28"/>'+
+        '<circle class="f" cx="0" cy="0" r="7"/><circle class="f anim pp" cx="-28" cy="-22" r="5.5"/><circle class="f anim pp" style="animation-delay:.35s" cx="28" cy="-26" r="5.5"/><circle class="f anim pp" style="animation-delay:.7s" cx="30" cy="22" r="5.5"/><circle class="f anim pp" style="animation-delay:1.05s" cx="-20" cy="28" r="5.5"/>'},
+ {id:"notes",color:"--notes",want:"Notes I can read and edit myself",name:"Readable project notes",tl:"Basic Memory",
+  scene:"Architecture decisions and operating rules live as Markdown files. You can open them, fix them, and different assistants read the same notes.",
+  auto:"Nothing is hidden. What the assistant wrote is a file on your disk, with a SQLite index next to it.",
+  check:"The license is AGPL-3.0, which matters if you build it into a product.",
+  tools:[{n:"Basic Memory",s:4571,u:"https://github.com/basicmachines-co/basic-memory",d:"AGPL-3.0. Markdown files plus a SQLite index."}],
+  glyph:'<path class="s" d="M-24-36H12L26-22V36H-24Z"/><path class="s faint" d="M12-36V-22H26"/><rect class="f" x="-16" y="-24" width="6" height="6" rx="1"/><rect class="f left wr" x="-6" y="-23" width="14" height="4" rx="2"/>'+
+        '<rect class="f left wr" style="animation-delay:.4s" x="-16" y="-8" width="34" height="4" rx="2"/><rect class="f left wr" style="animation-delay:.8s" x="-16" y="2" width="28" height="4" rx="2"/><rect class="f left wr" style="animation-delay:1.2s" x="-16" y="12" width="34" height="4" rx="2"/><rect class="f bl" x="-16" y="21" width="3" height="8"/>'},
+ {id:"hub",color:"--hub",want:"A place to keep things and get things done",name:"Storage and tools hub",tl:"autoMate",
+  scene:"Now the assistant should store the menu, remember opening hours, save supplier files, set reminders and operate a browser.",
+  auto:"A client has to choose to save something. The README describes notes, a file vault, reminders and executors behind one local MCP server, and no automatic session capture.",
+  check:"Neither the README nor docs/channels.md mentions Codex. One Bearer token covers the notes and shell.exec, so guard it like a password.",
+  tools:[{n:"autoMate",s:4009,u:"https://github.com/yuruotong1/autoMate",d:"MIT. Last pushed 18 Sep 2026."}],
+  glyph:'<rect class="s" x="-36" y="-36" width="72" height="72" rx="8"/>'+
+        '<rect class="cl" x="-31" y="-31" width="29" height="29" rx="4"/><rect class="cl" style="animation-delay:1s" x="2" y="-31" width="29" height="29" rx="4"/><rect class="cl" style="animation-delay:2s" x="-31" y="2" width="29" height="29" rx="4"/><rect class="cl" style="animation-delay:3s" x="2" y="2" width="29" height="29" rx="4"/>'+
+        '<path class="s" d="M-24-21H-9M-24-13H-14"/><path class="s" d="M8-23H15L18-20H26V-10H8Z"/><path class="s" d="M-22 23H-11M-21 22V16A4.5 4.5 0 0 1-12 16V22M-17.500 26V26.500"/><path class="s" d="M8 9H26V25H8ZM8 14H26"/>'}
+];
+var CX=360,CY=340,R=212,NR=60;
+var svg=document.getElementById("svg"),chips=document.getElementById("chips"),panel=document.getElementById("panel"),play=document.getElementById("play");
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+var h="";
+CATS.forEach(function(c,i){
+  var a=(-90+i*72)*Math.PI/180;c.x=CX+R*Math.cos(a);c.y=CY+R*Math.sin(a);
+  h+='<path class="spoke" d="M'+CX+' '+CY+'L'+c.x.toFixed(1)+' '+c.y.toFixed(1)+'"/><path class="flow" data-i="'+i+'" style="--c:var('+c.color+')" d="M'+CX+' '+CY+'L'+c.x.toFixed(1)+' '+c.y.toFixed(1)+'"/>';
+});
+CATS.forEach(function(c,i){
+  h+='<g class="node" data-i="'+i+'" tabindex="0" role="button" aria-label="'+esc(c.name+": "+c.tl)+'" style="--c:var('+c.color+')" transform="translate('+c.x.toFixed(1)+' '+c.y.toFixed(1)+')">'+
+     '<circle class="halo anim" r="'+NR+'"/><circle class="disc" r="'+NR+'"/><g class="g">'+c.glyph+'</g>'+
+     '<text class="nm" y="'+(i===0?-(NR+30):NR+24)+'">'+esc(c.name)+'</text><text class="tl" y="'+(i===0?-(NR+11):NR+43)+'">'+esc(c.tl)+'</text></g>';
+});
+h+='<g class="core" transform="translate('+CX+' '+CY+')"><circle class="disc" r="52"/><text class="c1" y="-2">Your project</text><text class="c2" y="16">ordering app</text></g>';
+svg.innerHTML=h;
+CATS.forEach(function(c,i){
+  var b=document.createElement("button");b.type="button";b.className="chip";b.id="chip-"+c.id;b.style.setProperty("--c","var("+c.color+")");
+  b.setAttribute("aria-pressed","false");b.innerHTML="<i></i>"+esc(c.want);
+  b.addEventListener("click",function(){stop();select(i)});chips.appendChild(b);
+});
+var cur=-1,timer=null;
+function select(i){
+  cur=i;var c=CATS[i];
+  svg.classList.add("dimmed");
+  svg.querySelectorAll(".node,.flow").forEach(function(n){n.classList.toggle("on",+n.getAttribute("data-i")===i)});
+  chips.querySelectorAll(".chip").forEach(function(b,k){b.setAttribute("aria-pressed",k===i?"true":"false")});
+  panel.style.setProperty("--c","var("+c.color+")");
+  panel.innerHTML='<div><p class="eyebrow">'+esc(c.name)+'</p><h2>“'+esc(c.want)+'”</h2></div>'+
+    '<p class="scene">'+esc(c.scene)+'</p>'+
+    '<dl class="kv"><div><dt>What happens without asking</dt><dd>'+esc(c.auto)+'</dd></div><div><dt>Check first</dt><dd>'+esc(c.check)+'</dd></div></dl>'+
+    '<ul class="tools">'+c.tools.map(function(t){return '<li><a href="'+t.u+'" target="_blank" rel="noopener">'+esc(t.n)+'</a><span class="n">'+(t.s>=10000?"about "+Math.round(t.s/1000)+"k":"about "+(t.s/1000).toFixed(1)+"k")+' stars</span><span class="bar"><b style="width:'+Math.max(2,t.s/MAX*100).toFixed(1)+'%"></b></span><span class="d">'+esc(t.d)+'</span></li>'}).join("")+'</ul>';
+}
+function stop(){if(timer){clearInterval(timer);timer=null}play.textContent="Play tour";play.setAttribute("aria-pressed","false")}
+function start(){stop();timer=setInterval(function(){select((cur+1)%CATS.length)},5200);play.textContent="Pause tour";play.setAttribute("aria-pressed","true")}
+play.addEventListener("click",function(){timer?stop():start()});
+svg.querySelectorAll(".node").forEach(function(n){
+  var i=+n.getAttribute("data-i");
+  n.addEventListener("click",function(){stop();select(i)});
+  n.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();stop();select(i)}});
+});
+select(0);
+if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches){stop()}else{start()}
+})();
+</script>
+</body></html>
