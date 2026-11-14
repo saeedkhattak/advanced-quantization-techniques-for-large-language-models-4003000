@@ -1,0 +1,202 @@
+===== 1. STORY (YOUR DRAFT, FORMATTED) =====
+
+𝗔𝗜 𝗠𝗲𝗺𝗼𝗿𝘆 𝗧𝗼𝗼𝗹𝘀 𝗗𝗼𝗻'𝘁 𝗔𝗹𝗹 𝗦𝗼𝗹𝘃𝗲 𝗧𝗵𝗲 𝗦𝗮𝗺𝗲 𝗣𝗿𝗼𝗯𝗹𝗲𝗺
+
+You explain your project to Claude. Tomorrow you open Codex. By Friday you're in Cursor, explaining it all again.
+
+That's the problem behind the growing AI memory category. But 𝘁𝗵𝗲𝘀𝗲 𝘁𝗼𝗼𝗹𝘀 𝘀𝗼𝗹𝘃𝗲 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝗽𝗮𝗿𝘁𝘀 𝗼𝗳 𝗶𝘁.
+
+Suppose you're building a restaurant ordering app.
+
+𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗰 𝗿𝗲𝗺𝗲𝗺𝗯𝗲𝗿𝗶𝗻𝗴
+Claude-Mem / Hindsight
+
+You fix a bug where customers get charged twice. You want the next session to remember what caused it and how you fixed it, 𝘄𝗶𝘁𝗵𝗼𝘂𝘁 𝘄𝗿𝗶𝘁𝗶𝗻𝗴 𝗮 𝗵𝗮𝗻𝗱𝗼𝘃𝗲𝗿 𝘆𝗼𝘂𝗿𝘀𝗲𝗹𝗳.
+
+These tools capture session learnings and bring relevant context back later. Check capture support for each agent you use.
+
+𝗦𝗵𝗮𝗿𝗲𝗱 𝗺𝗲𝗺𝗼𝗿𝘆 𝗶𝗻𝗳𝗿𝗮𝘀𝘁𝗿𝘂𝗰𝘁𝘂𝗿𝗲
+Mem0 / Supermemory
+
+You want Claude, Codex and Cursor to retrieve the same project facts: prices include VAT, orders require confirmation, payments use Stripe.
+
+Choose these when you want 𝗮 𝗰𝗼𝗺𝗺𝗼𝗻 𝗺𝗲𝗺𝗼𝗿𝘆 𝘀𝗲𝗿𝘃𝗶𝗰𝗲. Plugins and integrations determine how much gets saved automatically.
+
+𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱 𝗸𝗻𝗼𝘄𝗹𝗲𝗱𝗴𝗲
+Cognee / Graphiti
+
+Your information is scattered across menus, supplier documents, code and conversations.
+
+You want to connect an ingredient to a supplier, the dishes using it and the decisions behind a substitution.
+
+Choose these when 𝗿𝗲𝗹𝗮𝘁𝗶𝗼𝗻𝘀𝗵𝗶𝗽𝘀 𝗺𝗮𝘁𝘁𝗲𝗿 alongside finding relevant text.
+
+𝗥𝗲𝗮𝗱𝗮𝗯𝗹𝗲 𝗽𝗿𝗼𝗷𝗲𝗰𝘁 𝗻𝗼𝘁𝗲𝘀
+Basic Memory
+
+You want architecture decisions and operating rules saved as Markdown you can inspect and edit yourself, with different assistants accessing the same notes.
+
+Choose this when 𝗿𝗲𝗮𝗱𝗮𝗯𝗹𝗲, 𝗽𝗼𝗿𝘁𝗮𝗯𝗹𝗲 𝗸𝗻𝗼𝘄𝗹𝗲𝗱𝗴𝗲 matters most.
+
+𝗦𝗼 𝘄𝗵𝗲𝗿𝗲 𝗱𝗼𝗲𝘀 𝗮𝘂𝘁𝗼𝗠𝗮𝘁𝗲 𝗳𝗶𝘁?
+
+Now you want the assistant to store the menu, remember opening hours, save supplier files, set reminders and operate a browser.
+
+autoMate puts those capabilities behind 𝗼𝗻𝗲 𝗹𝗼𝗰𝗮𝗹 𝗵𝘂𝗯 that different AI clients can access.
+
+Its appeal is having your information and tools together.
+
+Its tradeoff is that shared memory access doesn't automatically mean every coding session gets captured. Its README 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗲𝘀𝘁𝗮𝗯𝗹𝗶𝘀𝗵 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗰 𝗿𝗲𝗺𝗲𝗺𝗯𝗲𝗿𝗶𝗻𝗴 across every agent, or a dedicated Codex integration.
+
+I'd shortlist Claude-Mem or Hindsight for "𝘳𝘦𝘮𝘦𝘮𝘣𝘦𝘳 𝘵𝘩𝘦 𝘸𝘰𝘳𝘬 𝘐 𝘥𝘪𝘥."
+
+I'd consider autoMate for "𝘨𝘪𝘷𝘦 𝘮𝘺 𝘢𝘴𝘴𝘪𝘴𝘵𝘢𝘯𝘵𝘴 𝘢 𝘴𝘩𝘢𝘳𝘦𝘥 𝘱𝘭𝘢𝘤𝘦 𝘵𝘰 𝘬𝘦𝘦𝘱 𝘵𝘩𝘪𝘯𝘨𝘴 𝘢𝘯𝘥 𝘨𝘦𝘵 𝘵𝘩𝘪𝘯𝘨𝘴 𝘥𝘰𝘯𝘦."
+
+The groups overlap. 𝘛𝘩𝘦 𝘥𝘦𝘤𝘪𝘥𝘪𝘯𝘨 𝘲𝘶𝘦𝘴𝘵𝘪𝘰𝘯 𝘪𝘴 𝘸𝘩𝘢𝘵 𝘺𝘰𝘶 𝘦𝘹𝘱𝘦𝘤𝘵 𝘵𝘰 𝘩𝘢𝘱𝘱𝘦𝘯 𝘸𝘪𝘵𝘩𝘰𝘶𝘵 𝘢𝘴𝘬𝘪𝘯𝘨.
+
+Links in reply 👇
+
+===== 2. KARPATHY STYLE =====
+
+"𝗠𝗲𝗺𝗼𝗿𝘆" 𝗜𝘀 𝗙𝗼𝘂𝗿 𝗗𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝗣𝗿𝗼𝗯𝗹𝗲𝗺𝘀
+
+People say "AI memory" as if it were one feature. Looking at the open-source projects, I think it's at least four, and they get mixed up because the symptom is the same: you explained your project to Claude, and now Codex knows nothing.
+
+The useful split, imo, is 𝘄𝗵𝗼 𝗱𝗼𝗲𝘀 𝘁𝗵𝗲 𝘄𝗿𝗶𝘁𝗶𝗻𝗴.
+
+In Claude-Mem, a second agent does. The README says it "𝘵𝘢𝘬𝘦𝘴 𝘯𝘰𝘵𝘦𝘴 𝘸𝘩𝘪𝘭𝘦 𝘪𝘵 𝘸𝘰𝘳𝘬𝘴", with hooks passing each tool call to a local worker. You fix a double-charge bug in your restaurant app and the cause is on file next session, with no handover from you.
+
+In Mem0, your code does. The basic example is an explicit 𝚖𝚎𝚖𝚘𝚛𝚢.𝚊𝚍𝚍(...) call. It's a service that several agents can read, and what goes in depends on what you wire up.
+
+In Cognee and Graphiti, a pipeline does. It turns documents and conversations into a graph, so an ingredient links to its supplier and to the dishes that use it.
+
+In Basic Memory, you and the model both do, in Markdown files you can open and fix.
+
+autoMate sits somewhere else. It's closer to 𝗮 𝗱𝗶𝘀𝗸 𝘁𝗵𝗮𝗻 𝗮 𝗺𝗲𝗺𝗼𝗿𝘆: notes, a file vault, reminders and browser control behind one local server that MCP clients can reach. Nothing in its README says a coding session gets captured unless a client decides to save something. There is also no mention of Codex in the README or docs/channels.md.
+
+So these are different layers, not competitors. A notebook that fills itself in and a shelf to put things on can both be useful, and they fail in different ways.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘸𝘢𝘯𝘵 𝘯𝘦𝘹𝘵 𝘪𝘴 𝘢 𝘱𝘭𝘢𝘪𝘯 𝘵𝘦𝘴𝘵 𝘧𝘰𝘳 𝘦𝘢𝘤𝘩 𝘰𝘯𝘦: 𝘩𝘰𝘸 𝘰𝘧𝘵𝘦𝘯 𝘥𝘰𝘦𝘴 𝘵𝘩𝘦 𝘴𝘦𝘤𝘰𝘯𝘥 𝘢𝘨𝘦𝘯𝘵 𝘧𝘪𝘯𝘥 𝘸𝘩𝘢𝘵 𝘵𝘩𝘦 𝘧𝘪𝘳𝘴𝘵 𝘰𝘯𝘦 𝘭𝘦𝘢𝘳𝘯𝘦𝘥?
+
+Links in reply 👇
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗦𝗲𝘃𝗲𝗻 𝗔𝗜 𝗠𝗲𝗺𝗼𝗿𝘆 𝗣𝗿𝗼𝗷𝗲𝗰𝘁𝘀, 𝗔𝗻𝗱 𝗪𝗵𝗲𝗿𝗲 𝗮𝘂𝘁𝗼𝗠𝗮𝘁𝗲 𝗙𝗶𝘁𝘀
+
+I grouped these by what each README says happens automatically. Star counts are from GitHub 𝗮𝘀 𝗼𝗳 𝟭𝟰 𝗡𝗼𝘃 𝟮𝟬𝟮𝟲.
+
+𝗦𝗲𝘀𝘀𝗶𝗼𝗻 𝗰𝗮𝗽𝘁𝘂𝗿𝗲
+
+Claude-Mem (about 117k stars, Apache-2.0): "𝘏𝘰𝘰𝘬𝘴 𝘪𝘯 𝘺𝘰𝘶𝘳 𝘢𝘨𝘦𝘯𝘵 𝘩𝘢𝘯𝘥 𝘦𝘢𝘤𝘩 𝘵𝘰𝘰𝘭 𝘤𝘢𝘭𝘭 (𝘸𝘩𝘢𝘵 𝘪𝘵 𝘳𝘦𝘢𝘥𝘴, 𝘦𝘥𝘪𝘵𝘴 𝘢𝘯𝘥 𝘳𝘶𝘯𝘴) 𝘵𝘰 𝘢 𝘴𝘮𝘢𝘭𝘭 𝘭𝘰𝘤𝘢𝘭 𝘸𝘰𝘳𝘬𝘦𝘳." Full capture is listed for Claude Code, Codex, Cursor and OpenCode. The README adds that "𝘊𝘰𝘱𝘪𝘭𝘰𝘵 𝘊𝘓𝘐, 𝘎𝘰𝘰𝘴𝘦, 𝘙𝘰𝘰 𝘊𝘰𝘥𝘦 𝘢𝘯𝘥 𝘞𝘢𝘳𝘱 𝘤𝘢𝘯 𝘴𝘦𝘢𝘳𝘤𝘩 𝘺𝘰𝘶𝘳 𝘮𝘦𝘮𝘰𝘳𝘺, 𝘣𝘶𝘵 𝘵𝘩𝘦𝘪𝘳 𝘴𝘦𝘴𝘴𝘪𝘰𝘯𝘴 𝘢𝘳𝘦𝘯'𝘵 𝘳𝘦𝘤𝘰𝘳𝘥𝘦𝘥."
+
+Hindsight (about 61k, MIT): its coding-agents package builds a memory bank per repo from git history and past sessions. Outside that package you call retain, recall and reflect yourself.
+
+𝗔 𝘀𝗵𝗮𝗿𝗲𝗱 𝘀𝗲𝗿𝘃𝗶𝗰𝗲
+
+Mem0 (about 69k, Apache-2.0): the basic usage is an explicit 𝚖𝚎𝚖𝚘𝚛𝚢.𝚊𝚍𝚍(...). The README has skills for coding assistants but describes no automatic capture for them.
+
+Supermemory (about 31.6k, MIT): links separate plugins for Claude Code, Cursor, Codex and OpenCode, and says it "𝘳𝘶𝘯𝘴 𝘪𝘯 𝘵𝘩𝘦 𝘣𝘢𝘤𝘬𝘨𝘳𝘰𝘶𝘯𝘥" once installed.
+
+𝗚𝗿𝗮𝗽𝗵𝘀
+
+Cognee (about 33.3k) and Graphiti (about 32.8k), both Apache-2.0. Graphiti needs a graph database you supply, and its MCP server has no authentication.
+
+𝗣𝗹𝗮𝗶𝗻 𝗳𝗶𝗹𝗲𝘀
+
+Basic Memory (about 4.6k, AGPL-3.0): Markdown files plus a SQLite index.
+
+𝗮𝘂𝘁𝗼𝗠𝗮𝘁𝗲
+
+About 4k stars, MIT. Its README calls it "𝘈 𝘴𝘮𝘢𝘳𝘵 𝘕𝘈𝘚 𝘧𝘰𝘳 𝘈𝘐": notes, files, reminders and executors behind one local MCP server. 𝗜𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗱𝗲𝘀𝗰𝗿𝗶𝗯𝗲 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗰 𝘀𝗲𝘀𝘀𝗶𝗼𝗻 𝗰𝗮𝗽𝘁𝘂𝗿𝗲, and neither the README nor docs/channels.md mentions Codex. Any MCP client should be able to connect, but that's my reading, not a documented integration.
+
+𝗧𝗵𝗶𝗻𝗴𝘀 𝘁𝗼 𝗯𝗲 𝗰𝗮𝗿𝗲𝗳𝘂𝗹 𝗮𝗯𝗼𝘂𝘁
+
+Hindsight's page claims state-of-the-art on LongMemEval and says outside researchers reproduced it. I haven't read those reproductions. The rest publish little I could check.
+
+The last push to autoMate was 𝟭𝟴 𝗦𝗲𝗽 𝟮𝟬𝟮𝟲. The others were all pushed this month.
+
+Links in reply 👇
+
+===== 4. SWYX STYLE =====
+
+𝗧𝗵𝗲 𝗔𝗜 𝗠𝗲𝗺𝗼𝗿𝘆 𝗦𝘁𝗮𝗰𝗸 𝗜𝘀 𝗦𝗽𝗹𝗶𝘁𝘁𝗶𝗻𝗴 𝗜𝗻𝘁𝗼 𝗟𝗮𝘆𝗲𝗿𝘀
+
+A year ago "memory" meant one thing. Now there are open-source projects with tens of thousands of stars each, and they've quietly specialised. The question that sorts them is 𝘄𝗵𝗮𝘁 𝗵𝗮𝗽𝗽𝗲𝗻𝘀 𝘄𝗶𝘁𝗵𝗼𝘂𝘁 𝘆𝗼𝘂 𝗮𝘀𝗸𝗶𝗻𝗴.
+
+Take one project, a restaurant ordering app, and map it:
+
+• 𝗖𝗮𝗽𝘁𝘂𝗿𝗲 𝗹𝗮𝘆𝗲𝗿 (𝗖𝗹𝗮𝘂𝗱𝗲-𝗠𝗲𝗺, 𝗛𝗶𝗻𝗱𝘀𝗶𝗴𝗵𝘁): you fix a double-charge bug and the cause is remembered next session. Claude-Mem records Claude Code, Codex, Cursor and OpenCode sessions through hooks.
+• 𝗦𝗲𝗿𝘃𝗶𝗰𝗲 𝗹𝗮𝘆𝗲𝗿 (𝗠𝗲𝗺𝟬, 𝗦𝘂𝗽𝗲𝗿𝗺𝗲𝗺𝗼𝗿𝘆): one store that Claude, Codex and Cursor all query for facts like "prices include VAT". How much is saved automatically depends on the plugin.
+• 𝗚𝗿𝗮𝗽𝗵 𝗹𝗮𝘆𝗲𝗿 (𝗖𝗼𝗴𝗻𝗲𝗲, 𝗚𝗿𝗮𝗽𝗵𝗶𝘁𝗶): links an ingredient to its supplier and the dishes that use it.
+• 𝗙𝗶𝗹𝗲 𝗹𝗮𝘆𝗲𝗿 (𝗕𝗮𝘀𝗶𝗰 𝗠𝗲𝗺𝗼𝗿𝘆): decisions kept as Markdown you can read and edit.
+
+By stars on 14 Nov 2026 the capture layer is winning attention: Claude-Mem is at 𝗮𝗯𝗼𝘂𝘁 𝟭𝟭𝟳𝗸 after starting in August 2025, ahead of Mem0 at 𝗮𝗯𝗼𝘂𝘁 𝟲𝟵𝗸, which has been around since 2023.
+
+autoMate (about 4k stars) doesn't belong to any of these four. It's a 𝘀𝘁𝗼𝗿𝗮𝗴𝗲 𝗮𝗻𝗱 𝗮𝗰𝘁𝗶𝗼𝗻 𝗵𝘂𝗯: notes, a file vault, reminders and browser control behind one local MCP server. Good for "keep the menu, save the supplier files, remind me Friday". Its README doesn't describe session capture, and it doesn't mention Codex.
+
+The groups overlap, and I'd expect more of that. Supermemory already ships a service and per-agent plugins.
+
+My read: capture is where the demand is, because nobody wants to write handovers. 𝘛𝘩𝘦 𝘱𝘳𝘰𝘫𝘦𝘤𝘵𝘴 𝘵𝘩𝘢𝘵 𝘬𝘦𝘦𝘱 𝘺𝘰𝘶 𝘢𝘴𝘬𝘪𝘯𝘨 𝘧𝘰𝘳 𝘮𝘦𝘮𝘰𝘳𝘺 𝘸𝘪𝘭𝘭 𝘭𝘰𝘴𝘦 𝘵𝘰 𝘵𝘩𝘦 𝘰𝘯𝘦𝘴 𝘵𝘩𝘢𝘵 𝘫𝘶𝘴𝘵 𝘩𝘢𝘷𝘦 𝘪𝘵.
+
+Links in reply 👇
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+𝗕𝗲𝗳𝗼𝗿𝗲 𝗬𝗼𝘂 𝗣𝗶𝗰𝗸 𝗔𝗻 𝗔𝗜 𝗠𝗲𝗺𝗼𝗿𝘆 𝗧𝗼𝗼𝗹, 𝗪𝗿𝗶𝘁𝗲 𝗗𝗼𝘄𝗻 𝗪𝗵𝗮𝘁 𝗦𝗵𝗼𝘂𝗹𝗱 𝗛𝗮𝗽𝗽𝗲𝗻 𝗪𝗶𝘁𝗵𝗼𝘂𝘁 𝗔𝘀𝗸𝗶𝗻𝗴
+
+Most "which memory tool" threads compare star counts. That tells you nothing about whether your next session will know why the double-charge bug happened.
+
+The tools differ on one thing you can test: 𝘄𝗵𝗮𝘁 𝗴𝗲𝘁𝘀 𝘀𝗮𝘃𝗲𝗱 𝘄𝗵𝗲𝗻 𝘆𝗼𝘂 𝗱𝗼 𝗻𝗼𝘁𝗵𝗶𝗻𝗴.
+
+𝗪𝗵𝗮𝘁 𝗲𝗮𝗰𝗵 𝗴𝗿𝗼𝘂𝗽 𝗴𝗶𝘃𝗲𝘀 𝘆𝗼𝘂
+
+• 𝗖𝗹𝗮𝘂𝗱𝗲-𝗠𝗲𝗺, 𝗛𝗶𝗻𝗱𝘀𝗶𝗴𝗵𝘁: capture of the session itself. Claude-Mem's README lists full capture for Claude Code, Codex, Cursor and OpenCode, and search only for Copilot CLI, Goose, Roo Code and Warp.
+• 𝗠𝗲𝗺𝟬, 𝗦𝘂𝗽𝗲𝗿𝗺𝗲𝗺𝗼𝗿𝘆: a shared store several agents can query. Mem0's basic example is an explicit 𝚖𝚎𝚖𝚘𝚛𝚢.𝚊𝚍𝚍(...). Supermemory links plugins per agent.
+• 𝗖𝗼𝗴𝗻𝗲𝗲, 𝗚𝗿𝗮𝗽𝗵𝗶𝘁𝗶: a graph of how things relate.
+• 𝗕𝗮𝘀𝗶𝗰 𝗠𝗲𝗺𝗼𝗿𝘆: Markdown notes you can open and correct.
+• 𝗮𝘂𝘁𝗼𝗠𝗮𝘁𝗲: notes, files, reminders and browser control behind one local MCP server.
+
+𝗪𝗵𝗮𝘁 𝘁𝗵𝗲𝘆 𝗱𝗼𝗻'𝘁 𝗴𝗶𝘃𝗲 𝘆𝗼𝘂
+
+Proof on your project. Hindsight's page reports LongMemEval results and says outside researchers reproduced them, which is more than most. 𝗧𝗵𝗲𝗿𝗲 𝗮𝗿𝗲 𝗻𝗼 𝗲𝘃𝗮𝗹𝘀 𝗶𝗻 𝗮𝘂𝘁𝗼𝗠𝗮𝘁𝗲'𝘀 𝗥𝗘𝗔𝗗𝗠𝗘, no automatic session capture, and no mention of Codex.
+
+𝗔 𝘁𝗲𝘀𝘁 𝘆𝗼𝘂 𝗰𝗮𝗻 𝗿𝘂𝗻 𝗶𝗻 𝗮𝗻 𝗮𝗳𝘁𝗲𝗿𝗻𝗼𝗼𝗻
+
+• 𝗪𝗿𝗶𝘁𝗲 𝟭𝟱 𝗳𝗮𝗰𝘁𝘀 𝗮𝗻𝗱 𝟱 𝗯𝘂𝗴 𝗳𝗶𝘅𝗲𝘀 from a real project, for example "prices include VAT"
+• 𝗪𝗼𝗿𝗸 𝗼𝗻𝗲 𝘀𝗲𝘀𝘀𝗶𝗼𝗻 𝗶𝗻 𝗮𝗴𝗲𝗻𝘁 𝗔 and save nothing by hand
+• 𝗔𝘀𝗸 𝗮𝗴𝗲𝗻𝘁 𝗕 𝘁𝗵𝗲 𝟮𝟬 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀, worded differently from the originals
+• 𝗕𝗮𝘀𝗲𝗹𝗶𝗻𝗲: the same questions with a plain notes file in the repo
+• 𝗥𝗲𝗮𝗱 𝗲𝘃𝗲𝗿𝘆 𝗺𝗶𝘀𝘀 and note whether the fact was never saved or was saved and not found
+
+Those are two different failures, and they point to different tools.
+
+𝘐𝘧 𝘵𝘩𝘦 𝘯𝘰𝘵𝘦𝘴 𝘧𝘪𝘭𝘦 𝘸𝘪𝘯𝘴, 𝘬𝘦𝘦𝘱 𝘵𝘩𝘦 𝘯𝘰𝘵𝘦𝘴 𝘧𝘪𝘭𝘦.
+
+Links in reply 👇
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗪𝗵𝗮𝘁 𝗗𝗼 𝗪𝗲 𝗠𝗲𝗮𝗻 𝗪𝗵𝗲𝗻 𝗪𝗲 𝗦𝗮𝘆 𝗔𝗻 𝗔𝗜 "𝗥𝗲𝗺𝗲𝗺𝗯𝗲𝗿𝘀"?
+
+If you work with more than one AI assistant, you know the routine. You explain your project on Monday, switch tools on Tuesday, and explain it again.
+
+A whole category of software now promises to fix this. But "memory" turns out to mean several different things, and it helps to think about how memory works in an office.
+
+Imagine you run a restaurant and you're building an ordering app.
+
+𝗔 𝗰𝗼𝗹𝗹𝗲𝗮𝗴𝘂𝗲 𝘄𝗵𝗼 𝘁𝗮𝗸𝗲𝘀 𝗻𝗼𝘁𝗲𝘀 𝗳𝗼𝗿 𝘆𝗼𝘂. Claude-Mem and Hindsight watch the work and write down what was learned, so the fix for a double-charging bug is there next time. You didn't have to do anything.
+
+𝗔 𝘀𝗵𝗮𝗿𝗲𝗱 𝗼𝗳𝗳𝗶𝗰𝗲 𝗱𝗮𝘁𝗮𝗯𝗮𝘀𝗲. Mem0 and Supermemory hold facts every assistant can look up: prices include VAT, payments go through Stripe. How much gets entered automatically depends on how it's set up.
+
+𝗔 𝗺𝗮𝗽 𝗼𝗳 𝘄𝗵𝗼 𝗸𝗻𝗼𝘄𝘀 𝘄𝗵𝗼𝗺. Cognee and Graphiti connect things, like an ingredient, its supplier, and the dishes that depend on it.
+
+𝗔 𝗯𝗶𝗻𝗱𝗲𝗿 𝗼𝗻 𝘁𝗵𝗲 𝘀𝗵𝗲𝗹𝗳. Basic Memory keeps notes as ordinary text files you can read and correct yourself.
+
+Then there's autoMate, which is 𝗰𝗹𝗼𝘀𝗲𝗿 𝘁𝗼 𝘁𝗵𝗲 𝘀𝘁𝗼𝗰𝗸 𝗿𝗼𝗼𝗺. It stores the menu and the supplier files, sets reminders, and can operate a browser, all from one place on your own computer. What it doesn't promise, going by its README, is to notice and record your work for you.
+
+What we know is limited. These are the projects' own descriptions, and only Hindsight's page points to outside researchers reproducing its test results. Popularity is real (Claude-Mem has about 117,000 stars on GitHub as of 14 Nov 2026), but stars measure attention.
+
+𝘚𝘰 𝘣𝘦𝘧𝘰𝘳𝘦 𝘤𝘩𝘰𝘰𝘴𝘪𝘯𝘨, 𝘢𝘴𝘬 𝘵𝘩𝘦 𝘲𝘶𝘦𝘴𝘵𝘪𝘰𝘯 𝘺𝘰𝘶'𝘥 𝘢𝘴𝘬 𝘢 𝘯𝘦𝘸 𝘩𝘪𝘳𝘦: 𝘸𝘩𝘢𝘵 𝘥𝘰 𝘐 𝘦𝘹𝘱𝘦𝘤𝘵 𝘺𝘰𝘶 𝘵𝘰 𝘳𝘦𝘮𝘦𝘮𝘣𝘦𝘳 𝘸𝘪𝘵𝘩𝘰𝘶𝘵 𝘣𝘦𝘪𝘯𝘨 𝘵𝘰𝘭𝘥?
+
+Links in reply 👇
