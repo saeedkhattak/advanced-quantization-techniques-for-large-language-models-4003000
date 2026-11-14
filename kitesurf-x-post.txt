@@ -55,7 +55,7 @@ Links in reply 👇
 
 𝗔 𝗕𝗿𝗼𝘄𝘀𝗲𝗿 𝗔𝘀 𝗔 𝗙𝘂𝗻𝗰𝘁𝗶𝗼𝗻 𝗖𝗮𝗹𝗹
 
-Cloudflare open-sourced Kitesurf this week, its browser engine for agents that runs on Workers with no Chrome underneath. Apache 2.0. I've been reading the launch posts and the README.
+Cloudflare open-sourced Kitesurf this week, its browser engine for agents that runs on Workers with no Chrome underneath. Apache 2.0. Some notes from the launch posts and the README.
 
 The headline is efficiency. In Cloudflare's own benchmark (14 URLs, against a warm Chromium pool) it used 𝟯.𝟭𝘅 𝗹𝗲𝘀𝘀 𝗖𝗣𝗨 and 𝟰.𝟳𝘅 𝗹𝗲𝘀𝘀 𝗺𝗲𝗺𝗼𝗿𝘆 for a screenshot. It was also 𝟭.𝟴𝘅 𝘀𝗹𝗼𝘄𝗲𝗿 on the clock, which they report right next to the wins.
 
@@ -82,7 +82,7 @@ Cloudflare released the Kitesurf source on November 12 under Apache 2.0. From th
 
 "𝘒𝘪𝘵𝘦𝘴𝘶𝘳𝘧 𝘪𝘴 𝘢𝘯 𝘦𝘹𝘱𝘦𝘳𝘪𝘮𝘦𝘯𝘵𝘢𝘭 𝘣𝘳𝘰𝘸𝘴𝘦𝘳 𝘦𝘯𝘨𝘪𝘯𝘦 𝘵𝘩𝘢𝘵 𝘳𝘶𝘯𝘴 𝘰𝘯 𝘊𝘭𝘰𝘶𝘥𝘧𝘭𝘢𝘳𝘦 𝘞𝘰𝘳𝘬𝘦𝘳𝘴. 𝘐𝘵 𝘱𝘢𝘳𝘴𝘦𝘴 𝘏𝘛𝘔𝘓, 𝘢𝘱𝘱𝘭𝘪𝘦𝘴 𝘊𝘚𝘚, 𝘳𝘶𝘯𝘴 𝘱𝘢𝘨𝘦 𝘑𝘢𝘷𝘢𝘚𝘤𝘳𝘪𝘱𝘵, 𝘢𝘯𝘥 𝘳𝘦𝘯𝘥𝘦𝘳𝘴 𝘴𝘤𝘳𝘦𝘦𝘯𝘴𝘩𝘰𝘵𝘴 𝘸𝘪𝘵𝘩𝘰𝘶𝘵 𝘊𝘩𝘳𝘰𝘮𝘦 𝘰𝘳 𝘢 𝘣𝘳𝘰𝘸𝘴𝘦𝘳 𝘤𝘰𝘯𝘵𝘢𝘪𝘯𝘦𝘳."
 
-It was announced on August 6 and got WebMCP support on September 28. The repo had 𝟲𝟬𝟳 𝘀𝘁𝗮𝗿𝘀 when I checked on November 14.
+It was announced on August 6 and got WebMCP support on September 28. The repo had 𝟲𝟬𝟳 𝘀𝘁𝗮𝗿𝘀 on November 14.
 
 Two things stand out.
 
@@ -108,7 +108,7 @@ Cloudflare's August benchmark (self-reported, medians of five runs over 14 URLs,
 
 • 𝗞𝗻𝗼𝘄𝗻 𝗴𝗮𝗽𝘀: video, WebGL, bot-challenge handshakes and long authenticated sessions, per the launch post
 
-• 𝗢𝗹𝗱 𝗻𝘂𝗺𝗯𝗲𝗿𝘀: the benchmark is from August and hasn't been independently reproduced that I could find
+• 𝗢𝗹𝗱 𝗻𝘂𝗺𝗯𝗲𝗿𝘀: the benchmark is from August and no independent reproduction has turned up yet
 
 • 𝗧𝗲𝘀𝘁 𝗰𝗼𝘂𝗻𝘁𝘀: 730,000+ Web Platform Test subtests passed as of September, which measures standards conformance and not real sites
 
@@ -119,7 +119,7 @@ Links in reply 👇
 
 𝗔𝗴𝗲𝗻𝘁 𝗕𝗿𝗼𝘄𝘀𝗲𝗿𝘀 𝗔𝗿𝗲 𝗦𝗽𝗹𝗶𝘁𝘁𝗶𝗻𝗴 𝗔𝘄𝗮𝘆 𝗙𝗿𝗼𝗺 𝗖𝗵𝗿𝗼𝗺𝗲
 
-For two years "a browser for agents" meant Chrome in the cloud with an API on top. Kitesurf going open source on November 12 is a sign that's changing.
+Until recently "a browser for agents" mostly meant Chrome in the cloud with an API on top. Kitesurf going open source on November 12 is a sign that's changing.
 
 Here's roughly how the options divide.
 
@@ -131,11 +131,11 @@ Here's roughly how the options divide.
 
 • 𝗡𝗲𝘄 𝗲𝗻𝗴𝗶𝗻𝗲, 𝘄𝗶𝘁𝗵 𝗽𝗶𝘅𝗲𝗹𝘀: Kitesurf lays out and paints the page, returns screenshots and PDFs, and runs on Cloudflare Workers
 
-Kitesurf's place is the last one, and it's the only one of these tied to a single cloud.
+Kitesurf's place is the last one, and deploying it ties you to Cloudflare.
 
 The numbers Cloudflare published in August explain the bet. Against a warm Chromium pool on 14 URLs it used 𝟰.𝟳𝘅 𝗹𝗲𝘀𝘀 𝗺𝗲𝗺𝗼𝗿𝘆 for a screenshot and 𝟳𝘅 𝗹𝗲𝘀𝘀 for HTML extraction. It was 𝟭.𝟴𝘅 𝘀𝗹𝗼𝘄𝗲𝗿 in wall-clock time. All of that is self-reported.
 
-Two details are easy to miss. Every one of these tools speaks the Chrome DevTools Protocol, so 𝗖𝗵𝗿𝗼𝗺𝗲'𝘀 𝗿𝗲𝗺𝗼𝘁𝗲-𝗰𝗼𝗻𝘁𝗿𝗼𝗹 𝗹𝗮𝗻𝗴𝘂𝗮𝗴𝗲 𝗵𝗮𝘀 𝗯𝗲𝗰𝗼𝗺𝗲 𝘁𝗵𝗲 𝘀𝘁𝗮𝗻𝗱𝗮𝗿𝗱 𝗲𝘃𝗲𝗻 𝘄𝗵𝗲𝗿𝗲 𝗖𝗵𝗿𝗼𝗺𝗲 𝗶𝘁𝘀𝗲𝗹𝗳 𝗶𝘀 𝗴𝗼𝗻𝗲. And Cloudflare says AI agents wrote much of Kitesurf against the Web Platform Tests, which is its own data point about what a small team can now attempt.
+Two details are easy to miss. Kitesurf and Lightpanda both speak the Chrome DevTools Protocol, so 𝗖𝗵𝗿𝗼𝗺𝗲'𝘀 𝗿𝗲𝗺𝗼𝘁𝗲-𝗰𝗼𝗻𝘁𝗿𝗼𝗹 𝗹𝗮𝗻𝗴𝘂𝗮𝗴𝗲 𝗶𝘀 𝗼𝘂𝘁𝗹𝗶𝘃𝗶𝗻𝗴 𝗖𝗵𝗿𝗼𝗺𝗲 𝗶𝗻 𝘁𝗵𝗶𝘀 𝗰𝗼𝗿𝗻𝗲𝗿. And Cloudflare says AI agents wrote much of Kitesurf against the Web Platform Tests, which is its own data point about what a small team can now attempt.
 
 The limits are real. It's labelled experimental. There's no video, WebGL or bot-challenge support yet. Deploying needs a Workers Paid plan, and it ships with no authentication.
 
@@ -207,7 +207,7 @@ The same test found it was 𝗻𝗲𝗮𝗿𝗹𝘆 𝘁𝘄𝗶𝗰𝗲 𝗮�
 
 There's a second story inside this one. Building a browser has long been seen as one of the hardest jobs in software. Cloudflare says AI agents wrote much of this one, working through a huge public set of tests while people directed and checked the work.
 
-So here's what we know. A capable company can now build a working, limited browser quickly, and it chose to build it for machines.
+So here's what we know. A capable company can now build a working, limited browser with heavy help from AI, and it chose to build it for machines.
 
 𝘐𝘧 𝘮𝘰𝘳𝘦 𝘢𝘯𝘥 𝘮𝘰𝘳𝘦 𝘷𝘪𝘴𝘪𝘵𝘰𝘳𝘴 𝘵𝘰 𝘢 𝘸𝘦𝘣𝘴𝘪𝘵𝘦 𝘢𝘳𝘦 𝘴𝘰𝘧𝘵𝘸𝘢𝘳𝘦, 𝘸𝘩𝘰 𝘸𝘪𝘭𝘭 𝘸𝘦𝘣𝘴𝘪𝘵𝘦𝘴 𝘣𝘦 𝘥𝘦𝘴𝘪𝘨𝘯𝘦𝘥 𝘧𝘰𝘳?
 
