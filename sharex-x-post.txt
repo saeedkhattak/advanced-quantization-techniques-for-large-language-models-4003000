@@ -1,0 +1,184 @@
+===== 1. STORY =====
+
+𝗔 𝟭𝟵-𝗬𝗲𝗮𝗿-𝗢𝗹𝗱 𝗦𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁 𝗧𝗼𝗼𝗹 𝗝𝘂𝘀𝘁 𝗥𝗲𝘄𝗿𝗼𝘁𝗲 𝗜𝘁𝘀 𝗪𝗵𝗼𝗹𝗲 𝗨𝗜
+
+You take a screenshot. Then you open another app to draw an arrow on it, another to blur the email address, and a browser tab to upload it and copy the link.
+
+𝗦𝗵𝗮𝗿𝗲𝗫 𝗱𝗼𝗲𝘀 𝗮𝗹𝗹 𝗼𝗳 𝘁𝗵𝗮𝘁 𝗳𝗿𝗼𝗺 𝗼𝗻𝗲 𝗵𝗼𝘁𝗸𝗲𝘆, and it has been doing it on Windows for 19 years.
+
+It's free and open source (GPL-3.0). The README says no ads and no account needed.
+
+𝗛𝗼𝘄 𝗶𝘁 𝘄𝗼𝗿𝗸𝘀
+
+You pick a capture type: region, window, full screen, scrolling page, video or GIF.
+
+Then you tell it what happens next. Open the editor, save the file, upload it, shorten the link, copy the link to the clipboard. ShareX calls these 𝘢𝘧𝘵𝘦𝘳-𝘤𝘢𝘱𝘵𝘶𝘳𝘦 𝘵𝘢𝘴𝘬𝘴, and you can chain them.
+
+𝗪𝗵𝗮𝘁 𝗰𝗵𝗮𝗻𝗴𝗲𝗱 𝘁𝗵𝗶𝘀 𝗮𝘂𝘁𝘂𝗺𝗻
+
+On 20 October the team shipped ShareX 22.0.0 and called it "𝘵𝘩𝘦 𝘣𝘪𝘨𝘨𝘦𝘴𝘵 𝘶𝘱𝘥𝘢𝘵𝘦 𝘸𝘦'𝘷𝘦 𝘦𝘷𝘦𝘳 𝘳𝘦𝘭𝘦𝘢𝘴𝘦𝘥". Every part of the UI was rewritten.
+
+• 𝗡𝗮𝘁𝗶𝘃𝗲 𝗿𝗲𝗰𝗼𝗿𝗱𝗶𝗻𝗴: screen recording now works without FFmpeg, with system audio, microphone and a camera overlay, at 𝘂𝗽 𝘁𝗼 𝟭𝟮𝟬 𝗙𝗣𝗦
+• 𝗣𝗵𝗼𝘁𝗼 𝗲𝗱𝗶𝘁𝗼𝗿: a layer-based editor arrived in 22.1.0
+• 𝗧𝗼𝗼𝗹𝘀: the README lists 𝟯𝟳 𝘂𝘁𝗶𝗹𝗶𝘁𝗶𝗲𝘀, from OCR and QR codes to a colour picker and a video trimmer
+• 𝗨𝗽𝗹𝗼𝗮𝗱𝘀: custom uploaders, plus guides for Amazon S3, Google Cloud Storage and Cloudflare R2
+
+𝗙𝗼𝗿 𝗯𝘂𝗶𝗹𝗱𝗲𝗿𝘀
+
+Bug reports and pull requests get much better with one annotated screenshot. Step numbers, blur and a smart eraser are built in, and the link is in your clipboard before you switch windows.
+
+𝗢𝗻𝗲 𝗰𝗮𝘃𝗲𝗮𝘁, 𝗶𝗻 𝘁𝗵𝗲 𝘁𝗲𝗮𝗺'𝘀 𝗼𝘄𝗻 𝘄𝗼𝗿𝗱𝘀
+
+They said they expect v22 to be "𝘴𝘪𝘨𝘯𝘪𝘧𝘪𝘤𝘢𝘯𝘵𝘭𝘺 𝘭𝘦𝘴𝘴 𝘴𝘵𝘢𝘣𝘭𝘦 𝘵𝘩𝘢𝘯 𝘰𝘶𝘳 𝘶𝘴𝘶𝘢𝘭 𝘳𝘦𝘭𝘦𝘢𝘴𝘦𝘴". 𝗙𝗼𝘂𝗿 𝗺𝗼𝗿𝗲 𝗿𝗲𝗹𝗲𝗮𝘀𝗲𝘀 𝗳𝗼𝗹𝗹𝗼𝘄𝗲𝗱 𝗶𝗻 𝘂𝗻𝗱𝗲𝗿 𝘁𝗵𝗿𝗲𝗲 𝘄𝗲𝗲𝗸𝘀, and 22.4.0 added a compact mode that brings back the v21 spacing.
+
+It is also 𝗪𝗶𝗻𝗱𝗼𝘄𝘀 𝗼𝗻𝗹𝘆. On Linux or macOS, people usually point to Flameshot.
+
+𝘎𝘰𝘰𝘥 𝘵𝘰𝘰𝘭𝘴 𝘥𝘰𝘯'𝘵 𝘢𝘭𝘸𝘢𝘺𝘴 𝘯𝘦𝘦𝘥 𝘢 𝘯𝘦𝘸 𝘪𝘥𝘦𝘢. 𝘚𝘰𝘮𝘦𝘵𝘪𝘮𝘦𝘴 𝘵𝘩𝘦𝘺 𝘯𝘦𝘦𝘥 19 𝘺𝘦𝘢𝘳𝘴 𝘰𝘧 𝘴𝘮𝘢𝘭𝘭 𝘧𝘪𝘹𝘦𝘴.
+
+Links in reply 👇
+
+===== 2. KARPATHY STYLE =====
+
+𝗧𝗵𝗲 𝗦𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁 𝗜𝘀 𝗡𝗼𝘁 𝗧𝗵𝗲 𝗣𝗿𝗼𝗱𝘂𝗰𝘁. 𝗧𝗵𝗲 𝗣𝗶𝗽𝗲𝗹𝗶𝗻𝗲 𝗜𝘀.
+
+Been reading the ShareX changelog. It's a 19-year-old open source screenshot tool for Windows, about 41k stars on GitHub, GPL-3.0.
+
+Most people file it under "better Snipping Tool". I think that undersells it.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀 𝘄𝗵𝗮𝘁 𝗵𝗮𝗽𝗽𝗲𝗻𝘀 𝗮𝗳𝘁𝗲𝗿 𝘁𝗵𝗲 𝗰𝗮𝗽𝘁𝘂𝗿𝗲. You define a chain: capture region, annotate, save, upload to your own bucket, shorten the URL, copy the link. One hotkey runs the lot.
+
+It's a bit like a Unix pipe for pixels. The capture is just stdin.
+
+That design explains why the tool list keeps growing. OCR, QR scanning, a hash checker, a video trimmer, a remote storage browser. The README lists 𝟯𝟳 𝗼𝗳 𝘁𝗵𝗲𝗺. Each one is another stage you can put in the pipe.
+
+The October release (22.0.0) is the part I find brave. They rewrote 𝗲𝘃𝗲𝗿𝘆 𝗽𝗮𝗿𝘁 𝗼𝗳 𝘁𝗵𝗲 𝗨𝗜 𝗳𝗿𝗼𝗺 𝘀𝗰𝗿𝗮𝘁𝗰𝗵 and said plainly they expect it to be "𝘴𝘪𝘨𝘯𝘪𝘧𝘪𝘤𝘢𝘯𝘵𝘭𝘺 𝘭𝘦𝘴𝘴 𝘴𝘵𝘢𝘣𝘭𝘦 𝘵𝘩𝘢𝘯 𝘰𝘶𝘳 𝘶𝘴𝘶𝘢𝘭 𝘳𝘦𝘭𝘦𝘢𝘴𝘦𝘴". Then they shipped four more versions in under three weeks.
+
+A few details I liked:
+
+• 𝗥𝗲𝗰𝗼𝗿𝗱𝗶𝗻𝗴 𝘄𝗶𝘁𝗵𝗼𝘂𝘁 𝗙𝗙𝗺𝗽𝗲𝗴: native capture with system audio, mic and camera overlay, FPS limit raised to 𝟭𝟮𝟬
+• 𝗦𝗶𝗴𝗻𝗲𝗱 𝗯𝘂𝗶𝗹𝗱𝘀: installer and assemblies are now code-signed
+• 𝗔 𝘄𝗮𝘆 𝗯𝗮𝗰𝗸: 22.4.0 added a "Compact mode" preset and a Ruler that works like v21
+
+That last one matters imo. A rewrite of a 19-year-old tool breaks a lot of muscle memory, and they're adding the old behaviour back as options instead of arguing with users.
+
+Limits: 𝗪𝗶𝗻𝗱𝗼𝘄𝘀 𝗼𝗻𝗹𝘆, and v22 is very new. If your workflow depends on it, I'd keep the previous build around for a few weeks.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘭𝘪𝘬𝘦 𝘵𝘰 𝘴𝘦𝘦 𝘯𝘦𝘹𝘵 𝘪𝘴 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘱𝘪𝘱𝘦𝘭𝘪𝘯𝘦 𝘪𝘥𝘦𝘢 𝘰𝘯 𝘓𝘪𝘯𝘶𝘹 𝘢𝘯𝘥 𝘮𝘢𝘤𝘖𝘚.
+
+Links in reply 👇
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗦𝗵𝗮𝗿𝗲𝗫 𝟮𝟮
+
+ShareX is, quoting the README, "𝘢 𝘧𝘳𝘦𝘦 𝘢𝘯𝘥 𝘰𝘱𝘦𝘯 𝘴𝘰𝘶𝘳𝘤𝘦 𝘴𝘤𝘳𝘦𝘦𝘯𝘴𝘩𝘰𝘵 𝘵𝘰𝘰𝘭, 𝘴𝘤𝘳𝘦𝘦𝘯 𝘳𝘦𝘤𝘰𝘳𝘥𝘦𝘳, 𝘧𝘪𝘭𝘦 𝘴𝘩𝘢𝘳𝘪𝘯𝘨 𝘵𝘰𝘰𝘭 𝘢𝘯𝘥 𝘱𝘳𝘰𝘥𝘶𝘤𝘵𝘪𝘷𝘪𝘵𝘺 𝘢𝘱𝘱𝘭𝘪𝘤𝘢𝘵𝘪𝘰𝘯 𝘧𝘰𝘳 𝘞𝘪𝘯𝘥𝘰𝘸𝘴". License is GPL-3.0. The repo shows about 41k stars and 4.1k forks (checked 14 November 2026).
+
+The 22.0.0 changelog entry, dated 20 October 2026, opens like this:
+
+"𝘐𝘯 𝘚𝘩𝘢𝘳𝘦𝘟'𝘴 19 𝘺𝘦𝘢𝘳 𝘩𝘪𝘴𝘵𝘰𝘳𝘺, 𝘵𝘩𝘪𝘴 𝘪𝘴 𝘵𝘩𝘦 𝘣𝘪𝘨𝘨𝘦𝘴𝘵 𝘶𝘱𝘥𝘢𝘵𝘦 𝘸𝘦'𝘷𝘦 𝘦𝘷𝘦𝘳 𝘳𝘦𝘭𝘦𝘢𝘴𝘦𝘥. 𝘌𝘷𝘦𝘳𝘺 𝘱𝘢𝘳𝘵 𝘰𝘧 𝘵𝘩𝘦 𝘜𝘐 𝘩𝘢𝘴 𝘣𝘦𝘦𝘯 𝘳𝘦𝘸𝘳𝘪𝘵𝘵𝘦𝘯 𝘧𝘳𝘰𝘮 𝘴𝘤𝘳𝘢𝘵𝘤𝘩 𝘸𝘪𝘵𝘩 𝘢 𝘮𝘰𝘥𝘦𝘳𝘯 𝘥𝘦𝘴𝘪𝘨𝘯."
+
+Two things in it stood out to me.
+
+𝗡𝗮𝘁𝗶𝘃𝗲 𝘀𝗰𝗿𝗲𝗲𝗻 𝗿𝗲𝗰𝗼𝗿𝗱𝗶𝗻𝗴. The entry says recording now works "𝘸𝘪𝘵𝘩𝘰𝘶𝘵 𝘳𝘦𝘭𝘺𝘪𝘯𝘨 𝘰𝘯 𝘍𝘍𝘮𝘱𝘦𝘨", with system audio, microphone and camera overlays, and an FPS limit of 120. FFmpeg hasn't gone away: the same changelog updates it to 9.0, and 22.4.0 mentions "FFmpeg recordings" as a separate path.
+
+𝗔𝗳𝘁𝗲𝗿-𝗰𝗮𝗽𝘁𝘂𝗿𝗲 𝘁𝗮𝘀𝗸𝘀. This is the older feature and still the best reason to use it. A capture can be copied, saved, edited, uploaded, OCR'd or passed to your own script, in a chain you configure per hotkey. Custom uploaders mean the destination can be your own S3 or R2 bucket.
+
+Also new: a layer-based photo editor (22.1.0), WebP screenshots with a lossless option (22.2.0), and HDR tone mapping for recordings (22.4.0).
+
+𝗧𝗵𝗶𝗻𝗴𝘀 𝘁𝗼 𝗯𝗲 𝗰𝗮𝗿𝗲𝗳𝘂𝗹 𝗮𝗯𝗼𝘂𝘁
+
+• 𝗦𝘁𝗮𝗯𝗶𝗹𝗶𝘁𝘆: the team wrote that they expect 22.0.0 to be "𝘴𝘪𝘨𝘯𝘪𝘧𝘪𝘤𝘢𝘯𝘵𝘭𝘺 𝘭𝘦𝘴𝘴 𝘴𝘵𝘢𝘣𝘭𝘦 𝘵𝘩𝘢𝘯 𝘰𝘶𝘳 𝘶𝘴𝘶𝘢𝘭 𝘳𝘦𝘭𝘦𝘢𝘴𝘦𝘴". 22.0.0 and 22.1.0 are marked pre-release on GitHub; 22.4.0 (8 November) is marked latest
+• 𝗣𝗹𝗮𝘁𝗳𝗼𝗿𝗺: Windows only. I found no mention of Linux or macOS in the README or changelog
+• 𝗖𝗹𝗮𝗶𝗺𝘀: "𝘭𝘪𝘨𝘩𝘵𝘸𝘦𝘪𝘨𝘩𝘵" and "𝘱𝘳𝘪𝘷𝘢𝘤𝘺 𝘧𝘰𝘤𝘶𝘴𝘦𝘥" are the README's words. I haven't seen independent measurements
+
+The full changelog is worth reading. It credits individual contributors line by line.
+
+Links in reply 👇
+
+===== 4. SWYX STYLE =====
+
+𝗧𝗵𝗲 𝗕𝗼𝗿𝗶𝗻𝗴 𝗦𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁 𝗧𝗼𝗼𝗹 𝗧𝗵𝗮𝘁 𝗜𝘀 𝗦𝘁𝗶𝗹𝗹 𝗛𝗲𝗿𝗲 𝗔𝗳𝘁𝗲𝗿 𝟭𝟵 𝗬𝗲𝗮𝗿𝘀
+
+There's a category I'd call capture-to-link: press a key, get a URL you can paste. It looks trivial and people keep building it.
+
+Roughly how the options sit today:
+
+• 𝗦𝗻𝗶𝗽𝗽𝗶𝗻𝗴 𝗧𝗼𝗼𝗹: ships with Windows, fine for a quick grab
+• 𝗚𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁: open source, usually described as the simpler choice
+• 𝗙𝗹𝗮𝗺𝗲𝘀𝗵𝗼𝘁: open source and cross-platform, the usual Linux answer
+• 𝗦𝗵𝗮𝗿𝗲𝗫: open source, Windows only, the power-user end
+
+ShareX is the one with staying power. 𝟭𝟵 𝘆𝗲𝗮𝗿𝘀 𝗼𝗹𝗱, 𝗮𝗯𝗼𝘂𝘁 𝟰𝟭𝗸 𝗚𝗶𝘁𝗛𝘂𝗯 𝘀𝘁𝗮𝗿𝘀, 𝗚𝗣𝗟-𝟯.𝟬, no ads and no account according to its README.
+
+It doesn't win on the capture. It wins on the workflow layer on top: after-capture tasks, after-upload tasks, custom uploaders, hotkeys per workflow. Capture, annotate, upload to your own bucket, shorten, copy. One key.
+
+And in October it did the thing old projects almost never do. Version 22.0.0 𝗿𝗲𝘄𝗿𝗼𝘁𝗲 𝗲𝘃𝗲𝗿𝘆 𝗽𝗮𝗿𝘁 𝗼𝗳 𝘁𝗵𝗲 𝗨𝗜, added screen recording that doesn't rely on FFmpeg (system audio, mic, camera overlay, up to 120 FPS), moved to .NET 10 and started code-signing its builds.
+
+Then 22.1 through 22.4 landed in under three weeks: a layer-based photo editor, WebP, HDR tone mapping, and a compact mode for people who liked v21.
+
+The risk is real. The team said it expects v22 to be "𝘴𝘪𝘨𝘯𝘪𝘧𝘪𝘤𝘢𝘯𝘵𝘭𝘺 𝘭𝘦𝘴𝘴 𝘴𝘵𝘢𝘣𝘭𝘦 𝘵𝘩𝘢𝘯 𝘰𝘶𝘳 𝘶𝘴𝘶𝘢𝘭 𝘳𝘦𝘭𝘦𝘢𝘴𝘦𝘴", and it's still 𝗪𝗶𝗻𝗱𝗼𝘄𝘀 𝗼𝗻𝗹𝘆.
+
+My read: the durable desktop tools are the ones that turn a single action into a programmable pipeline. Screenshots were just the entry point.
+
+𝘞𝘩𝘪𝘤𝘩 𝘰𝘵𝘩𝘦𝘳 "𝘣𝘰𝘳𝘪𝘯𝘨" 𝘶𝘵𝘪𝘭𝘪𝘵𝘺 𝘪𝘴 𝘲𝘶𝘪𝘦𝘵𝘭𝘺 𝘥𝘰𝘪𝘯𝘨 𝘵𝘩𝘪𝘴?
+
+Links in reply 👇
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+𝗕𝗲𝗳𝗼𝗿𝗲 𝗬𝗼𝘂 𝗦𝘄𝗶𝘁𝗰𝗵 𝗦𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁 𝗧𝗼𝗼𝗹𝘀, 𝗥𝘂𝗻 𝗧𝗵𝗶𝘀 𝗧𝗲𝘀𝘁
+
+ShareX 22 is getting a lot of attention. The team calls it "𝘵𝘩𝘦 𝘣𝘪𝘨𝘨𝘦𝘴𝘵 𝘶𝘱𝘥𝘢𝘵𝘦 𝘸𝘦'𝘷𝘦 𝘦𝘷𝘦𝘳 𝘳𝘦𝘭𝘦𝘢𝘴𝘦𝘥" in 19 years. That's their description, so check it against your own work.
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗴𝗶𝘃𝗲𝘀 𝘆𝗼𝘂
+
+• 𝗖𝗮𝗽𝘁𝘂𝗿𝗲: region, window, monitor, scrolling, video and GIF
+• 𝗥𝗲𝗰𝗼𝗿𝗱𝗶𝗻𝗴: native, without relying on FFmpeg, with system audio, mic and camera overlay, 𝗙𝗣𝗦 𝗹𝗶𝗺𝗶𝘁 𝗼𝗳 𝟭𝟮𝟬
+• 𝗘𝗱𝗶𝘁𝗶𝗻𝗴: annotation tools (arrows, step numbers, blur, pixelate, smart eraser) plus a layer-based photo editor since 22.1.0
+• 𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗼𝗻: after-capture and after-upload tasks, custom uploaders, per-workflow hotkeys
+• 𝗣𝗿𝗶𝗰𝗲: free, GPL-3.0, no account
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗴𝗶𝘃𝗲 𝘆𝗼𝘂
+
+• 𝗡𝗼 𝗟𝗶𝗻𝘂𝘅 𝗼𝗿 𝗺𝗮𝗰𝗢𝗦. It's a Windows app
+• 𝗡𝗼 𝘀𝘁𝗮𝗯𝗶𝗹𝗶𝘁𝘆 𝗽𝗿𝗼𝗺𝗶𝘀𝗲 𝗳𝗼𝗿 𝘃𝟮𝟮. The team wrote that they expect it to be "𝘴𝘪𝘨𝘯𝘪𝘧𝘪𝘤𝘢𝘯𝘵𝘭𝘺 𝘭𝘦𝘴𝘴 𝘴𝘵𝘢𝘣𝘭𝘦 𝘵𝘩𝘢𝘯 𝘰𝘶𝘳 𝘶𝘴𝘶𝘢𝘭 𝘳𝘦𝘭𝘦𝘢𝘴𝘦𝘴"
+• 𝗡𝗼 𝗶𝗻𝗱𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝘁 𝗻𝘂𝗺𝗯𝗲𝗿𝘀. "𝘓𝘪𝘨𝘩𝘵𝘸𝘦𝘪𝘨𝘩𝘵" is the README's claim. I couldn't find a published benchmark
+
+The good sign is the pace of fixes: 22.1.0, 22.2.0, 22.3.0 and 22.4.0 all shipped between 2 and 8 November, and 22.3.0 lists faster startup and faster first region capture.
+
+𝗔 𝘀𝗵𝗼𝗿𝘁 𝗿𝗲𝗰𝗶𝗽𝗲 𝗯𝗲𝗳𝗼𝗿𝗲 𝘆𝗼𝘂 𝗰𝗼𝗺𝗺𝗶𝘁
+
+• 𝗪𝗿𝗶𝘁𝗲 𝗱𝗼𝘄𝗻 𝘆𝗼𝘂𝗿 𝗿𝗲𝗮𝗹 𝗰𝗮𝘀𝗲𝘀: the five captures you do every week (bug report, scrolling page, 30-second clip, redacted screenshot, upload to your bucket)
+• 𝗦𝗲𝘁 𝗮 𝗯𝗮𝘀𝗲𝗹𝗶𝗻𝗲: time each one with your current tool
+• 𝗖𝗼𝗺𝗽𝗮𝗿𝗲: build the same five as ShareX workflows and time them again
+• 𝗟𝗼𝗼𝗸 𝗮𝘁 𝘁𝗵𝗲 𝗼𝘂𝘁𝗽𝘂𝘁: open every file. Check the blur really hides the text, the recording has audio, the link works
+
+If it wins on your five cases, switch. If not, you lost twenty minutes.
+
+Links in reply 👇
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗪𝗵𝘆 𝗗𝗼𝗲𝘀 𝗔 𝗙𝗿𝗲𝗲 𝗦𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁 𝗔𝗽𝗽 𝗛𝗮𝘃𝗲 𝟰𝟭,𝟬𝟬𝟬 𝗦𝘁𝗮𝗿𝘀?
+
+Most of us take a screenshot the same way we did ten years ago. Press a key, paste it somewhere, then realise we forgot to hide something private.
+
+ShareX is a free, open source Windows app that treats this as a small assembly line. You press one key. It captures the area, lets you draw on it, blurs what you choose, uploads it and puts the link in your clipboard.
+
+𝗜𝘁 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝗶𝗻 𝗱𝗲𝘃𝗲𝗹𝗼𝗽𝗺𝗲𝗻𝘁 𝗳𝗼𝗿 𝟭𝟵 𝘆𝗲𝗮𝗿𝘀, and it has about 41,000 stars on GitHub (a rough sign of how many developers have bookmarked it).
+
+This autumn the team did something unusual for a project that old. They rewrote the whole interface. Their own words: "𝘵𝘩𝘦 𝘣𝘪𝘨𝘨𝘦𝘴𝘵 𝘶𝘱𝘥𝘢𝘵𝘦 𝘸𝘦'𝘷𝘦 𝘦𝘷𝘦𝘳 𝘳𝘦𝘭𝘦𝘢𝘴𝘦𝘥."
+
+What's new, in plain terms:
+
+• 𝗩𝗶𝗱𝗲𝗼: it can now record your screen with sound from the computer and your microphone, and show your webcam in the corner
+• 𝗘𝗱𝗶𝘁𝗶𝗻𝗴: there's a photo editor with layers, like a small version of the tools designers use
+• 𝗘𝘅𝘁𝗿𝗮𝘀: 37 small utilities are listed, such as pulling text out of an image or reading a QR code
+
+There are two sides to this. A big rewrite brings a modern design. It also breaks habits, and the team said openly that this version would be "𝘴𝘪𝘨𝘯𝘪𝘧𝘪𝘤𝘢𝘯𝘵𝘭𝘺 𝘭𝘦𝘴𝘴 𝘴𝘵𝘢𝘣𝘭𝘦" than usual. They have shipped four updates since, and one brings back the old spacing for people who preferred it.
+
+What we actually know: it's free, has no ads, needs no account, and 𝗼𝗻𝗹𝘆 𝗿𝘂𝗻𝘀 𝗼𝗻 𝗪𝗶𝗻𝗱𝗼𝘄𝘀. What we don't have is an outside measurement of how fast or light it is.
+
+𝘐𝘧 𝘢 𝘧𝘳𝘦𝘦, 𝘰𝘱𝘦𝘯 𝘴𝘰𝘶𝘳𝘤𝘦 𝘵𝘰𝘰𝘭 𝘤𝘢𝘯 𝘴𝘵𝘢𝘺 𝘶𝘴𝘦𝘧𝘶𝘭 𝘧𝘰𝘳 19 𝘺𝘦𝘢𝘳𝘴, 𝘸𝘩𝘢𝘵 𝘥𝘰𝘦𝘴 𝘵𝘩𝘢𝘵 𝘴𝘢𝘺 𝘢𝘣𝘰𝘶𝘵 𝘵𝘩𝘦 𝘢𝘱𝘱𝘴 𝘸𝘦 𝘱𝘢𝘺 𝘧𝘰𝘳 𝘦𝘷𝘦𝘳𝘺 𝘮𝘰𝘯𝘵𝘩?
+
+Links in reply 👇
