@@ -1,0 +1,214 @@
+===== 1. STORY =====
+
+𝗧𝗵𝗲 𝗔𝗜 𝗛𝗮𝗰𝗸𝗶𝗻𝗴 𝗧𝗼𝗼𝗹 𝗧𝗵𝗮𝘁 𝗚𝗼𝘁 𝗗𝗲𝗹𝗲𝘁𝗲𝗱, 𝗧𝗵𝗲𝗻 𝗠𝘂𝗹𝘁𝗶𝗽𝗹𝗶𝗲𝗱
+
+On October 8, the developer behind ARTEX pulled it off GitHub.
+
+ARTEX was an open source tool that lets AI agents run a penetration test (a break-in attempt done to find weak spots) with very little human help. The author, who goes by Autumn-27, wrote that "𝘵𝘩𝘦 𝘮𝘢𝘭𝘪𝘤𝘪𝘰𝘶𝘴 𝘦𝘹𝘱𝘭𝘰𝘪𝘵𝘢𝘵𝘪𝘰𝘯 𝘰𝘧 𝘵𝘩𝘪𝘴 𝘵𝘰𝘰𝘭 𝘳𝘶𝘯𝘴 𝘦𝘯𝘵𝘪𝘳𝘦𝘭𝘺 𝘤𝘰𝘶𝘯𝘵𝘦𝘳 𝘵𝘰 𝘪𝘵𝘴 𝘰𝘳𝘪𝘨𝘪𝘯𝘢𝘭 𝘪𝘯𝘵𝘦𝘯𝘵."
+
+𝗗𝗲𝗹𝗲𝘁𝗶𝗻𝗴 𝗶𝘁 𝗱𝗶𝗱𝗻'𝘁 𝘄𝗼𝗿𝗸. Cloudflare published its traffic data on November 13, and the curve goes the wrong way.
+
+𝗪𝗵𝗮𝘁 𝗖𝗹𝗼𝘂𝗱𝗳𝗹𝗮𝗿𝗲 𝗦𝗮𝘄
+
+• 𝗖𝗼𝗽𝗶𝗲𝘀: over 𝟭𝟮,𝟬𝟬𝟬 𝗿𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝗶𝗲𝘀 descend from ARTEX, and 𝟮𝟬𝟰 public ones carry their own code changes
+
+• 𝗧𝗿𝗮𝗳𝗳𝗶𝗰: daily requests from these tools are up 𝟯𝟬𝘅 𝘀𝗶𝗻𝗰𝗲 𝗢𝗰𝘁𝗼𝗯𝗲𝗿 𝟭, and more than tenfold since the takedown
+
+• 𝗩𝗮𝗿𝗶𝗲𝘁𝘆: 𝟱𝟬+ 𝘁𝗼𝗼𝗹 𝗳𝗮𝗺𝗶𝗹𝗶𝗲𝘀 scanned Cloudflare customers in three days
+
+• 𝗦𝗵𝗮𝗿𝗲: ARTEX and its forks are 𝗼𝘃𝗲𝗿 𝟲𝟬% of the orchestrators Cloudflare tracks
+
+Cloudflare calls it a hydra effect. Remove one repo and the forks speed up.
+
+𝗛𝗼𝘄 𝗧𝗵𝗲𝘀𝗲 𝗧𝗼𝗼𝗹𝘀 𝗪𝗼𝗿𝗸
+
+A planner agent keeps a graph of the target: the machines it has found and the leads worth chasing. Worker agents run in parallel and test each lead. Whatever works goes back into the graph.
+
+That turns a break-in into a problem you solve in small, checked steps, which is the kind of problem agents are good at.
+
+𝗢𝗻𝗲 𝗥𝗲𝗮𝗹 𝗖𝗮𝘀𝗲
+
+Cloudflare's incident team found ARTEX using a stolen API token from a company's build pipeline. The token never expired. Nothing limited where it could be used from, or how fast.
+
+With it, the tool created Worker scripts named 𝚊𝚛𝚝𝚎𝚡-*, sent 𝟲𝟵+ 𝗿𝗲𝗾𝘂𝗲𝘀𝘁𝘀 𝗮 𝗺𝗶𝗻𝘂𝘁𝗲, and made 𝟰𝟬𝟬 𝗱𝗮𝘁𝗮𝗯𝗮𝘀𝗲 𝗱𝘂𝗺𝗽 𝗿𝗲𝗾𝘂𝗲𝘀𝘁𝘀 𝗶𝗻 𝗼𝗻𝗲 𝗵𝗼𝘂𝗿. Cloudflare believes a human was only "𝘭𝘪𝘨𝘩𝘵𝘭𝘺" guiding it.
+
+𝗜𝗳 𝗬𝗼𝘂 𝗥𝘂𝗻 𝗦𝘆𝘀𝘁𝗲𝗺𝘀
+
+Cloudflare's advice comes as six layers: a firewall with rate limits, anomaly detection, bot defence, identity checks in front of every internal app, strict API schema validation and shared threat intelligence.
+
+The cheapest fix sits inside the incident itself: 𝘀𝘁𝗼𝗽 𝘂𝘀𝗶𝗻𝗴 𝘁𝗼𝗸𝗲𝗻𝘀 𝘁𝗵𝗮𝘁 𝗻𝗲𝘃𝗲𝗿 𝗲𝘅𝗽𝗶𝗿𝗲.
+
+𝗜𝗳 𝗬𝗼𝘂 𝗕𝘂𝗶𝗹𝗱 𝗔𝗴𝗲𝗻𝘁𝘀
+
+The planner, graph and parallel workers design will look familiar if you've built a coding agent. One of the five tools in Cloudflare's table, Cairn, hands its work to existing harnesses such as Codex and Claude Code.
+
+𝗪𝗵𝗮𝘁 𝗧𝗼 𝗞𝗲𝗲𝗽 𝗜𝗻 𝗠𝗶𝗻𝗱
+
+𝗘𝘃𝗲𝗿𝘆 𝗻𝘂𝗺𝗯𝗲𝗿 𝗵𝗲𝗿𝗲 𝗶𝘀 𝗖𝗹𝗼𝘂𝗱𝗳𝗹𝗮𝗿𝗲'𝘀 𝗼𝘄𝗻 𝘁𝗲𝗹𝗲𝗺𝗲𝘁𝗿𝘆. The post gives ratios, not absolute counts, and doesn't explain how it identifies each tool in traffic. Cloudflare also sells a product for each of its six layers.
+
+It isn't the only one reporting this, though. Google, Microsoft and Cisco Talos have each published on ARTEX in recent weeks.
+
+𝘠𝘰𝘶 𝘤𝘢𝘯 𝘥𝘦𝘭𝘦𝘵𝘦 𝘢 𝘳𝘦𝘱𝘰. 𝘠𝘰𝘶 𝘤𝘢𝘯'𝘵 𝘥𝘦𝘭𝘦𝘵𝘦 12,000 𝘤𝘰𝘱𝘪𝘦𝘴 𝘰𝘧 𝘪𝘵.
+
+Links in reply 👇
+
+
+===== 2. KARPATHY STYLE =====
+
+𝗔𝘁𝘁𝗮𝗰𝗸𝘀 𝗕𝗲𝗰𝗮𝗺𝗲 𝗔 𝗦𝗲𝗮𝗿𝗰𝗵 𝗣𝗿𝗼𝗯𝗹𝗲𝗺
+
+Reading Cloudflare's November 13 post on AI pentesting orchestrators. Some notes.
+
+The headline numbers are loud. Traffic from these tools is up 𝟯𝟬𝘅 𝘀𝗶𝗻𝗰𝗲 𝗢𝗰𝘁𝗼𝗯𝗲𝗿 𝟭, there are 𝟭𝟮,𝟬𝟬𝟬+ 𝗿𝗲𝗽𝗼𝘀 descended from one deleted project (ARTEX), and 𝟱𝟬+ 𝘁𝗼𝗼𝗹 𝗳𝗮𝗺𝗶𝗹𝗶𝗲𝘀 showed up in three days.
+
+But I think the interesting part is one sentence in the middle. Cloudflare says these tools turn a compromise into a "𝘩𝘪𝘭𝘭-𝘤𝘭𝘪𝘮𝘣𝘢𝘣𝘭𝘦 𝘱𝘳𝘰𝘣𝘭𝘦𝘮."
+
+What that means: the orchestrator keeps a graph of the target. Agents propose a step, try it, and check whether it worked. Verified results go back into the graph and the next step starts from there.
+
+𝗢𝗻𝗰𝗲 𝗲𝘃𝗲𝗿𝘆 𝘀𝘁𝗲𝗽 𝗰𝗮𝗻 𝗯𝗲 𝗰𝗵𝗲𝗰𝗸𝗲𝗱, 𝘆𝗼𝘂 𝗱𝗼𝗻'𝘁 𝗻𝗲𝗲𝗱 𝗮 𝘀𝗸𝗶𝗹𝗹𝗲𝗱 𝗼𝗽𝗲𝗿𝗮𝘁𝗼𝗿. 𝗬𝗼𝘂 𝗻𝗲𝗲𝗱 𝗮 𝗹𝗼𝗼𝗽 𝗮𝗻𝗱 𝗲𝗻𝗼𝘂𝗴𝗵 𝗶𝗻𝗳𝗲𝗿𝗲𝗻𝗰𝗲.
+
+It's a bit like the gap between a locksmith and someone with unlimited time and a very large key ring, where the ring also tells you when you're getting warmer.
+
+The incident in the post shows what that looks like in practice. A stolen CI/CD token with no expiry. Worker scripts named 𝚊𝚛𝚝𝚎𝚡-* appearing in the account. 𝟰𝟬𝟬 𝗱𝗮𝘁𝗮𝗯𝗮𝘀𝗲 𝗱𝘂𝗺𝗽 𝗿𝗲𝗾𝘂𝗲𝘀𝘁𝘀 𝗶𝗻 𝗮𝗻 𝗵𝗼𝘂𝗿, with a human "𝘭𝘪𝘨𝘩𝘵𝘭𝘺" steering.
+
+Defence then becomes, imo, about removing the feedback signal and shrinking what's reachable. That's roughly what Cloudflare's six layers do. Rate limits slow the loop, identity gating hides internal apps, and segmentation limits what one stolen key can touch. (Cloudflare sells all six, so read the list with that in mind.)
+
+Two things I'd want before trusting the full picture. 𝗧𝗵𝗲 𝗻𝘂𝗺𝗯𝗲𝗿𝘀 𝗮𝗿𝗲 𝗿𝗮𝘁𝗶𝗼𝘀 𝗳𝗿𝗼𝗺 𝗼𝗻𝗲 𝘃𝗲𝗻𝗱𝗼𝗿'𝘀 𝗻𝗲𝘁𝘄𝗼𝗿𝗸, 𝘄𝗶𝘁𝗵 𝗻𝗼 𝗮𝗯𝘀𝗼𝗹𝘂𝘁𝗲 𝗰𝗼𝘂𝗻𝘁𝘀. And the post doesn't say how a request gets attributed to a specific tool.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘳𝘦𝘢𝘭𝘭𝘺 𝘭𝘪𝘬𝘦 𝘵𝘰 𝘴𝘦𝘦 𝘪𝘴 𝘵𝘩𝘦 𝘴𝘶𝘤𝘤𝘦𝘴𝘴 𝘳𝘢𝘵𝘦. 𝘖𝘧 𝘢𝘭𝘭 𝘵𝘩𝘢𝘵 𝘵𝘳𝘢𝘧𝘧𝘪𝘤, 𝘩𝘰𝘸 𝘮𝘢𝘯𝘺 𝘢𝘵𝘵𝘦𝘮𝘱𝘵𝘴 𝘢𝘤𝘵𝘶𝘢𝘭𝘭𝘺 𝘨𝘰𝘵 𝘪𝘯?
+
+Links in reply 👇
+
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗖𝗹𝗼𝘂𝗱𝗳𝗹𝗮𝗿𝗲'𝘀 𝗔𝗜 𝗣𝗲𝗻𝘁𝗲𝘀𝘁 𝗢𝗿𝗰𝗵𝗲𝘀𝘁𝗿𝗮𝘁𝗼𝗿 𝗥𝗲𝗽𝗼𝗿𝘁
+
+Cloudflare's Cloudforce One team published this on November 13. It covers open source frameworks that coordinate AI agents through the stages of an attack.
+
+Their definition, quoted: "𝘖𝘱𝘦𝘯-𝘴𝘰𝘶𝘳𝘤𝘦 𝘱𝘦𝘯𝘵𝘦𝘴𝘵𝘪𝘯𝘨 𝘧𝘳𝘢𝘮𝘦𝘸𝘰𝘳𝘬𝘴 𝘢𝘳𝘦 𝘢𝘣𝘭𝘦 𝘵𝘰 𝘰𝘳𝘤𝘩𝘦𝘴𝘵𝘳𝘢𝘵𝘦 𝘈𝘐 𝘢𝘨𝘦𝘯𝘵𝘴 𝘵𝘰 𝘤𝘢𝘳𝘳𝘺 𝘰𝘶𝘵 𝘴𝘵𝘢𝘨𝘦𝘴 𝘰𝘧 𝘵𝘩𝘦 𝘵𝘳𝘢𝘥𝘪𝘵𝘪𝘰𝘯𝘢𝘭 𝘊𝘺𝘣𝘦𝘳 𝘒𝘪𝘭𝘭 𝘊𝘩𝘢𝘪𝘯 𝘢𝘵 𝘴𝘤𝘢𝘭𝘦."
+
+The tool at the centre is ARTEX. Its author removed it on October 8. Cloudflare's count a month later is 𝗼𝘃𝗲𝗿 𝟭𝟮,𝟬𝟬𝟬 𝗿𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝗶𝗲𝘀, with a fork tree of 𝟮𝟬𝟰 𝗽𝘂𝗯𝗹𝗶𝗰 𝗿𝗲𝗽𝗼𝘀 that have their own code changes.
+
+Two parts are worth reading closely.
+
+𝗧𝗵𝗲 𝗰𝗼𝗺𝗽𝗮𝗿𝗶𝘀𝗼𝗻 𝘁𝗮𝗯𝗹𝗲. Five tools (ARTEX, LuaN1aoAgent, Decepticon, Cairn, PentestGPT-Agent) are compared on architecture, planning model, execution environment and post-exploitation features. All five plan on a graph or a dependency list. Cairn is the odd one out: it dispatches work to existing harnesses, listed as "𝘊𝘰𝘥𝘦𝘹, 𝘊𝘭𝘢𝘶𝘥𝘦 𝘊𝘰𝘥𝘦, 𝘗𝘪".
+
+𝗧𝗵𝗲 𝗶𝗻𝗰𝗶𝗱𝗲𝗻𝘁 𝘄𝗿𝗶𝘁𝗲-𝘂𝗽. A compromised account-level API token, previously used for CI/CD, with "𝘯𝘰 𝘐𝘗 𝘳𝘦𝘴𝘵𝘳𝘪𝘤𝘵𝘪𝘰𝘯𝘴 𝘰𝘳 𝘳𝘢𝘵𝘦 𝘭𝘪𝘮𝘪𝘵𝘪𝘯𝘨". Then Worker scripts named 𝚊𝚛𝚝𝚎𝚡-*, activity above 𝟲𝟵 𝗿𝗲𝗾𝘂𝗲𝘀𝘁𝘀 𝗽𝗲𝗿 𝗺𝗶𝗻𝘂𝘁𝗲, and 𝟰𝟬𝟬 𝗱𝗮𝘁𝗮𝗯𝗮𝘀𝗲 𝗱𝘂𝗺𝗽 𝗿𝗲𝗾𝘂𝗲𝘀𝘁𝘀 𝗶𝗻 𝗮𝗻 𝗵𝗼𝘂𝗿.
+
+𝗧𝗵𝗶𝗻𝗴𝘀 𝗧𝗼 𝗕𝗲 𝗖𝗮𝗿𝗲𝗳𝘂𝗹 𝗔𝗯𝗼𝘂𝘁
+
+• 𝗩𝗲𝗻𝗱𝗼𝗿 𝘁𝗲𝗹𝗲𝗺𝗲𝘁𝗿𝘆: the 30x growth and the 60% ARTEX share come from Cloudflare's own network, as ratios without absolute numbers
+
+• 𝗔𝘁𝘁𝗿𝗶𝗯𝘂𝘁𝗶𝗼𝗻: the post doesn't describe how traffic is matched to a tool
+
+• 𝗢𝗻𝗲 𝗼𝗱𝗱 𝗰𝗹𝗮𝗶𝗺: it says ARTEX was "𝘵𝘩𝘦 𝘰𝘯𝘭𝘺 𝘧𝘳𝘢𝘮𝘦𝘸𝘰𝘳𝘬 𝘢𝘷𝘢𝘪𝘭𝘢𝘣𝘭𝘦" a few weeks ago. PentestGPT was published at USENIX Security 2024, so read that as "the only one seen at this scale"
+
+• 𝗛𝘂𝗺𝗮𝗻 𝗶𝗻 𝘁𝗵𝗲 𝗹𝗼𝗼𝗽: Cloudflare believes the incident was "𝘭𝘪𝘨𝘩𝘵𝘭𝘺 𝘨𝘶𝘪𝘥𝘦𝘥 𝘣𝘺 𝘵𝘩𝘦 𝘩𝘶𝘮𝘢𝘯 𝘰𝘱𝘦𝘳𝘢𝘵𝘰𝘳", so it wasn't fully autonomous
+
+• 𝗦𝗮𝗹𝗲𝘀 𝗰𝗼𝗻𝘁𝗲𝘅𝘁: each of the six recommended layers maps to something Cloudflare sells
+
+For a second view, Google's threat intelligence team, Microsoft and GitGuardian have all published on ARTEX since late October. GitGuardian's catalogue lists 45 such frameworks.
+
+Links in reply 👇
+
+
+===== 4. SWYX STYLE =====
+
+𝗔𝗴𝗲𝗻𝘁𝗶𝗰 𝗢𝗳𝗳𝗲𝗻𝗰𝗲 𝗝𝘂𝘀𝘁 𝗕𝗲𝗰𝗮𝗺𝗲 𝗔 𝗖𝗮𝘁𝗲𝗴𝗼𝗿𝘆
+
+A month ago there was one name people knew, ARTEX. Cloudflare's November 13 report says it now tracks 𝟱𝟬+ 𝗔𝗜 𝗽𝗲𝗻𝘁𝗲𝘀𝘁 𝗼𝗿𝗰𝗵𝗲𝘀𝘁𝗿𝗮𝘁𝗼𝗿𝘀, and it saw that many families scanning its customers in three days.
+
+That's a category forming in public, so here's the map, taken from Cloudflare's own table.
+
+• 𝗔𝗥𝗧𝗘𝗫 𝗮𝗻𝗱 𝗳𝗼𝗿𝗸𝘀: a planner and parallel agents on a goal graph. Deleted by its author on October 8, now 𝗼𝘃𝗲𝗿 𝟲𝟬% of what Cloudflare tracks
+
+• 𝗟𝘂𝗮𝗡𝟭𝗮𝗼𝗔𝗴𝗲𝗻𝘁: supervisor, planner and executors over three graphs, with built-in SSH tunnelling
+
+• 𝗗𝗲𝗰𝗲𝗽𝘁𝗶𝗰𝗼𝗻: an orchestrator dispatching specialist sub-agents, with Active Directory and cloud pivoting skills
+
+• 𝗖𝗮𝗶𝗿𝗻: a dispatcher that hands work to existing coding harnesses
+
+• 𝗣𝗲𝗻𝘁𝗲𝘀𝘁𝗚𝗣𝗧-𝗔𝗴𝗲𝗻𝘁: a supervisor and one executor working from a task list
+
+All five share a planner, a graph and parallel workers. 𝗜𝘁'𝘀 𝘁𝗵𝗲 𝗰𝗼𝗱𝗶𝗻𝗴 𝗮𝗴𝗲𝗻𝘁 𝗮𝗿𝗰𝗵𝗶𝘁𝗲𝗰𝘁𝘂𝗿𝗲 𝗽𝗼𝗶𝗻𝘁𝗲𝗱 𝗮𝘁 𝘀𝗼𝗺𝗲𝗼𝗻𝗲 𝗲𝗹𝘀𝗲'𝘀 𝗻𝗲𝘁𝘄𝗼𝗿𝗸.
+
+Then the growth. Daily requests are up 𝟯𝟬𝘅 𝘀𝗶𝗻𝗰𝗲 𝗢𝗰𝘁𝗼𝗯𝗲𝗿 𝟭, and more than tenfold since the takedown. Over 𝟭𝟮,𝟬𝟬𝟬 𝗿𝗲𝗽𝗼𝘀 now trace back to ARTEX. Cloudflare's phrase for it is a hydra effect.
+
+On defence, Cloudflare's six-layer model (firewall, anomaly detection, bot defence, identity gating, schema validation, threat intel) is partly a product list. The part that travels is containment: assume a key leaks, and limit what it reaches.
+
+𝗖𝗮𝘃𝗲𝗮𝘁𝘀: this is one vendor's telemetry, given in ratios, with no method for how tools are fingerprinted. Google, Microsoft and Cisco Talos have separate ARTEX reports, so the trend isn't only Cloudflare's.
+
+My read: the scarce thing in an attack used to be operator skill. 𝗡𝗼𝘄 𝗶𝘁'𝘀 𝗮 𝘃𝗮𝗹𝗶𝗱 𝗰𝗿𝗲𝗱𝗲𝗻𝘁𝗶𝗮𝗹, and the incident in this report started with a build token that never expired.
+
+Links in reply 👇
+
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+𝗕𝗲𝗳𝗼𝗿𝗲 𝗬𝗼𝘂 𝗔𝗰𝗰𝗲𝗽𝘁 𝗧𝗵𝗲 𝟯𝟬𝘅 𝗡𝘂𝗺𝗯𝗲𝗿, 𝗔𝘀𝗸 𝗪𝗵𝗮𝘁 𝗪𝗮𝘀 𝗠𝗲𝗮𝘀𝘂𝗿𝗲𝗱
+
+Cloudflare reported on November 13 that traffic from AI pentest orchestrators grew 𝟯𝟬𝘅 𝘀𝗶𝗻𝗰𝗲 𝗢𝗰𝘁𝗼𝗯𝗲𝗿 𝟭. That's useful data. It also leaves out most of what you'd need to judge it.
+
+𝗪𝗵𝗮𝘁 𝗧𝗵𝗲 𝗥𝗲𝗽𝗼𝗿𝘁 𝗚𝗶𝘃𝗲𝘀 𝗬𝗼𝘂
+
+• Relative growth in daily requests and unique IPs
+
+• A fork count: 𝟭𝟮,𝟬𝟬𝟬+ 𝗿𝗲𝗽𝗼𝘀 from ARTEX, 𝟮𝟬𝟰 with their own code changes
+
+• A five-tool comparison table
+
+• One incident with hard numbers: 𝟲𝟵+ 𝗿𝗲𝗾𝘂𝗲𝘀𝘁𝘀 𝗮 𝗺𝗶𝗻𝘂𝘁𝗲 and 𝟰𝟬𝟬 𝗱𝗮𝘁𝗮𝗯𝗮𝘀𝗲 𝗱𝘂𝗺𝗽 𝗿𝗲𝗾𝘂𝗲𝘀𝘁𝘀 𝗶𝗻 𝗮𝗻 𝗵𝗼𝘂𝗿, from a stolen CI/CD token
+
+𝗪𝗵𝗮𝘁 𝗜𝘁 𝗗𝗼𝗲𝘀𝗻'𝘁
+
+• Absolute request counts
+
+• How a request is attributed to a tool
+
+• 𝗛𝗼𝘄 𝗺𝗮𝗻𝘆 𝗮𝘁𝘁𝗲𝗺𝗽𝘁𝘀 𝘀𝘂𝗰𝗰𝗲𝗲𝗱𝗲𝗱
+
+• How much was fully autonomous. Cloudflare says its own incident was "𝘭𝘪𝘨𝘩𝘵𝘭𝘺 𝘨𝘶𝘪𝘥𝘦𝘥" by a human
+
+That third gap matters. On AutoPenBench, a 2024 academic benchmark, a fully autonomous agent solved 𝟮𝟭% of tasks and a human-assisted one 𝟲𝟰%. Those were older models on only 33 tasks, so don't treat it as today's number. It does show that volume and success are separate measurements.
+
+So skip the framework debate and test your own setup.
+
+• 𝗣𝗶𝗰𝗸 𝘁𝗮𝗿𝗴𝗲𝘁𝘀: five things an attacker would want, like a CI token, an admin panel or a database export
+
+• 𝗪𝗿𝗶𝘁𝗲 𝗮 𝗯𝗮𝘀𝗲𝗹𝗶𝗻𝗲: which tokens never expire, and which internal apps answer from the public internet
+
+• 𝗖𝗵𝗮𝗻𝗴𝗲 𝗼𝗻𝗲 𝗰𝗼𝗻𝘁𝗿𝗼𝗹: token expiry, or an IP allowlist
+
+• 𝗖𝗼𝗺𝗽𝗮𝗿𝗲: run an authorised test before and after
+
+• 𝗥𝗲𝗮𝗱 𝘁𝗵𝗲 𝗹𝗼𝗴𝘀 𝘆𝗼𝘂𝗿𝘀𝗲𝗹𝗳: would you have noticed 400 dump requests in an hour?
+
+The report's best evidence is its incident, and the root cause there was 𝗮 𝘁𝗼𝗸𝗲𝗻 𝘄𝗶𝘁𝗵 𝗻𝗼 𝗲𝘅𝗽𝗶𝗿𝘆, 𝗻𝗼 𝗜𝗣 𝗿𝗲𝘀𝘁𝗿𝗶𝗰𝘁𝗶𝗼𝗻 𝗮𝗻𝗱 𝗻𝗼 𝗿𝗮𝘁𝗲 𝗹𝗶𝗺𝗶𝘁.
+
+Links in reply 👇
+
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗪𝗵𝗮𝘁 𝗛𝗮𝗽𝗽𝗲𝗻𝘀 𝗪𝗵𝗲𝗻 𝗕𝗿𝗲𝗮𝗸𝗶𝗻𝗴 𝗜𝗻 𝗦𝘁𝗼𝗽𝘀 𝗡𝗲𝗲𝗱𝗶𝗻𝗴 𝗔𝗻 𝗘𝘅𝗽𝗲𝗿𝘁?
+
+For most of computing history, a serious break-in needed a skilled person at the keyboard. A new Cloudflare report, published November 13, suggests that limit is going away.
+
+The report is about tools that let AI agents do a hacker's job as a team. One agent plans. Others try doors at the same time and report back.
+
+Picture a burglar who can send a hundred patient assistants down a street, each one checking every window and writing down what it finds.
+
+The best known tool, ARTEX, was built for legal security testing. Its author deleted it on October 8 after it was misused. A month later Cloudflare counts 𝗼𝘃𝗲𝗿 𝟭𝟮,𝟬𝟬𝟬 𝗿𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝗶𝗲𝘀 𝗱𝗲𝘀𝗰𝗲𝗻𝗱𝗲𝗱 𝗳𝗿𝗼𝗺 𝗶𝘁, and says traffic from tools like it is up 𝟯𝟬𝘅 𝘀𝗶𝗻𝗰𝗲 𝗢𝗰𝘁𝗼𝗯𝗲𝗿 𝟭.
+
+𝗪𝗵𝗮𝘁 𝗰𝗵𝗮𝗻𝗴𝗲𝘀 𝗶𝘀 𝘄𝗵𝗼 𝗰𝗮𝗻 𝗱𝗼 𝘁𝗵𝗶𝘀, 𝗮𝗻𝗱 𝗵𝗼𝘄 𝗺𝗮𝗻𝘆 𝘁𝗮𝗿𝗴𝗲𝘁𝘀 𝗮𝘁 𝗼𝗻𝗰𝗲. Cloudflare's point is that one person can now aim at many organisations together, and small mistakes get found because the agents test everything.
+
+In one case its team investigated, a stolen key from a company's software build system was enough. The tool made 𝟰𝟬𝟬 𝗿𝗲𝗾𝘂𝗲𝘀𝘁𝘀 𝘁𝗼 𝗰𝗼𝗽𝘆 𝗱𝗮𝘁𝗮𝗯𝗮𝘀𝗲𝘀 𝗶𝗻 𝗮 𝘀𝗶𝗻𝗴𝗹𝗲 𝗵𝗼𝘂𝗿.
+
+There's another side to the evidence. 𝗧𝗵𝗲𝘀𝗲 𝗮𝗿𝗲 𝗼𝗻𝗲 𝗰𝗼𝗺𝗽𝗮𝗻𝘆'𝘀 𝗺𝗲𝗮𝘀𝘂𝗿𝗲𝗺𝗲𝗻𝘁𝘀, 𝗴𝗶𝘃𝗲𝗻 𝗮𝘀 𝗴𝗿𝗼𝘄𝘁𝗵 𝗿𝗮𝘁𝗲𝘀, and Cloudflare sells the defences it recommends. It also believes a human was still "𝘭𝘪𝘨𝘩𝘵𝘭𝘺" steering that attack. And the report counts attempts, so we don't know how often they work.
+
+What we do know is that Google and Microsoft have reported the same tool in real intrusions, and the advice is consistent. Keys should expire. Internal systems shouldn't be visible from the internet.
+
+𝘐𝘧 𝘵𝘩𝘦 𝘢𝘵𝘵𝘢𝘤𝘬𝘦𝘳'𝘴 𝘴𝘬𝘪𝘭𝘭 𝘯𝘰 𝘭𝘰𝘯𝘨𝘦𝘳 𝘭𝘪𝘮𝘪𝘵𝘴 𝘵𝘩𝘦 𝘢𝘵𝘵𝘢𝘤𝘬, 𝘸𝘩𝘢𝘵 𝘥𝘰𝘦𝘴?
+
+Links in reply 👇
