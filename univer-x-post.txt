@@ -1,0 +1,206 @@
+===== 1. STORY =====
+
+𝗧𝗵𝗲 𝗢𝗽𝗲𝗻 𝗦𝗼𝘂𝗿𝗰𝗲 𝗦𝗽𝗿𝗲𝗮𝗱𝘀𝗵𝗲𝗲𝘁 𝗬𝗼𝘂 𝗖𝗮𝗻 𝗣𝘂𝘁 𝗜𝗻𝘀𝗶𝗱𝗲 𝗬𝗼𝘂𝗿 𝗢𝘄𝗻 𝗔𝗽𝗽
+
+Sooner or later, every business app gets the same request: "Can it just work like Excel?"
+
+Building that yourself is brutal. Formulas, merged cells, undo and redo, filters, fast scrolling over thousands of rows. Teams spend years on it.
+
+Univer is an open source project that hands you those pieces. Its repo has about 𝟮𝟰,𝟬𝟬𝟬 𝘀𝘁𝗮𝗿𝘀 on GitHub, and it now describes itself as an Office SDK for people and AI agents.
+
+𝗪𝗵𝗮𝘁 𝗬𝗼𝘂 𝗚𝗲𝘁 𝗙𝗼𝗿 𝗙𝗿𝗲𝗲
+
+The repo is Apache-2.0, so commercial use is allowed. It covers two things:
+
+• 𝗦𝗵𝗲𝗲𝘁𝘀: formulas, filtering, sorting, data validation, conditional formatting, merged cells, comments, undo and redo
+
+• 𝗗𝗼𝗰𝘀: rich-text editing, lists, links and comments
+
+You install two packages, call 𝚌𝚛𝚎𝚊𝚝𝚎𝚄𝚗𝚒𝚟𝚎𝚛, and a working spreadsheet editor appears on your page.
+
+𝗧𝗵𝗲 𝗣𝗮𝗿𝘁 𝗧𝗵𝗮𝘁 𝗠𝗮𝘁𝘁𝗲𝗿𝘀 𝗙𝗼𝗿 𝗔𝗜
+
+The same engine runs without a screen, in Node.js. Your code, or an agent, can write values into cells, let the formulas recalculate, read the result and save the whole workbook as JSON.
+
+The README shows it in a few lines: change a quantity from 2 to 4, and the total cell returns 𝟮𝟬𝟬.
+
+𝗜𝗳 𝗬𝗼𝘂'𝗿𝗲 𝗕𝘂𝗶𝗹𝗱𝗶𝗻𝗴 𝗔 𝗣𝗿𝗼𝗱𝘂𝗰𝘁
+
+Everything is a plugin. Filtering lives in one package and its menus in another, and the README counts on you composing only what you need.
+
+𝗪𝗵𝗮𝘁 𝗜𝘁 𝗕𝘂𝗶𝗹𝗱𝘀 𝗢𝗻
+
+Univer comes from the team behind Luckysheet, an older open source spreadsheet that's now archived. The repo dates from September 2022 and reached 1.0 this autumn. The latest tag, v1.4.0, is from November 7.
+
+𝗥𝗲𝗮𝗱 𝗧𝗵𝗶𝘀 𝗕𝗲𝗳𝗼𝗿𝗲 𝗬𝗼𝘂 𝗖𝗼𝗺𝗺𝗶𝘁
+
+𝗢𝗽𝗲𝗻𝗶𝗻𝗴 𝗮𝗻𝗱 𝘀𝗮𝘃𝗶𝗻𝗴 𝗿𝗲𝗮𝗹 𝗘𝘅𝗰𝗲𝗹 𝗳𝗶𝗹𝗲𝘀 𝗶𝘀 𝗻𝗼𝘁 𝗶𝗻 𝘁𝗵𝗲 𝗼𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲 𝗽𝗮𝗿𝘁. The README says XLSX import and export use "𝘴𝘦𝘱𝘢𝘳𝘢𝘵𝘦𝘭𝘺 𝘥𝘪𝘴𝘵𝘳𝘪𝘣𝘶𝘵𝘦𝘥 𝘧𝘪𝘭𝘦-𝘤𝘰𝘯𝘷𝘦𝘳𝘴𝘪𝘰𝘯 𝘤𝘢𝘱𝘢𝘣𝘪𝘭𝘪𝘵𝘪𝘦𝘴."
+
+The same goes for real-time collaboration, charts, pivot tables, slides and most of the AI SDK. Those are commercial, and the free evaluation tier has watermarks and feature limits.
+
+𝘛𝘩𝘦 𝘧𝘳𝘦𝘦 𝘤𝘰𝘳𝘦 𝘪𝘴 𝘢 𝘳𝘦𝘢𝘭 𝘴𝘱𝘳𝘦𝘢𝘥𝘴𝘩𝘦𝘦𝘵 𝘦𝘯𝘨𝘪𝘯𝘦. 𝘛𝘩𝘦 𝘰𝘧𝘧𝘪𝘤𝘦 𝘴𝘶𝘪𝘵𝘦 𝘢𝘳𝘰𝘶𝘯𝘥 𝘪𝘵 𝘪𝘴 𝘢 𝘱𝘳𝘰𝘥𝘶𝘤𝘵 𝘺𝘰𝘶 𝘱𝘢𝘺 𝘧𝘰𝘳.
+
+Links in reply 👇
+
+
+===== 2. KARPATHY STYLE =====
+
+𝗚𝗶𝘃𝗲 𝗧𝗵𝗲 𝗔𝗴𝗲𝗻𝘁 𝗧𝗵𝗲 𝗦𝗽𝗿𝗲𝗮𝗱𝘀𝗵𝗲𝗲𝘁, 𝗡𝗼𝘁 𝗔 𝗣𝗶𝗰𝘁𝘂𝗿𝗲 𝗢𝗳 𝗜𝘁
+
+Been reading the README for Univer, an open source Office SDK (Apache-2.0 core, about 24k stars). It covers spreadsheets and documents you embed in your own app.
+
+The editor is nice, but I think the interesting part is underneath it. 𝗧𝗵𝗲 𝗱𝗼𝗰𝘂𝗺𝗲𝗻𝘁 𝗶𝘀 𝗮 𝗱𝗮𝘁𝗮 𝗺𝗼𝗱𝗲𝗹 𝘄𝗶𝘁𝗵 𝗮 𝗰𝗼𝗺𝗺𝗮𝗻𝗱 𝘀𝘆𝘀𝘁𝗲𝗺, 𝗮𝗻𝗱 𝘁𝗵𝗲 𝘀𝗰𝗿𝗲𝗲𝗻 𝗶𝘀 𝗼𝗽𝘁𝗶𝗼𝗻𝗮𝗹.
+
+Every edit goes through a command. Changes to saved content are "mutations" with serializable parameters, each with an inverse for undo. The same models and formula engine run in Node.js with no UI at all.
+
+Why this matters for agents: there are roughly two ways to let a model edit a spreadsheet. One is to have it click around a rendered app. The other is to hand it the API a programmer would use. Univer does the second. The README's example sets B2 to 4, waits for recalculation and reads 𝟮𝟬𝟬 back from the total cell.
+
+It's the difference between asking someone to repaint a wall through a keyhole and giving them the door key.
+
+And because edits are mutations, you get things for free that agents badly need. A before-execute event that can cancel a command. A full undo history. A JSON snapshot of the workbook at any point.
+
+Now the limits, which are mostly about licensing. 𝗫𝗟𝗦𝗫 𝗶𝗺𝗽𝗼𝗿𝘁 𝗮𝗻𝗱 𝗲𝘅𝗽𝗼𝗿𝘁 𝗮𝗿𝗲𝗻'𝘁 𝗶𝗻 𝘁𝗵𝗲 𝗼𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲 𝗿𝗲𝗽𝗼. Neither is real-time collaboration, charts or pivot tables. The AI SDK that adds agent tooling, screenshots and draft review is largely commercial too. What's free is the engine and the API.
+
+Imo that's still the valuable half, but I'd be clear-eyed that an agent working with real Excel files needs the paid part or another converter.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘴𝘦𝘦 𝘪𝘴 𝘢 𝘣𝘦𝘯𝘤𝘩𝘮𝘢𝘳𝘬: 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘴𝘱𝘳𝘦𝘢𝘥𝘴𝘩𝘦𝘦𝘵 𝘵𝘢𝘴𝘬𝘴 𝘥𝘰𝘯𝘦 𝘵𝘩𝘳𝘰𝘶𝘨𝘩 𝘵𝘩𝘪𝘴 𝘈𝘗𝘐 𝘢𝘯𝘥 𝘵𝘩𝘳𝘰𝘶𝘨𝘩 𝘴𝘤𝘳𝘦𝘦𝘯 𝘤𝘰𝘯𝘵𝘳𝘰𝘭, 𝘸𝘪𝘵𝘩 𝘴𝘶𝘤𝘤𝘦𝘴𝘴 𝘳𝘢𝘵𝘦 𝘢𝘯𝘥 𝘤𝘰𝘴𝘵 𝘴𝘪𝘥𝘦 𝘣𝘺 𝘴𝘪𝘥𝘦.
+
+Links in reply 👇
+
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗨𝗻𝗶𝘃𝗲𝗿, 𝗔𝗻 𝗢𝗽𝗲𝗻 𝗦𝗼𝘂𝗿𝗰𝗲 𝗢𝗳𝗳𝗶𝗰𝗲 𝗦𝗗𝗞
+
+Univer is a TypeScript project for embedding spreadsheets and documents in your own application. From the README:
+
+"𝘜𝘯𝘪𝘷𝘦𝘳 𝘪𝘴 𝘢𝘯 𝘖𝘧𝘧𝘪𝘤𝘦 𝘚𝘋𝘒 𝘧𝘰𝘳 𝘣𝘶𝘪𝘭𝘥𝘪𝘯𝘨 𝘖𝘧𝘧𝘪𝘤𝘦 𝘢𝘱𝘱𝘭𝘪𝘤𝘢𝘵𝘪𝘰𝘯𝘴 𝘪𝘯𝘴𝘪𝘥𝘦 𝘺𝘰𝘶𝘳 𝘰𝘸𝘯 𝘱𝘳𝘰𝘥𝘶𝘤𝘵."
+
+Some numbers, taken on November 14: about 𝟮𝟰,𝟬𝟬𝟬 𝘀𝘁𝗮𝗿𝘀, roughly 2,100 forks, Apache-2.0, created in September 2022, latest tag v1.4.0 from November 7. The monorepo holds 60 packages.
+
+What the open source repo contains, in its own words: "𝘵𝘩𝘦 𝘞𝘦𝘣 𝘚𝘋𝘒'𝘴 𝘤𝘰𝘳𝘦 𝘢𝘳𝘤𝘩𝘪𝘵𝘦𝘤𝘵𝘶𝘳𝘦 𝘢𝘯𝘥 𝘦𝘯𝘨𝘪𝘯𝘦 𝘪𝘮𝘱𝘭𝘦𝘮𝘦𝘯𝘵𝘢𝘵𝘪𝘰𝘯𝘴 𝘶𝘯𝘥𝘦𝘳 𝘈𝘱𝘢𝘤𝘩𝘦-2.0", which means the content models, formula engine, canvas rendering engine and the Sheets and Docs editors.
+
+Two things are worth a look.
+
+𝗛𝗲𝗮𝗱𝗹𝗲𝘀𝘀 𝗺𝗼𝗱𝗲. The same models, commands and formula calculation run in Node.js (18.17 or newer) without a browser. So a server job or an agent can edit a workbook and get recalculated values back.
+
+𝗧𝗵𝗲 𝗙𝗮𝗰𝗮𝗱𝗲 𝗔𝗣𝗜. It reads like a scripting API: 𝚜𝚑𝚎𝚎𝚝.𝚐𝚎𝚝𝚁𝚊𝚗𝚐𝚎('𝙰𝟷:𝙳𝟺').𝚜𝚎𝚝𝚅𝚊𝚕𝚞𝚎𝚜(...), then 𝚠𝚘𝚛𝚔𝚋𝚘𝚘𝚔.𝚜𝚊𝚟𝚎() returns a JSON snapshot. Events such as 𝙱𝚎𝚏𝚘𝚛𝚎𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝙴𝚡𝚎𝚌𝚞𝚝𝚎 can inspect and cancel an edit.
+
+𝗧𝗵𝗶𝗻𝗴𝘀 𝗧𝗼 𝗕𝗲 𝗖𝗮𝗿𝗲𝗳𝘂𝗹 𝗔𝗯𝗼𝘂𝘁
+
+• 𝗡𝗼 𝗫𝗟𝗦𝗫 𝗶𝗻 𝘁𝗵𝗲 𝗳𝗿𝗲𝗲 𝗽𝗮𝗿𝘁: the README says snapshot persistence "𝘪𝘴 𝘴𝘦𝘱𝘢𝘳𝘢𝘵𝘦 𝘧𝘳𝘰𝘮 𝘟𝘓𝘚𝘟 𝘪𝘮𝘱𝘰𝘳𝘵 𝘢𝘯𝘥 𝘦𝘹𝘱𝘰𝘳𝘵, 𝘸𝘩𝘪𝘤𝘩 𝘶𝘴𝘦𝘴 𝘵𝘩𝘦 𝘴𝘦𝘱𝘢𝘳𝘢𝘵𝘦𝘭𝘺 𝘥𝘪𝘴𝘵𝘳𝘪𝘣𝘶𝘵𝘦𝘥 𝘧𝘪𝘭𝘦-𝘤𝘰𝘯𝘷𝘦𝘳𝘴𝘪𝘰𝘯 𝘤𝘢𝘱𝘢𝘣𝘪𝘭𝘪𝘵𝘪𝘦𝘴"
+
+• 𝗖𝗼𝗺𝗺𝗲𝗿𝗰𝗶𝗮𝗹 𝗽𝗶𝗲𝗰𝗲𝘀: charts, shapes, pivot tables, the Server SDK (collaboration, history, file conversion) and AI SDK extensions are licensed separately
+
+• 𝗙𝗿𝗲𝗲𝗺𝗶𝘂𝗺 𝗹𝗶𝗺𝗶𝘁𝘀: the README states that "𝘍𝘳𝘦𝘦𝘮𝘪𝘶𝘮 𝘦𝘷𝘢𝘭𝘶𝘢𝘵𝘪𝘰𝘯 𝘪𝘯𝘤𝘭𝘶𝘥𝘦𝘴 𝘸𝘢𝘵𝘦𝘳𝘮𝘢𝘳𝘬𝘴 𝘢𝘯𝘥 𝘧𝘦𝘢𝘵𝘶𝘳𝘦 𝘭𝘪𝘮𝘪𝘵𝘴"
+
+• 𝗗𝗲𝗺𝗼𝘀 𝘀𝗵𝗼𝘄 𝗺𝗼𝗿𝗲 𝘁𝗵𝗮𝗻 𝘆𝗼𝘂 𝗴𝗲𝘁: the README itself warns its demos include commercial capabilities
+
+• 𝗦𝗹𝗶𝗱𝗲𝘀 𝗮𝗻𝗱 𝗰𝗮𝗻𝘃𝗮𝘀𝗲𝘀: listed in the product family, but currently commercial
+
+• 𝗡𝗼 𝗽𝗲𝗿𝗳𝗼𝗿𝗺𝗮𝗻𝗰𝗲 𝗻𝘂𝗺𝗯𝗲𝗿𝘀: the README gives no benchmarks, so test with your own data sizes
+
+• 𝗩𝗲𝗿𝘀𝗶𝗼𝗻 𝗽𝗶𝗻𝗻𝗶𝗻𝗴: all @𝚞𝚗𝚒𝚟𝚎𝚛𝚓𝚜/* packages need to stay on the same version
+
+The feature comparison page has an "Open source only" filter, which is the quickest way to see where the line sits.
+
+Links in reply 👇
+
+
+===== 4. SWYX STYLE =====
+
+𝗢𝗳𝗳𝗶𝗰𝗲 𝗗𝗼𝗰𝘂𝗺𝗲𝗻𝘁𝘀 𝗔𝗿𝗲 𝗕𝗲𝗰𝗼𝗺𝗶𝗻𝗴 𝗔𝗻 𝗔𝗴𝗲𝗻𝘁 𝗜𝗻𝘁𝗲𝗿𝗳𝗮𝗰𝗲
+
+Chat got agents talking. The next fight is over where they do the work, and a lot of work still lives in spreadsheets and documents.
+
+Univer is a good marker of that shift. The repo began in 2022 as an embeddable spreadsheet. Today its README opens with "𝘉𝘶𝘪𝘭𝘥 𝘺𝘰𝘶𝘳 𝘰𝘸𝘯 𝘈𝘐 𝘰𝘧𝘧𝘪𝘤𝘦."
+
+Roughly, the choices for putting a spreadsheet in your product look like this.
+
+• 𝗔 𝗱𝗮𝘁𝗮 𝗴𝗿𝗶𝗱: Handsontable gives you a spreadsheet-like table, with a paid license for commercial use
+
+• 𝗧𝗵𝗲 𝗼𝗹𝗱𝗲𝗿 𝗼𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲 𝗼𝗽𝘁𝗶𝗼𝗻: Luckysheet, from the same team as Univer, is archived and points people to Univer
+
+• 𝗔𝗻 𝗲𝗻𝗴𝗶𝗻𝗲 𝘄𝗶𝘁𝗵 𝗮𝗻 𝗔𝗣𝗜: Univer's Apache-2.0 core has the formula engine, rendering, Sheets and Docs, and runs headless in Node.js
+
+Univer's place is the third, and it's the one built with agents in mind. The same Facade API serves a button in your app and a tool call from a model.
+
+The size of it: about 𝟮𝟰,𝟬𝟬𝟬 𝘀𝘁𝗮𝗿𝘀, 60 packages, v1.4.0 tagged on November 7.
+
+The business model is open core, and you should read the split carefully. 𝗫𝗟𝗦𝗫 𝗶𝗺𝗽𝗼𝗿𝘁 𝗮𝗻𝗱 𝗲𝘅𝗽𝗼𝗿𝘁, 𝗿𝗲𝗮𝗹-𝘁𝗶𝗺𝗲 𝗰𝗼𝗹𝗹𝗮𝗯𝗼𝗿𝗮𝘁𝗶𝗼𝗻, 𝗰𝗵𝗮𝗿𝘁𝘀 𝗮𝗻𝗱 𝗽𝗶𝘃𝗼𝘁 𝘁𝗮𝗯𝗹𝗲𝘀 𝗮𝗿𝗲 𝗰𝗼𝗺𝗺𝗲𝗿𝗰𝗶𝗮𝗹. So is most of the AI SDK: the agent CLI pieces, screenshot checks and the "Worktree" flow where an agent edits a draft and a person reviews it.
+
+That Worktree idea is the one to watch. It treats an agent's spreadsheet edits like a pull request.
+
+My read: the winning document format for agents won't be a file. 𝗜𝘁'𝗹𝗹 𝗯𝗲 𝗮 𝗺𝗼𝗱𝗲𝗹 𝘄𝗶𝘁𝗵 𝗰𝗼𝗺𝗺𝗮𝗻𝗱𝘀, 𝗵𝗶𝘀𝘁𝗼𝗿𝘆 𝗮𝗻𝗱 𝗿𝗲𝘃𝗶𝗲𝘄 𝗯𝘂𝗶𝗹𝘁 𝗶𝗻, and whoever owns that layer owns the workflow.
+
+Links in reply 👇
+
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+"𝗔𝗜 𝗢𝗳𝗳𝗶𝗰𝗲 𝗦𝗗𝗞" 𝗜𝘀 𝗔 𝗟𝗮𝗯𝗲𝗹. 𝗖𝗵𝗲𝗰𝗸 𝗪𝗵𝗮𝘁'𝘀 𝗜𝗻 𝗧𝗵𝗲 𝗕𝗼𝘅.
+
+Univer has about 24,000 GitHub stars and a README that opens with "𝘉𝘶𝘪𝘭𝘥 𝘺𝘰𝘶𝘳 𝘰𝘸𝘯 𝘈𝘐 𝘰𝘧𝘧𝘪𝘤𝘦." It's a serious project. The free part and the advertised part are different sizes, though.
+
+𝗪𝗵𝗮𝘁 𝗧𝗵𝗲 𝗔𝗽𝗮𝗰𝗵𝗲-𝟮.𝟬 𝗥𝗲𝗽𝗼 𝗚𝗶𝘃𝗲𝘀 𝗬𝗼𝘂
+
+• A spreadsheet editor with formulas, filters, sorting, validation and conditional formatting
+
+• A rich-text document editor
+
+• The formula and rendering engines, usable headless in Node.js
+
+• A Facade API to read and write cells and save a JSON snapshot
+
+𝗪𝗵𝗮𝘁 𝗜𝘁 𝗗𝗼𝗲𝘀𝗻'𝘁
+
+• 𝗫𝗟𝗦𝗫 𝗶𝗺𝗽𝗼𝗿𝘁 𝗮𝗻𝗱 𝗲𝘅𝗽𝗼𝗿𝘁. That's distributed separately
+
+• Real-time collaboration and revision history
+
+• Charts, pivot tables, shapes, slides
+
+• Most of the AI SDK. The README says agents can use the open APIs, but "𝘺𝘰𝘶𝘳 𝘢𝘱𝘱𝘭𝘪𝘤𝘢𝘵𝘪𝘰𝘯 𝘴𝘶𝘱𝘱𝘭𝘪𝘦𝘴 𝘵𝘩𝘦 𝘮𝘰𝘥𝘦𝘭 𝘢𝘯𝘥 𝘵𝘰𝘰𝘭 𝘰𝘳𝘤𝘩𝘦𝘴𝘵𝘳𝘢𝘵𝘪𝘰𝘯"
+
+• Any benchmark. There are no performance or accuracy numbers in the README
+
+So an "AI spreadsheet agent" built on the free core means you write the tools, and you need your own answer for Excel files.
+
+Before adopting it, test the thing you care about.
+
+• 𝗖𝗼𝗹𝗹𝗲𝗰𝘁: 10 real workbooks from your users, including the ugly ones
+
+• 𝗕𝗮𝘀𝗲𝗹𝗶𝗻𝗲: note the formula results Excel gives for each
+
+• 𝗟𝗼𝗮𝗱 𝗮𝗻𝗱 𝗰𝗼𝗺𝗽𝗮𝗿𝗲: get them into Univer and diff every computed cell
+
+• 𝗦𝗰𝗮𝗹𝗲: try your largest sheet and time editing and scrolling
+
+• 𝗔𝗴𝗲𝗻𝘁 𝗰𝗵𝗲𝗰𝗸: give a model 20 edit tasks through the Facade API and read every mutation it made
+
+𝗧𝗵𝗲 𝗳𝗼𝗿𝗺𝘂𝗹𝗮 𝗱𝗶𝗳𝗳 𝗶𝘀 𝘁𝗵𝗲 𝗼𝗻𝗲 𝘁𝗵𝗮𝘁 𝗱𝗲𝗰𝗶𝗱𝗲𝘀 𝗶𝘁. A spreadsheet engine that disagrees with Excel on 2% of cells isn't one your finance team will trust.
+
+Links in reply 👇
+
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗪𝗵𝗮𝘁 𝗜𝗳 𝗘𝘃𝗲𝗿𝘆 𝗔𝗽𝗽 𝗛𝗮𝗱 𝗜𝘁𝘀 𝗢𝘄𝗻 𝗘𝘅𝗰𝗲𝗹, 𝗔𝗻𝗱 𝗔𝗻 𝗔𝗜 𝗖𝗼𝘂𝗹𝗱 𝗨𝘀𝗲 𝗜𝘁?
+
+A surprising amount of the world's work happens in spreadsheets. Yet most software can't offer you one. Building something like Excel is so hard that companies usually send you off to Excel itself.
+
+A project called Univer is trying to change that. It's a free, open kit that lets developers put a working spreadsheet, or a document editor, inside their own product. About 𝟮𝟰,𝟬𝟬𝟬 𝗱𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿𝘀 have starred it on GitHub.
+
+Think of it as a spreadsheet engine sold separately from the car. A company can bolt it into its own software, so the budget lives next to the invoices and never leaves the app.
+
+The newer idea is who else can use it. The same engine works without a screen, which means an AI system can type numbers into cells, let the formulas run and read back the answer, the way a careful assistant would. 𝗜𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗵𝗮𝘃𝗲 𝘁𝗼 𝘀𝗾𝘂𝗶𝗻𝘁 𝗮𝘁 𝗮 𝗽𝗶𝗰𝘁𝘂𝗿𝗲 𝗼𝗳 𝗮 𝘀𝗽𝗿𝗲𝗮𝗱𝘀𝗵𝗲𝗲𝘁 𝗮𝗻𝗱 𝗴𝘂𝗲𝘀𝘀.
+
+There's a real catch. The free kit covers the basics: formulas, filters, formatting, documents. 𝗢𝗽𝗲𝗻𝗶𝗻𝗴 𝗮𝗻𝗱 𝘀𝗮𝘃𝗶𝗻𝗴 𝗮𝗰𝘁𝘂𝗮𝗹 𝗘𝘅𝗰𝗲𝗹 𝗳𝗶𝗹𝗲𝘀, 𝗰𝗵𝗮𝗿𝘁𝘀, 𝗮𝗻𝗱 𝘀𝗲𝘃𝗲𝗿𝗮𝗹 𝗽𝗲𝗼𝗽𝗹𝗲 𝗲𝗱𝗶𝘁𝗶𝗻𝗴 𝗮𝘁 𝗼𝗻𝗰𝗲 𝗮𝗿𝗲 𝗽𝗮𝗶𝗱 𝗲𝘅𝘁𝗿𝗮𝘀. The showcase demos include those paid parts, as the project itself admits.
+
+We also don't know how well AI does with it. The project publishes no test results on that.
+
+What we can say is that the building blocks of office software are becoming something any company can pick up, and they're being designed for two kinds of users.
+
+𝘐𝘧 𝘢𝘯 𝘈𝘐 𝘤𝘢𝘯 𝘸𝘰𝘳𝘬 𝘪𝘯 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘴𝘱𝘳𝘦𝘢𝘥𝘴𝘩𝘦𝘦𝘵 𝘺𝘰𝘶 𝘥𝘰, 𝘩𝘰𝘸 𝘸𝘪𝘭𝘭 𝘺𝘰𝘶 𝘤𝘩𝘦𝘤𝘬 𝘸𝘩𝘪𝘤𝘩 𝘯𝘶𝘮𝘣𝘦𝘳𝘴 𝘢𝘳𝘦 𝘺𝘰𝘶𝘳𝘴?
+
+Links in reply 👇
