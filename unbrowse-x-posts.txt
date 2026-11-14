@@ -1,0 +1,186 @@
+===== 0. PAPER POST (paper-to-tweet format) =====
+
+Most AI agents use websites the slow way.
+
+They open a browser, load the full page, read thousands of tokens of HTML and click around. Every agent repeats the same work on the same site.
+
+There is a faster way: call the site's internal API (the hidden endpoints the page itself uses to get its data). You get clean JSON back, with no page to read.
+
+But there is a catch. These APIs are not documented. Someone has to find them first, work out the inputs, and handle tokens and logins. And they can change without warning.
+
+A paper from the Unbrowse team ("Internal APIs Are All You Need") solves this with a shared registry of learned routes.
+
+The idea is simple: learn a site once, then replay it.
+
+1. The agent asks for a task, like "top stories on Hacker News".
+2. Unbrowse searches your private tools, then a public registry of sites already learned.
+3. If there is a match, it replays the site's own HTTP requests. No browser.
+4. If not, the agent does the task once in a recorded cloud browser, and the traffic is compiled into a one-call tool.
+
+The system works out by itself which request fields are inputs and which are fixed.
+
+How it works:
+
+→ It records two sessions with different inputs and compares them. The fields that change are the inputs.
+→ It traces tokens (like CSRF values) back to the response that produced them, so a multi-step flow replays as one call.
+→ A run counts as success only when the result is verified. HTTP 200 alone is not enough.
+→ Only read-only routes with no secrets go to the public registry. Logins and writes are never shared.
+
+Results in the paper across 94 production domains (self-reported, compared with Playwright):
+
+• 950 ms mean vs 3,404 ms with browser automation
+• 3.6x faster on average, 5.4x at the median
+• 90–96% lower cost per task
+• ~8,000 tokens of DOM down to ~200 tokens of JSON
+
+The team's newer test on 100 real sites is more modest: 42 worked on warm replay, 2 gave wrong results, and the rest failed or could not be learned.
+
+What I find interesting as someone building agents: the browser becomes the fallback, not the default. But only the CLI and SDK are open source. The service that does the work is hosted, so check that before you depend on it.
+
+Links in the reply 👇
+
+===== 1. STORY =====
+
+𝗬𝗼𝘂𝗿 𝗔𝗴𝗲𝗻𝘁 𝗖𝗹𝗶𝗰𝗸𝘀 𝗧𝗵𝗿𝗼𝘂𝗴𝗵 𝗮 𝗪𝗲𝗯𝘀𝗶𝘁𝗲. 𝗧𝗵𝗲 𝗪𝗲𝗯𝘀𝗶𝘁𝗲 𝗝𝘂𝘀𝘁 𝗖𝗮𝗹𝗹𝘀 𝗮𝗻 𝗔𝗣𝗜.
+
+Ask an agent to check a price and watch what it does. It opens a browser, loads the page, reads the HTML and hunts for the right button. The page itself got that price from one small JSON call.
+
+Unbrowse is built on that gap. It's a CLI and SDK (MIT) for a hosted service that 𝗿𝗲𝗽𝗹𝗮𝘆𝘀 𝗮 𝘀𝗶𝘁𝗲'𝘀 𝗼𝘄𝗻 𝗛𝗧𝗧𝗣 𝗿𝗲𝗾𝘂𝗲𝘀𝘁𝘀 𝗶𝗻𝘀𝘁𝗲𝗮𝗱 𝗼𝗳 𝗱𝗿𝗶𝘃𝗶𝗻𝗴 𝗮 𝗯𝗿𝗼𝘄𝘀𝗲𝗿.
+
+Run a task and it looks in your private tools first, then in a public registry of sites that are already learned. If there's a match, it replays the requests with your inputs. If there isn't, the agent does the task once in a recorded cloud browser (or you upload two HAR files) and that traffic is compiled into a one-call tool.
+
+𝗙𝗼𝗿 𝘂𝘀𝗲𝗿𝘀: 500 verified calls a month are free, then $10 per 10,000. Failed runs aren't billed.
+
+𝗙𝗼𝗿 𝗯𝘂𝗶𝗹𝗱𝗲𝗿𝘀: every compiled site is also an MCP server and an OpenAPI 3.1 document. To try it: 𝚗𝚙𝚡 𝚞𝚗𝚋𝚛𝚘𝚠𝚜𝚎 𝚛𝚞𝚗 '𝚝𝚘𝚙 𝚜𝚝𝚘𝚛𝚒𝚎𝚜 𝚘𝚗 𝚑𝚊𝚌𝚔𝚎𝚛 𝚗𝚎𝚠𝚜'
+
+The idea has history. Integuru already turns HAR files into integration code, and Vectorly's web-hacker also learns from captured browser traffic. What Unbrowse adds is the shared registry, so a route learned once can be reused by other agents.
+
+One caveat: 𝘁𝗵𝗲 𝗯𝗶𝗴 𝗻𝘂𝗺𝗯𝗲𝗿𝘀 𝗮𝗿𝗲 𝘁𝗵𝗲 𝘁𝗲𝗮𝗺'𝘀 𝗼𝘄𝗻. The paper reports a mean of 𝟵𝟱𝟬 𝗺𝘀 𝗮𝗴𝗮𝗶𝗻𝘀𝘁 𝟯,𝟰𝟬𝟰 𝗺𝘀 for Playwright across 94 domains, and the docs say those were never re-run on the current service. In a newer test on 100 real sites, 𝟰𝟮 𝘄𝗼𝗿𝗸𝗲𝗱 on warm replay and 𝟮 𝗿𝗲𝘁𝘂𝗿𝗻𝗲𝗱 𝘄𝗿𝗼𝗻𝗴 𝗿𝗲𝘀𝘂𝗹𝘁𝘀.
+
+And only the client is open source. The cloud browser, the learning and the replay all stay hosted.
+
+𝘔𝘢𝘺𝘣𝘦 𝘵𝘩𝘦 𝘣𝘳𝘰𝘸𝘴𝘦𝘳 𝘸𝘢𝘴 𝘢𝘭𝘸𝘢𝘺𝘴 𝘵𝘩𝘦 𝘴𝘭𝘰𝘸 𝘱𝘢𝘵𝘩 𝘧𝘰𝘳 𝘢𝘨𝘦𝘯𝘵𝘴, 𝘢𝘯𝘥 𝘸𝘩𝘢𝘵 𝘸𝘢𝘴 𝘮𝘪𝘴𝘴𝘪𝘯𝘨 𝘸𝘢𝘴 𝘢 𝘮𝘢𝘱 𝘰𝘧 𝘵𝘩𝘦 𝘧𝘢𝘴𝘵 𝘰𝘯𝘦.
+
+Links in reply 👇
+
+===== 2. KARPATHY STYLE =====
+
+𝗧𝗵𝗲 𝗪𝗲𝗯 𝗔𝗹𝗿𝗲𝗮𝗱𝘆 𝗛𝗮𝘀 𝗮𝗻 𝗔𝗣𝗜. 𝗜𝘁'𝘀 𝗝𝘂𝘀𝘁 𝗡𝗼𝘁 𝗪𝗿𝗶𝘁𝘁𝗲𝗻 𝗗𝗼𝘄𝗻.
+
+Been reading the Unbrowse paper ("Internal APIs Are All You Need") and the repo docs.
+
+The observation is simple. A modern web page is a thin client over JSON endpoints. An agent driving a browser reverse-engineers that client from the DOM on every visit, then throws the knowledge away.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝘁𝗵𝗲 𝘀𝗽𝗲𝗲𝗱, 𝗶𝘁'𝘀 𝗰𝗮𝗰𝗵𝗶𝗻𝗴 𝘁𝗵𝗲 𝗱𝗶𝘀𝗰𝗼𝘃𝗲𝗿𝘆. It works a bit like a compiler cache. The first agent pays to "compile" a site into a callable route, and everyone after that reuses the result.
+
+How it finds the inputs is neat. Record the same task twice with different inputs, compare the requests, and the fields that changed are the parameters. Tokens like CSRF values get traced back to the response they came from.
+
+The numbers are all self-reported: 94 domains, a mean of 𝟵𝟱𝟬 𝗺𝘀 𝘃𝘀 𝟯,𝟰𝟬𝟰 𝗺𝘀 with Playwright, and roughly 𝟴,𝟬𝟬𝟬 𝗗𝗢𝗠 𝘁𝗼𝗸𝗲𝗻𝘀 𝗱𝗼𝘄𝗻 𝘁𝗼 𝗮𝗯𝗼𝘂𝘁 𝟮𝟬𝟬 of JSON per read. The docs say plainly that these weren't re-run on today's service.
+
+Their newer 100-site test is the one worth reading. 𝟰𝟮 𝘄𝗼𝗿𝗸𝗲𝗱 𝘄𝗮𝗿𝗺, 𝟮 𝗿𝗲𝘁𝘂𝗿𝗻𝗲𝗱 𝘄𝗿𝗼𝗻𝗴 𝗱𝗮𝘁𝗮, 𝟮𝟮 𝗳𝗮𝗶𝗹𝗲𝗱 and 21 couldn't be learned at all. So imo this is a fast path for the sites where it works, with the browser still needed for everything else.
+
+Two open issues, I think. Internal APIs change without notice. And only the client is MIT, while the service that does the learning is hosted.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘴𝘦𝘦: 𝘢𝘯 𝘪𝘯𝘥𝘦𝘱𝘦𝘯𝘥𝘦𝘯𝘵 𝘣𝘦𝘯𝘤𝘩𝘮𝘢𝘳𝘬, 𝘢𝘯𝘥 𝘢 𝘭𝘦𝘢𝘳𝘯 𝘭𝘰𝘰𝘱 𝘵𝘩𝘢𝘵 𝘤𝘢𝘯 𝘳𝘶𝘯 𝘰𝘯 𝘮𝘺 𝘰𝘸𝘯 𝘮𝘢𝘤𝘩𝘪𝘯𝘦.
+
+Links in reply 👇
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗼𝗻 𝗨𝗻𝗯𝗿𝗼𝘄𝘀𝗲: 𝗥𝗲𝗽𝗹𝗮𝘆𝗶𝗻𝗴 𝗮 𝗦𝗶𝘁𝗲'𝘀 𝗢𝘄𝗻 𝗛𝗧𝗧𝗣 𝗖𝗮𝗹𝗹𝘀 𝗜𝗻𝘀𝘁𝗲𝗮𝗱 𝗼𝗳 𝗥𝘂𝗻𝗻𝗶𝗻𝗴 𝗮 𝗕𝗿𝗼𝘄𝘀𝗲𝗿
+
+Unbrowse is an MIT-licensed CLI and TypeScript SDK for a hosted service at unbrowse.ai. The service learns the internal API calls a website makes and replays them over plain HTTP. That split matters: 𝘁𝗵𝗲 𝗰𝗹𝗶𝗲𝗻𝘁 𝗶𝘀 𝗼𝗽𝗲𝗻, 𝘁𝗵𝗲 𝘀𝗲𝗿𝘃𝗶𝗰𝗲 𝗶𝘀 𝗻𝗼𝘁 𝗶𝗻 𝘁𝗵𝗲 𝗿𝗲𝗽𝗼.
+
+Two details stand out in the docs.
+
+• 𝗜𝗻𝗽𝘂𝘁 𝗱𝗲𝘁𝗲𝗰𝘁𝗶𝗼𝗻: it compares two recorded sessions (or two HAR files) with different inputs. The request fields that differ become the tool's parameters.
+
+• 𝗩𝗲𝗿𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻: the docs say "𝘏𝘛𝘛𝘗 200 𝘢𝘭𝘰𝘯𝘦 𝘪𝘴 𝘯𝘰𝘵 𝘴𝘶𝘤𝘤𝘦𝘴𝘴". A route is published only after it answers fresh queries and rejects a nonsense one, using a scrubbed copy with no cookies.
+
+Routing is also kept away from the LLM. Their line is that "𝘢 𝘮𝘰𝘥𝘦𝘭 𝘯𝘦𝘷𝘦𝘳 𝘸𝘳𝘪𝘵𝘦𝘴 𝘢 𝘜𝘙𝘓 𝘵𝘩𝘢𝘵 𝘨𝘦𝘵𝘴 𝘳𝘦𝘱𝘭𝘢𝘺𝘦𝘥".
+
+Things to be careful about:
+
+• 𝗧𝗵𝗲 𝗽𝗮𝗽𝗲𝗿'𝘀 𝗻𝘂𝗺𝗯𝗲𝗿𝘀 𝗮𝗿𝗲 𝘀𝗲𝗹𝗳-𝗿𝗲𝗽𝗼𝗿𝘁𝗲𝗱. 950 ms mean vs 3,404 ms for Playwright across 94 domains, and the docs say they were not re-run on the current service.
+
+• 𝗧𝗵𝗲 𝗻𝗲𝘄𝗲𝗿 𝘁𝗲𝘀𝘁 𝗶𝘀 𝘄𝗲𝗮𝗸𝗲𝗿. On 100 real sites, 42 worked on warm replay and 2 returned wrong results.
+
+• 𝗟𝗼𝗴𝗶𝗻𝘀 𝘀𝗶𝘁 𝗶𝗻 𝗮 𝘀𝗲𝗿𝘃𝗲𝗿-𝘀𝗶𝗱𝗲 𝘃𝗮𝘂𝗹𝘁. Read-only routes with no secrets are shared to the public registry by default, with an opt-out.
+
+• 𝗧𝗵𝗲 𝗽𝗮𝗽𝗲𝗿'𝘀 𝗽𝗮𝘆𝗺𝗲𝗻𝘁 𝗱𝗲𝘀𝗶𝗴𝗻 𝗱𝗶𝗱𝗻'𝘁 𝘀𝗵𝗶𝗽. x402 support was removed in September 2026 and contributor payouts were never built.
+
+The best page to read is docs/whitepaper/paper-vs-product.md, which lists each paper claim next to its real status. More projects should publish one of those.
+
+Links in reply 👇
+
+===== 4. SWYX STYLE =====
+
+𝗔𝗴𝗲𝗻𝘁𝘀 𝗔𝗿𝗲 𝗠𝗼𝘃𝗶𝗻𝗴 𝗙𝗿𝗼𝗺 𝗕𝗿𝗼𝘄𝘀𝗲𝗿-𝗙𝗶𝗿𝘀𝘁 𝘁𝗼 𝗔𝗣𝗜-𝗙𝗶𝗿𝘀𝘁
+
+There's a growing group of tools that skip the page and call the endpoints underneath it. Unbrowse is the latest one getting attention, so here's where it sits.
+
+• 𝗕𝗿𝗼𝘄𝘀𝗲𝗿 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗼𝗻 (𝗣𝗹𝗮𝘆𝘄𝗿𝗶𝗴𝗵𝘁 𝗮𝗻𝗱 𝗳𝗿𝗶𝗲𝗻𝗱𝘀): works on any site, pays the full page cost on every run.
+
+• 𝗜𝗻𝘁𝗲𝗴𝘂𝗿𝘂: a HAR file and a prompt go in, integration code comes out. Open source, AGPL.
+
+• 𝗩𝗲𝗰𝘁𝗼𝗿𝗹𝘆'𝘀 𝘄𝗲𝗯-𝗵𝗮𝗰𝗸𝗲𝗿: learns from captured browser traffic so agents can act without the UI.
+
+• 𝗨𝗻𝗯𝗿𝗼𝘄𝘀𝗲: the same capture idea, plus 𝗮 𝘀𝗵𝗮𝗿𝗲𝗱 𝗽𝘂𝗯𝗹𝗶𝗰 𝗿𝗲𝗴𝗶𝘀𝘁𝗿𝘆 of learned routes behind a hosted service. The client is MIT.
+
+Its paper claims a mean of 𝟵𝟱𝟬 𝗺𝘀 𝘃𝘀 𝟯,𝟰𝟬𝟰 𝗺𝘀 for Playwright across 94 domains (self-reported, and not re-run on the current service). The team's later test on 100 real sites had 𝟰𝟮 𝘄𝗼𝗿𝗸𝗶𝗻𝗴 on warm replay, with 2 wrong answers.
+
+What changed between paper and product is the telling part. The paper described a route marketplace with x402 micropayments and payouts to contributors. The product today is a flat meter: 500 verified calls free each month, then $10 per 10,000. x402 was removed in September 2026.
+
+My read: 𝗰𝗮𝗽𝘁𝘂𝗿𝗶𝗻𝗴 𝘁𝗿𝗮𝗳𝗳𝗶𝗰 𝗶𝘀 𝗯𝗲𝗰𝗼𝗺𝗶𝗻𝗴 𝘁𝗵𝗲 𝗲𝗮𝘀𝘆 𝗽𝗮𝗿𝘁. The harder question is who holds the shared map of routes, and what site owners do once agents stop loading their pages.
+
+Links in reply 👇
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+𝗕𝗲𝗳𝗼𝗿𝗲 𝗬𝗼𝘂 𝗦𝘄𝗮𝗽 𝗬𝗼𝘂𝗿 𝗔𝗴𝗲𝗻𝘁'𝘀 𝗕𝗿𝗼𝘄𝘀𝗲𝗿 𝗳𝗼𝗿 𝗨𝗻𝗯𝗿𝗼𝘄𝘀𝗲, 𝗠𝗲𝗮𝘀𝘂𝗿𝗲 𝗜𝘁
+
+Unbrowse replays a website's internal HTTP calls so your agent doesn't have to drive a browser. The headline claim from its paper is a mean of 𝟵𝟱𝟬 𝗺𝘀 𝘃𝘀 𝟯,𝟰𝟬𝟰 𝗺𝘀 for Playwright over 94 domains.
+
+That number is self-reported, and the project's own docs say it wasn't re-run against the current service. So treat it as a hypothesis.
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗴𝗶𝘃𝗲𝘀 𝘆𝗼𝘂: a route learned once from a recorded session or two HAR files, replayed with new inputs, and billed only when the result is verified.
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁: coverage you can assume. In the team's own test on 100 real sites, 𝟰𝟮 𝘄𝗼𝗿𝗸𝗲𝗱 on warm replay, 22 failed, 21 couldn't be learned, and 𝟮 𝗿𝗲𝘁𝘂𝗿𝗻𝗲𝗱 𝘄𝗿𝗼𝗻𝗴 𝗿𝗲𝘀𝘂𝗹𝘁𝘀. A sample of their public registry passed 166 of 200 (83%), under their own 85% bar.
+
+Wrong-but-successful is the case that hurts in production, and you only find it by looking.
+
+A short recipe:
+
+1. Pick 20 tasks your agent really does, on the sites you care about.
+
+2. Run them with your current browser setup. Log time, tokens and whether the answer was right.
+
+3. Run the same tasks through Unbrowse, cold first and then warm.
+
+4. Read every output by hand, including the ones marked as succeeded.
+
+𝘐𝘧 𝘪𝘵 𝘸𝘪𝘯𝘴 𝘰𝘯 𝘺𝘰𝘶𝘳 20 𝘵𝘢𝘴𝘬𝘴, 𝘶𝘴𝘦 𝘪𝘵 𝘵𝘩𝘦𝘳𝘦 𝘢𝘯𝘥 𝘬𝘦𝘦𝘱 𝘵𝘩𝘦 𝘣𝘳𝘰𝘸𝘴𝘦𝘳 𝘧𝘰𝘳 𝘵𝘩𝘦 𝘳𝘦𝘴𝘵.
+
+Links in reply 👇
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗪𝗵𝗮𝘁 𝗜𝗳 𝗔𝗜 𝗔𝗴𝗲𝗻𝘁𝘀 𝗡𝗲𝘃𝗲𝗿 𝗡𝗲𝗲𝗱𝗲𝗱 𝘁𝗼 𝗦𝗲𝗲 𝗮 𝗪𝗲𝗯 𝗣𝗮𝗴𝗲?
+
+When an AI agent uses a website today, it behaves like a customer walking through a shop. It looks at the shelves, reads the labels and finds the till. That's slow, and it costs money, because the AI has to read the whole page.
+
+But every shop has a stockroom door. The website itself fetches its data through small behind-the-scenes requests, and those are much quicker to use.
+
+Unbrowse is a tool that 𝗹𝗲𝗮𝗿𝗻𝘀 𝘁𝗵𝗼𝘀𝗲 𝗿𝗲𝗾𝘂𝗲𝘀𝘁𝘀 𝗼𝗻𝗰𝗲 𝗮𝗻𝗱 𝗹𝗲𝘁𝘀 𝗮𝗴𝗲𝗻𝘁𝘀 𝗿𝗲𝘂𝘀𝗲 𝘁𝗵𝗲𝗺. One agent does the task in a recorded browser, and after that the same task runs without a browser at all.
+
+The evidence points both ways.
+
+On one side, the team's paper reports that across 94 websites this took 𝘂𝗻𝗱𝗲𝗿 𝗮 𝘀𝗲𝗰𝗼𝗻𝗱 𝗼𝗻 𝗮𝘃𝗲𝗿𝗮𝗴𝗲, 𝗮𝗴𝗮𝗶𝗻𝘀𝘁 𝟯.𝟰 𝘀𝗲𝗰𝗼𝗻𝗱𝘀 with a browser. It also cut what the AI had to read from about 8,000 tokens to about 200.
+
+On the other side, those are the team's own numbers. In their later test on 100 real sites, it 𝘄𝗼𝗿𝗸𝗲𝗱 𝗼𝗻 𝟰𝟮. Two gave wrong answers, and many couldn't be learned.
+
+What we actually know is modest: the shortcut is real and fast on the sites where it works, and that isn't yet most of them. It's also not fully open. The service that does the learning belongs to the company.
+
+𝘐𝘧 𝘢𝘨𝘦𝘯𝘵𝘴 𝘴𝘵𝘰𝘱 𝘭𝘰𝘰𝘬𝘪𝘯𝘨 𝘢𝘵 𝘱𝘢𝘨𝘦𝘴, 𝘸𝘩𝘰 𝘢𝘳𝘦 𝘸𝘦𝘣 𝘱𝘢𝘨𝘦𝘴 𝘧𝘰𝘳?
+
+Links in reply 👇
