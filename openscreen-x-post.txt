@@ -1,0 +1,164 @@
+===== 1. STORY =====
+
+𝗧𝗵𝗲 𝗙𝗿𝗲𝗲 𝗦𝗰𝗿𝗲𝗲𝗻 𝗥𝗲𝗰𝗼𝗿𝗱𝗲𝗿 𝗧𝗵𝗮𝘁 𝗪𝗮𝘀 𝗔𝗿𝗰𝗵𝗶𝘃𝗲𝗱, 𝗧𝗵𝗲𝗻 𝗖𝗮𝗺𝗲 𝗕𝗮𝗰𝗸 𝗪𝗶𝘁𝗵 𝗔𝗻 𝗔𝗴𝗲𝗻𝘁 𝗠𝗼𝗱𝗲
+
+You ship a feature. Now you need a 40-second demo video, and the raw screen recording looks flat. No zoom, a tiny cursor, a messy desktop behind it.
+
+The paid fix is Screen Studio. Third-party price listings put it at $𝟮𝟵 𝗮 𝗺𝗼𝗻𝘁𝗵, or $9 a month if you pay yearly.
+
+OpenScreen is the free one. It's a desktop app for Windows, macOS and Linux under the 𝗠𝗜𝗧 𝗹𝗶𝗰𝗲𝗻𝘀𝗲, and it does the same kind of polish: zooms that follow the cursor, cursor smoothing, backgrounds, motion blur, a webcam overlay, and export to MP4 or GIF.
+
+𝗛𝗼𝘄 𝗶𝘁 𝗴𝗼𝘁 𝗵𝗲𝗿𝗲
+
+Siddharth Vaddem built it as a side project. In his v1.5.0 notes he wrote that it reached 𝘢𝘭𝘮𝘰𝘴𝘵 40𝘬 𝘴𝘵𝘢𝘳𝘴 and 120𝘬+ 𝘥𝘰𝘸𝘯𝘭𝘰𝘢𝘥𝘴, and that he had done what he set out to do. He archived the repo on 𝟭𝟳 𝗢𝗰𝘁𝗼𝗯𝗲𝗿 𝟮𝟬𝟮𝟲.
+
+Development then moved to a new repo, getopenscreen/openscreen. Its README says this happened 𝘸𝘪𝘵𝘩 𝘩𝘪𝘴 𝘢𝘱𝘱𝘳𝘰𝘷𝘢𝘭, 𝘶𝘯𝘥𝘦𝘳 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘯𝘢𝘮𝘦 𝘢𝘯𝘥 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘔𝘐𝘛 𝘭𝘪𝘤𝘦𝘯𝘴𝘦.
+
+𝗙𝗼𝗿 𝘂𝘀𝗲𝗿𝘀
+
+• 𝗖𝗮𝗽𝘁𝗶𝗼𝗻𝘀: made on your own machine, and they work offline
+• 𝗜𝗻𝘀𝘁𝗮𝗹𝗹: 𝚋𝚛𝚎𝚠 𝚒𝚗𝚜𝚝𝚊𝚕𝚕 --𝚌𝚊𝚜𝚔 𝚘𝚙𝚎𝚗𝚜𝚌𝚛𝚎𝚎𝚗 on Mac, 𝚠𝚒𝚗𝚐𝚎𝚝 𝚒𝚗𝚜𝚝𝚊𝚕𝚕 --𝚜𝚘𝚞𝚛𝚌𝚎 𝚖𝚜𝚜𝚝𝚘𝚛𝚎 𝙾𝚙𝚎𝚗𝚂𝚌𝚛𝚎𝚎𝚗 on Windows
+• 𝗖𝗼𝘀𝘁: no paid tier and no watermark, for personal or commercial use
+
+𝗙𝗼𝗿 𝗯𝘂𝗶𝗹𝗱𝗲𝗿𝘀
+
+The new repo ships a skill, an MCP server and a headless CLI. You can tell Claude Code, Codex or Cursor to 𝗮𝗱𝗱 𝗮 𝘃𝗶𝗱𝗲𝗼 𝗼𝗳 𝗮 𝗰𝗵𝗮𝗻𝗴𝗲 𝘁𝗼 𝘁𝗵𝗲 𝗽𝘂𝗹𝗹 𝗿𝗲𝗾𝘂𝗲𝘀𝘁. The agent plans a storyboard, records the app, edits the take, exports an MP4, checks the frames and attaches it.
+
+𝗪𝗵𝗮𝘁 𝘁𝗼 𝗸𝗻𝗼𝘄 𝗯𝗲𝗳𝗼𝗿𝗲 𝘆𝗼𝘂 𝗶𝗻𝘀𝘁𝗮𝗹𝗹
+
+The README says to 𝘦𝘹𝘱𝘦𝘤𝘵 𝘳𝘰𝘶𝘨𝘩 𝘦𝘥𝘨𝘦𝘴 𝘢𝘯𝘥 𝘰𝘤𝘤𝘢𝘴𝘪𝘰𝘯𝘢𝘭 𝘣𝘳𝘦𝘢𝘬𝘪𝘯𝘨 𝘤𝘩𝘢𝘯𝘨𝘦𝘴. The Windows .𝚎𝚡𝚎 is unsigned, so SmartScreen warns you. Windows on ARM records poorly. The new repo is young, with about 7.3k stars today against the old repo's 40k.
+
+Recordly started as a fork of OpenScreen and has gone its own way under AGPLv3. Cap is the open-source option closer to Loom.
+
+A side project ended, and the code kept going because the license allowed it.
+
+Links in reply 👇
+
+
+===== 2. KARPATHY STYLE =====
+
+𝗔 𝗗𝗲𝗺𝗼 𝗩𝗶𝗱𝗲𝗼 𝗜𝘀 𝗕𝗲𝗰𝗼𝗺𝗶𝗻𝗴 𝗦𝗼𝗺𝗲𝘁𝗵𝗶𝗻𝗴 𝗬𝗼𝘂𝗿 𝗔𝗴𝗲𝗻𝘁 𝗠𝗮𝗸𝗲𝘀
+
+OpenScreen is a free, MIT-licensed screen recorder that makes polished demos, the Screen Studio kind, with cursor-following zooms, smoothed cursor paths and nice backgrounds. That part is useful and not very surprising.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝘁𝗵𝗲 𝗿𝗲𝗰𝗼𝗿𝗱𝗲𝗿, 𝗶𝘁'𝘀 𝘁𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗳𝗮𝗰𝗲 𝗮𝗿𝗼𝘂𝗻𝗱 𝗶𝘁. The current repo (getopenscreen/openscreen) ships a headless CLI, an MCP server and a skill for coding agents. The project file is plain JSON holding zooms, trims and annotations.
+
+Once a video editor is a JSON file plus a command line, an agent can drive it. The README's example is one sentence to Claude Code, Codex or Cursor: "𝘈𝘥𝘥 𝘢 𝘷𝘪𝘥𝘦𝘰 𝘰𝘧 𝘵𝘩𝘪𝘴 𝘤𝘩𝘢𝘯𝘨𝘦 𝘵𝘰 𝘵𝘩𝘦 𝘗𝘙." The agent plans a storyboard, records the app, edits, exports an MP4, checks it frame by frame and attaches it.
+
+I think of it like a build step. We already have tests and screenshots attached to pull requests. A short video of the feature working is the same idea, one level richer.
+
+Some history. Siddharth Vaddem wrote the original as a side project, got to 𝘢𝘭𝘮𝘰𝘴𝘵 40𝘬 𝘴𝘵𝘢𝘳𝘴 by his own count, and archived it on 𝟭𝟳 𝗢𝗰𝘁𝗼𝗯𝗲𝗿 𝟮𝟬𝟮𝟲. The community repo continues it with his approval. Latest stable release is 𝘃𝟮.𝟮.𝟮 𝗳𝗿𝗼𝗺 𝟰 𝗡𝗼𝘃𝗲𝗺𝗯𝗲𝗿.
+
+Caveats, and they're real. The README says 𝘦𝘹𝘱𝘦𝘤𝘵 𝘳𝘰𝘶𝘨𝘩 𝘦𝘥𝘨𝘦𝘴. AI editing needs your own API key and is off by default, and the README doesn't say what gets sent to the provider. The new repo has about 7.3k stars, so it's early.
+
+imo the open question is quality. An agent can produce a video. Whether it produces one a human would actually want to watch is something I'd like to see measured.
+
+Links in reply 👇
+
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗢𝗽𝗲𝗻𝗦𝗰𝗿𝗲𝗲𝗻, 𝗪𝗵𝗶𝗰𝗵 𝗠𝗼𝘃𝗲𝗱 𝗥𝗲𝗽𝗼𝘀 𝗟𝗮𝘀𝘁 𝗠𝗼𝗻𝘁𝗵
+
+OpenScreen is a desktop app for recording your screen and turning it into a polished demo. The repo description reads: "𝘙𝘦𝘤𝘰𝘳𝘥 𝘺𝘰𝘶𝘳 𝘴𝘤𝘳𝘦𝘦𝘯, 𝘴𝘩𝘪𝘱 𝘢 𝘥𝘦𝘮𝘰. 𝘍𝘳𝘦𝘦 𝘢𝘯𝘥 𝘰𝘱𝘦𝘯-𝘴𝘰𝘶𝘳𝘤𝘦, 𝘎𝘗𝘜-𝘢𝘤𝘤𝘦𝘭𝘦𝘳𝘢𝘵𝘦𝘥, 𝘯𝘰 𝘸𝘢𝘵𝘦𝘳𝘮𝘢𝘳𝘬𝘴, 𝘯𝘰 𝘴𝘶𝘣𝘴𝘤𝘳𝘪𝘱𝘵𝘪𝘰𝘯𝘴."
+
+A detail that's easy to miss: 𝘁𝗵𝗲 𝗿𝗲𝗽𝗼 𝗺𝗼𝘀𝘁 𝗮𝗿𝘁𝗶𝗰𝗹𝗲𝘀 𝗹𝗶𝗻𝗸 𝘁𝗼 𝗶𝘀 𝗮𝗿𝗰𝗵𝗶𝘃𝗲𝗱. siddharthvaddem/openscreen went read-only on 17 October 2026 after v1.5.0. The active one is getopenscreen/openscreen, and its README says development moved "𝘸𝘪𝘵𝘩 𝘩𝘪𝘴 𝘢𝘱𝘱𝘳𝘰𝘷𝘢𝘭, 𝘶𝘯𝘥𝘦𝘳 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘯𝘢𝘮𝘦 𝘢𝘯𝘥 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘔𝘐𝘛 𝘭𝘪𝘤𝘦𝘯𝘴𝘦."
+
+Two features stand out.
+
+𝗖𝗮𝗽𝘁𝗶𝗼𝗻𝘀 𝗿𝘂𝗻 𝗹𝗼𝗰𝗮𝗹𝗹𝘆. The README says they are "𝘵𝘳𝘢𝘯𝘴𝘤𝘳𝘪𝘣𝘦𝘥 𝘰𝘯-𝘥𝘦𝘷𝘪𝘤𝘦 𝘸𝘪𝘵𝘩 𝘯𝘰 𝘶𝘱𝘭𝘰𝘢𝘥 (𝘸𝘰𝘳𝘬𝘴 𝘰𝘧𝘧𝘭𝘪𝘯𝘦)."
+
+𝗧𝗵𝗲𝗿𝗲'𝘀 𝗮 𝗵𝗲𝗮𝗱𝗹𝗲𝘀𝘀 𝗖𝗟𝗜 𝗮𝗻𝗱 𝗮𝗻 𝗠𝗖𝗣 𝘀𝗲𝗿𝘃𝗲𝗿. 𝚘𝚙𝚎𝚗𝚜𝚌𝚛𝚎𝚎𝚗 𝚛𝚎𝚌𝚘𝚛𝚍 and 𝚘𝚙𝚎𝚗𝚜𝚌𝚛𝚎𝚎𝚗 𝚎𝚡𝚙𝚘𝚛𝚝 work from scripts and CI, with NDJSON output behind --𝚓𝚜𝚘𝚗. A skill installs with 𝚗𝚙𝚡 𝚜𝚔𝚒𝚕𝚕𝚜 𝚊𝚍𝚍 𝚐𝚎𝚝𝚘𝚙𝚎𝚗𝚜𝚌𝚛𝚎𝚎𝚗/𝚘𝚙𝚎𝚗𝚜𝚌𝚛𝚎𝚎𝚗 --𝚜𝚔𝚒𝚕𝚕 𝚘𝚙𝚎𝚗𝚜𝚌𝚛𝚎𝚎𝚗-𝚍𝚎𝚖𝚘 -𝚢, and from there a coding agent can record, edit and export a demo by itself.
+
+𝗧𝗵𝗶𝗻𝗴𝘀 𝘁𝗼 𝗯𝗲 𝗰𝗮𝗿𝗲𝗳𝘂𝗹 𝗮𝗯𝗼𝘂𝘁
+
+• 𝗦𝘁𝗮𝗯𝗶𝗹𝗶𝘁𝘆: the README warns of "𝘳𝘰𝘶𝘨𝘩 𝘦𝘥𝘨𝘦𝘴 𝘢𝘯𝘥 𝘰𝘤𝘤𝘢𝘴𝘪𝘰𝘯𝘢𝘭 𝘣𝘳𝘦𝘢𝘬𝘪𝘯𝘨 𝘤𝘩𝘢𝘯𝘨𝘦𝘴"
+• 𝗪𝗶𝗻𝗱𝗼𝘄𝘀: the .𝚎𝚡𝚎 is unsigned, and the ARM64 experience is described as recording poorly
+• 𝗟𝗶𝗻𝘂𝘅: Wayland capture needs xdg-desktop-portal and PipeWire
+• 𝗔𝗜 𝗲𝗱𝗶𝘁𝗶𝗻𝗴: bring your own key, off by default, and the README doesn't document what is sent to the provider
+• 𝗟𝗼𝗼𝗸𝗮𝗹𝗶𝗸𝗲𝘀: the README says forks and websites using the name are not affiliated
+
+The star numbers need care too. "𝘈𝘭𝘮𝘰𝘴𝘵 40𝘬" is the original author's figure for the old repo. The new repo shows 𝗮𝗯𝗼𝘂𝘁 𝟳.𝟯𝗸 𝗮𝘀 𝗼𝗳 𝟭𝟱 𝗡𝗼𝘃𝗲𝗺𝗯𝗲𝗿 𝟮𝟬𝟮𝟲.
+
+Related projects: Recordly began as an OpenScreen fork and is AGPLv3. Cap is AGPLv3 for most of its code and is more of a Loom replacement.
+
+Links in reply 👇
+
+
+===== 4. SWYX STYLE =====
+
+𝗢𝗽𝗲𝗻-𝗦𝗼𝘂𝗿𝗰𝗲 𝗗𝗲𝗺𝗼 𝗥𝗲𝗰𝗼𝗿𝗱𝗲𝗿𝘀 𝗔𝗿𝗲 𝗦𝗽𝗹𝗶𝘁𝘁𝗶𝗻𝗴 𝗜𝗻𝘁𝗼 𝗧𝘄𝗼 𝗖𝗮𝗺𝗽𝘀
+
+Screen Studio defined a category: record your screen, get a video that looks edited. The open-source side of it got busy this year.
+
+• 𝗦𝗰𝗿𝗲𝗲𝗻 𝗦𝘁𝘂𝗱𝗶𝗼: the paid original, listed at $29 a month or $9 a month yearly
+• 𝗖𝗮𝗽: open source, mostly AGPLv3, closer to Loom with share links and self-hosting, about 25k stars
+• 𝗥𝗲𝗰𝗼𝗿𝗱𝗹𝘆: started as an OpenScreen fork, now AGPLv3 and over 80% different code by its own README, about 36.8k stars
+• 𝗢𝗽𝗲𝗻𝗦𝗰𝗿𝗲𝗲𝗻: MIT, no paid tier, Windows, macOS and Linux
+
+OpenScreen has the odd history. The author, Siddharth Vaddem, archived the original repo on 𝟭𝟳 𝗢𝗰𝘁𝗼𝗯𝗲𝗿 𝟮𝟬𝟮𝟲 at 𝘢𝘭𝘮𝘰𝘴𝘵 40𝘬 𝘴𝘵𝘢𝘳𝘴 (his number). A community repo, getopenscreen/openscreen, picked it up with his approval and has shipped steadily since. v2.2.2 landed on 4 November and a v2.3.0 release candidate on 14 November.
+
+Where it fits now is different from the others. 𝗧𝗵𝗲 𝗻𝗲𝘄 𝗺𝗮𝗶𝗻𝘁𝗮𝗶𝗻𝗲𝗿𝘀 𝗮𝗿𝗲 𝗯𝘂𝗶𝗹𝗱𝗶𝗻𝗴 𝗳𝗼𝗿 𝗮𝗴𝗲𝗻𝘁𝘀, 𝗻𝗼𝘁 𝗼𝗻𝗹𝘆 𝗳𝗼𝗿 𝗽𝗲𝗼𝗽𝗹𝗲. There's a skill, an MCP server and a headless CLI, and the README pitch is one sentence to Claude Code, Codex or Cursor that ends with a video attached to your pull request.
+
+It's still rough. The README says so, the Windows build is unsigned, and the new repo sits at about 7.3k stars.
+
+My read: recording was the product last year. This year the recorder is turning into a tool that agents call, and the permissive license is what lets a project survive its founder leaving.
+
+Links in reply 👇
+
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+𝗕𝗲𝗳𝗼𝗿𝗲 𝗬𝗼𝘂 𝗟𝗲𝘁 𝗔𝗻 𝗔𝗴𝗲𝗻𝘁 𝗠𝗮𝗸𝗲 𝗬𝗼𝘂𝗿 𝗗𝗲𝗺𝗼 𝗩𝗶𝗱𝗲𝗼𝘀, 𝗧𝗲𝘀𝘁 𝗜𝘁
+
+OpenScreen is a free MIT screen recorder for polished demos. The original repo was archived on 17 October 2026, and the community continuation (getopenscreen/openscreen) now adds an agent skill, an MCP server and a CLI.
+
+The claim in the README is that one sentence to Claude Code, Codex or Cursor gets you a demo video on your pull request. 𝗧𝗵𝗲 𝗥𝗘𝗔𝗗𝗠𝗘 𝗴𝗶𝘃𝗲𝘀 𝗻𝗼 𝗻𝘂𝗺𝗯𝗲𝗿𝘀 𝗼𝗻 𝗵𝗼𝘄 𝗼𝗳𝘁𝗲𝗻 𝘁𝗵𝗮𝘁 𝘄𝗼𝗿𝗸𝘀.
+
+What it gives you:
+
+• Auto zoom that follows the cursor, cursor smoothing, backgrounds, motion blur
+• Captions made on-device, working offline
+• MP4 and GIF export with GPU encoding
+• A CLI with JSON output, so runs can be scripted and logged
+
+What it doesn't give you:
+
+• Any published measure of agent-made video quality
+• A stability promise. The README says to 𝘦𝘹𝘱𝘦𝘤𝘵 𝘳𝘰𝘶𝘨𝘩 𝘦𝘥𝘨𝘦𝘴 𝘢𝘯𝘥 𝘰𝘤𝘤𝘢𝘴𝘪𝘰𝘯𝘢𝘭 𝘣𝘳𝘦𝘢𝘬𝘪𝘯𝘨 𝘤𝘩𝘢𝘯𝘨𝘦𝘴
+• A signed Windows build, or good recording on Windows ARM64
+• A statement of what AI editing sends to your model provider (it's bring-your-own-key and off by default)
+
+If you want to know whether it's good enough for your team, a small test tells you more than any star count:
+
+• 𝗣𝗶𝗰𝗸 𝗰𝗮𝘀𝗲𝘀: five real features you shipped last month
+• 𝗦𝗲𝘁 𝗮 𝗯𝗮𝘀𝗲𝗹𝗶𝗻𝗲: record one by hand in the app and time yourself
+• 𝗖𝗼𝗺𝗽𝗮𝗿𝗲: have the agent make the same five, and count how many you'd post without edits
+• 𝗥𝗲𝗮𝗱 𝘁𝗵𝗲 𝗼𝘂𝘁𝗽𝘂𝘁: watch every video and open the project JSON to see which zooms and cuts it chose
+
+Then decide. Five videos is a small sample, and it's still more than a README can tell you.
+
+Links in reply 👇
+
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗪𝗵𝗮𝘁 𝗛𝗮𝗽𝗽𝗲𝗻𝘀 𝗧𝗼 𝗔 𝗙𝗿𝗲𝗲 𝗔𝗽𝗽 𝗪𝗵𝗲𝗻 𝗜𝘁𝘀 𝗖𝗿𝗲𝗮𝘁𝗼𝗿 𝗪𝗮𝗹𝗸𝘀 𝗔𝘄𝗮𝘆?
+
+Most of us assume software dies when the person behind it stops. OpenScreen is a small case that went the other way.
+
+It's a free app that records your screen and makes the result look professionally edited. Think of a camera operator who zooms in wherever your mouse goes, then tidies the background. Paid tools do this too. Screen Studio is listed at $29 a month.
+
+One person, Siddharth Vaddem, built OpenScreen as a side project. By his own account it reached 𝘢𝘭𝘮𝘰𝘴𝘵 40𝘬 𝘴𝘵𝘢𝘳𝘴 on GitHub and 120𝘬+ 𝘥𝘰𝘸𝘯𝘭𝘰𝘢𝘥𝘴. In June he said he'd achieved what he wanted, and on 𝟭𝟳 𝗢𝗰𝘁𝗼𝗯𝗲𝗿 𝟮𝟬𝟮𝟲 he closed the project.
+
+It didn't end there. Because the code was under the MIT license, which lets anyone reuse it, a group of volunteers continued it in a new home with his approval. They've released several updates since, the latest stable one on 4 November.
+
+They also added something new. 𝗬𝗼𝘂 𝗰𝗮𝗻 𝗻𝗼𝘄 𝗮𝘀𝗸 𝗮𝗻 𝗔𝗜 𝗰𝗼𝗱𝗶𝗻𝗴 𝗮𝘀𝘀𝗶𝘀𝘁𝗮𝗻𝘁 𝘁𝗼 𝗺𝗮𝗸𝗲 𝘁𝗵𝗲 𝗱𝗲𝗺𝗼 𝘃𝗶𝗱𝗲𝗼 𝗳𝗼𝗿 𝘆𝗼𝘂. It plans the shots, records, edits and hands back a file.
+
+The evidence cuts both ways. The app is free with no paid tier, and captions are made on your own computer. But the maintainers themselves warn of 𝘳𝘰𝘶𝘨𝘩 𝘦𝘥𝘨𝘦𝘴 𝘢𝘯𝘥 𝘰𝘤𝘤𝘢𝘴𝘪𝘰𝘯𝘢𝘭 𝘣𝘳𝘦𝘢𝘬𝘪𝘯𝘨 𝘤𝘩𝘢𝘯𝘨𝘦𝘴, the new project has a much smaller following (about 7.3k stars), and nobody has published how good the AI-made videos are.
+
+So we know the software survived. We don't yet know whether a volunteer group can keep it healthy for years.
+
+𝘐𝘧 𝘵𝘩𝘦 𝘵𝘰𝘰𝘭𝘴 𝘸𝘦 𝘳𝘦𝘭𝘺 𝘰𝘯 𝘤𝘢𝘯 𝘰𝘶𝘵𝘭𝘪𝘷𝘦 𝘵𝘩𝘦𝘪𝘳 𝘤𝘳𝘦𝘢𝘵𝘰𝘳𝘴 𝘵𝘩𝘪𝘴 𝘦𝘢𝘴𝘪𝘭𝘺, 𝘴𝘩𝘰𝘶𝘭𝘥 𝘸𝘦 𝘤𝘢𝘳𝘦 𝘮𝘰𝘳𝘦 𝘢𝘣𝘰𝘶𝘵 𝘵𝘩𝘦 𝘭𝘪𝘤𝘦𝘯𝘴𝘦 𝘵𝘩𝘢𝘯 𝘢𝘣𝘰𝘶𝘵 𝘸𝘩𝘰 𝘮𝘢𝘥𝘦 𝘵𝘩𝘦𝘮?
+
+Links in reply 👇
