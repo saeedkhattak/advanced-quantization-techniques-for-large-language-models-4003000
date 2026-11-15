@@ -17,6 +17,7 @@ Development then moved to a new repo, getopenscreen/openscreen. Its README says 
 𝗙𝗼𝗿 𝘂𝘀𝗲𝗿𝘀
 
 • 𝗖𝗮𝗽𝘁𝗶𝗼𝗻𝘀: made on your own machine, and they work offline
+• 𝗘𝗱𝗶𝘁𝗶𝗻𝗴: delete a sentence in the transcript and it's cut from the video
 • 𝗜𝗻𝘀𝘁𝗮𝗹𝗹: 𝚋𝚛𝚎𝚠 𝚒𝚗𝚜𝚝𝚊𝚕𝚕 --𝚌𝚊𝚜𝚔 𝚘𝚙𝚎𝚗𝚜𝚌𝚛𝚎𝚎𝚗 on Mac, 𝚠𝚒𝚗𝚐𝚎𝚝 𝚒𝚗𝚜𝚝𝚊𝚕𝚕 --𝚜𝚘𝚞𝚛𝚌𝚎 𝚖𝚜𝚜𝚝𝚘𝚛𝚎 𝙾𝚙𝚎𝚗𝚂𝚌𝚛𝚎𝚎𝚗 on Windows
 • 𝗖𝗼𝘀𝘁: no paid tier and no watermark, for personal or commercial use
 
@@ -26,7 +27,7 @@ The new repo ships a skill, an MCP server and a headless CLI. You can tell Claud
 
 𝗪𝗵𝗮𝘁 𝘁𝗼 𝗸𝗻𝗼𝘄 𝗯𝗲𝗳𝗼𝗿𝗲 𝘆𝗼𝘂 𝗶𝗻𝘀𝘁𝗮𝗹𝗹
 
-The README says to 𝘦𝘹𝘱𝘦𝘤𝘵 𝘳𝘰𝘶𝘨𝘩 𝘦𝘥𝘨𝘦𝘴 𝘢𝘯𝘥 𝘰𝘤𝘤𝘢𝘴𝘪𝘰𝘯𝘢𝘭 𝘣𝘳𝘦𝘢𝘬𝘪𝘯𝘨 𝘤𝘩𝘢𝘯𝘨𝘦𝘴. The Windows .𝚎𝚡𝚎 is unsigned, so SmartScreen warns you. Windows on ARM records poorly. The new repo is young, with about 7.3k stars today against the old repo's 40k.
+The README says to 𝘦𝘹𝘱𝘦𝘤𝘵 𝘳𝘰𝘶𝘨𝘩 𝘦𝘥𝘨𝘦𝘴 𝘢𝘯𝘥 𝘰𝘤𝘤𝘢𝘴𝘪𝘰𝘯𝘢𝘭 𝘣𝘳𝘦𝘢𝘬𝘪𝘯𝘨 𝘤𝘩𝘢𝘯𝘨𝘦𝘴, and that includes the project file format and the CLI. The Windows .𝚎𝚡𝚎 is unsigned, so SmartScreen warns you. Windows on ARM records poorly. The new repo is young, with about 7.3k stars today against the old repo's 40k.
 
 Recordly started as a fork of OpenScreen and has gone its own way under AGPLv3. Cap is the open-source option closer to Loom.
 
@@ -64,7 +65,9 @@ OpenScreen is a desktop app for recording your screen and turning it into a poli
 
 A detail that's easy to miss: 𝘁𝗵𝗲 𝗿𝗲𝗽𝗼 𝗺𝗼𝘀𝘁 𝗮𝗿𝘁𝗶𝗰𝗹𝗲𝘀 𝗹𝗶𝗻𝗸 𝘁𝗼 𝗶𝘀 𝗮𝗿𝗰𝗵𝗶𝘃𝗲𝗱. siddharthvaddem/openscreen went read-only on 17 October 2026 after v1.5.0. The active one is getopenscreen/openscreen, and its README says development moved "𝘸𝘪𝘵𝘩 𝘩𝘪𝘴 𝘢𝘱𝘱𝘳𝘰𝘷𝘢𝘭, 𝘶𝘯𝘥𝘦𝘳 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘯𝘢𝘮𝘦 𝘢𝘯𝘥 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘔𝘐𝘛 𝘭𝘪𝘤𝘦𝘯𝘴𝘦."
 
-Two features stand out.
+Three features stand out.
+
+𝗬𝗼𝘂 𝗲𝗱𝗶𝘁 𝗯𝘆 𝘁𝗿𝗮𝗻𝘀𝗰𝗿𝗶𝗽𝘁. The README's demo shows that "𝘥𝘦𝘭𝘦𝘵𝘪𝘯𝘨 𝘢 𝘴𝘦𝘯𝘵𝘦𝘯𝘤𝘦 𝘪𝘯 𝘵𝘩𝘦 𝘵𝘳𝘢𝘯𝘴𝘤𝘳𝘪𝘱𝘵 𝘤𝘶𝘵𝘴 𝘪𝘵 𝘧𝘳𝘰𝘮 𝘵𝘩𝘦 𝘷𝘪𝘥𝘦𝘰."
 
 𝗖𝗮𝗽𝘁𝗶𝗼𝗻𝘀 𝗿𝘂𝗻 𝗹𝗼𝗰𝗮𝗹𝗹𝘆. The README says they are "𝘵𝘳𝘢𝘯𝘴𝘤𝘳𝘪𝘣𝘦𝘥 𝘰𝘯-𝘥𝘦𝘷𝘪𝘤𝘦 𝘸𝘪𝘵𝘩 𝘯𝘰 𝘶𝘱𝘭𝘰𝘢𝘥 (𝘸𝘰𝘳𝘬𝘴 𝘰𝘧𝘧𝘭𝘪𝘯𝘦)."
 
@@ -72,7 +75,7 @@ Two features stand out.
 
 𝗧𝗵𝗶𝗻𝗴𝘀 𝘁𝗼 𝗯𝗲 𝗰𝗮𝗿𝗲𝗳𝘂𝗹 𝗮𝗯𝗼𝘂𝘁
 
-• 𝗦𝘁𝗮𝗯𝗶𝗹𝗶𝘁𝘆: the README warns of "𝘳𝘰𝘶𝘨𝘩 𝘦𝘥𝘨𝘦𝘴 𝘢𝘯𝘥 𝘰𝘤𝘤𝘢𝘴𝘪𝘰𝘯𝘢𝘭 𝘣𝘳𝘦𝘢𝘬𝘪𝘯𝘨 𝘤𝘩𝘢𝘯𝘨𝘦𝘴"
+• 𝗦𝘁𝗮𝗯𝗶𝗹𝗶𝘁𝘆: the README warns of "𝘳𝘰𝘶𝘨𝘩 𝘦𝘥𝘨𝘦𝘴 𝘢𝘯𝘥 𝘰𝘤𝘤𝘢𝘴𝘪𝘰𝘯𝘢𝘭 𝘣𝘳𝘦𝘢𝘬𝘪𝘯𝘨 𝘤𝘩𝘢𝘯𝘨𝘦𝘴", including to the .𝚘𝚙𝚎𝚗𝚜𝚌𝚛𝚎𝚎𝚗 project format and the CLI
 • 𝗪𝗶𝗻𝗱𝗼𝘄𝘀: the .𝚎𝚡𝚎 is unsigned, and the ARM64 experience is described as recording poorly
 • 𝗟𝗶𝗻𝘂𝘅: Wayland capture needs xdg-desktop-portal and PipeWire
 • 𝗔𝗜 𝗲𝗱𝗶𝘁𝗶𝗻𝗴: bring your own key, off by default, and the README doesn't document what is sent to the provider
@@ -119,6 +122,7 @@ What it gives you:
 
 • Auto zoom that follows the cursor, cursor smoothing, backgrounds, motion blur
 • Captions made on-device, working offline
+• A transcript you can edit, where deleting a sentence cuts it from the video
 • MP4 and GIF export with GPU encoding
 • A CLI with JSON output, so runs can be scripted and logged
 
@@ -153,7 +157,7 @@ One person, Siddharth Vaddem, built OpenScreen as a side project. By his own acc
 
 It didn't end there. Because the code was under the MIT license, which lets anyone reuse it, a group of volunteers continued it in a new home with his approval. They've released several updates since, the latest stable one on 4 November.
 
-They also added something new. 𝗬𝗼𝘂 𝗰𝗮𝗻 𝗻𝗼𝘄 𝗮𝘀𝗸 𝗮𝗻 𝗔𝗜 𝗰𝗼𝗱𝗶𝗻𝗴 𝗮𝘀𝘀𝗶𝘀𝘁𝗮𝗻𝘁 𝘁𝗼 𝗺𝗮𝗸𝗲 𝘁𝗵𝗲 𝗱𝗲𝗺𝗼 𝘃𝗶𝗱𝗲𝗼 𝗳𝗼𝗿 𝘆𝗼𝘂. It plans the shots, records, edits and hands back a file.
+They also added something new. 𝗬𝗼𝘂 𝗰𝗮𝗻 𝗻𝗼𝘄 𝗮𝘀𝗸 𝗮𝗻 𝗔𝗜 𝗰𝗼𝗱𝗶𝗻𝗴 𝗮𝘀𝘀𝗶𝘀𝘁𝗮𝗻𝘁 𝘁𝗼 𝗺𝗮𝗸𝗲 𝘁𝗵𝗲 𝗱𝗲𝗺𝗼 𝘃𝗶𝗱𝗲𝗼 𝗳𝗼𝗿 𝘆𝗼𝘂. It plans the shots, records, edits and hands back a file. And if you fumble a sentence, you delete it from the written transcript and it disappears from the video.
 
 The evidence cuts both ways. The app is free with no paid tier, and captions are made on your own computer. But the maintainers themselves warn of 𝘳𝘰𝘶𝘨𝘩 𝘦𝘥𝘨𝘦𝘴 𝘢𝘯𝘥 𝘰𝘤𝘤𝘢𝘴𝘪𝘰𝘯𝘢𝘭 𝘣𝘳𝘦𝘢𝘬𝘪𝘯𝘨 𝘤𝘩𝘢𝘯𝘨𝘦𝘴, the new project has a much smaller following (about 7.3k stars), and nobody has published how good the AI-made videos are.
 
