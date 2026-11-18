@@ -1,0 +1,171 @@
+===== STORY =====
+
+𝟰𝟱 𝗙𝗿𝗲𝗲 𝗔𝗴𝗲𝗻𝘁 𝗦𝗸𝗶𝗹𝗹𝘀 𝗙𝗼𝗿 𝗦𝗵𝗶𝗽𝗽𝗶𝗻𝗴 𝗔 𝗦𝗮𝗮𝗦, 𝗡𝗼𝘁 𝗝𝘂𝘀𝘁 𝗪𝗿𝗶𝘁𝗶𝗻𝗴 𝗖𝗼𝗱𝗲
+
+You ask a coding agent to build a feature. It writes the code, runs the tests, and tells you it all looks good.
+
+𝗧𝗵𝗲 𝘀𝗮𝗺𝗲 𝘀𝗲𝘀𝘀𝗶𝗼𝗻 𝘁𝗵𝗮𝘁 𝘄𝗿𝗼𝘁𝗲 𝘁𝗵𝗲 𝗰𝗼𝗱𝗲 𝗷𝘂𝘀𝘁 𝗮𝗽𝗽𝗿𝗼𝘃𝗲𝗱 𝗶𝘁.
+
+Paweł Huryn's new open-source repo, product-engineering, is built around stopping that. It's 45 agent skills in six packs, MIT-licensed, at 𝟲𝟯𝟳 𝘀𝘁𝗮𝗿𝘀 today.
+
+The rule at the centre is simple. Before every push that deploys, a fresh reviewer that never saw the build reads the change. By default that's the first one installed of Codex, Claude Code and Grok, started read-only, with no MCP servers and memory off.
+
+It loops. Another round, then another, until one finds nothing the change introduced above Low and nothing High or Critical of any age. The README puts it in one line: "𝘛𝘩𝘦 𝘴𝘦𝘴𝘴𝘪𝘰𝘯 𝘵𝘩𝘢𝘵 𝘸𝘳𝘰𝘵𝘦 𝘵𝘩𝘦 𝘤𝘰𝘥𝘦 𝘯𝘦𝘷𝘦𝘳 𝘤𝘭𝘦𝘢𝘳𝘴 𝘪𝘵."
+
+The rest follows the path from idea to paying users:
+
+• 𝗽𝗿𝗼𝗱𝘂𝗰𝘁 (𝟴): research the alternatives, pick a segment, write one proposal with screens
+• 𝗮𝗶-𝘀𝗵𝗶𝗽𝗽𝗶𝗻𝗴 (𝟭𝟭): reviews, a release gate, static security and performance checks
+• 𝗮𝗴𝗲𝗻𝘁-𝘁𝗲𝗮𝗺𝘀 (𝟱): one agent coordinates, another builds
+• 𝗮𝗴𝗲𝗻𝘁-𝗵𝗮𝗿𝗻𝗲𝘀𝘀 (𝟲): handovers, retros, guardrail hooks
+• 𝗮𝗽𝗽-𝘀𝘁𝗮𝗰𝗸 (𝟭𝟰): auth, billing, email, legal pages, analytics, monitoring
+• 𝘄𝗼𝗿𝗸-𝗵𝘂𝗺𝗮𝗻𝗶𝘇𝗲𝗿 (𝟭)
+
+If you're a PM or a solo founder, it's aimed at you. You don't read code line by line. You approve a proposal, click through the flows (it budgets 𝟭𝟱 𝘁𝗼 𝟮𝟬 𝗺𝗶𝗻𝘂𝘁𝗲𝘀 for a mid-size app) and say go at release. "𝘚𝘪𝘭𝘦𝘯𝘤𝘦 𝘪𝘴 𝘯𝘰𝘵 𝘨𝘰."
+
+If you build, look at how the rules are kept. Each one carries a dated receipt of what broke or what was measured, 𝗮𝗯𝗼𝘂𝘁 𝟳𝟬𝟬 𝗼𝗳 𝘁𝗵𝗲𝗺, from three of his live products: AskOne, Staygreen and AFK Pilot.
+
+It isn't the first big skill collection. Superpowers covers brainstorm, plan, TDD and review. gstack has role skills, a Codex second opinion and a deploy command. This one leans further into production: billing, legal pages, monitoring.
+
+Some caveats. 𝗧𝗵𝗲 𝗮𝗽𝗽-𝘀𝘁𝗮𝗰𝗸 𝗽𝗮𝗰𝗸 𝗮𝘀𝘀𝘂𝗺𝗲𝘀 𝗡𝗲𝘅𝘁.𝗷𝘀, 𝗦𝘂𝗽𝗮𝗯𝗮𝘀𝗲, 𝗖𝗹𝗲𝗿𝗸 𝗮𝗻𝗱 𝗡𝗲𝘁𝗹𝗶𝗳𝘆. The README says the evidence varies: 28 skills come from real products, 14 are established methods, one rests on a single day of CLI runs. The gemini-agents skill carries Google's own warning that it isn't supported on consumer plans and can lead to suspension. And the 41 auto-loading skills cost 𝗮𝗯𝗼𝘂𝘁 𝟮,𝟳𝟬𝟬 𝘁𝗼𝗸𝗲𝗻𝘀 𝗮 𝘁𝘂𝗿𝗻 in Claude Code.
+
+𝗔𝗴𝗲𝗻𝘁𝘀 𝗰𝗮𝗻 𝗯𝘂𝗶𝗹𝗱 𝗳𝗮𝘀𝘁 𝗻𝗼𝘄. 𝗧𝗵𝗲 𝘀𝗹𝗼𝘄 𝗽𝗮𝗿𝘁 𝗶𝘀 𝗱𝗲𝗰𝗶𝗱𝗶𝗻𝗴 𝘄𝗵𝗲𝗻 𝘀𝗼𝗺𝗲𝘁𝗵𝗶𝗻𝗴 𝗶𝘀 𝗮𝗰𝘁𝘂𝗮𝗹𝗹𝘆 𝗱𝗼𝗻𝗲.
+
+Links in reply 👇
+
+
+===== KARPATHY STYLE =====
+
+𝗪𝗵𝗼 𝗚𝗲𝘁𝘀 𝗧𝗼 𝗦𝗮𝘆 𝗧𝗵𝗲 𝗖𝗼𝗱𝗲 𝗜𝘀 𝗗𝗼𝗻𝗲?
+
+Was reading through Paweł Huryn's product-engineering repo today. On the surface it's 45 agent skills in six packs, MIT, works with Claude Code, Codex, Cursor, Gemini CLI and others.
+
+𝗧𝗵𝗲 𝘀𝗸𝗶𝗹𝗹𝘀 𝗮𝗿𝗲𝗻'𝘁 𝘁𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝗺𝗼. 𝗧𝗵𝗲 𝘀𝘁𝗼𝗽𝗽𝗶𝗻𝗴 𝗿𝘂𝗹𝗲 𝗶𝘀.
+
+When one agent writes code and then reviews it, the reviewer shares the writer's context. Same assumptions, same blind spots. It's a bit like proofreading your own essay right after writing it. You read what you meant, not what's on the page.
+
+So the repo forces a fresh reviewer: a new session that never saw the build. Read-only, no MCP servers, memory off. By default it picks the first installed of Codex, Claude Code and Grok.
+
+Then it doesn't stop after one pass. Rounds continue until one finds 𝗻𝗼𝘁𝗵𝗶𝗻𝗴 𝘁𝗵𝗲 𝗰𝗵𝗮𝗻𝗴𝗲 𝗶𝗻𝘁𝗿𝗼𝗱𝘂𝗰𝗲𝗱 𝗮𝗯𝗼𝘃𝗲 𝗟𝗼𝘄 𝗮𝗻𝗱 𝗻𝗼𝘁𝗵𝗶𝗻𝗴 𝗛𝗶𝗴𝗵 𝗼𝗿 𝗖𝗿𝗶𝘁𝗶𝗰𝗮𝗹 𝗼𝗳 𝗮𝗻𝘆 𝗮𝗴𝗲. That's a convergence criterion, not a checkbox, which I think is the right shape for it.
+
+The other thing I liked is the bookkeeping. Rules carry a receipt, a date and what broke, 𝗮𝗯𝗼𝘂𝘁 𝟳𝟬𝟬 𝗼𝗳 𝘁𝗵𝗲𝗺, collected while shipping three products. And when the skill descriptions got too heavy, the author measured it: 𝟵,𝟭𝟰𝟯 𝘁𝗼𝗸𝗲𝗻𝘀 𝗮 𝘁𝘂𝗿𝗻 𝗱𝗼𝘄𝗻 𝘁𝗼 𝟮,𝟰𝟮𝟯 after a rewrite (it's about 2,700 now with 41 auto-loading skills).
+
+What I'd hold loosely: there are no published numbers on how many bugs the fresh-reviewer loop actually catches versus a single review. The README is upfront that evidence varies by skill, and the app stack is opinionated (Next.js, Supabase, Clerk, Netlify).
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘴𝘦𝘦 𝘯𝘦𝘹𝘵 𝘪𝘴 𝘵𝘩𝘢𝘵 𝘭𝘰𝘰𝘱 𝘳𝘶𝘯 𝘰𝘯 𝘢 𝘧𝘪𝘹𝘦𝘥 𝘴𝘦𝘵 𝘰𝘧 𝘴𝘦𝘦𝘥𝘦𝘥 𝘣𝘶𝘨𝘴, 𝘴𝘪𝘯𝘨𝘭𝘦 𝘳𝘦𝘷𝘪𝘦𝘸 𝘷𝘴. 𝘕 𝘳𝘰𝘶𝘯𝘥𝘴, 𝘸𝘪𝘵𝘩 𝘵𝘩𝘦 𝘤𝘰𝘴𝘵 𝘪𝘯 𝘵𝘰𝘬𝘦𝘯𝘴 𝘯𝘦𝘹𝘵 𝘵𝘰 𝘪𝘵.
+
+Links in reply 👇
+
+
+===== SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗽𝗵𝘂𝗿𝘆𝗻/𝗽𝗿𝗼𝗱𝘂𝗰𝘁-𝗲𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴
+
+product-engineering is a new MIT-licensed collection from Paweł Huryn. The README describes it as:
+
+"45 𝘢𝘨𝘦𝘯𝘵 𝘴𝘬𝘪𝘭𝘭𝘴 𝘧𝘳𝘰𝘮 𝘴𝘩𝘪𝘱𝘱𝘪𝘯𝘨 𝘵𝘩𝘳𝘦𝘦 𝘭𝘪𝘷𝘦 𝘱𝘳𝘰𝘥𝘶𝘤𝘵𝘴: 𝘥𝘦𝘤𝘪𝘥𝘦 𝘸𝘩𝘢𝘵 𝘵𝘰 𝘣𝘶𝘪𝘭𝘥, 𝘣𝘶𝘪𝘭𝘥 𝘪𝘵 𝘸𝘪𝘵𝘩 𝘊𝘭𝘢𝘶𝘥𝘦 𝘊𝘰𝘥𝘦 𝘰𝘳 𝘊𝘰𝘥𝘦𝘹, 𝘩𝘢𝘷𝘦 𝘢 𝘴𝘦𝘤𝘰𝘯𝘥 𝘮𝘰𝘥𝘦𝘭 𝘳𝘦𝘷𝘪𝘦𝘸 𝘪𝘵, 𝘳𝘦𝘭𝘦𝘢𝘴𝘦 𝘪𝘵."
+
+It's 𝟲𝟯𝟳 𝘀𝘁𝗮𝗿𝘀 and 86 forks as of 18 Nov 2026. Install is a Claude Code or Codex plugin marketplace, or 𝚗𝚙𝚡 𝚜𝚔𝚒𝚕𝚕𝚜 𝚊𝚍𝚍 𝚙𝚑𝚞𝚛𝚢𝚗/𝚙𝚛𝚘𝚍𝚞𝚌𝚝-𝚎𝚗𝚐𝚒𝚗𝚎𝚎𝚛𝚒𝚗𝚐 for other agents (that needs Node.js 22.20+).
+
+Two things stood out to me.
+
+𝟭. 𝗧𝗵𝗲 𝗶𝗻𝗱𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝘁-𝗿𝗲𝘃𝗶𝗲𝘄 𝗹𝗼𝗼𝗽. A fresh session that never saw the build reviews each phase and every deploying push. It must be read-only, with no MCP servers and memory off. Rounds continue until one finds nothing introduced above Low and nothing High or Critical of any age. The README's phrasing: "𝘛𝘩𝘦 𝘴𝘦𝘴𝘴𝘪𝘰𝘯 𝘵𝘩𝘢𝘵 𝘸𝘳𝘰𝘵𝘦 𝘵𝘩𝘦 𝘤𝘰𝘥𝘦 𝘯𝘦𝘷𝘦𝘳 𝘤𝘭𝘦𝘢𝘳𝘴 𝘪𝘵."
+
+𝟮. 𝗗𝗮𝘁𝗲𝗱 𝗿𝗲𝗰𝗲𝗶𝗽𝘁𝘀. Platform facts inside the skills are dated, and the README says about 700 rules each carry the date and what broke. There's also a rejected.md that records requests the project turned down and why, which I'd love to see more projects do.
+
+Things to be careful about, all from the README itself:
+
+• 𝗘𝘃𝗶𝗱𝗲𝗻𝗰𝗲 𝘃𝗮𝗿𝗶𝗲𝘀: 28 skills learned on real products, 14 established methods, product-analytics on vendor docs, gemini-agents on one day of CLI runs plus Google's docs
+• 𝗴𝗲𝗺𝗶𝗻𝗶-𝗮𝗴𝗲𝗻𝘁𝘀: Google doesn't support this on consumer plans and says it can lead to suspension
+• 𝗦𝘁𝗮𝗰𝗸 𝗹𝗼𝗰𝗸-𝗶𝗻: app-stack assumes Next.js, Supabase, Clerk and Netlify
+• 𝗖𝗼𝗻𝘁𝗲𝘅𝘁 𝗰𝗼𝘀𝘁: about 2,700 tokens a turn in Claude Code for the 41 auto-loading skills
+• 𝗢𝘃𝗲𝗿𝗹𝗮𝗽: five product skills duplicate the author's pm-skills and load twice if both are installed
+
+Further reading: CASE-STUDIES.md covers the three products (AskOne, Staygreen, AFK Pilot), and WALKTHROUGH.md goes step by step.
+
+Links in reply 👇
+
+
+===== SWYX STYLE =====
+
+𝗦𝗸𝗶𝗹𝗹 𝗖𝗼𝗹𝗹𝗲𝗰𝘁𝗶𝗼𝗻𝘀 𝗔𝗿𝗲 𝗧𝘂𝗿𝗻𝗶𝗻𝗴 𝗜𝗻𝘁𝗼 𝗦𝗵𝗶𝗽𝗽𝗶𝗻𝗴 𝗠𝗲𝘁𝗵𝗼𝗱𝗼𝗹𝗼𝗴𝗶𝗲𝘀
+
+A year ago a "skill" was one capability: make a PDF, write a test. The big collections now package a whole way of working.
+
+Quick map, with stars as of today:
+
+• 𝗦𝘂𝗽𝗲𝗿𝗽𝗼𝘄𝗲𝗿𝘀 (~𝟯𝟮𝟬𝗸): brainstorm, plan, TDD, subagent review. Stops at the branch, no deploy or billing
+• 𝗴𝘀𝘁𝗮𝗰𝗸 (~𝟭𝟰𝟮𝗸): role skills (CEO, eng manager, QA), a Codex second opinion, /𝚕𝚊𝚗𝚍-𝚊𝚗𝚍-𝚍𝚎𝚙𝚕𝚘𝚢
+• 𝗮𝗻𝘁𝗵𝗿𝗼𝗽𝗶𝗰𝘀/𝘀𝗸𝗶𝗹𝗹𝘀: the official reference set, single capabilities
+• 𝗽𝗺-𝘀𝗸𝗶𝗹𝗹𝘀 (~𝟮𝟴𝗸): Paweł Huryn's discovery and strategy collection
+
+And now 𝗽𝗿𝗼𝗱𝘂𝗰𝘁-𝗲𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴 from the same author, 𝟲𝟯𝟳 𝘀𝘁𝗮𝗿𝘀, MIT. 45 skills in six packs.
+
+Where it fits: it's written for the person who doesn't read the code. 𝗔 𝗣𝗠 𝗼𝗿 𝘀𝗼𝗹𝗼 𝗳𝗼𝘂𝗻𝗱𝗲𝗿 𝗮𝗽𝗽𝗿𝗼𝘃𝗲𝘀 𝗮 𝗽𝗿𝗼𝗽𝗼𝘀𝗮𝗹, 𝗰𝗹𝗶𝗰𝗸𝘀 𝘁𝗵𝗿𝗼𝘂𝗴𝗵 𝗳𝗹𝗼𝘄𝘀 𝗮𝗻𝗱 𝘀𝗮𝘆𝘀 𝗴𝗼 𝗮𝘁 𝗿𝗲𝗹𝗲𝗮𝘀𝗲. The agents do the rest, and none of them clears its own work.
+
+The core loop is a fresh, read-only reviewer (first installed of Codex, Claude Code, Grok) running round after round until nothing new above Low survives. gstack offers a second opinion too. This one makes it a gate that every deploying push has to pass.
+
+It also goes further down the funnel than most: Clerk auth, billing, transactional email, legal pages, analytics, uptime monitoring. The README's line is "𝘕𝘰𝘣𝘰𝘥𝘺 𝘱𝘢𝘺𝘴 𝘶𝘯𝘵𝘪𝘭 𝘱𝘢𝘺𝘮𝘦𝘯𝘵 𝘸𝘰𝘳𝘬𝘴 𝘪𝘯 𝘱𝘳𝘰𝘥𝘶𝘤𝘵𝘪𝘰𝘯."
+
+The cost of that opinion: the app-stack assumes Next.js, Supabase, Clerk and Netlify, and some skills rest on thin evidence by the author's own account.
+
+𝗠𝘆 𝗿𝗲𝗮𝗱: 𝘁𝗵𝗲 𝗻𝗲𝘅𝘁 𝗳𝗶𝗴𝗵𝘁 𝗶𝘀𝗻'𝘁 𝗼𝘃𝗲𝗿 𝘄𝗵𝗼 𝗵𝗮𝘀 𝘁𝗵𝗲 𝗺𝗼𝘀𝘁 𝘀𝗸𝗶𝗹𝗹𝘀. 𝗜𝘁'𝘀 𝘄𝗵𝗼 𝗼𝘄𝗻𝘀 𝘁𝗵𝗲 𝗿𝗲𝗹𝗲𝗮𝘀𝗲 𝗴𝗮𝘁𝗲, 𝗮𝗻𝗱 𝘄𝗵𝗶𝗰𝗵 𝗺𝗼𝗱𝗲𝗹 𝗶𝘀 𝗮𝗹𝗹𝗼𝘄𝗲𝗱 𝘁𝗼 𝘀𝗮𝘆 𝘆𝗲𝘀.
+
+Links in reply 👇
+
+
+===== HAMEL HUSAIN STYLE =====
+
+𝗔 𝗦𝗸𝗶𝗹𝗹 𝗣𝗮𝗰𝗸 𝗪𝗶𝘁𝗵 𝗔 𝗥𝗲𝗮𝗹 𝗦𝘁𝗼𝗽𝗽𝗶𝗻𝗴 𝗥𝘂𝗹𝗲
+
+There's a new collection of 45 agent skills out, product-engineering by Paweł Huryn. MIT, six packs, 𝟲𝟯𝟳 𝘀𝘁𝗮𝗿𝘀.
+
+I'm wary of big skill packs. Most of them are prompts that read as common sense with nothing behind them. This one at least attacks that directly: 𝗲𝗮𝗰𝗵 𝗿𝘂𝗹𝗲 𝗰𝗮𝗿𝗿𝗶𝗲𝘀 𝗮 𝗱𝗮𝘁𝗲 𝗮𝗻𝗱 𝘄𝗵𝗮𝘁 𝗯𝗿𝗼𝗸𝗲 𝗼𝗿 𝘄𝗮𝘀 𝗺𝗲𝗮𝘀𝘂𝗿𝗲𝗱, 𝗮𝗯𝗼𝘂𝘁 𝟳𝟬𝟬 𝗼𝗳 𝘁𝗵𝗲𝗺, and a new rule needs an observed failure.
+
+What it gives you:
+
+• 𝗔 𝗴𝗮𝘁𝗲, 𝗻𝗼𝘁 𝗮 𝘃𝗶𝗯𝗲 𝗰𝗵𝗲𝗰𝗸. A fresh reviewer that never saw the build, read-only, no MCP, memory off. Rounds repeat until nothing the change introduced is above Low and nothing High or Critical of any age remains.
+• 𝗧𝗲𝘀𝘁𝘀 𝘁𝗶𝗲𝗱 𝘁𝗼 𝗳𝗶𝘅𝗲𝘀. Every fix lands with a test that failed before it.
+• 𝗠𝗲𝗮𝘀𝘂𝗿𝗲𝗱 𝗰𝗼𝗻𝘁𝗲𝘅𝘁 𝗰𝗼𝘀𝘁. Descriptions were cut from 𝟵,𝟭𝟰𝟯 𝘁𝗼 𝟮,𝟰𝟮𝟯 𝘁𝗼𝗸𝗲𝗻𝘀 𝗮 𝘁𝘂𝗿𝗻, and a validator caps them at 300 characters each.
+
+What it doesn't give you:
+
+• 𝗡𝗼 𝗽𝘂𝗯𝗹𝗶𝘀𝗵𝗲𝗱 𝗵𝗶𝘁 𝗿𝗮𝘁𝗲. Nothing in the repo shows how many real bugs the review loop catches, or how often reviewers disagree.
+• 𝗠𝗶𝘅𝗲𝗱 𝗲𝘃𝗶𝗱𝗲𝗻𝗰𝗲. 28 skills come from real products, 14 from established methods, one from a single day of CLI runs. The README says so.
+• 𝗔 𝗳𝗶𝘅𝗲𝗱 𝘀𝘁𝗮𝗰𝗸. Next.js, Supabase, Clerk, Netlify.
+
+If you adopt it, measure it on your own repo:
+
+1. Plant 10 to 20 bugs you know about in a branch.
+2. Run one normal review as the baseline. Count what it finds.
+3. Run the independent-review loop to convergence. Count again, and log tokens and wall time.
+4. Read the reviewer transcripts. Look at what it flagged that wasn't real, not only what it caught.
+
+𝘈 𝘴𝘵𝘰𝘱𝘱𝘪𝘯𝘨 𝘳𝘶𝘭𝘦 𝘪𝘴 𝘰𝘯𝘭𝘺 𝘢𝘴 𝘨𝘰𝘰𝘥 𝘢𝘴 𝘵𝘩𝘦 𝘳𝘦𝘷𝘪𝘦𝘸𝘦𝘳 𝘣𝘦𝘩𝘪𝘯𝘥 𝘪𝘵. 𝘊𝘩𝘦𝘤𝘬 𝘺𝘰𝘶𝘳𝘴.
+
+Links in reply 👇
+
+
+===== ETHAN MOLLICK STYLE =====
+
+𝗜𝗳 𝗡𝗼𝗯𝗼𝗱𝘆 𝗥𝗲𝗮𝗱𝘀 𝗧𝗵𝗲 𝗖𝗼𝗱𝗲, 𝗪𝗵𝗼 𝗖𝗵𝗲𝗰𝗸𝘀 𝗜𝘁?
+
+More people are building real software without reading the code: product managers, founders, designers. That raises an odd question. When an AI writes the app, who gets to say it's ready?
+
+Paweł Huryn, who writes The Product Compass newsletter, just released one answer as a free toolkit. It's called product-engineering: 𝟰𝟱 "𝘀𝗸𝗶𝗹𝗹𝘀", which are written instructions that coding agents like Claude Code and Codex load when a task matches.
+
+𝗧𝗵𝗲 𝗺𝗮𝗶𝗻 𝗶𝗱𝗲𝗮 𝗶𝘀 𝗯𝗼𝗿𝗿𝗼𝘄𝗲𝗱 𝗳𝗿𝗼𝗺 𝗵𝗼𝘄 𝗽𝗲𝗼𝗽𝗹𝗲 𝘄𝗼𝗿𝗸. You don't let someone mark their own exam. So the agent that built the feature never approves it. A second, fresh agent reviews it, and it can run on a different company's model. Then again, until a round finds nothing serious.
+
+The human still has a job. You approve the plan, click through the app for 15 or 20 minutes, and give a clear "go" before release. The README is blunt about it: "𝘚𝘪𝘭𝘦𝘯𝘤𝘦 𝘪𝘴 𝘯𝘰𝘵 𝘨𝘰."
+
+There's evidence on both sides. For: the author built three live products this way (a Q&A tool, a monitoring service and a remote control for coding agents), and logged about 700 rules, each with a date and what went wrong.
+
+Against: these are one builder's results. The repo publishes no figures on how many bugs the review loop catches. Its own notes say some skills rest on thin evidence, and the setup assumes a specific set of web tools.
+
+So what we know is that a careful person found a working method. What we don't know yet is how well it travels to other teams and other products.
+
+𝘐𝘧 𝘵𝘩𝘦 𝘳𝘦𝘷𝘪𝘦𝘸𝘦𝘳 𝘪𝘴 𝘢𝘭𝘴𝘰 𝘢𝘯 𝘈𝘐, 𝘩𝘰𝘸 𝘮𝘶𝘤𝘩 𝘰𝘧 "𝘤𝘩𝘦𝘤𝘬𝘦𝘥" 𝘪𝘴 𝘳𝘦𝘢𝘭𝘭𝘺 𝘤𝘩𝘦𝘤𝘬𝘦𝘥?
+
+Links in reply 👇
+
+
