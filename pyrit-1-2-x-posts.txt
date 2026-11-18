@@ -1,0 +1,147 @@
+===== 1_story =====
+
+𝗣𝘆𝗥𝗜𝗧 𝟭.𝟮: 𝗔 𝗙𝗿𝗲𝗲 𝗥𝗲𝗱 𝗧𝗲𝗮𝗺 𝗦𝗰𝗮𝗻𝗻𝗲𝗿 𝗙𝗿𝗼𝗺 𝗠𝗶𝗰𝗿𝗼𝘀𝗼𝗳𝘁
+
+You've built a chatbot. Before it ships, someone asks the obvious thing: can it be tricked into saying what it shouldn't?
+
+Most teams answer with a notebook, a few jailbreak prompts and some hope.
+
+PyRIT is Microsoft's open source toolkit for exactly this. It has been public since February 2024. 𝗩𝗲𝗿𝘀𝗶𝗼𝗻 𝟭.𝟮.𝟬 𝗰𝗮𝗺𝗲 𝗼𝘂𝘁 𝗼𝗻 𝟭𝟯 𝗡𝗼𝘃 𝟮𝟬𝟮𝟲, and 1.2.1 followed on 16 Nov.
+
+Here's how a scan works:
+
+• 𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼: a ready-made test plan, like 𝙹𝚊𝚒𝚕𝚋𝚛𝚎𝚊𝚔, 𝙻𝚎𝚊𝚔𝚊𝚐𝚎 or 𝙲𝚢𝚋𝚎𝚛
+• 𝗧𝗮𝗿𝗴𝗲𝘁: the model or app you point it at
+• 𝗢𝗻𝗲 𝗰𝗼𝗺𝗺𝗮𝗻𝗱: 𝚙𝚢𝚛𝚒𝚝_𝚜𝚌𝚊𝚗 𝚛𝚞𝚗 𝚊𝚒𝚛𝚝.𝚛𝚊𝚙𝚒𝚍_𝚛𝚎𝚜𝚙𝚘𝚗𝚜𝚎 --𝚝𝚊𝚛𝚐𝚎𝚝 𝚖𝚢_𝚝𝚊𝚛𝚐𝚎𝚝
+
+It sends the harmful requests, tries attacks like role-play and many-shot, scores every reply, and saves the run so you can compare it with next month's.
+
+𝗙𝗼𝗿 𝘂𝘀𝗲𝗿𝘀: CoPyRIT is the browser side. Start 𝚙𝚢𝚛𝚒𝚝_𝚋𝚊𝚌𝚔𝚎𝚗𝚍 --𝚊𝚞𝚝𝚑-𝚖𝚘𝚍𝚎 𝚕𝚘𝚌𝚊𝚕, open localhost:8000, chat with the target by hand and review results.
+
+𝗙𝗼𝗿 𝗯𝘂𝗶𝗹𝗱𝗲𝗿𝘀: it's a Python framework. Targets include OpenAI, Anthropic, Bedrock, Ollama, plain HTTP and Playwright for web apps.
+
+It isn't alone. NVIDIA's garak leans on a probe library, promptfoo leans on CI. PyRIT's angle is multi-turn attacks (Crescendo, TAP) plus human-led testing.
+
+𝘖𝘯𝘦 𝘤𝘢𝘷𝘦𝘢𝘵: Microsoft's own blog says a wide sweep is brute force and 𝗴𝗲𝘁𝘀 𝗲𝘅𝗽𝗲𝗻𝘀𝗶𝘃𝗲 𝗶𝗻 𝗹𝗮𝘁𝗲𝗻𝗰𝘆, 𝗿𝗮𝘁𝗲 𝗹𝗶𝗺𝗶𝘁𝘀 𝗮𝗻𝗱 𝗮𝘁𝘁𝗮𝗰𝗸𝗲𝗿-𝗺𝗼𝗱𝗲𝗹 𝘁𝗼𝗸𝗲𝗻𝘀. AlphaSignal also lists a steep learning curve and no built-in OWASP, MITRE ATLAS or NIST mappings. License is MIT.
+
+𝘙𝘦𝘥 𝘵𝘦𝘢𝘮𝘪𝘯𝘨 𝘪𝘴 𝘵𝘶𝘳𝘯𝘪𝘯𝘨 𝘧𝘳𝘰𝘮 𝘢 𝘤𝘭𝘦𝘷𝘦𝘳 𝘯𝘰𝘵𝘦𝘣𝘰𝘰𝘬 𝘪𝘯𝘵𝘰 𝘢 𝘤𝘰𝘮𝘮𝘢𝘯𝘥 𝘺𝘰𝘶 𝘳𝘦𝘳𝘶𝘯 𝘰𝘯 𝘦𝘷𝘦𝘳𝘺 𝘮𝘰𝘥𝘦𝘭 𝘳𝘦𝘭𝘦𝘢𝘴𝘦.
+
+Links in reply 👇
+
+
+===== 2_karpathy =====
+
+𝗧𝗵𝗶𝗻𝗸𝗶𝗻𝗴 𝗔𝗯𝗼𝘂𝘁 𝗣𝘆𝗥𝗜𝗧 𝟭.𝟮
+
+Microsoft shipped PyRIT 1.2.0 on 13 Nov (1.2.1 three days later). It's MIT licensed and has been public since Feb 2024, so this isn't a new idea.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀 𝘁𝗵𝗲 "𝘀𝗰𝗲𝗻𝗮𝗿𝗶𝗼". A scenario bundles four things: a set of bad objectives, some attack techniques, a scorer, and a printer for the report. Most also run a baseline with no attack, so you see the model on its own next to the model under pressure.
+
+Think of it like a unit test suite, except the test is "try to get the model to write malware" and the assertion is a judge model.
+
+Once red teaming is a command, it's repeatable. 𝚙𝚢𝚛𝚒𝚝_𝚜𝚌𝚊𝚗 𝚛𝚞𝚗 𝚊𝚒𝚛𝚝.𝚛𝚊𝚙𝚒𝚍_𝚛𝚎𝚜𝚙𝚘𝚗𝚜𝚎 --𝚝𝚊𝚛𝚐𝚎𝚝 𝚖𝚢_𝚝𝚊𝚛𝚐𝚎𝚝 runs the same way today and on the next model release, and results are saved to memory so you can diff them.
+
+I think that's the real shift. Not smarter attacks, but attacks you can rerun and compare. (That's my read, not Microsoft's claim.)
+
+Two things worth keeping in mind. Microsoft's own blog calls the broad sweep brute force that gets costly. And the attacker and scoring models are themselves LLMs, so the numbers are only as good as the judge.
+
+𝘐'𝘥 𝘭𝘪𝘬𝘦 𝘵𝘰 𝘴𝘦𝘦 𝘴𝘰𝘮𝘦𝘰𝘯𝘦 𝘱𝘶𝘣𝘭𝘪𝘴𝘩 𝘴𝘤𝘦𝘯𝘢𝘳𝘪𝘰 𝘳𝘦𝘴𝘶𝘭𝘵𝘴 𝘧𝘰𝘳 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘵𝘢𝘳𝘨𝘦𝘵 𝘢𝘤𝘳𝘰𝘴𝘴 𝘵𝘩𝘳𝘦𝘦 𝘳𝘦𝘭𝘦𝘢𝘴𝘦𝘴 𝘰𝘧 𝘗𝘺𝘙𝘐𝘛, 𝘵𝘰 𝘤𝘩𝘦𝘤𝘬 𝘵𝘩𝘦 𝘴𝘤𝘰𝘳𝘦𝘴 𝘳𝘦𝘢𝘭𝘭𝘺 𝘴𝘵𝘢𝘺 𝘤𝘰𝘮𝘱𝘢𝘳𝘢𝘣𝘭𝘦.
+
+Links in reply 👇
+
+
+===== 3_simon =====
+
+𝗣𝘆𝗥𝗜𝗧 𝟭.𝟮.𝟬 𝗡𝗼𝘁𝗲𝘀
+
+PyRIT, per its README: "𝘢𝘯 𝘰𝘱𝘦𝘯-𝘴𝘰𝘶𝘳𝘤𝘦 𝘵𝘰𝘰𝘭𝘬𝘪𝘵 𝘧𝘰𝘳 𝘧𝘪𝘯𝘥𝘪𝘯𝘨 𝘴𝘦𝘤𝘶𝘳𝘪𝘵𝘺 𝘢𝘯𝘥 𝘴𝘢𝘧𝘦𝘵𝘺 𝘸𝘦𝘢𝘬𝘯𝘦𝘴𝘴𝘦𝘴 𝘪𝘯 𝘨𝘦𝘯𝘦𝘳𝘢𝘵𝘪𝘷𝘦 𝘈𝘐 𝘴𝘺𝘴𝘵𝘦𝘮𝘴 𝘵𝘩𝘳𝘰𝘶𝘨𝘩 𝘢𝘶𝘵𝘰𝘮𝘢𝘵𝘦𝘥 𝘴𝘤𝘢𝘯𝘴, 𝘢𝘥𝘢𝘱𝘵𝘪𝘷𝘦 𝘮𝘶𝘭𝘵𝘪-𝘵𝘶𝘳𝘯 𝘢𝘵𝘵𝘢𝘤𝘬𝘴, 𝘢𝘯𝘥 𝘩𝘶𝘮𝘢𝘯-𝘭𝘦𝘥 𝘵𝘦𝘴𝘵𝘪𝘯𝘨." MIT licensed, from the Microsoft AI Red Team.
+
+PyPI shows 𝟭.𝟮.𝟬 𝗼𝗻 𝟭𝟯 𝗡𝗼𝘃 𝟮𝟬𝟮𝟲 𝗮𝗻𝗱 𝟭.𝟮.𝟭 𝗼𝗻 𝟭𝟲 𝗡𝗼𝘃. Python 3.11 to 3.14. The repo is at 4.9k stars (as of 18 Nov).
+
+Two parts worth a closer look:
+
+• 𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼𝘀. 𝚙𝚢𝚛𝚒𝚝_𝚜𝚌𝚊𝚗 𝚛𝚞𝚗 𝚊𝚒𝚛𝚝.𝚛𝚊𝚙𝚒𝚍_𝚛𝚎𝚜𝚙𝚘𝚗𝚜𝚎 --𝚝𝚊𝚛𝚐𝚎𝚝 𝚖𝚢_𝚝𝚊𝚛𝚐𝚎𝚝 runs a packaged playbook and stores a 𝚂𝚌𝚎𝚗𝚊𝚛𝚒𝚘𝚁𝚎𝚜𝚞𝚕𝚝 tagged with a run ID, so you can resume or diff later.
+• 𝗖𝗼𝗣𝘆𝗥𝗜𝗧. 𝚙𝚢𝚛𝚒𝚝_𝚋𝚊𝚌𝚔𝚎𝚗𝚍 --𝚊𝚞𝚝𝚑-𝚖𝚘𝚍𝚎 𝚕𝚘𝚌𝚊𝚕 serves a browser UI on localhost:8000, with Chat for manual tests and Scanner for scenarios.
+
+Things to be careful about:
+
+• Per the project's July 2026 blog, the default 𝚁𝚊𝚙𝚒𝚍𝚁𝚎𝚜𝚙𝚘𝚗𝚜𝚎 run uses role_play and many_shot plus a baseline across seven harm categories. Defaults may have changed since.
+• The docs say targets and helper models (scoring, adversarial) aren't reused automatically. You register each one.
+• Local mode turns off request authentication. The docs say never use it on a network-accessible deployment.
+• AlphaSignal's piece says no built-in OWASP, MITRE ATLAS or NIST mappings. That's their claim.
+
+Further reading: the PyRIT whitepaper, the scenarios blog post, and RAMPART (pytest-native testing that PyRIT's docs list as built on it).
+
+Links in reply 👇
+
+
+===== 4_swyx =====
+
+𝗔𝗜 𝗥𝗲𝗱 𝗧𝗲𝗮𝗺𝗶𝗻𝗴 𝗜𝘀 𝗚𝗲𝘁𝘁𝗶𝗻𝗴 𝗜𝘁𝘀 𝗢𝘄𝗻 𝗧𝗲𝘀𝘁 𝗥𝘂𝗻𝗻𝗲𝗿
+
+PyRIT 1.2.0 (13 Nov 2026, with 1.2.1 on 16 Nov) is a good snapshot of where LLM security testing is heading.
+
+The tools now split into layers:
+
+• 𝗴𝗮𝗿𝗮𝗸 (𝗡𝗩𝗜𝗗𝗜𝗔): broad probe library, model-level scans
+• 𝗽𝗿𝗼𝗺𝗽𝘁𝗳𝗼𝗼: red team checks inside CI
+• 𝗣𝘆𝗥𝗜𝗧 (𝗠𝗶𝗰𝗿𝗼𝘀𝗼𝗳𝘁): multi-turn attacks, scenarios, a CLI, a browser UI and a Python framework
+• 𝗥𝗔𝗠𝗣𝗔𝗥𝗧 (𝗠𝗶𝗰𝗿𝗼𝘀𝗼𝗳𝘁): pytest-native tests for agents, which PyRIT's docs say is built on PyRIT
+
+𝘛𝘩𝘰𝘴𝘦 𝘰𝘯𝘦-𝘭𝘪𝘯𝘦𝘳𝘴 𝘧𝘰𝘳 𝘨𝘢𝘳𝘢𝘬 𝘢𝘯𝘥 𝘱𝘳𝘰𝘮𝘱𝘵𝘧𝘰𝘰 𝘤𝘰𝘮𝘦 𝘧𝘳𝘰𝘮 𝘵𝘩𝘪𝘳𝘥-𝘱𝘢𝘳𝘵𝘺 𝘤𝘰𝘮𝘱𝘢𝘳𝘪𝘴𝘰𝘯𝘴, 𝘯𝘰𝘵 𝘵𝘩𝘦 𝘱𝘳𝘰𝘫𝘦𝘤𝘵𝘴' 𝘰𝘸𝘯 𝘱𝘢𝘨𝘦𝘴.
+
+𝗣𝘆𝗥𝗜𝗧'𝘀 𝗯𝗲𝘁 𝗶𝘀 𝘁𝗵𝗲 𝘀𝗰𝗲𝗻𝗮𝗿𝗶𝗼. One command, a packaged set of objectives, attacks and scorers, and a saved result you can diff next quarter.
+
+Where this goes, in my view: red team findings stop being reports and start being regression tests. RAMPART sits on exactly that idea.
+
+The cost is real, though. Microsoft's own blog says broad sweeps are brute force and burn latency, rate limits and tokens.
+
+Links in reply 👇
+
+
+===== 5_hamel =====
+
+𝗣𝘆𝗥𝗜𝗧 𝗚𝗶𝘃𝗲𝘀 𝗬𝗼𝘂 𝗔𝘁𝘁𝗮𝗰𝗸𝘀, 𝗡𝗼𝘁 𝗘𝘃𝗮𝗹𝘀
+
+PyRIT 1.2.0 shipped 13 Nov (1.2.1 on 16 Nov). It's MIT, from Microsoft's AI Red Team.
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗴𝗶𝘃𝗲𝘀 𝘆𝗼𝘂: packaged scenarios (𝙹𝚊𝚒𝚕𝚋𝚛𝚎𝚊𝚔, 𝙻𝚎𝚊𝚔𝚊𝚐𝚎, 𝙲𝚢𝚋𝚎𝚛, 𝚁𝚊𝚙𝚒𝚍𝚁𝚎𝚜𝚙𝚘𝚗𝚜𝚎), multi-turn attacks like Crescendo and TAP, a scorer per scenario, a baseline run with no attack, and saved results you can diff.
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗴𝗶𝘃𝗲 𝘆𝗼𝘂: a judgement on your product. The scorer is typically an LLM as judge, and the project's own blog says so. A pass is only as trustworthy as that judge. AlphaSignal also says there are no built-in OWASP, MITRE ATLAS or NIST mappings.
+
+Cost matters too. The blog calls a wide sweep brute force that burns latency, rate limits and attacker tokens.
+
+If you try it, a rough recipe:
+
+1. Write 20 test cases from your own product's real failure risks
+2. Run the 𝚁𝚊𝚙𝚒𝚍𝚁𝚎𝚜𝚙𝚘𝚗𝚜𝚎 baseline first, with no attack
+3. Compare scenario by scenario, same target, same scorer
+4. Read the traces for every success and a sample of failures
+5. Hand-label a few judge calls and check the scorer agrees
+
+𝘋𝘰𝘦𝘴 𝘺𝘰𝘶𝘳 𝘴𝘤𝘰𝘳𝘦𝘳 𝘢𝘨𝘳𝘦𝘦 𝘸𝘪𝘵𝘩 𝘺𝘰𝘶? 𝘛𝘩𝘢𝘵'𝘴 𝘵𝘩𝘦 𝘲𝘶𝘦𝘴𝘵𝘪𝘰𝘯 𝘵𝘩𝘦 𝘴𝘤𝘢𝘯 𝘤𝘢𝘯'𝘵 𝘢𝘯𝘴𝘸𝘦𝘳.
+
+Links in reply 👇
+
+
+===== 6_mollick =====
+
+𝗖𝗮𝗻 𝗬𝗼𝘂 𝗧𝗲𝘀𝘁 𝗮𝗻 𝗔𝗜 𝗯𝘆 𝗧𝗿𝘆𝗶𝗻𝗴 𝘁𝗼 𝗕𝗿𝗲𝗮𝗸 𝗜𝘁?
+
+Microsoft thinks you should, and just updated the free tool its own AI Red Team built for it.
+
+PyRIT 1.2.0 came out on 13 Nov 2026 (1.2.1 on 16 Nov). It's open source under the MIT license.
+
+Think of a fire drill for a chatbot. Someone plays the attacker, tries role-play tricks, slowly escalates over several messages, asks for things it shouldn't give. Another AI usually judges whether the chatbot held its ground.
+
+𝗪𝗵𝗮𝘁 𝘄𝗲 𝗸𝗻𝗼𝘄: PyRIT turns this into one command, so a team can run the same drill on every new model and compare. There's also a browser interface for people who'd rather chat with the system by hand.
+
+𝗪𝗵𝗮𝘁 𝘄𝗲 𝗱𝗼𝗻'𝘁 𝗸𝗻𝗼𝘄: how well the AI judge matches a human's call. And a broad drill is costly. Microsoft's own blog calls it brute force that burns time and tokens.
+
+AlphaSignal also says it has a steep learning curve and no built-in OWASP, MITRE ATLAS or NIST mappings.
+
+𝘐𝘧 𝘣𝘳𝘦𝘢𝘬𝘪𝘯𝘨 𝘺𝘰𝘶𝘳 𝘈𝘐 𝘣𝘦𝘤𝘰𝘮𝘦𝘴 𝘢𝘴 𝘳𝘰𝘶𝘵𝘪𝘯𝘦 𝘢𝘴 𝘢 𝘴𝘰𝘧𝘵𝘸𝘢𝘳𝘦 𝘵𝘦𝘴𝘵, 𝘸𝘩𝘰 𝘰𝘯 𝘺𝘰𝘶𝘳 𝘵𝘦𝘢𝘮 𝘴𝘩𝘰𝘶𝘭𝘥 𝘣𝘦 𝘥𝘰𝘪𝘯𝘨 𝘪𝘵?
+
+Links in reply 👇
+
+
