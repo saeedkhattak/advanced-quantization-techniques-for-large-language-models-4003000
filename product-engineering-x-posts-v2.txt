@@ -1,0 +1,170 @@
+===== STORY =====
+
+𝗠𝗼𝘀𝘁 𝗔𝗴𝗲𝗻𝘁 𝗦𝗸𝗶𝗹𝗹 𝗣𝗮𝗰𝗸𝘀 𝗦𝘁𝗼𝗽 𝗔𝘁 𝗧𝗵𝗲 𝗣𝘂𝗹𝗹 𝗥𝗲𝗾𝘂𝗲𝘀𝘁. 𝗧𝗵𝗶𝘀 𝗢𝗻𝗲 𝗗𝗼𝗲𝘀𝗻'𝘁.
+
+You're a solo developer. Claude Code or Codex writes the feature in an afternoon. The tests pass and the PR is merged.
+
+Then come the harder questions. Who is this for? What do they use today instead? Does the payment actually work in production? Do you have a privacy policy?
+
+𝗖𝗼𝗱𝗶𝗻𝗴 𝗶𝘀 𝗻𝗼𝘄 𝘁𝗵𝗲 𝗳𝗮𝘀𝘁 𝗽𝗮𝗿𝘁. 𝗘𝘃𝗲𝗿𝘆𝘁𝗵𝗶𝗻𝗴 𝗮𝗿𝗼𝘂𝗻𝗱 𝗶𝘁 𝗶𝘀 𝘀𝘁𝗶𝗹𝗹 𝗼𝗻 𝘆𝗼𝘂.
+
+Paweł Huryn's new open-source repo, product-engineering, packs that whole path into 45 agent skills. It's MIT-licensed and at 𝟲𝟯𝟳 𝘀𝘁𝗮𝗿𝘀 today. The README lays the work out in eight steps: start, proposal, plan, build, click-through, release review, release, real users. Then you go round again.
+
+Building is one of the eight.
+
+𝗕𝗲𝗳𝗼𝗿𝗲 𝘁𝗵𝗲 𝗰𝗼𝗱𝗲: the product pack researches the alternatives people use, sizes market segments and picks a beachhead. You get one proposal with a source for every claim, a high-fidelity screen for each key job on sample data, and the open decisions, each with a recommendation. You decide. The build reads what you accepted.
+
+𝗔𝗳𝘁𝗲𝗿 𝘁𝗵𝗲 𝗰𝗼𝗱𝗲: the app-stack pack covers sign-in, authorization, billing, transactional email, legal pages, product analytics and uptime monitoring. Legal pages are drafted from the code for you to approve before the first stranger is asked for anything.
+
+The README's line for it: "𝘕𝘰𝘣𝘰𝘥𝘺 𝘱𝘢𝘺𝘴 𝘶𝘯𝘵𝘪𝘭 𝘱𝘢𝘺𝘮𝘦𝘯𝘵 𝘸𝘰𝘳𝘬𝘴 𝘪𝘯 𝘱𝘳𝘰𝘥𝘶𝘤𝘵𝘪𝘰𝘯."
+
+The rules come with receipts, 𝗮𝗯𝗼𝘂𝘁 𝟳𝟬𝟬 𝗼𝗳 𝘁𝗵𝗲𝗺, dated, from three of his live products. One example from AskOne: the plans were set up by hand in a billing dashboard, a feature key didn't match the code, and 𝗲𝘃𝗲𝗿𝘆 𝗽𝗮𝘆𝗶𝗻𝗴 𝗮𝗰𝗰𝗼𝘂𝗻𝘁 𝘀𝗶𝗹𝗲𝗻𝘁𝗹𝘆 𝗳𝗲𝗹𝗹 𝗯𝗮𝗰𝗸 𝘁𝗼 𝗙𝗿𝗲𝗲. That's now a rule.
+
+Code review is in there too (a fresh agent checks every deploying push), but that part isn't new. gstack and Superpowers both do review. Superpowers stops at the branch. gstack goes as far as deploy and a health check. This one keeps going to billing and legal pages.
+
+Some caveats. 𝗧𝗵𝗲 𝗮𝗽𝗽-𝘀𝘁𝗮𝗰𝗸 𝗮𝘀𝘀𝘂𝗺𝗲𝘀 𝗡𝗲𝘅𝘁.𝗷𝘀, 𝗦𝘂𝗽𝗮𝗯𝗮𝘀𝗲, 𝗖𝗹𝗲𝗿𝗸 𝗮𝗻𝗱 𝗡𝗲𝘁𝗹𝗶𝗳𝘆. By the README's own count, 28 skills come from real products, 14 from established methods, and a few rest on thinner evidence. The 41 auto-loading skills cost 𝗮𝗯𝗼𝘂𝘁 𝟮,𝟳𝟬𝟬 𝘁𝗼𝗸𝗲𝗻𝘀 𝗮 𝘁𝘂𝗿𝗻 in Claude Code.
+
+𝗙𝗼𝗿 𝗮 𝘀𝗼𝗹𝗼 𝗱𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿, 𝘁𝗵𝗲 𝗷𝗼𝗯 𝗶𝘀 𝘁𝘂𝗿𝗻𝗶𝗻𝗴 𝗶𝗻𝘁𝗼 𝗽𝗿𝗼𝗱𝘂𝗰𝘁 𝗲𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴. 𝗪𝗿𝗶𝘁𝗶𝗻𝗴 𝘁𝗵𝗲 𝗰𝗼𝗱𝗲 𝗶𝘀 𝗼𝗻𝗲 𝘀𝘁𝗲𝗽 𝗼𝗳 𝗲𝗶𝗴𝗵𝘁.
+
+Links in reply 👇
+
+
+===== KARPATHY STYLE =====
+
+𝗖𝗼𝗱𝗲 𝗜𝘀 𝗢𝗻𝗲 𝗦𝘁𝗲𝗽 𝗢𝘂𝘁 𝗢𝗳 𝗘𝗶𝗴𝗵𝘁
+
+Paweł Huryn put out a repo called product-engineering: 45 agent skills, MIT, for Claude Code, Codex, Cursor, Gemini CLI and others.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝗮𝗻𝘆 𝘀𝗶𝗻𝗴𝗹𝗲 𝘀𝗸𝗶𝗹𝗹. 𝗜𝘁'𝘀 𝘄𝗵𝗲𝗿𝗲 𝘁𝗵𝗲 𝗰𝗼𝗹𝗹𝗲𝗰𝘁𝗶𝗼𝗻 𝗽𝘂𝘁𝘀 𝗶𝘁𝘀 𝗯𝗼𝘂𝗻𝗱𝗮𝗿𝗶𝗲𝘀.
+
+Most coding-agent setups are drawn around the code. Start from a prompt, end at a merged PR. That made sense when writing code was the slow, expensive step.
+
+When an agent writes a feature in an hour, the bottleneck moves. It sits at the two ends: deciding what to build, and getting it to someone who pays. A bit like a factory that suddenly gets a very fast machine in the middle. The line doesn't speed up until you fix the steps before and after.
+
+This repo is drawn around those ends. The README splits the work into eight steps, and build is step four. Before it: research on the alternatives and the segment, then a proposal where every claim has a source and every open decision has a recommendation. After it: click-through, release review, release, real users. The app-stack pack handles auth, billing, email, legal pages, analytics and monitoring.
+
+The README puts the end condition plainly: "𝘕𝘰𝘣𝘰𝘥𝘺 𝘱𝘢𝘺𝘴 𝘶𝘯𝘵𝘪𝘭 𝘱𝘢𝘺𝘮𝘦𝘯𝘵 𝘸𝘰𝘳𝘬𝘴 𝘪𝘯 𝘱𝘳𝘰𝘥𝘶𝘤𝘵𝘪𝘰𝘯."
+
+I think that's the right way to cut the problem for one person working with agents. The human's job moves to the parts that need taste and accountability: picking the segment, accepting the proposal, clicking through, saying go.
+
+What to hold loosely: it's one builder's method, learned on three products (about 700 dated rules), and the stack is fixed (Next.js, Supabase, Clerk, Netlify). There's no outcome data yet beyond those products.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘴𝘦𝘦 𝘪𝘴 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘭𝘰𝘰𝘱 𝘳𝘶𝘯 𝘣𝘺 𝘱𝘦𝘰𝘱𝘭𝘦 𝘸𝘩𝘰 𝘢𝘳𝘦𝘯'𝘵 𝘪𝘵𝘴 𝘢𝘶𝘵𝘩𝘰𝘳, 𝘢𝘯𝘥 𝘩𝘰𝘸 𝘭𝘰𝘯𝘨 𝘪𝘥𝘦𝘢 𝘵𝘰 𝘧𝘪𝘳𝘴𝘵 𝘱𝘢𝘺𝘮𝘦𝘯𝘵 𝘢𝘤𝘵𝘶𝘢𝘭𝘭𝘺 𝘵𝘢𝘬𝘦𝘴.
+
+Links in reply 👇
+
+
+===== SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗽𝗵𝘂𝗿𝘆𝗻/𝗽𝗿𝗼𝗱𝘂𝗰𝘁-𝗲𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴
+
+product-engineering is a new MIT-licensed collection of agent skills from Paweł Huryn, 𝟲𝟯𝟳 𝘀𝘁𝗮𝗿𝘀 as of 18 Nov 2026. The README:
+
+"45 𝘢𝘨𝘦𝘯𝘵 𝘴𝘬𝘪𝘭𝘭𝘴 𝘧𝘳𝘰𝘮 𝘴𝘩𝘪𝘱𝘱𝘪𝘯𝘨 𝘵𝘩𝘳𝘦𝘦 𝘭𝘪𝘷𝘦 𝘱𝘳𝘰𝘥𝘶𝘤𝘵𝘴: 𝘥𝘦𝘤𝘪𝘥𝘦 𝘸𝘩𝘢𝘵 𝘵𝘰 𝘣𝘶𝘪𝘭𝘥, 𝘣𝘶𝘪𝘭𝘥 𝘪𝘵 𝘸𝘪𝘵𝘩 𝘊𝘭𝘢𝘶𝘥𝘦 𝘊𝘰𝘥𝘦 𝘰𝘳 𝘊𝘰𝘥𝘦𝘹, 𝘩𝘢𝘷𝘦 𝘢 𝘴𝘦𝘤𝘰𝘯𝘥 𝘮𝘰𝘥𝘦𝘭 𝘳𝘦𝘷𝘪𝘦𝘸 𝘪𝘵, 𝘳𝘦𝘭𝘦𝘢𝘴𝘦 𝘪𝘵."
+
+The scope is what makes it worth a look. Most skill collections cover writing code. This one covers the steps on either side of it.
+
+𝗕𝗲𝗳𝗼𝗿𝗲 𝘁𝗵𝗲 𝗯𝘂𝗶𝗹𝗱, the product pack has competitor-analysis, market-segments, beachhead-segment, value-proposition, value-curve and growth-loops. They feed one artifact: a jobs map, a high-fidelity screen per key job on sample data, and the open decisions with a recommendation on each. Every claim gets a source.
+
+𝗔𝗳𝘁𝗲𝗿 𝘁𝗵𝗲 𝗯𝘂𝗶𝗹𝗱, the app-stack pack has 14 skills, including saas-authorization, clerk-production, supabase-production, transactional-email, legal-pages, product-analytics and uptime-monitoring.
+
+The README has a comparison table against "collections written for engineers". The row I'd point to is "𝗘𝗻𝗱𝘀 𝗮𝘁": "𝘛𝘩𝘦 𝘱𝘶𝘭𝘭 𝘳𝘦𝘲𝘶𝘦𝘴𝘵, 𝘴𝘰𝘮𝘦𝘵𝘪𝘮𝘦𝘴 𝘵𝘩𝘦 𝘥𝘦𝘱𝘭𝘰𝘺" for those, "𝘗𝘢𝘺𝘪𝘯𝘨 𝘶𝘴𝘦𝘳𝘴" for this one.
+
+Rules are backed by dated cases, about 700 of them. CASE-STUDIES.md has good ones, like the billing setup where a feature key built by hand in the dashboard matched nothing in the code, and every paying account silently fell back to Free.
+
+Things to be careful about:
+
+• 𝗙𝗶𝘅𝗲𝗱 𝘀𝘁𝗮𝗰𝗸: app-stack assumes Next.js, Supabase, Clerk and Netlify
+• 𝗘𝘃𝗶𝗱𝗲𝗻𝗰𝗲 𝘃𝗮𝗿𝗶𝗲𝘀: 28 skills from real products, 14 established methods, product-analytics on vendor docs
+• 𝗢𝘃𝗲𝗿𝗹𝗮𝗽: five product skills duplicate the author's pm-skills and load twice if both are installed
+• 𝗖𝗼𝗻𝘁𝗲𝘅𝘁: about 2,700 tokens a turn for the 41 auto-loading skills in Claude Code
+• 𝗡𝗼𝘁 𝗻𝗲𝘄: the cross-model review part; gstack has a Codex second opinion too
+
+Further reading: WALKTHROUGH.md takes one change through all eight steps.
+
+Links in reply 👇
+
+
+===== SWYX STYLE =====
+
+𝗔𝗴𝗲𝗻𝘁 𝗦𝗸𝗶𝗹𝗹𝘀 𝗔𝗿𝗲 𝗠𝗼𝘃𝗶𝗻𝗴 𝗢𝗳𝗳 𝗧𝗵𝗲 𝗖𝗼𝗱𝗲
+
+Coding agents made the build step cheap. So the skill collections are spreading outward, to what happens before and after it.
+
+Rough map, stars as of today:
+
+• 𝗦𝘂𝗽𝗲𝗿𝗽𝗼𝘄𝗲𝗿𝘀 (~𝟯𝟮𝟬𝗸): idea to merged branch. Brainstorm, plan, TDD, review
+• 𝗴𝘀𝘁𝗮𝗰𝗸 (~𝟭𝟰𝟮𝗸): plan reviews by role, then ship, deploy and a canary check
+• 𝗽𝗺-𝘀𝗸𝗶𝗹𝗹𝘀 (~𝟮𝟴𝗸): discovery, strategy and go-to-market, no build
+• 𝗮𝗻𝘁𝗵𝗿𝗼𝗽𝗶𝗰𝘀/𝘀𝗸𝗶𝗹𝗹𝘀: single capabilities, the reference set
+
+𝗽𝗿𝗼𝗱𝘂𝗰𝘁-𝗲𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴, also by Paweł Huryn (author of pm-skills), joins the two halves. 45 skills, MIT, 𝟲𝟯𝟳 𝘀𝘁𝗮𝗿𝘀.
+
+It starts where pm-skills is strongest: competitor research, segments, a beachhead, a sourced proposal with screens. It ends further out than gstack: 𝗯𝗶𝗹𝗹𝗶𝗻𝗴, 𝗮𝘂𝘁𝗵, 𝘁𝗿𝗮𝗻𝘀𝗮𝗰𝘁𝗶𝗼𝗻𝗮𝗹 𝗲𝗺𝗮𝗶𝗹, 𝗹𝗲𝗴𝗮𝗹 𝗽𝗮𝗴𝗲𝘀, 𝗮𝗻𝗮𝗹𝘆𝘁𝗶𝗰𝘀, 𝘂𝗽𝘁𝗶𝗺𝗲 𝗺𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴. Eight steps in all, and the build is one of them.
+
+The target user is clear. Someone who doesn't read the code line by line. A PM or a solo founder who makes the decisions and clicks through the result. The README's version: "𝘕𝘰𝘣𝘰𝘥𝘺 𝘱𝘢𝘺𝘴 𝘶𝘯𝘵𝘪𝘭 𝘱𝘢𝘺𝘮𝘦𝘯𝘵 𝘸𝘰𝘳𝘬𝘴 𝘪𝘯 𝘱𝘳𝘰𝘥𝘶𝘤𝘵𝘪𝘰𝘯."
+
+The trade-off is the opinion. The app-stack assumes Next.js, Supabase, Clerk and Netlify, and the README is open that some skills rest on thin evidence.
+
+𝗠𝘆 𝗿𝗲𝗮𝗱: 𝘁𝗵𝗲 𝗻𝗲𝘅𝘁 𝘀𝗸𝗶𝗹𝗹 𝗽𝗮𝗰𝗸𝘀 𝘄𝗼𝗻'𝘁 𝗰𝗼𝗺𝗽𝗲𝘁𝗲 𝗼𝗻 𝗵𝗼𝘄 𝘄𝗲𝗹𝗹 𝘁𝗵𝗲 𝗮𝗴𝗲𝗻𝘁 𝗰𝗼𝗱𝗲𝘀. 𝗧𝗵𝗲𝘆'𝗹𝗹 𝗰𝗼𝗺𝗽𝗲𝘁𝗲 𝗼𝗻 𝗵𝗼𝘄 𝗺𝘂𝗰𝗵 𝗼𝗳 𝘁𝗵𝗲 𝗽𝗿𝗼𝗱𝘂𝗰𝘁 𝘁𝗵𝗲𝘆 𝗰𝗮𝗿𝗿𝘆, 𝗳𝗿𝗼𝗺 𝗳𝗶𝗿𝘀𝘁 𝘀𝗲𝗴𝗺𝗲𝗻𝘁 𝘁𝗼 𝗳𝗶𝗿𝘀𝘁 𝗶𝗻𝘃𝗼𝗶𝗰𝗲.
+
+Links in reply 👇
+
+
+===== HAMEL HUSAIN STYLE =====
+
+𝗔 𝗦𝗸𝗶𝗹𝗹 𝗣𝗮𝗰𝗸 𝗠𝗲𝗮𝘀𝘂𝗿𝗲𝗱 𝗜𝗻 𝗣𝗮𝘆𝗶𝗻𝗴 𝗨𝘀𝗲𝗿𝘀
+
+product-engineering by Paweł Huryn is 45 agent skills, MIT, 𝟲𝟯𝟳 𝘀𝘁𝗮𝗿𝘀. What sets it apart is its end point. It doesn't stop at a merged PR. It stops at paying users in production.
+
+Big skill packs tend to be prompts that sound sensible and have nothing behind them. This one ties rules to receipts: 𝗮𝗯𝗼𝘂𝘁 𝟳𝟬𝟬, 𝗲𝗮𝗰𝗵 𝘄𝗶𝘁𝗵 𝗮 𝗱𝗮𝘁𝗲 𝗮𝗻𝗱 𝘄𝗵𝗮𝘁 𝗯𝗿𝗼𝗸𝗲 𝗼𝗿 𝘄𝗮𝘀 𝗺𝗲𝗮𝘀𝘂𝗿𝗲𝗱. A new rule needs an observed failure.
+
+What it gives you:
+
+• 𝗗𝗶𝘀𝗰𝗼𝘃𝗲𝗿𝘆 𝘄𝗶𝘁𝗵 𝘀𝗼𝘂𝗿𝗰𝗲𝘀. Competitor analysis, segments and a beachhead feed one proposal, and every claim is cited.
+• 𝗣𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝗮𝘀 𝗽𝗮𝗿𝘁 𝗼𝗳 𝘁𝗵𝗲 𝗺𝗲𝘁𝗵𝗼𝗱. Auth, billing, email, legal pages, analytics and monitoring are skills, not an afterthought.
+• 𝗖𝗼𝗻𝗰𝗿𝗲𝘁𝗲 𝗳𝗮𝗶𝗹𝘂𝗿𝗲 𝗰𝗮𝘀𝗲𝘀. One from billing: plans set up by hand in the dashboard, a feature key that matched nothing in the code, and every paying account silently falling back to Free.
+
+What it doesn't give you:
+
+• 𝗢𝘂𝘁𝗰𝗼𝗺𝗲 𝗱𝗮𝘁𝗮. No numbers on time to first payment, or results from anyone other than the author.
+• 𝗙𝗹𝗲𝘅𝗶𝗯𝗶𝗹𝗶𝘁𝘆. The app-stack assumes Next.js, Supabase, Clerk and Netlify.
+• 𝗘𝘃𝗲𝗻 𝗲𝘃𝗶𝗱𝗲𝗻𝗰𝗲. 28 skills from real products, 14 from established methods, a few on thin ground. The README says so.
+
+If you try it, measure the product, not the prompts:
+
+1. Pick one small product idea and write down your baseline: how long your usual setup takes from idea to first real payment.
+2. Run it through the eight steps and log the time spent at each.
+3. Count what broke after release that a skill should have caught.
+4. Read the proposal's sources. Check that the market claims actually hold.
+
+𝘈 𝘮𝘦𝘵𝘩𝘰𝘥 𝘵𝘩𝘢𝘵 𝘦𝘯𝘥𝘴 𝘢𝘵 𝘱𝘢𝘺𝘪𝘯𝘨 𝘶𝘴𝘦𝘳𝘴 𝘴𝘩𝘰𝘶𝘭𝘥 𝘣𝘦 𝘫𝘶𝘥𝘨𝘦𝘥 𝘣𝘺 𝘱𝘢𝘺𝘪𝘯𝘨 𝘶𝘴𝘦𝘳𝘴.
+
+Links in reply 👇
+
+
+===== ETHAN MOLLICK STYLE =====
+
+𝗪𝗵𝗲𝗻 𝗖𝗼𝗱𝗲 𝗜𝘀 𝗖𝗵𝗲𝗮𝗽, 𝗪𝗵𝗮𝘁 𝗜𝘀 𝗧𝗵𝗲 𝗗𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿'𝘀 𝗝𝗼𝗯?
+
+AI coding agents can now write a working feature in an afternoon. That changes the question for anyone building alone. If the code isn't the hard part, what is?
+
+Paweł Huryn, who writes The Product Compass newsletter, has released one answer as a free toolkit called product-engineering. It's 𝟰𝟱 "𝘀𝗸𝗶𝗹𝗹𝘀", written instructions that agents like Claude Code and Codex load when a task matches.
+
+𝗜𝘁𝘀 𝗮𝗻𝘀𝘄𝗲𝗿 𝗶𝘀 𝘁𝗵𝗮𝘁 𝘁𝗵𝗲 𝗵𝗮𝗿𝗱 𝗽𝗮𝗿𝘁𝘀 𝘀𝗶𝘁 𝗯𝗲𝗳𝗼𝗿𝗲 𝗮𝗻𝗱 𝗮𝗳𝘁𝗲𝗿 𝘁𝗵𝗲 𝗰𝗼𝗱𝗲. Before: who is this for, what do they use today, and why would they switch. After: sign-in, payments, privacy pages, emails, and knowing when the site is down.
+
+Think of a restaurant. A great cook matters, but someone still has to choose the menu, take payments and pass the health inspection. The toolkit splits the work into eight steps, and cooking (writing the code) is just one of them. The README sums up its finish line: "𝘕𝘰𝘣𝘰𝘥𝘺 𝘱𝘢𝘺𝘴 𝘶𝘯𝘵𝘪𝘭 𝘱𝘢𝘺𝘮𝘦𝘯𝘵 𝘸𝘰𝘳𝘬𝘴 𝘪𝘯 𝘱𝘳𝘰𝘥𝘶𝘤𝘵𝘪𝘰𝘯."
+
+The person stays in charge of the decisions. Agents research the market and draft a proposal with sources. You accept it or change it, click through the result, and say go.
+
+There's evidence on both sides. For: the author built three live products this way and kept about 700 dated notes on what went wrong, including one where every paying customer was quietly put back on the free plan.
+
+Against: it's one person's method on one set of tools, with no data yet from other builders. The README itself says some parts rest on thin evidence.
+
+What seems clear is that for solo builders, more of the job is now product work.
+
+𝘐𝘧 𝘢𝘯𝘺𝘰𝘯𝘦 𝘤𝘢𝘯 𝘨𝘦𝘵 𝘵𝘩𝘦 𝘤𝘰𝘥𝘦 𝘸𝘳𝘪𝘵𝘵𝘦𝘯, 𝘥𝘰𝘦𝘴 𝘵𝘩𝘦 𝘢𝘥𝘷𝘢𝘯𝘵𝘢𝘨𝘦 𝘨𝘰 𝘵𝘰 𝘸𝘩𝘰𝘦𝘷𝘦𝘳 𝘱𝘪𝘤𝘬𝘴 𝘵𝘩𝘦 𝘳𝘪𝘨𝘩𝘵 𝘱𝘳𝘰𝘣𝘭𝘦𝘮?
+
+Links in reply 👇
+
+
