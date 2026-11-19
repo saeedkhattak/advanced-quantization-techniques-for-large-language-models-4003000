@@ -1,0 +1,169 @@
+===== STORY =====
+
+𝗧𝗼𝗱𝗮𝘆'𝘀 𝗦𝗼𝗳𝘁𝘄𝗮𝗿𝗲 𝗦𝗲𝗿𝘃𝗲𝘀 𝗛𝘂𝗺𝗮𝗻𝘀. 𝗧𝗼𝗺𝗼𝗿𝗿𝗼𝘄'𝘀 𝗨𝘀𝗲𝗿𝘀 𝗪𝗶𝗹𝗹 𝗕𝗲 𝗔𝗴𝗲𝗻𝘁𝘀.
+
+Ask an AI agent to make a 3D render in Blender and watch what happens. It takes a screenshot, guesses where a button is, clicks, takes another screenshot. If a menu moves, the whole thing can fall over.
+
+Blender was built for a person with a mouse. So was almost every app you use.
+
+That's the gap CLI-Anything is built around. It's an open-source project from HKUDS, the data lab at the University of Hong Kong, and the README sums it up in two lines: "𝘛𝘰𝘥𝘢𝘺'𝘴 𝘚𝘰𝘧𝘵𝘸𝘢𝘳𝘦 𝘚𝘦𝘳𝘷𝘦𝘴 𝘏𝘶𝘮𝘢𝘯𝘴. 𝘛𝘰𝘮𝘰𝘳𝘳𝘰𝘸'𝘴 𝘜𝘴𝘦𝘳𝘴 𝘸𝘪𝘭𝘭 𝘣𝘦 𝘈𝘨𝘦𝘯𝘵𝘴."
+
+𝗧𝗵𝗲 𝗶𝗱𝗲𝗮 𝗶𝘀 𝘁𝗼 𝗴𝗶𝘃𝗲 𝗲𝗮𝗰𝗵 𝗮𝗽𝗽 𝗮 𝗰𝗼𝗺𝗺𝗮𝗻𝗱 𝗹𝗶𝗻𝗲 𝗮𝗻 𝗮𝗴𝗲𝗻𝘁 𝗰𝗮𝗻 𝗱𝗿𝗶𝘃𝗲, 𝗶𝗻𝘀𝘁𝗲𝗮𝗱 𝗼𝗳 𝗮 𝘀𝗰𝗿𝗲𝗲𝗻 𝗶𝘁 𝗵𝗮𝘀 𝘁𝗼 𝗹𝗼𝗼𝗸 𝗮𝘁.
+
+You point its /𝚌𝚕𝚒-𝚊𝚗𝚢𝚝𝚑𝚒𝚗𝚐 plugin at an app's source code. A 7-step pipeline reads the code, designs the commands, writes them, writes tests and docs, and adds a SKILL.md file so agents can find it. You end up with something like 𝚌𝚕𝚒-𝚊𝚗𝚢𝚝𝚑𝚒𝚗𝚐-𝚕𝚒𝚋𝚛𝚎𝚘𝚏𝚏𝚒𝚌𝚎.
+
+Every command has a --𝚓𝚜𝚘𝚗 flag, so the agent gets structured output instead of pixels. And it calls the real app underneath: LibreOffice renders the PDF, Blender renders the scene.
+
+𝗜𝗳 𝘆𝗼𝘂 𝘂𝘀𝗲 𝗮𝗴𝗲𝗻𝘁𝘀, there's a hub: 𝚙𝚒𝚙 𝚒𝚗𝚜𝚝𝚊𝚕𝚕 𝚌𝚕𝚒-𝚊𝚗𝚢𝚝𝚑𝚒𝚗𝚐-𝚑𝚞𝚋, then install ready-made CLIs. The registry lists 𝟳𝟵 𝗖𝗟𝗜-𝗔𝗻𝘆𝘁𝗵𝗶𝗻𝗴 𝗖𝗟𝗜𝘀 plus 24 other public ones, from GIMP and OBS Studio to Zotero and Zoom.
+
+𝗜𝗳 𝘆𝗼𝘂 𝗯𝘂𝗶𝗹𝗱, the HARNESS.md playbook is worth reading on its own. One rule from it: never trust an export because it exited 0, check the file's actual bytes.
+
+It's popular: 𝗮𝗯𝗼𝘂𝘁 𝟲𝟬,𝟬𝟬𝟬 𝘀𝘁𝗮𝗿𝘀 since the first commit on 8 March 2026. Apache 2.0.
+
+Now the caveats. 𝗧𝗵𝗲 𝟮,𝟰𝟲𝟰 𝗽𝗮𝘀𝘀𝗶𝗻𝗴 𝘁𝗲𝘀𝘁𝘀 𝗮𝗿𝗲 𝘁𝗵𝗲 𝗽𝗿𝗼𝗷𝗲𝗰𝘁'𝘀 𝗼𝘄𝗻, and they check that the CLIs work, not how often an agent finishes a real task with them. That benchmark is still an open item on its roadmap. The README says it needs frontier models and source code, and a first run often needs more /𝚛𝚎𝚏𝚒𝚗𝚎 passes. The main branch hasn't had a commit since 22 September.
+
+Turning apps into commands for agents isn't new (MCP servers do a version of it). Generating them from source, at this scale, is the interesting part.
+
+𝗦𝗼𝗳𝘁𝘄𝗮𝗿𝗲 𝗶𝘀 𝗴𝗲𝘁𝘁𝗶𝗻𝗴 𝗮 𝘀𝗲𝗰𝗼𝗻𝗱 𝗸𝗶𝗻𝗱 𝗼𝗳 𝘂𝘀𝗲𝗿. 𝗠𝗼𝘀𝘁 𝗼𝗳 𝗶𝘁 𝗶𝘀𝗻'𝘁 𝗿𝗲𝗮𝗱𝘆 𝘆𝗲𝘁.
+
+Links in reply 👇
+
+
+===== KARPATHY STYLE =====
+
+𝗦𝗼𝗳𝘁𝘄𝗮𝗿𝗲 𝗛𝗮𝘀 𝗔 𝗦𝗲𝗰𝗼𝗻𝗱 𝗨𝘀𝗲𝗿 𝗡𝗼𝘄
+
+CLI-Anything (HKUDS, about 60k stars) has a tagline worth thinking about: "𝘛𝘰𝘥𝘢𝘺'𝘴 𝘚𝘰𝘧𝘵𝘸𝘢𝘳𝘦 𝘚𝘦𝘳𝘷𝘦𝘴 𝘏𝘶𝘮𝘢𝘯𝘴. 𝘛𝘰𝘮𝘰𝘳𝘳𝘰𝘸'𝘴 𝘜𝘴𝘦𝘳𝘴 𝘸𝘪𝘭𝘭 𝘣𝘦 𝘈𝘨𝘦𝘯𝘵𝘴."
+
+𝗜 𝘁𝗵𝗶𝗻𝗸 𝘁𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝘁𝗵𝗲 𝗖𝗟𝗜𝘀. 𝗜𝘁'𝘀 𝘁𝗵𝗲 𝗰𝗹𝗮𝗶𝗺 𝗮𝗯𝗼𝘂𝘁 𝘄𝗵𝗼 𝘁𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗳𝗮𝗰𝗲 𝗶𝘀 𝗳𝗼𝗿.
+
+Every GUI is a translation layer for human eyes and hands. Menus, icons, drag and drop. An LLM doesn't have eyes and hands, so a GUI agent has to translate it back: screenshot, find the pixel, click. It's like reading a book by photographing each page and running OCR, when the text file was sitting right there.
+
+A command line is much closer to how a model already works. Text in, text out, --𝚑𝚎𝚕𝚙 to discover what's possible, --𝚓𝚜𝚘𝚗 for answers it can parse.
+
+What CLI-Anything does is generate that text layer from an app's source code. A 7-step pipeline designs the commands, implements them, tests them and writes a SKILL.md. Underneath, it still calls the real app, so Blender does the rendering, not a toy copy.
+
+It also keeps state, with undo and redo, which matters more than it sounds. Agents work in loops, and loops need somewhere to stand.
+
+What I'd hold loosely: there's no number yet for how often agents actually finish tasks with these CLIs. The 2,464 tests check the CLIs, and the task benchmark is still on the roadmap. It also needs source code and a frontier model to generate them, by the README's own account.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘭𝘪𝘬𝘦 𝘵𝘰 𝘴𝘦𝘦 𝘪𝘴 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 50 𝘵𝘢𝘴𝘬𝘴 𝘥𝘰𝘯𝘦 𝘵𝘩𝘳𝘦𝘦 𝘸𝘢𝘺𝘴: 𝘴𝘤𝘳𝘦𝘦𝘯𝘴𝘩𝘰𝘵𝘴 𝘢𝘯𝘥 𝘤𝘭𝘪𝘤𝘬𝘴, 𝘔𝘊𝘗, 𝘢𝘯𝘥 𝘢 𝘨𝘦𝘯𝘦𝘳𝘢𝘵𝘦𝘥 𝘊𝘓𝘐. 𝘚𝘶𝘤𝘤𝘦𝘴𝘴 𝘳𝘢𝘵𝘦 𝘢𝘯𝘥 𝘵𝘰𝘬𝘦𝘯𝘴 𝘧𝘰𝘳 𝘦𝘢𝘤𝘩.
+
+Links in reply 👇
+
+
+===== SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗖𝗟𝗜-𝗔𝗻𝘆𝘁𝗵𝗶𝗻𝗴
+
+CLI-Anything is an Apache 2.0 project from HKUDS (University of Hong Kong). The README header:
+
+"𝘛𝘰𝘥𝘢𝘺'𝘴 𝘚𝘰𝘧𝘵𝘸𝘢𝘳𝘦 𝘚𝘦𝘳𝘷𝘦𝘴 𝘏𝘶𝘮𝘢𝘯𝘴👨‍💻. 𝘛𝘰𝘮𝘰𝘳𝘳𝘰𝘸'𝘴 𝘜𝘴𝘦𝘳𝘴 𝘸𝘪𝘭𝘭 𝘣𝘦 𝘈𝘨𝘦𝘯𝘵𝘴🤖. 𝘊𝘓𝘐-𝘈𝘯𝘺𝘵𝘩𝘪𝘯𝘨: 𝘉𝘳𝘪𝘥𝘨𝘪𝘯𝘨 𝘵𝘩𝘦 𝘎𝘢𝘱 𝘉𝘦𝘵𝘸𝘦𝘦𝘯 𝘈𝘐 𝘈𝘨𝘦𝘯𝘵𝘴 𝘢𝘯𝘥 𝘵𝘩𝘦 𝘞𝘰𝘳𝘭𝘥'𝘴 𝘚𝘰𝘧𝘵𝘸𝘢𝘳𝘦"
+
+𝟲𝟬.𝟮𝗸 𝘀𝘁𝗮𝗿𝘀 and 5.5k forks as of 19 Nov 2026. First commit 8 March 2026.
+
+It does two things. A plugin, /𝚌𝚕𝚒-𝚊𝚗𝚢𝚝𝚑𝚒𝚗𝚐, takes an app's source code and generates a Python CLI for it through a 7-phase pipeline, ending with tests, docs, a SKILL.md and PyPI packaging. And CLI-Hub (𝚙𝚒𝚙 𝚒𝚗𝚜𝚝𝚊𝚕𝚕 𝚌𝚕𝚒-𝚊𝚗𝚢𝚝𝚑𝚒𝚗𝚐-𝚑𝚞𝚋) installs the ones already built. Its registry lists 79 CLI-Anything CLIs and 24 public third-party ones.
+
+Two design choices stood out.
+
+𝟭. 𝗜𝘁 𝗱𝗿𝗶𝘃𝗲𝘀 𝘁𝗵𝗲 𝗿𝗲𝗮𝗹 𝗮𝗽𝗽. From the README: "𝘞𝘦 𝘣𝘶𝘪𝘭𝘥 𝘴𝘵𝘳𝘶𝘤𝘵𝘶𝘳𝘦𝘥 𝘪𝘯𝘵𝘦𝘳𝘧𝘢𝘤𝘦𝘴 𝘛𝘖 𝘴𝘰𝘧𝘵𝘸𝘢𝘳𝘦, 𝘯𝘰𝘵 𝘳𝘦𝘱𝘭𝘢𝘤𝘦𝘮𝘦𝘯𝘵𝘴." The LibreOffice CLI writes a project file, then exports through LibreOffice headless. Tests fail, not skip, when the real app is missing.
+
+𝟮. 𝗗𝘂𝗮𝗹 𝗺𝗼𝗱𝗲. Run a command with a subcommand for scripts, or run it bare to get a REPL with session state and undo/redo. Every command takes --𝚓𝚜𝚘𝚗.
+
+There's also a tech report, arXiv 2606.03854 (June 2026), titled "𝘊𝘓𝘐-𝘈𝘯𝘺𝘵𝘩𝘪𝘯𝘨: 𝘛𝘰𝘸𝘢𝘳𝘥𝘴 𝘈𝘨𝘦𝘯𝘵-𝘕𝘢𝘵𝘪𝘷𝘦 𝘊𝘰𝘮𝘱𝘶𝘵𝘦𝘳 𝘜𝘴𝘦". The abstract has no benchmark numbers.
+
+Things to be careful about:
+
+• 𝗧𝗲𝘀𝘁𝘀 𝗮𝗿𝗲𝗻'𝘁 𝘁𝗮𝘀𝗸 𝘀𝘂𝗰𝗰𝗲𝘀𝘀: the 2,464 passing tests (the README also says 2,461 and "2,280+" in other places) check the CLIs. An agent task benchmark is an unticked roadmap item
+• 𝗠𝗼𝗱𝗲𝗹 𝗱𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝗰𝗲: the README says reliable generation needs frontier models and that weaker ones produce incomplete CLIs
+• 𝗦𝗼𝘂𝗿𝗰𝗲 𝗿𝗲𝗾𝘂𝗶𝗿𝗲𝗱: binary-only software gives much worse results
+• 𝗔𝗰𝘁𝗶𝘃𝗶𝘁𝘆: no commits on main since 22 Sep 2026, with 161 open pull requests
+• 𝗦𝘂𝗽𝗽𝗹𝘆 𝗰𝗵𝗮𝗶𝗻: each harness is another package to install. Read what you pip install
+
+Further reading: 𝚌𝚕𝚒-𝚊𝚗𝚢𝚝𝚑𝚒𝚗𝚐-𝚙𝚕𝚞𝚐𝚒𝚗/𝙷𝙰𝚁𝙽𝙴𝚂𝚂.𝚖𝚍, the playbook the generator follows.
+
+Links in reply 👇
+
+
+===== SWYX STYLE =====
+
+𝗔𝗴𝗲𝗻𝘁𝘀 𝗡𝗲𝗲𝗱 𝗧𝗵𝗲𝗶𝗿 𝗢𝘄𝗻 𝗜𝗻𝘁𝗲𝗿𝗳𝗮𝗰𝗲. 𝗧𝗵𝗿𝗲𝗲 𝗕𝗲𝘁𝘀 𝗢𝗻 𝗪𝗵𝗮𝘁 𝗜𝘁 𝗜𝘀.
+
+There are roughly three ways to let an AI agent use software you didn't build for it.
+
+• 𝗖𝗼𝗺𝗽𝘂𝘁𝗲𝗿 𝘂𝘀𝗲: the agent looks at screenshots and clicks, like a person. Works on anything, breaks when the UI moves
+• 𝗠𝗖𝗣 𝘀𝗲𝗿𝘃𝗲𝗿𝘀: the app exposes typed tools over a protocol. Clean, but someone has to write the server
+• 𝗖𝗟𝗜𝘀: the agent runs commands and reads text or JSON. Models already know the pattern from training
+
+CLI-Anything, from HKUDS at the University of Hong Kong, is the loudest bet on the third. 𝗔𝗯𝗼𝘂𝘁 𝟲𝟬𝗸 𝘀𝘁𝗮𝗿𝘀 since March, Apache 2.0.
+
+Its tagline: "𝘛𝘰𝘥𝘢𝘺'𝘴 𝘚𝘰𝘧𝘵𝘸𝘢𝘳𝘦 𝘚𝘦𝘳𝘷𝘦𝘴 𝘏𝘶𝘮𝘢𝘯𝘴. 𝘛𝘰𝘮𝘰𝘳𝘳𝘰𝘸'𝘴 𝘜𝘴𝘦𝘳𝘴 𝘸𝘪𝘭𝘭 𝘣𝘦 𝘈𝘨𝘦𝘯𝘵𝘴."
+
+What sets it apart is that it doesn't wait for vendors. 𝗜𝘁 𝗴𝗲𝗻𝗲𝗿𝗮𝘁𝗲𝘀 𝘁𝗵𝗲 𝗖𝗟𝗜 𝗳𝗿𝗼𝗺 𝘁𝗵𝗲 𝗮𝗽𝗽'𝘀 𝘀𝗼𝘂𝗿𝗰𝗲 𝗰𝗼𝗱𝗲 with a 7-step pipeline, wraps the real backend, and ships a SKILL.md so agents can discover it. A hub, CLI-Hub, lists 79 generated CLIs and 24 public ones, from Blender and GIMP to Zoom.
+
+The CLI-versus-MCP argument has been running all year, and most guides now say "both". CLI-Anything doesn't really argue with that. One of its listed tools even wraps an MCP server behind a CLI.
+
+The gaps are real. No published task success rates yet (it's on the roadmap). It needs source code and a frontier model to generate the harness. And the main branch has been quiet since 22 September.
+
+𝗠𝘆 𝗿𝗲𝗮𝗱: 𝘁𝗵𝗲 𝗻𝗲𝘅𝘁 𝘄𝗮𝘃𝗲 𝗼𝗳 𝘀𝗼𝗳𝘁𝘄𝗮𝗿𝗲 𝘀𝗵𝗶𝗽𝘀 𝘄𝗶𝘁𝗵 𝘁𝘄𝗼 𝗶𝗻𝘁𝗲𝗿𝗳𝗮𝗰𝗲𝘀 𝗼𝗻 𝗱𝗮𝘆 𝗼𝗻𝗲, 𝗮 𝗚𝗨𝗜 𝗳𝗼𝗿 𝗽𝗲𝗼𝗽𝗹𝗲 𝗮𝗻𝗱 𝗮 𝗰𝗼𝗺𝗺𝗮𝗻𝗱 𝗹𝗮𝘆𝗲𝗿 𝗳𝗼𝗿 𝗮𝗴𝗲𝗻𝘁𝘀. 𝗣𝗿𝗼𝗷𝗲𝗰𝘁𝘀 𝗹𝗶𝗸𝗲 𝘁𝗵𝗶𝘀 𝗮𝗿𝗲 𝘄𝗵𝗮𝘁 𝘆𝗼𝘂 𝗱𝗼 𝘄𝗵𝗶𝗹𝗲 𝘁𝗵𝗲 𝘃𝗲𝗻𝗱𝗼𝗿𝘀 𝗰𝗮𝘁𝗰𝗵 𝘂𝗽.
+
+Links in reply 👇
+
+
+===== HAMEL HUSAIN STYLE =====
+
+𝟲𝟬𝗞 𝗦𝘁𝗮𝗿𝘀, 𝗡𝗼 𝗧𝗮𝘀𝗸 𝗕𝗲𝗻𝗰𝗵𝗺𝗮𝗿𝗸 𝗬𝗲𝘁
+
+CLI-Anything turns an app's source code into a command line for AI agents. HKUDS built it, it's Apache 2.0, and it's at 𝗮𝗯𝗼𝘂𝘁 𝟲𝟬,𝟬𝟬𝟬 𝘀𝘁𝗮𝗿𝘀.
+
+The pitch: "𝘛𝘰𝘥𝘢𝘺'𝘴 𝘚𝘰𝘧𝘵𝘸𝘢𝘳𝘦 𝘚𝘦𝘳𝘷𝘦𝘴 𝘏𝘶𝘮𝘢𝘯𝘴. 𝘛𝘰𝘮𝘰𝘳𝘳𝘰𝘸'𝘴 𝘜𝘴𝘦𝘳𝘴 𝘸𝘪𝘭𝘭 𝘣𝘦 𝘈𝘨𝘦𝘯𝘵𝘴." The direction makes sense. The open question is how well it works.
+
+What it gives you:
+
+• 𝗔 𝗿𝗲𝗮𝗹 𝗶𝗻𝘁𝗲𝗿𝗳𝗮𝗰𝗲, 𝗻𝗼𝘁 𝗮 𝗰𝗼𝗽𝘆. Commands call the actual app (LibreOffice headless, blender --background), and every command has --𝚓𝚜𝚘𝚗
+• 𝗧𝗲𝘀𝘁𝗲𝗱 𝗖𝗟𝗜𝘀. The README reports 𝟮,𝟰𝟲𝟰 𝗽𝗮𝘀𝘀𝗶𝗻𝗴 𝘁𝗲𝘀𝘁𝘀 across 30 harnesses, unit and end-to-end, run by the project itself
+• 𝗔 𝗴𝗼𝗼𝗱 𝗽𝗹𝗮𝘆𝗯𝗼𝗼𝗸. HARNESS.md has rules like "never trust that export worked because it exited 0"
+
+What it doesn't give you:
+
+• 𝗔𝗴𝗲𝗻𝘁 𝘀𝘂𝗰𝗰𝗲𝘀𝘀 𝗿𝗮𝘁𝗲𝘀. The tests check that the CLI behaves. They don't measure whether an agent completes a task with it. A benchmark for that is still unticked on the roadmap
+• 𝗖𝗼𝗻𝘀𝗶𝘀𝘁𝗲𝗻𝗰𝘆 𝗶𝗻 𝘁𝗵𝗲 𝗱𝗼𝗰𝘀. The test total appears as 2,461, 2,464 and "2,280+" in different places
+• 𝗖𝗵𝗲𝗮𝗽 𝗴𝗲𝗻𝗲𝗿𝗮𝘁𝗶𝗼𝗻. The README says it needs frontier models, source code, and often extra /𝚛𝚎𝚏𝚒𝚗𝚎 passes
+
+Before you put one in an agent workflow:
+
+1. Write 20 real tasks for one app, with a clear pass check for each (a file exists, a value is right).
+2. Run them with your current approach as the baseline, whether that's screenshots, an MCP server or plain scripts.
+3. Run them again with the generated CLI. Compare pass rate, tokens and time.
+4. Read the failed traces. Look for commands the agent misused, not just ones that errored.
+
+𝘚𝘵𝘢𝘳𝘴 𝘮𝘦𝘢𝘴𝘶𝘳𝘦 𝘪𝘯𝘵𝘦𝘳𝘦𝘴𝘵. 𝘠𝘰𝘶𝘳 20 𝘵𝘢𝘴𝘬𝘴 𝘮𝘦𝘢𝘴𝘶𝘳𝘦 𝘸𝘩𝘦𝘵𝘩𝘦𝘳 𝘪𝘵 𝘸𝘰𝘳𝘬𝘴 𝘧𝘰𝘳 𝘺𝘰𝘶.
+
+Links in reply 👇
+
+
+===== ETHAN MOLLICK STYLE =====
+
+𝗪𝗵𝗮𝘁 𝗜𝗳 𝗦𝗼𝗳𝘁𝘄𝗮𝗿𝗲 𝗛𝗮𝗱 𝗧𝗼 𝗪𝗼𝗿𝗸 𝗙𝗼𝗿 𝗔𝗜 𝗔𝘀 𝗪𝗲𝗹𝗹 𝗔𝘀 𝗙𝗼𝗿 𝗬𝗼𝘂?
+
+Almost every app you use was designed for a human. Buttons you can see, menus you can click, a screen built for your eyes.
+
+That's a problem for AI agents. When they use these apps today, they often do it the slow way: take a picture of the screen, find the button, click, check again.
+
+A project from the University of Hong Kong takes a different route. It's called CLI-Anything, and its slogan is "𝘛𝘰𝘥𝘢𝘺'𝘴 𝘚𝘰𝘧𝘵𝘸𝘢𝘳𝘦 𝘚𝘦𝘳𝘷𝘦𝘴 𝘏𝘶𝘮𝘢𝘯𝘴. 𝘛𝘰𝘮𝘰𝘳𝘳𝘰𝘸'𝘴 𝘜𝘴𝘦𝘳𝘴 𝘸𝘪𝘭𝘭 𝘣𝘦 𝘈𝘨𝘦𝘯𝘵𝘴."
+
+𝗧𝗵𝗲 𝗶𝗱𝗲𝗮 𝗶𝘀 𝘁𝗼 𝗴𝗶𝘃𝗲 𝗲𝗮𝗰𝗵 𝗮𝗽𝗽 𝗮 𝘀𝗲𝗰𝗼𝗻𝗱 𝘄𝗮𝘆 𝗶𝗻, 𝗯𝘂𝗶𝗹𝘁 𝗳𝗼𝗿 𝗔𝗜.
+
+Think of a restaurant with a dining room for guests and a back door for deliveries. The kitchen is the same. Only the entrance is different. CLI-Anything builds the back door: a set of typed commands an AI can send directly to the app, like "add a heading" or "export as PDF", and get a clear answer back.
+
+It's popular. 𝗔𝗿𝗼𝘂𝗻𝗱 𝟲𝟬,𝟬𝟬𝟬 𝗽𝗲𝗼𝗽𝗹𝗲 have starred it on GitHub since March, and its catalogue covers dozens of apps, from photo editors to video tools and Zoom.
+
+Some caution, though. The project's thousands of tests check that the commands work. 𝗧𝗵𝗲𝘆 𝗱𝗼𝗻'𝘁 𝘆𝗲𝘁 𝘀𝗵𝗼𝘄 𝗵𝗼𝘄 𝗼𝗳𝘁𝗲𝗻 𝗮𝗻 𝗔𝗜 𝗳𝗶𝗻𝗶𝘀𝗵𝗲𝘀 𝗮 𝗿𝗲𝗮𝗹 𝗷𝗼𝗯 𝘄𝗶𝘁𝗵 𝘁𝗵𝗲𝗺. The team lists that measurement as future work. Building a new back door also needs the app's source code and one of the most capable AI models.
+
+What we know: there's a serious push to make software usable by AI directly, not just through the screen. What we don't know is whether app makers will build these doors themselves.
+
+𝘐𝘧 𝘈𝘐 𝘣𝘦𝘤𝘰𝘮𝘦𝘴 𝘢 𝘳𝘦𝘨𝘶𝘭𝘢𝘳 𝘶𝘴𝘦𝘳 𝘰𝘧 𝘺𝘰𝘶𝘳 𝘴𝘰𝘧𝘵𝘸𝘢𝘳𝘦, 𝘸𝘩𝘰 𝘴𝘩𝘰𝘶𝘭𝘥 𝘪𝘵 𝘣𝘦 𝘥𝘦𝘴𝘪𝘨𝘯𝘦𝘥 𝘧𝘰𝘳 𝘧𝘪𝘳𝘴𝘵?
+
+Links in reply 👇
+
+
