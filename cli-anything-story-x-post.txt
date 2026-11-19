@@ -1,0 +1,43 @@
+𝗧𝗼𝗱𝗮𝘆'𝘀 𝗦𝗼𝗳𝘁𝘄𝗮𝗿𝗲 𝗦𝗲𝗿𝘃𝗲𝘀 𝗛𝘂𝗺𝗮𝗻𝘀. 𝗧𝗼𝗺𝗼𝗿𝗿𝗼𝘄'𝘀 𝗨𝘀𝗲𝗿𝘀 𝗪𝗶𝗹𝗹 𝗕𝗲 𝗔𝗴𝗲𝗻𝘁𝘀.
+
+Ask an AI agent to make a 3D render in Blender and watch what it does. It takes a screenshot, guesses where a button is, clicks, then takes another screenshot to see if it worked. If a menu moves, the whole thing can fall over.
+
+That isn't really the agent's fault. Blender was built for a person with a mouse, and so was almost every app you use. Buttons you can see, menus you can click, a screen made for human eyes.
+
+𝗔 𝗚𝗨𝗜 𝗶𝘀 𝗮 𝘁𝗿𝗮𝗻𝘀𝗹𝗮𝘁𝗶𝗼𝗻 𝗹𝗮𝘆𝗲𝗿 𝗳𝗼𝗿 𝗽𝗲𝗼𝗽𝗹𝗲. An agent has no eyes or hands, so it has to translate everything back: screenshot, find the pixel, click. It's a bit like reading a book by photographing every page and running OCR, when the text file was there all along.
+
+Right now there are roughly three ways around this. 𝗖𝗼𝗺𝗽𝘂𝘁𝗲𝗿 𝘂𝘀𝗲 lets the agent look and click like a person, which works on anything but breaks when the screen changes. 𝗠𝗖𝗣 𝘀𝗲𝗿𝘃𝗲𝗿𝘀 give the agent clean, typed tools, but someone has to build a server for each app. 𝗖𝗼𝗺𝗺𝗮𝗻𝗱 𝗹𝗶𝗻𝗲𝘀 let the agent type commands and read back text or JSON, a pattern models already know well from training.
+
+CLI-Anything is one of the biggest bets on that third option. It comes from HKUDS, the data lab at the University of Hong Kong, and its tagline says it plainly: "𝘛𝘰𝘥𝘢𝘺'𝘴 𝘚𝘰𝘧𝘵𝘸𝘢𝘳𝘦 𝘚𝘦𝘳𝘷𝘦𝘴 𝘏𝘶𝘮𝘢𝘯𝘴. 𝘛𝘰𝘮𝘰𝘳𝘳𝘰𝘸'𝘴 𝘜𝘴𝘦𝘳𝘴 𝘸𝘪𝘭𝘭 𝘣𝘦 𝘈𝘨𝘦𝘯𝘵𝘴."
+
+𝗧𝗵𝗲 𝗶𝗱𝗲𝗮 𝗶𝘀 𝘁𝗼 𝗴𝗶𝘃𝗲 𝗲𝘃𝗲𝗿𝘆 𝗮𝗽𝗽 𝗮 𝘀𝗲𝗰𝗼𝗻𝗱 𝘄𝗮𝘆 𝗶𝗻, 𝗯𝘂𝗶𝗹𝘁 𝗳𝗼𝗿 𝗮𝗴𝗲𝗻𝘁𝘀. Think of a restaurant with a dining room for guests and a back door for deliveries. Same kitchen, different entrance. CLI-Anything builds the back door, so an agent can send "add a heading" or "export as PDF" straight to the app and get a clear answer back.
+
+A command line suits a model because it's text in and text out. The agent can run --𝚑𝚎𝚕𝚙 to see what's possible, and every command has a --𝚓𝚜𝚘𝚗 flag, so the answer comes back structured instead of as pixels.
+
+Getting one is mostly automatic. You point the /𝚌𝚕𝚒-𝚊𝚗𝚢𝚝𝚑𝚒𝚗𝚐 plugin at an app's source code, and a 7-step pipeline reads the code, designs the commands, writes them, tests them, documents them and adds a SKILL.md file so agents can find the tool. You end up with something like 𝚌𝚕𝚒-𝚊𝚗𝚢𝚝𝚑𝚒𝚗𝚐-𝚕𝚒𝚋𝚛𝚎𝚘𝚏𝚏𝚒𝚌𝚎.
+
+Under the hood it still calls the real app. LibreOffice renders the PDF and Blender renders the scene, so you're not getting a toy copy. It also remembers where you are, with undo and redo, which matters more than it sounds: agents work in loops, and a loop needs somewhere to stand.
+
+𝗜𝗳 𝘆𝗼𝘂 𝗷𝘂𝘀𝘁 𝘄𝗮𝗻𝘁 𝘁𝗼 𝘂𝘀𝗲 𝗶𝘁, there's a hub. Run 𝚙𝚒𝚙 𝚒𝚗𝚜𝚝𝚊𝚕𝚕 𝚌𝚕𝚒-𝚊𝚗𝚢𝚝𝚑𝚒𝚗𝚐-𝚑𝚞𝚋 and install ready-made CLIs. The registry lists 𝟳𝟵 𝗖𝗟𝗜-𝗔𝗻𝘆𝘁𝗵𝗶𝗻𝗴 𝗖𝗟𝗜𝘀 and 24 other public ones, from GIMP and OBS Studio to Zotero and Zoom.
+
+𝗜𝗳 𝘆𝗼𝘂 𝗯𝘂𝗶𝗹𝗱 𝘁𝗼𝗼𝗹𝘀 𝘆𝗼𝘂𝗿𝘀𝗲𝗹𝗳, the HARNESS.md playbook is worth reading on its own. One rule from it: never trust an export just because it exited 0. Check the file's actual bytes.
+
+People have noticed. It has 𝗮𝗯𝗼𝘂𝘁 𝟲𝟬,𝟬𝟬𝟬 𝘀𝘁𝗮𝗿𝘀 since its first commit on 8 March 2026, and it's Apache 2.0.
+
+It also doesn't pick a fight with MCP. The CLI-versus-MCP argument has run all year, and most guides now land on "use both". One of the tools in CLI-Anything's own list even wraps an MCP server behind a CLI.
+
+That popularity comes with a few things to be careful about.
+
+𝗧𝗵𝗲 𝟮,𝟰𝟲𝟰 𝗽𝗮𝘀𝘀𝗶𝗻𝗴 𝘁𝗲𝘀𝘁𝘀 𝗮𝗿𝗲 𝘁𝗵𝗲 𝗽𝗿𝗼𝗷𝗲𝗰𝘁'𝘀 𝗼𝘄𝗻, and the README also gives 2,461 and "2,280+" in other places. More importantly, those tests check that the CLIs work. They don't show how often an agent actually finishes a real task with one. That benchmark is still unticked on the roadmap.
+
+Building a new CLI also has limits, by the README's own account. It needs the app's source code, since binary-only software gives much worse results. It needs a frontier model, because weaker ones produce incomplete CLIs. And a first run often needs more /𝚛𝚎𝚏𝚒𝚗𝚎 passes.
+
+Activity has slowed too. 𝗧𝗵𝗲𝗿𝗲'𝘀 𝗯𝗲𝗲𝗻 𝗻𝗼 𝗰𝗼𝗺𝗺𝗶𝘁 𝗼𝗻 𝘁𝗵𝗲 𝗺𝗮𝗶𝗻 𝗯𝗿𝗮𝗻𝗰𝗵 𝘀𝗶𝗻𝗰𝗲 𝟮𝟮 𝗦𝗲𝗽𝘁𝗲𝗺𝗯𝗲𝗿, with 161 pull requests open. And every CLI you add is one more package to install, so read what you pip install. This week's poisoned Python package is a good reminder why.
+
+None of this makes the idea new. MCP servers already give agents a way in. What's interesting is generating that way in from source code, for dozens of apps at once.
+
+𝗠𝘆 𝗿𝗲𝗮𝗱: 𝘁𝗵𝗲 𝗻𝗲𝘅𝘁 𝘄𝗮𝘃𝗲 𝗼𝗳 𝘀𝗼𝗳𝘁𝘄𝗮𝗿𝗲 𝘄𝗶𝗹𝗹 𝘀𝗵𝗶𝗽 𝘄𝗶𝘁𝗵 𝘁𝘄𝗼 𝗶𝗻𝘁𝗲𝗿𝗳𝗮𝗰𝗲𝘀 𝗼𝗻 𝗱𝗮𝘆 𝗼𝗻𝗲, 𝗮 𝗚𝗨𝗜 𝗳𝗼𝗿 𝗽𝗲𝗼𝗽𝗹𝗲 𝗮𝗻𝗱 𝗮 𝗰𝗼𝗺𝗺𝗮𝗻𝗱 𝗹𝗮𝘆𝗲𝗿 𝗳𝗼𝗿 𝗮𝗴𝗲𝗻𝘁𝘀. Projects like this are what we use while the vendors catch up.
+
+𝘚𝘰𝘧𝘵𝘸𝘢𝘳𝘦 𝘪𝘴 𝘨𝘦𝘵𝘵𝘪𝘯𝘨 𝘢 𝘴𝘦𝘤𝘰𝘯𝘥 𝘬𝘪𝘯𝘥 𝘰𝘧 𝘶𝘴𝘦𝘳. 𝘔𝘰𝘴𝘵 𝘰𝘧 𝘪𝘵 𝘪𝘴𝘯'𝘵 𝘳𝘦𝘢𝘥𝘺 𝘺𝘦𝘵.
+
+Links in reply 👇
