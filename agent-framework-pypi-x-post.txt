@@ -1,0 +1,27 @@
+𝗠𝗶𝗰𝗿𝗼𝘀𝗼𝗳𝘁'𝘀 𝗔𝗴𝗲𝗻𝘁 𝗙𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸 𝗪𝗮𝘀 𝗣𝗼𝗶𝘀𝗼𝗻𝗲𝗱 𝗢𝗻 𝗣𝘆𝗣𝗜 𝗙𝗼𝗿 𝗨𝗻𝗱𝗲𝗿 𝗔𝗻 𝗛𝗼𝘂𝗿
+
+On 17 Nov, someone published two new versions of 𝚊𝚐𝚎𝚗𝚝-𝚏𝚛𝚊𝚖𝚎𝚠𝚘𝚛𝚔, Microsoft's Python package for building AI agents. They went out under Microsoft's own PyPI project, not a lookalike name.
+
+𝗕𝗼𝘁𝗵 𝘄𝗲𝗿𝗲 𝗰𝗿𝗲𝗱𝗲𝗻𝘁𝗶𝗮𝗹 𝘀𝘁𝗲𝗮𝗹𝗲𝗿𝘀.
+
+The timeline, from the security write-ups:
+
+• 𝟮𝟬:𝟯𝟱 𝗨𝗧𝗖: version 1.26.1 goes up
+• 𝗔𝗯𝗼𝘂𝘁 𝟯𝟭 𝗺𝗶𝗻𝘂𝘁𝗲𝘀 𝗹𝗮𝘁𝗲𝗿: PyPI quarantines it
+• 𝗧𝘄𝗼 𝗺𝗶𝗻𝘂𝘁𝗲𝘀 𝗮𝗳𝘁𝗲𝗿 𝘁𝗵𝗮𝘁: 1.26.2 appears, with the same idea in a renamed file
+• 𝗕𝘆 𝟮𝟭:𝟮𝟬 𝗨𝗧𝗖: both are gone
+
+The trick is a .𝚙𝚝𝚑 file. Python reads these at startup, so 𝘁𝗵𝗲 𝗰𝗼𝗱𝗲 𝗿𝘂𝗻𝘀 𝗲𝘃𝗲𝗿𝘆 𝘁𝗶𝗺𝗲 𝘁𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗽𝗿𝗲𝘁𝗲𝗿 𝘀𝘁𝗮𝗿𝘁𝘀, 𝗲𝘃𝗲𝗻 𝗶𝗳 𝘆𝗼𝘂 𝗻𝗲𝘃𝗲𝗿 𝗶𝗺𝗽𝗼𝗿𝘁 𝘁𝗵𝗲 𝗽𝗮𝗰𝗸𝗮𝗴𝗲. The reports say it went after Azure, GitHub Actions and other CI credentials.
+
+The framework's own code wasn't changed and no bad dependency was added. Wiz found no matching tag in Microsoft's GitHub repo. So the releases didn't come from the normal build, and 𝗵𝗼𝘄 𝘁𝗵𝗲 𝗮𝘁𝘁𝗮𝗰𝗸𝗲𝗿 𝗴𝗼𝘁 𝗽𝘂𝗯𝗹𝗶𝘀𝗵 𝗮𝗰𝗰𝗲𝘀𝘀 𝗶𝘀 𝘀𝘁𝗶𝗹𝗹 𝘂𝗻𝗸𝗻𝗼𝘄𝗻. The second upload, after the first was quarantined, suggests they still had it at that point.
+
+If you build agents in Python, check today:
+
+• 𝗬𝗼𝘂𝗿 𝘃𝗲𝗿𝘀𝗶𝗼𝗻: 1.26.0 (12 Nov) is the last clean release
+• 𝗟𝗼𝗼𝘀𝗲 𝗽𝗶𝗻𝘀: 𝚊𝚐𝚎𝚗𝚝-𝚏𝚛𝚊𝚖𝚎𝚠𝚘𝚛𝚔>=𝟷.𝟸𝟼 could have pulled a bad one during that window
+• 𝗦𝘁𝗮𝗿𝘁𝘂𝗽 𝗳𝗶𝗹𝗲𝘀: look for 𝚊𝚐𝚎𝚗𝚝_𝚏𝚛𝚊𝚖𝚎𝚠𝚘𝚛𝚔_𝚖𝚎𝚝𝚊.𝚙𝚝𝚑 or 𝚊𝚏_𝚛𝚞𝚗𝚝𝚒𝚖𝚎_𝚍𝚒𝚊𝚐.𝚙𝚝𝚑 in site-packages
+• 𝗜𝗳 𝗲𝗶𝘁𝗵𝗲𝗿 𝘃𝗲𝗿𝘀𝗶𝗼𝗻 𝘄𝗮𝘀 𝗶𝗻𝘀𝘁𝗮𝗹𝗹𝗲𝗱: treat the machine as compromised and rotate cloud, CI and package-registry tokens
+
+The bigger point is uncomfortable. 𝗔𝗻 𝗮𝗴𝗲𝗻𝘁 𝗳𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸 𝘀𝗶𝘁𝘀 𝗿𝗶𝗴𝗵𝘁 𝗻𝗲𝘅𝘁 𝘁𝗼 𝘆𝗼𝘂𝗿 𝗸𝗲𝘆𝘀. Pin exact versions and give CI tokens the smallest scope you can.
+
+Links in reply 👇
