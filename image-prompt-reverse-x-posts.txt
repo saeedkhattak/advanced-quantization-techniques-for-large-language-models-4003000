@@ -1,0 +1,170 @@
+===== STORY =====
+
+𝗬𝗼𝘂 𝗙𝗼𝘂𝗻𝗱 𝗧𝗵𝗲 𝗣𝗲𝗿𝗳𝗲𝗰𝘁 𝗜𝗺𝗮𝗴𝗲. 𝗡𝗼𝘄 𝗧𝗿𝘆 𝗪𝗿𝗶𝘁𝗶𝗻𝗴 𝗜𝘁𝘀 𝗣𝗿𝗼𝗺𝗽𝘁.
+
+You see a product shot you love. Soft light from the left, a cream background, one glossy bottle catching a highlight. You want something like it from an AI image tool, so you type "product photo, soft light, minimal" and get something that looks nothing like it.
+
+The hard part was never the generator. 𝗜𝘁'𝘀 𝗽𝘂𝘁𝘁𝗶𝗻𝗴 𝘄𝗵𝗮𝘁 𝗺𝗮𝗸𝗲𝘀 𝗮𝗻 𝗶𝗺𝗮𝗴𝗲 𝗹𝗼𝗼𝗸 𝘁𝗵𝗲 𝘄𝗮𝘆 𝗶𝘁 𝗱𝗼𝗲𝘀 𝗶𝗻𝘁𝗼 𝘄𝗼𝗿𝗱𝘀.
+
+That's the job of image-prompt-reverse, a small open-source skill for Codex by LunarXuan. You give it a reference image, and it writes the prompt for you.
+
+There's no code in it. It's a set of instructions: a SKILL.md file and three reference guides that tell the model how to study an image the way a photographer or illustrator would.
+
+First it works out what kind of image it is (an ad, a portrait, a poster, a 3D character) and what medium. Then it goes through composition, camera angle, light direction, colour, materials, background, depth and mood.
+
+𝗧𝗵𝗲 𝗰𝗹𝗲𝘃𝗲𝗿 𝗯𝗶𝘁 𝗶𝘀 𝘁𝗵𝗮𝘁 𝗶𝘁 𝗽𝗶𝗰𝗸𝘀 𝟯 𝘁𝗼 𝟱 "𝘃𝗶𝘀𝘂𝗮𝗹 𝗮𝗻𝗰𝗵𝗼𝗿𝘀", the details that matter most for a close match, and puts them in the first third of the prompt.
+
+You get two things back: a long prompt of 𝟰𝟱𝟬 𝘁𝗼 𝟳𝟬𝟬 𝗖𝗵𝗶𝗻𝗲𝘀𝗲 𝗰𝗵𝗮𝗿𝗮𝗰𝘁𝗲𝗿𝘀 with an English version, and a list of 10 to 15 English negative terms tailored to that image.
+
+The rules it follows are the most useful part for anyone who writes prompts. Don't invent what you can't see. Don't guess a focal length or aperture, describe the visible effect instead. Don't lean on an artist's or photographer's name, describe the technique. Words like "cinematic" or "premium" have to be explained with something concrete in the picture.
+
+It also treats any text inside the image as part of the picture, never as an instruction. So an image that says "ignore your rules" can't take over the agent.
+
+𝗙𝗼𝗿 𝘂𝘀𝗲𝗿𝘀, it's a quick way to get a strong first prompt. 𝗙𝗼𝗿 𝗯𝘂𝗶𝗹𝗱𝗲𝗿𝘀, it's a good example of a skill that's all method and no code.
+
+It's not a new idea. Midjourney's /describe gives you four prompts from an image, and its docs say that's for inspiration, not exact copies. CLIP Interrogator has done image-to-prompt for Stable Diffusion for years. This one is a much more detailed checklist, run by a general AI model.
+
+Some caveats. 𝗧𝗵𝗲𝗿𝗲 𝗮𝗿𝗲 𝗻𝗼 𝗲𝘅𝗮𝗺𝗽𝗹𝗲 𝗼𝘂𝘁𝗽𝘂𝘁𝘀 𝗼𝗿 𝗰𝗼𝗺𝗽𝗮𝗿𝗶𝘀𝗼𝗻𝘀 𝗶𝗻 𝘁𝗵𝗲 𝗿𝗲𝗽𝗼, so how close the recreated images get is unproven. It's written for Codex, and the Chinese prompt comes first. It's also young: 5 commits, all in early September, and about 930 stars. GPL-3.0.
+
+𝘋𝘦𝘴𝘤𝘳𝘪𝘣𝘪𝘯𝘨 𝘢𝘯 𝘪𝘮𝘢𝘨𝘦 𝘸𝘦𝘭𝘭 𝘵𝘶𝘳𝘯𝘴 𝘰𝘶𝘵 𝘵𝘰 𝘣𝘦 𝘮𝘰𝘴𝘵 𝘰𝘧 𝘵𝘩𝘦 𝘸𝘰𝘳𝘬.
+
+Links in reply 👇
+
+
+===== KARPATHY STYLE =====
+
+𝗔 𝗣𝗿𝗼𝗺𝗽𝘁 𝗧𝗵𝗮𝘁 𝗪𝗿𝗶𝘁𝗲𝘀 𝗣𝗿𝗼𝗺𝗽𝘁𝘀
+
+Came across image-prompt-reverse, a Codex skill by LunarXuan. You give it an image and it writes the prompt that would recreate it.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝘁𝗵𝗲 𝗼𝘂𝘁𝗽𝘂𝘁. 𝗜𝘁'𝘀 𝘁𝗵𝗮𝘁 𝘁𝗵𝗲 𝘄𝗵𝗼𝗹𝗲 𝘁𝗵𝗶𝗻𝗴 𝗶𝘀 𝗮 𝗰𝗵𝗲𝗰𝗸𝗹𝗶𝘀𝘁 𝘄𝗿𝗶𝘁𝘁𝗲𝗻 𝗶𝗻 𝗽𝗹𝗮𝗶𝗻 𝗹𝗮𝗻𝗴𝘂𝗮𝗴𝗲. No model, no code. A SKILL.md and three reference files.
+
+Think about what a good image prompt actually is. It's a compressed description of the few decisions that made the picture: where the light comes from, what's closest to the camera, what the material feels like. Most of what's in an image barely matters for similarity. A handful of things matter a lot.
+
+The skill encodes that directly. It asks the model to pick 𝟯 𝘁𝗼 𝟱 "𝘃𝗶𝘀𝘂𝗮𝗹 𝗮𝗻𝗰𝗵𝗼𝗿𝘀" and put them in the first third of the prompt, then fill in the rest. It's a bit like a sketch artist working from a witness. You don't describe every hair, you get the jawline and the eyes right first.
+
+It also bans the usual filler. "Cinematic" or "premium" must be turned into visible things. No camera specs unless the image actually shows them. No artist names, describe the technique instead.
+
+I think this is a nice example of where a lot of applied AI work is heading: the method lives in text, and the model does the seeing.
+
+What I'd hold loosely: there's no evaluation in the repo. No before and after images, no similarity scores. The default output is Chinese first (450 to 700 characters) with English after.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘴𝘦𝘦 𝘪𝘴 20 𝘳𝘦𝘧𝘦𝘳𝘦𝘯𝘤𝘦 𝘪𝘮𝘢𝘨𝘦𝘴, 𝘵𝘩𝘦 𝘳𝘦𝘨𝘦𝘯𝘦𝘳𝘢𝘵𝘦𝘥 𝘷𝘦𝘳𝘴𝘪𝘰𝘯𝘴 𝘴𝘪𝘥𝘦 𝘣𝘺 𝘴𝘪𝘥𝘦, 𝘢𝘯𝘥 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘵𝘦𝘴𝘵 𝘳𝘶𝘯 𝘸𝘪𝘵𝘩 𝘔𝘪𝘥𝘫𝘰𝘶𝘳𝘯𝘦𝘺'𝘴 /𝘥𝘦𝘴𝘤𝘳𝘪𝘣𝘦 𝘢𝘯𝘥 𝘊𝘓𝘐𝘗 𝘐𝘯𝘵𝘦𝘳𝘳𝘰𝘨𝘢𝘵𝘰𝘳.
+
+Links in reply 👇
+
+
+===== SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗶𝗺𝗮𝗴𝗲-𝗽𝗿𝗼𝗺𝗽𝘁-𝗿𝗲𝘃𝗲𝗿𝘀𝗲
+
+image-prompt-reverse is a Codex skill by LunarXuan, GPL-3.0, with 𝟵𝟮𝟵 𝘀𝘁𝗮𝗿𝘀 as of 19 Nov 2026. The README:
+
+"𝘢 𝘊𝘰𝘥𝘦𝘹 𝘚𝘬𝘪𝘭𝘭 𝘧𝘰𝘳 𝘳𝘦𝘷𝘦𝘳𝘴𝘦-𝘦𝘯𝘨𝘪𝘯𝘦𝘦𝘳𝘪𝘯𝘨 𝘪𝘮𝘢𝘨𝘦-𝘨𝘦𝘯𝘦𝘳𝘢𝘵𝘪𝘰𝘯 𝘱𝘳𝘰𝘮𝘱𝘵𝘴 𝘧𝘳𝘰𝘮 𝘶𝘴𝘦𝘳-𝘶𝘱𝘭𝘰𝘢𝘥𝘦𝘥 𝘳𝘦𝘧𝘦𝘳𝘦𝘯𝘤𝘦 𝘪𝘮𝘢𝘨𝘦𝘴."
+
+It's four text files: SKILL.md plus three guides in 𝚛𝚎𝚏𝚎𝚛𝚎𝚗𝚌𝚎𝚜/, covering a general analysis framework, rules for each category (people, products, food, 3D, logos and so on) and a separate guide for illustration styles. The model reads the illustration guide only when the image is mainly an illustration.
+
+The output is fixed: a 450 to 700 character Chinese prompt with an English version, then 10 to 15 English negative terms.
+
+Two things I'd point to.
+
+𝟭. 𝗠𝗲𝗱𝗶𝘂𝗺 𝗯𝗼𝘂𝗻𝗱𝗮𝗿𝗶𝗲𝘀. The skill makes the model decide exactly what medium it's looking at, then rule out the ones it could be confused with. Realistic 3D excludes real photography and anime. Photography excludes 3D render and illustration. Those exclusions go into the negative prompt.
+
+𝟮. 𝗛𝗼𝗻𝗲𝘀𝘁 𝘂𝗻𝗰𝗲𝗿𝘁𝗮𝗶𝗻𝘁𝘆. The README says it "𝘢𝘷𝘰𝘪𝘥𝘴 𝘪𝘯𝘷𝘦𝘯𝘵𝘪𝘯𝘨 𝘶𝘯𝘤𝘦𝘳𝘵𝘢𝘪𝘯 𝘥𝘦𝘵𝘢𝘪𝘭𝘴". SKILL.md goes further: no focal length, aperture or camera model unless the image makes it clear, and "8K" only as a wish for the output, never a claim about the original.
+
+It also handles brands carefully. Logos and IP get turned into shape, colour and outline, and the prompt asks for no readable logos or watermarks.
+
+Things to be careful about:
+
+• 𝗡𝗼 𝗲𝘃𝗶𝗱𝗲𝗻𝗰𝗲 𝗼𝗳 𝗾𝘂𝗮𝗹𝗶𝘁𝘆: no example images or comparisons in the repo
+• 𝗖𝗼𝗱𝗲𝘅-𝗳𝗶𝗿𝘀𝘁: the install path is Codex's skills folder on Windows
+• 𝗖𝗵𝗶𝗻𝗲𝘀𝗲-𝗳𝗶𝗿𝘀𝘁 𝗼𝘂𝘁𝗽𝘂𝘁: the English version is a translation of the main prompt
+• 𝗬𝗼𝘂𝗻𝗴: 5 commits, 2 to 6 September 2026
+• 𝗥𝗘𝗔𝗗𝗠𝗘 𝗶𝘀 𝘀𝗹𝗶𝗴𝗵𝘁𝗹𝘆 𝗯𝗲𝗵𝗶𝗻𝗱: its file list leaves out 𝚒𝚕𝚕𝚞𝚜𝚝𝚛𝚊𝚝𝚒𝚘𝚗-𝚜𝚝𝚢𝚕𝚎.𝚖𝚍
+• 𝗦𝘁𝘆𝗹𝗲 𝗰𝗼𝗽𝘆𝗶𝗻𝗴: it's built to recreate a look, so think about whose work you're reproducing
+
+Prior work: Midjourney's /describe (four prompts, which its docs say are for inspiration, not exact copies) and CLIP Interrogator (MIT, for Stable Diffusion).
+
+Links in reply 👇
+
+
+===== SWYX STYLE =====
+
+𝗜𝗺𝗮𝗴𝗲-𝗧𝗼-𝗣𝗿𝗼𝗺𝗽𝘁 𝗜𝘀 𝗕𝗲𝗰𝗼𝗺𝗶𝗻𝗴 𝗔𝗻 𝗔𝗴𝗲𝗻𝘁 𝗦𝗸𝗶𝗹𝗹
+
+Reverse prompting, turning an image back into the prompt that could make it, has been around since the early Stable Diffusion days. What's changing is where it lives.
+
+• 𝗖𝗟𝗜𝗣 𝗜𝗻𝘁𝗲𝗿𝗿𝗼𝗴𝗮𝘁𝗼𝗿: a model pipeline (CLIP plus BLIP) that searches for prompt words to match an image. MIT, about 3k stars, built for Stable Diffusion
+• 𝗠𝗶𝗱𝗷𝗼𝘂𝗿𝗻𝗲𝘆 /𝗱𝗲𝘀𝗰𝗿𝗶𝗯𝗲: built into the product, gives four prompts. Its docs say they're for inspiration, not exact copies
+• 𝗶𝗺𝗮𝗴𝗲-𝗽𝗿𝗼𝗺𝗽𝘁-𝗿𝗲𝘃𝗲𝗿𝘀𝗲: a Codex skill. No model of its own, just instructions for the agent's vision model
+
+The third one is new this autumn, by LunarXuan, and already has 𝟵𝟮𝟵 𝘀𝘁𝗮𝗿𝘀. It's four text files and no code.
+
+What it adds is method. The model works out the image's purpose and medium, picks 𝟯 𝘁𝗼 𝟱 "𝘃𝗶𝘀𝘂𝗮𝗹 𝗮𝗻𝗰𝗵𝗼𝗿𝘀" to front-load, and writes a 450 to 700 character Chinese prompt plus English, with 10 to 15 negative terms. It refuses to invent camera specs, swaps artist names for visible techniques, and turns brands into shapes and colours.
+
+The trade-off is proof. There are no examples or similarity tests in the repo, and the skill is tied to Codex with Chinese as the main output.
+
+𝗠𝘆 𝗿𝗲𝗮𝗱: 𝗲𝘅𝗽𝗲𝗿𝘁𝗶𝘀𝗲 𝗶𝘀 𝗺𝗼𝘃𝗶𝗻𝗴 𝗶𝗻𝘁𝗼 𝘀𝗸𝗶𝗹𝗹 𝗳𝗶𝗹𝗲𝘀. A photographer's checklist used to live in their head. Now it's a SKILL.md any agent can load. Expect a lot more of these, and a lot of them without evals.
+
+Links in reply 👇
+
+
+===== HAMEL HUSAIN STYLE =====
+
+𝗔 𝗚𝗼𝗼𝗱 𝗣𝗿𝗼𝗺𝗽𝘁 𝗖𝗵𝗲𝗰𝗸𝗹𝗶𝘀𝘁 𝗪𝗶𝘁𝗵 𝗡𝗼 𝗘𝘃𝗮𝗹𝘀
+
+image-prompt-reverse is a Codex skill that looks at an image and writes a prompt to recreate it. It's by LunarXuan, GPL-3.0, at 𝟵𝟮𝟵 𝘀𝘁𝗮𝗿𝘀.
+
+The idea is easy to like. Most image prompts are a bag of keywords. This one makes the model work like a photographer: purpose, medium, composition, camera angle, light, colour, materials, depth, mood.
+
+What it gives you:
+
+• 𝗣𝗿𝗶𝗼𝗿𝗶𝘁𝗶𝗲𝘀. It picks the 3 to 5 details that matter most for similarity and puts them first
+• 𝗠𝗲𝗱𝗶𝘂𝗺 𝗯𝗼𝘂𝗻𝗱𝗮𝗿𝗶𝗲𝘀. It names the medium and excludes look-alikes in the negative prompt, so a 3D render doesn't drift into photography
+• 𝗥𝗲𝘀𝘁𝗿𝗮𝗶𝗻𝘁. No invented camera specs, no artist names, and vague words like "cinematic" must be backed by something visible
+
+What it doesn't give you:
+
+• 𝗔𝗻𝘆 𝗺𝗲𝗮𝘀𝘂𝗿𝗲 𝗼𝗳 𝗾𝘂𝗮𝗹𝗶𝘁𝘆. No example outputs, no similarity scores, no comparison with other tools
+• 𝗙𝗹𝗲𝘅𝗶𝗯𝗶𝗹𝗶𝘁𝘆 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁. Output is a fixed 450 to 700 character Chinese prompt plus English, and it's set up for Codex
+• 𝗠𝗮𝘁𝘂𝗿𝗶𝘁𝘆. 5 commits, all between 2 and 6 September 2026
+
+If you want to know whether it helps you, test it:
+
+1. Pick 15 reference images across your real use cases: products, portraits, illustrations.
+2. Baseline: write the prompts yourself, or use Midjourney's /describe.
+3. Run the skill on the same images. Generate 4 images per prompt with the same model and settings.
+4. Have someone who hasn't seen the method pick which set is closer to each original. Then read the prompts that lost and see which anchor they missed.
+
+𝘈 𝘤𝘩𝘦𝘤𝘬𝘭𝘪𝘴𝘵 𝘪𝘴 𝘢 𝘩𝘺𝘱𝘰𝘵𝘩𝘦𝘴𝘪𝘴. 𝘚𝘪𝘥𝘦-𝘣𝘺-𝘴𝘪𝘥𝘦 𝘪𝘮𝘢𝘨𝘦𝘴 𝘢𝘳𝘦 𝘵𝘩𝘦 𝘵𝘦𝘴𝘵.
+
+Links in reply 👇
+
+
+===== ETHAN MOLLICK STYLE =====
+
+𝗖𝗮𝗻 𝗔𝗻 𝗔𝗜 𝗘𝘅𝗽𝗹𝗮𝗶𝗻 𝗪𝗵𝗮𝘁 𝗠𝗮𝗸𝗲𝘀 𝗔 𝗣𝗶𝗰𝘁𝘂𝗿𝗲 𝗟𝗼𝗼𝗸 𝗚𝗼𝗼𝗱?
+
+Most of us know a great photo when we see one. Far fewer of us can say why. Is it the light? The angle? The colours?
+
+That gap matters now, because AI image tools only respond to words. If you can't describe what you like, you can't ask for it.
+
+A small free project called image-prompt-reverse tries to close that gap. You show it a picture, and it writes the description an image generator would need to make something similar.
+
+𝗜𝘁 𝘄𝗼𝗿𝗸𝘀 𝗹𝗶𝗸𝗲 𝗮 𝗰𝗵𝗲𝗰𝗸𝗹𝗶𝘀𝘁 𝗳𝗼𝗿 𝗮𝗻 𝗲𝘅𝗽𝗲𝗿𝘁 𝗲𝘆𝗲. Before writing anything, the AI decides what kind of picture it is (an advert, a portrait, a cartoon, a 3D model) and then looks at the layout, the camera angle, where the light comes from, the colours, the textures and the mood.
+
+Then it does something a good teacher would do. It picks the 3 to 5 details that matter most and puts them first.
+
+It's like describing a friend to someone meeting them at the airport. You don't list everything. You say "tall, red coat, curly hair", the few things that make them easy to spot.
+
+It also has sensible rules. Don't make up details you can't see. Don't name famous artists, describe the technique. Turn a brand's logo into plain shapes and colours.
+
+On the other side, there's no proof yet that it works well. The project shows no before and after pictures. It's built for one AI coding tool, Codex, and writes in Chinese first. Similar features have existed for a while, such as Midjourney's /describe, which says its prompts are for inspiration, not exact copies.
+
+What we know is that describing an image well is a real skill, and AI can now be given that skill in a short set of instructions.
+
+𝘐𝘧 𝘢𝘯 𝘈𝘐 𝘤𝘢𝘯 𝘦𝘹𝘱𝘭𝘢𝘪𝘯 𝘸𝘩𝘢𝘵 𝘮𝘢𝘬𝘦𝘴 𝘢 𝘱𝘪𝘤𝘵𝘶𝘳𝘦 𝘸𝘰𝘳𝘬, 𝘥𝘰𝘦𝘴 𝘵𝘩𝘢𝘵 𝘩𝘦𝘭𝘱 𝘶𝘴 𝘭𝘦𝘢𝘳𝘯 𝘵𝘰 𝘴𝘦𝘦, 𝘰𝘳 𝘥𝘰𝘦𝘴 𝘪𝘵 𝘭𝘦𝘵 𝘶𝘴 𝘴𝘬𝘪𝘱 𝘭𝘦𝘢𝘳𝘯𝘪𝘯𝘨?
+
+Links in reply 👇
+
+
