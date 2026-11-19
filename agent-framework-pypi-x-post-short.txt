@@ -1,0 +1,15 @@
+Two days ago, Microsoft's 𝚊𝚐𝚎𝚗𝚝-𝚏𝚛𝚊𝚖𝚎𝚠𝚘𝚛𝚔 package on PyPI shipped a credential stealer. It gets about 𝟰𝟭,𝟬𝟬𝟬 𝗱𝗼𝘄𝗻𝗹𝗼𝗮𝗱𝘀 𝗮 𝘄𝗲𝗲𝗸.
+
+Versions 1.26.1 and 1.26.2 went up on 17 Nov, 33 minutes apart, and both were gone within the hour.
+
+The malware isn't the worrying part. Wiz says 𝘁𝗵𝗲 𝗮𝘁𝘁𝗮𝗰𝗸𝗲𝗿 𝗮𝗽𝗽𝗲𝗮𝗿𝘀 𝘁𝗼 𝗵𝗮𝘃𝗲 𝗵𝗮𝗱 𝗮 𝗰𝗲𝗿𝘁𝗶𝗳𝗶𝗰𝗮𝘁𝗲 𝗳𝗼𝗿 𝗘𝗦𝗥𝗣, the internal service Microsoft uses to sign and publish the package. An upload from AWS got blocked by IP filtering. One from Microsoft-owned IP space went straight through. Nobody knows yet how they got the certificate.
+
+The stealer sat in a .𝚙𝚝𝚑 file, so it ran whenever Python started. 𝗬𝗼𝘂 𝗱𝗶𝗱𝗻'𝘁 𝗲𝘃𝗲𝗻 𝗵𝗮𝘃𝗲 𝘁𝗼 𝗶𝗺𝗽𝗼𝗿𝘁 𝘁𝗵𝗲 𝗽𝗮𝗰𝗸𝗮𝗴𝗲. It went after Azure tokens, CI secrets, and npm, pip, git and Docker credentials.
+
+There's an AI twist too. The tooling calls itself Cairn, an open-source AI pentest framework, and Wiz says the attacker's own test run caught what looks like a Pi coding agent on a GLM model.
+
+So far the damage is small: Wiz counts 𝘁𝗵𝗿𝗲𝗲 𝗿𝗲𝗮𝗹 𝘃𝗶𝗰𝘁𝗶𝗺𝘀. If you use the package, pin 1.26.0, look for both .𝚙𝚝𝚑 files, and rotate anything that environment could see.
+
+𝘛𝘩𝘦 𝘰𝘧𝘧𝘪𝘤𝘪𝘢𝘭 𝘱𝘶𝘣𝘭𝘪𝘴𝘩𝘦𝘳, 𝘵𝘩𝘳𝘰𝘶𝘨𝘩 𝘵𝘩𝘦 𝘰𝘧𝘧𝘪𝘤𝘪𝘢𝘭 𝘱𝘪𝘱𝘦𝘭𝘪𝘯𝘦, 𝘪𝘴 𝘯𝘰𝘳𝘮𝘢𝘭𝘭𝘺 𝘸𝘩𝘢𝘵 𝘺𝘰𝘶 𝘵𝘳𝘶𝘴𝘵 𝘮𝘰𝘴𝘵. 𝘛𝘩𝘪𝘴 𝘵𝘪𝘮𝘦 𝘪𝘵 𝘸𝘢𝘴 𝘵𝘩𝘦 𝘸𝘢𝘺 𝘪𝘯.
+
+Links in reply 👇
