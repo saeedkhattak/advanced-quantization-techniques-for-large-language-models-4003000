@@ -1,6 +1,6 @@
 𝗦𝗵𝗮𝗿𝗲𝗫 𝗜𝘀 𝗦𝗻𝗶𝗽𝗽𝗶𝗻𝗴 𝗧𝗼𝗼𝗹, 𝗔𝘁 𝗧𝗵𝗲 𝗔𝗱𝘃𝗮𝗻𝗰𝗲𝗱 𝗘𝗻𝗱
 
-We all know Snipping Tool. It's on every Windows PC and most of us use it to grab a screenshot or record a short clip.
+We all know Snipping Tool. It ships with Windows and most of us use it to grab a screenshot or record a short clip.
 
 ShareX is that, plus a lot more at the advanced end.
 
@@ -18,7 +18,7 @@ On top of that the README lists 𝟯𝟳 𝗯𝘂𝗶𝗹𝘁-𝗶𝗻 𝘁𝗼�
 
 • 𝗬𝗼𝘂𝗿 𝗼𝘄𝗻 𝘀𝘁𝗼𝗿𝗮𝗴𝗲: screenshots can upload to your own Amazon S3 or Cloudflare R2 bucket, so work images don't sit on a public host
 • 𝗬𝗼𝘂𝗿 𝗼𝘄𝗻 𝘀𝗰𝗿𝗶𝗽𝘁: a step in the chain can pass the file to an external tool or script
-• 𝗦𝗰𝗿𝗼𝗹𝗹𝗶𝗻𝗴 𝘀𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁: one tall image of a whole page, with step numbers you can add for a bug report
+• 𝗦𝗰𝗿𝗼𝗹𝗹𝗶𝗻𝗴 𝘀𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁: one tall image of a whole page instead of a video of it
 
 It's free and open source (GPL-3.0), 19 years old, and the README says no ads and no account needed.
 
