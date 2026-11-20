@@ -1,0 +1,182 @@
+===== 1. STORY =====
+
+𝗢𝗻𝗲 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿'𝘀 𝗔𝗴𝗲𝗻𝘁 𝗛𝗮𝗯𝗶𝘁𝘀, 𝗣𝗮𝗰𝗸𝗮𝗴𝗲𝗱 𝗔𝘀 𝗔 𝗣𝗹𝘂𝗴𝗶𝗻
+
+You ask an agent to fix a bug. It says "fixed". The tests pass. Then you open the app and the bug is still there.
+
+𝗽𝘀𝘁𝗮𝗰𝗸 𝗶𝘀 𝗯𝘂𝗶𝗹𝘁 𝗮𝗿𝗼𝘂𝗻𝗱 𝗿𝗲𝗳𝘂𝘀𝗶𝗻𝗴 𝘁𝗼 𝗮𝗰𝗰𝗲𝗽𝘁 𝘁𝗵𝗮𝘁 "𝗳𝗶𝘅𝗲𝗱".
+
+It's a Cursor plugin by Lauren Tan (poteto), who works at Cursor and is on the React core team. It went into Cursor's official plugins repo on 22 May 2026. It's MIT licensed, and the latest update landed on 19 November (v0.15.46).
+
+How it works, step by step:
+
+• 𝗢𝗻𝗲 𝗲𝗻𝘁𝗿𝘆 𝗽𝗼𝗶𝗻𝘁: you type /𝚙𝚘𝚝𝚎𝚝𝚘-𝚖𝚘𝚍𝚎 before your task
+• 𝗜𝘁 𝗽𝗶𝗰𝗸𝘀 𝗮 𝗽𝗹𝗮𝘆𝗯𝗼𝗼𝗸: there are 𝟮𝟮, such as bug fix, perf, refactoring, overnight run and opening a PR
+• 𝗜𝘁 𝗰𝗼𝗽𝗶𝗲𝘀 𝘁𝗵𝗮𝘁 𝗽𝗹𝗮𝘆𝗯𝗼𝗼𝗸'𝘀 𝘀𝘁𝗲𝗽𝘀 𝗶𝗻𝘁𝗼 𝗮 𝘁𝗼-𝗱𝗼 𝗹𝗶𝘀𝘁, then calls other skills as each step needs them
+• 𝗜𝘁 𝗵𝗮𝘀 𝘁𝗼 𝘀𝗵𝗼𝘄 𝗽𝗿𝗼𝗼𝗳: the rules say "𝘕𝘦𝘷𝘦𝘳 𝘩𝘢𝘯𝘥 𝘵𝘩𝘦 𝘩𝘶𝘮𝘢𝘯 𝘢 𝘤𝘩𝘦𝘤𝘬 𝘺𝘰𝘶 𝘤𝘰𝘶𝘭𝘥 𝘳𝘶𝘯"
+
+The part most worth a builder's time is /𝚒𝚗𝚝𝚎𝚛𝚛𝚘𝚐𝚊𝚝𝚎. Different models try to break your diff. A finding only survives if a run proves it: a failing test, a repro script, real output. Style comments and "this might be risky" get dropped.
+
+For users, setup is two commands: /𝚊𝚍𝚍-𝚙𝚕𝚞𝚐𝚒𝚗 𝚙𝚜𝚝𝚊𝚌𝚔, then /𝚜𝚎𝚝𝚞𝚙-𝚙𝚜𝚝𝚊𝚌𝚔 to choose models. By default code goes to Opus 5.5, and the review panel is Fable 5.2, Opus 5.5 and Gemini 4 Neon.
+
+For builders, the repo is worth reading even if you never install it. There are 𝟮𝟰 one-rule "principle" skills, like "prove it works" and "fix root causes". And /𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚎-𝚖𝚎 reads your own chat history and drafts a mode skill in your style.
+
+It isn't the first pack like this. obra's Superpowers and Garry Tan's gstack also bundle a way of working into agent skills. What pstack leans on more is mixing models from different vendors and keeping only findings a run can prove.
+
+Some caveats. The repo has no before/after numbers showing it makes code better. Cursor's page is titled "𝘵𝘩𝘦 𝘴𝘬𝘪𝘭𝘭𝘴 𝘣𝘦𝘩𝘪𝘯𝘥 10,000 𝘢𝘨𝘦𝘯𝘵 𝘳𝘶𝘯𝘴", and that's a usage count, not a quality result. Review panels run several frontier models, so expect a bigger bill. In Claude Code, Cursor-only steps like Bugbot and automations are skipped. And it's openly opinionated: the README says "𝘪 𝘥𝘰𝘯'𝘵 𝘣𝘦𝘭𝘪𝘦𝘷𝘦 𝘪𝘯 𝘱𝘭𝘢𝘯𝘯𝘪𝘯𝘨. 𝘵𝘩𝘦 𝘣𝘦𝘴𝘵 𝘴𝘱𝘦𝘤 𝘪𝘴 𝘤𝘰𝘥𝘦."
+
+𝗔𝗴𝗲𝗻𝘁𝘀 𝗰𝗮𝗻 𝗮𝗹𝗿𝗲𝗮𝗱𝘆 𝘄𝗿𝗶𝘁𝗲 𝗰𝗼𝗱𝗲 𝗳𝗮𝘀𝘁. 𝗠𝗮𝗸𝗶𝗻𝗴 𝘁𝗵𝗲𝗺 𝗽𝗿𝗼𝘃𝗲 𝗶𝘁 𝘄𝗼𝗿𝗸𝘀 𝗶𝘀 𝘄𝗵𝗲𝗿𝗲 𝘁𝗵𝗲 𝗰𝗿𝗮𝗳𝘁 𝗶𝘀 𝗺𝗼𝘃𝗶𝗻𝗴.
+
+Links in reply 👇
+
+
+===== 2. KARPATHY STYLE =====
+
+𝗽𝘀𝘁𝗮𝗰𝗸, 𝗔𝗻𝗱 𝗪𝗵𝘆 "𝗣𝗿𝗼𝘃𝗲 𝗜𝘁" 𝗠𝗮𝘁𝘁𝗲𝗿𝘀 𝗠𝗼𝗿𝗲 𝗧𝗵𝗮𝗻 "𝗪𝗿𝗶𝘁𝗲 𝗜𝘁"
+
+Worth a slow read: pstack, the Cursor plugin Lauren Tan (poteto) put in Cursor's plugins repo back in May. It's 58 skill folders. 34 skills, 24 one-line principles, and a router called /𝚙𝚘𝚝𝚎𝚝𝚘-𝚖𝚘𝚍𝚎 that picks one of 𝟮𝟮 𝗽𝗹𝗮𝘆𝗯𝗼𝗼𝗸𝘀 for your task.
+
+You could read it as a big prompt library. I think that misses it.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝘁𝗵𝗲 𝗽𝗿𝗼𝗺𝗽𝘁𝘀, 𝗶𝘁'𝘀 𝘄𝗵𝗲𝗿𝗲 𝘁𝗵𝗲 𝘁𝗿𝘂𝘀𝘁 𝗰𝗼𝗺𝗲𝘀 𝗳𝗿𝗼𝗺.
+
+An agent saying "done" is cheap. It's a model grading its own homework. So almost every piece of pstack moves the trust somewhere else. To a run.
+
+/𝚒𝚗𝚝𝚎𝚛𝚛𝚘𝚐𝚊𝚝𝚎 is the clearest example. Several models try to break your change, and a finding counts only with a command and its output. The brief literally says "𝘓𝘦𝘢𝘷𝘦 𝘰𝘶𝘵 𝘢𝘯𝘺𝘵𝘩𝘪𝘯𝘨 𝘺𝘰𝘶 𝘥𝘪𝘥 𝘯𝘰𝘵 𝘳𝘶𝘯." And "𝘕𝘰 𝘧𝘪𝘯𝘥𝘪𝘯𝘨𝘴 𝘪𝘴 𝘢 𝘷𝘢𝘭𝘪𝘥 𝘳𝘦𝘴𝘶𝘭𝘵." That last line matters more than it looks. It stops the reviewer from inventing problems to look useful.
+
+/𝚊𝚛𝚎𝚗𝚊 does the same for design. Run N attempts in parallel, have a judge from a different vendor score them, then graft the best parts into one.
+
+The analogy that fits for me: it's a lab notebook, not a style guide. You don't trust the result because the person sounds sure. You trust it because the experiment is written down and you can rerun it.
+
+What I'd still want to see, imo:
+
+• 𝗔 𝗺𝗲𝗮𝘀𝘂𝗿𝗲𝗱 𝗲𝗳𝗳𝗲𝗰𝘁. Same tasks, with and without pstack, bugs found later. The repo doesn't publish that. The "10,000 agent runs" on Cursor's page is usage, not quality.
+• 𝗖𝗼𝘀𝘁 𝗽𝗲𝗿 𝘁𝗮𝘀𝗸. A three-model panel (Fable 5.2, Opus 5.5, Gemini 4 Neon) isn't free.
+• 𝗛𝗼𝘄 𝗶𝘁 𝗮𝗴𝗲𝘀. v0.15.46, 174 commits in six months. Defaults move.
+
+It sits next to obra's Superpowers and Garry Tan's gstack, which also package a workflow as skills.
+
+𝘐'𝘥 𝘭𝘰𝘷𝘦 𝘵𝘰 𝘴𝘦𝘦 𝘴𝘰𝘮𝘦𝘰𝘯𝘦 𝘳𝘶𝘯 𝘵𝘩𝘢𝘵 𝘸𝘪𝘵𝘩-𝘢𝘯𝘥-𝘸𝘪𝘵𝘩𝘰𝘶𝘵 𝘤𝘰𝘮𝘱𝘢𝘳𝘪𝘴𝘰𝘯 𝘪𝘯 𝘱𝘶𝘣𝘭𝘪𝘤.
+
+Links in reply 👇
+
+
+===== 3. SIMON WILLISON STYLE =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗽𝘀𝘁𝗮𝗰𝗸 (𝗰𝘂𝗿𝘀𝗼𝗿/𝗽𝗹𝘂𝗴𝗶𝗻𝘀)
+
+pstack is a Cursor plugin by Lauren Tan, published in the official cursor/plugins repo. First commit 22 May 2026, latest 19 November 2026, current version 0.15.46, MIT.
+
+From the README:
+
+"𝘱𝘴𝘵𝘢𝘤𝘬 𝘩𝘦𝘭𝘱𝘴 𝘺𝘰𝘶 𝘸𝘳𝘪𝘵𝘦 𝘭𝘦𝘴𝘴, 𝘣𝘶𝘵 𝘩𝘪𝘨𝘩𝘦𝘳 𝘲𝘶𝘢𝘭𝘪𝘵𝘺 𝘤𝘰𝘥𝘦."
+
+What's in it: 𝟯𝟰 𝘀𝗸𝗶𝗹𝗹𝘀, 𝟮𝟰 𝗽𝗿𝗶𝗻𝗰𝗶𝗽𝗹𝗲 𝘀𝗸𝗶𝗹𝗹𝘀, 𝟮 𝘀𝘂𝗯𝗮𝗴𝗲𝗻𝘁𝘀. The entry point is /𝚙𝚘𝚝𝚎𝚝𝚘-𝚖𝚘𝚍𝚎, which "𝘮𝘢𝘵𝘤𝘩𝘦𝘴 𝘺𝘰𝘶𝘳 𝘵𝘢𝘴𝘬 𝘵𝘰 𝘢 𝘱𝘭𝘢𝘺𝘣𝘰𝘰𝘬 𝘢𝘯𝘥 𝘰𝘱𝘦𝘯𝘴 𝘢 𝘵𝘰𝘥𝘰 𝘭𝘪𝘴𝘵 𝘸𝘩𝘰𝘴𝘦 𝘧𝘪𝘳𝘴𝘵 𝘪𝘵𝘦𝘮𝘴 𝘢𝘳𝘦 𝘪𝘵𝘴 𝘴𝘵𝘦𝘱𝘴, 𝘤𝘰𝘱𝘪𝘦𝘥 𝘪𝘯 𝘷𝘦𝘳𝘣𝘢𝘵𝘪𝘮." There are 22 playbooks.
+
+Two details stand out.
+
+𝟭. 𝗥𝗲𝘃𝗶𝗲𝘄 𝗳𝗶𝗻𝗱𝗶𝗻𝗴𝘀 𝗺𝘂𝘀𝘁 𝗰𝗼𝗺𝗲 𝘄𝗶𝘁𝗵 𝗮 𝗿𝘂𝗻. The /𝚒𝚗𝚝𝚎𝚛𝚛𝚘𝚐𝚊𝚝𝚎 brief tells each adversary model to "𝘗𝘳𝘰𝘷𝘦 𝘦𝘢𝘤𝘩 𝘧𝘪𝘯𝘥𝘪𝘯𝘨 𝘸𝘪𝘵𝘩 𝘢 𝘳𝘶𝘯 𝘢𝘨𝘢𝘪𝘯𝘴𝘵 𝘵𝘩𝘦 𝘳𝘦𝘢𝘭 𝘤𝘰𝘥𝘦, 𝘴𝘶𝘤𝘩 𝘢𝘴 𝘢 𝘧𝘢𝘪𝘭𝘪𝘯𝘨 𝘵𝘦𝘴𝘵, 𝘢 𝘳𝘦𝘱𝘳𝘰 𝘴𝘤𝘳𝘪𝘱𝘵, 𝘰𝘳 𝘤𝘰𝘮𝘮𝘢𝘯𝘥 𝘰𝘶𝘵𝘱𝘶𝘵." Then the parent reruns each command and drops anything that doesn't reproduce.
+
+𝟮. 𝗧𝗵𝗲 𝘄𝗿𝗶𝘁𝗶𝗻𝗴 𝗿𝘂𝗹𝗲𝘀. 𝚙𝚘𝚝𝚎𝚝𝚘-𝚖𝚘𝚍𝚎 asks the agent to "𝘎𝘪𝘷𝘦 𝘦𝘢𝘤𝘩 𝘤𝘭𝘢𝘪𝘮 𝘪𝘵𝘴 𝘦𝘷𝘪𝘥𝘦𝘯𝘤𝘦 𝘰𝘳 𝘢 𝘭𝘢𝘣𝘦𝘭 (𝘮𝘦𝘢𝘴𝘶𝘳𝘦𝘥, 𝘪𝘯𝘧𝘦𝘳𝘳𝘦𝘥, 𝘰𝘳 𝘨𝘶𝘦𝘴𝘴)." That's a cheap rule and a very useful one.
+
+It also works outside Cursor. In Claude Code:
+
+/𝚙𝚕𝚞𝚐𝚒𝚗 𝚖𝚊𝚛𝚔𝚎𝚝𝚙𝚕𝚊𝚌𝚎 𝚊𝚍𝚍 𝚌𝚞𝚛𝚜𝚘𝚛/𝚙𝚕𝚞𝚐𝚒𝚗𝚜
+/𝚙𝚕𝚞𝚐𝚒𝚗 𝚒𝚗𝚜𝚝𝚊𝚕𝚕 𝚙𝚜𝚝𝚊𝚌𝚔@𝚌𝚞𝚛𝚜𝚘𝚛-𝚙𝚕𝚞𝚐𝚒𝚗𝚜
+
+Things to be careful about:
+
+• 𝗖𝗼𝘀𝘁: the default review panel is Fable 5.2, Opus 5.5 and Gemini 4 Neon. That's three frontier models per review.
+• 𝗡𝗼 𝗼𝘂𝘁𝗰𝗼𝗺𝗲 𝗱𝗮𝘁𝗮: Cursor's page is titled "𝘵𝘩𝘦 𝘴𝘬𝘪𝘭𝘭𝘴 𝘣𝘦𝘩𝘪𝘯𝘥 10,000 𝘢𝘨𝘦𝘯𝘵 𝘳𝘶𝘯𝘴". That counts runs. It doesn't measure whether the code got better.
+• 𝗡𝗼𝘁 𝗲𝘃𝗲𝗿𝘆𝘁𝗵𝗶𝗻𝗴 𝘀𝗵𝗶𝗽𝘀 𝗵𝗲𝗿𝗲: /𝚍𝚎𝚜𝚕𝚘𝚙, 𝚌𝚘𝚗𝚝𝚛𝚘𝚕-𝚌𝚕𝚒 and 𝚌𝚘𝚗𝚝𝚛𝚘𝚕-𝚞𝚒 live in the separate cursor-team-kit plugin. Bugbot and automations steps are skipped outside Cursor.
+• 𝗜𝘁 𝗺𝗼𝘃𝗲𝘀 𝗳𝗮𝘀𝘁: 174 commits touch the folder since May. Default models changed this week.
+
+Comparable projects: obra/superpowers (skills as a dev methodology) and garrytan/gstack (23 opinionated Claude Code tools). The README itself is the best further reading, along with the docs/guide folder.
+
+Links in reply 👇
+
+
+===== 4. SWYX STYLE =====
+
+𝗣𝗲𝗿𝘀𝗼𝗻𝗮𝗹 𝗔𝗴𝗲𝗻𝘁 𝗦𝘁𝗮𝗰𝗸𝘀 𝗔𝗿𝗲 𝗡𝗼𝘄 𝗔 𝗖𝗮𝘁𝗲𝗴𝗼𝗿𝘆
+
+Senior engineers have started to ship their own way of working as a pack of agent skills. Not a framework. Not a model. A habit, as files.
+
+Lay out the main ones:
+
+• 𝗼𝗯𝗿𝗮/𝘀𝘂𝗽𝗲𝗿𝗽𝗼𝘄𝗲𝗿𝘀: a whole dev methodology built from composable skills. 𝗔𝗯𝗼𝘂𝘁 𝟯𝟮𝟮𝗸 𝘀𝘁𝗮𝗿𝘀 today.
+• 𝗴𝗮𝗿𝗿𝘆𝘁𝗮𝗻/𝗴𝘀𝘁𝗮𝗰𝗸: Garry Tan's Claude Code setup, 23 tools playing CEO, designer, eng manager, QA. 𝗔𝗯𝗼𝘂𝘁 𝟭𝟰𝟮𝗸 𝘀𝘁𝗮𝗿𝘀.
+• 𝗽𝘀𝘁𝗮𝗰𝗸: Lauren Tan's (poteto) skills, shipped by Cursor in its official plugins repo since May 2026. 34 skills, 24 principles, 22 playbooks.
+
+Where pstack fits: 𝗶𝘁'𝘀 𝘁𝗵𝗲 𝗼𝗻𝗲 𝘁𝗵𝗮𝘁 𝘁𝗿𝗲𝗮𝘁𝘀 𝗼𝘁𝗵𝗲𝗿 𝗺𝗼𝗱𝗲𝗹𝘀 𝗮𝘀 𝗿𝗲𝘃𝗶𝗲𝘄𝗲𝗿𝘀, 𝗻𝗼𝘁 𝗵𝗲𝗹𝗽𝗲𝗿𝘀.
+
+Its review panel defaults to Fable 5.2, Opus 5.5 and Gemini 4 Neon. /𝚊𝚛𝚎𝚗𝚊 makes several of them attempt the same task, then a judge from a different vendor scores them. /𝚒𝚗𝚝𝚎𝚛𝚛𝚘𝚐𝚊𝚝𝚎 has them try to break your diff, and keeps only what a run proves.
+
+The other move is distribution. A vendor (Cursor) put one engineer's personal workflow in its official repo, and a page titled "𝘵𝘩𝘦 𝘴𝘬𝘪𝘭𝘭𝘴 𝘣𝘦𝘩𝘪𝘯𝘥 10,000 𝘢𝘨𝘦𝘯𝘵 𝘳𝘶𝘯𝘴". That's a vendor saying the playbook is part of the product.
+
+Some limits: no published before/after quality numbers, real cost from multi-model panels, and it changes fast (v0.15.46 already).
+
+My take. Model choice is getting commoditised inside these tools. 𝗧𝗵𝗲 𝘁𝗵𝗶𝗻𝗴 𝗽𝗲𝗼𝗽𝗹𝗲 𝘄𝗶𝗹𝗹 𝗰𝗼𝗽𝘆, 𝗳𝗼𝗿𝗸 𝗮𝗻𝗱 𝗮𝗿𝗴𝘂𝗲 𝗮𝗯𝗼𝘂𝘁 𝗻𝗲𝘅𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗽𝗹𝗮𝘆𝗯𝗼𝗼𝗸. pstack even ships /𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚎-𝚖𝚎 so you can draft your own.
+
+𝘞𝘩𝘰𝘴𝘦 𝘴𝘵𝘢𝘤𝘬 𝘥𝘰 𝘺𝘰𝘶 𝘧𝘰𝘳𝘬 𝘧𝘪𝘳𝘴𝘵?
+
+Links in reply 👇
+
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+𝗽𝘀𝘁𝗮𝗰𝗸: 𝗪𝗵𝗮𝘁 𝗜𝘁 𝗚𝗶𝘃𝗲𝘀 𝗬𝗼𝘂, 𝗪𝗵𝗮𝘁 𝗜𝘁 𝗗𝗼𝗲𝘀𝗻'𝘁
+
+pstack is Lauren Tan's skill pack for Cursor (also installable in Claude Code). 34 skills, 24 principles, a /𝚙𝚘𝚝𝚎𝚝𝚘-𝚖𝚘𝚍𝚎 router with 22 playbooks. MIT, in Cursor's official plugins repo since May 2026.
+
+Most of it is about evidence, not prompts.
+
+Here's what it gives you:
+
+• 𝗣𝗿𝗼𝗼𝗳-𝗴𝗮𝘁𝗲𝗱 𝗿𝗲𝘃𝗶𝗲𝘄: /𝚒𝚗𝚝𝚎𝚛𝚛𝚘𝚐𝚊𝚝𝚎 drops any finding that doesn't come with a command and its output
+• 𝗔 𝗯𝗹𝗶𝗻𝗱𝗲𝗱 𝗲𝘃𝗮𝗹 𝗽𝗹𝗮𝘆𝗯𝗼𝗼𝗸: for testing whether a skill or prompt change changed agent behavior
+• 𝗔 𝗻𝘂𝗺𝗯𝗲𝗿 𝗰𝗵𝗲𝗰𝗸𝗲𝗿: /𝚋𝚎𝚗𝚌𝚑𝚖𝚊𝚛𝚔-𝚌𝚑𝚎𝚌𝚔𝚕𝚒𝚜𝚝 makes you look at limits, errors and repeat runs before you trust a speedup
+• 𝗟𝗮𝗯𝗲𝗹𝘀 𝗼𝗻 𝗰𝗹𝗮𝗶𝗺𝘀: measured, inferred, or guess
+
+Here's what it doesn't give you:
+
+• 𝗘𝘃𝗶𝗱𝗲𝗻𝗰𝗲 𝘁𝗵𝗮𝘁 𝗽𝘀𝘁𝗮𝗰𝗸 𝗶𝘁𝘀𝗲𝗹𝗳 𝗵𝗲𝗹𝗽𝘀. No with/without comparison is published. "10,000 𝘢𝘨𝘦𝘯𝘵 𝘳𝘶𝘯𝘴" on Cursor's page is adoption, not quality.
+• 𝗔 𝗰𝗼𝘀𝘁 𝗻𝘂𝗺𝗯𝗲𝗿. Panels run Fable 5.2, Opus 5.5 and Gemini 4 Neon.
+• 𝗦𝘁𝗮𝗯𝗶𝗹𝗶𝘁𝘆. Version 0.15.46 after six months, with defaults that changed this week.
+
+Frameworks don't fix your process. They can encode one. So test it on your own work before you adopt it team-wide:
+
+1. 𝗣𝗶𝗰𝗸 𝟮𝟬 𝗿𝗲𝗮𝗹 𝘁𝗮𝘀𝗸𝘀 from your backlog, bugs you already know the answer to
+2. 𝗥𝘂𝗻 𝗮 𝗯𝗮𝘀𝗲𝗹𝗶𝗻𝗲 with your normal agent setup and record what shipped
+3. 𝗥𝘂𝗻 𝘁𝗵𝗲 𝘀𝗮𝗺𝗲 𝘁𝗮𝘀𝗸𝘀 𝘄𝗶𝘁𝗵 𝗽𝘀𝘁𝗮𝗰𝗸, same model, same budget cap
+4. 𝗥𝗲𝗮𝗱 𝘁𝗵𝗲 𝘁𝗿𝗮𝗰𝗲𝘀, not only the diffs. Where did it catch something? Where did it burn tokens?
+5. 𝗖𝗼𝘂𝗻𝘁 𝗯𝘂𝗴𝘀 𝗳𝗼𝘂𝗻𝗱 𝗹𝗮𝘁𝗲𝗿 and cost per task, then decide
+
+𝘐𝘧 𝘪𝘵 𝘸𝘪𝘯𝘴 𝘰𝘯 𝘺𝘰𝘶𝘳 𝘵𝘢𝘴𝘬𝘴, 𝘨𝘳𝘦𝘢𝘵. 𝘐𝘧 𝘪𝘵 𝘥𝘰𝘦𝘴𝘯'𝘵, 𝘺𝘰𝘶 𝘴𝘢𝘷𝘦𝘥 𝘺𝘰𝘶𝘳𝘴𝘦𝘭𝘧 𝘢 𝘮𝘪𝘨𝘳𝘢𝘵𝘪𝘰𝘯.
+
+Links in reply 👇
+
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+𝗖𝗮𝗻 𝗬𝗼𝘂 𝗛𝗮𝗻𝗱 𝗦𝗼𝗺𝗲𝗼𝗻𝗲 𝗬𝗼𝘂𝗿 𝗝𝘂𝗱𝗴𝗺𝗲𝗻𝘁?
+
+The best engineers aren't fast because they type fast. They're fast because they know what to check. Can that be written down and given to an AI?
+
+Cursor is betting on yes. It ships pstack, a set of instructions written by one of its engineers, Lauren Tan (online as poteto), who also works on React. Anyone using Cursor can install it with one command.
+
+Think of it as a very detailed kitchen manual. Not recipes, but habits: taste before you serve, keep the station clean, don't plate what you haven't checked.
+
+In practice that means the AI picks one of 𝟮𝟮 "𝗽𝗹𝗮𝘆𝗯𝗼𝗼𝗸𝘀" for the job, follows the steps, and has to show proof before it says it's done. For code review, it can ask AI models from three different companies to try to break the work. Only problems they can actually demonstrate get reported.
+
+The case for it: AI that checks its own work against reality is more trustworthy than AI that just says "looks good". And Cursor's page says these skills sit behind "10,000 𝘢𝘨𝘦𝘯𝘵 𝘳𝘶𝘯𝘴".
+
+The case for caution: that number counts usage, not results. No published comparison shows the work came out better. Running several top models costs more. And it reflects one person's taste, down to "𝘪 𝘥𝘰𝘯'𝘵 𝘣𝘦𝘭𝘪𝘦𝘷𝘦 𝘪𝘯 𝘱𝘭𝘢𝘯𝘯𝘪𝘯𝘨."
+
+What we actually know: 𝗖𝘂𝗿𝘀𝗼𝗿 𝗯𝗮𝗰𝗸𝘀 𝗶𝘁, 𝗶𝘁'𝘀 𝗼𝗽𝗲𝗻 𝗮𝗻𝗱 𝗳𝗿𝗲𝗲 (𝗠𝗜𝗧), 𝗮𝗻𝗱 𝗶𝘁'𝘀 𝗯𝘂𝗶𝗹𝘁 𝗮𝗿𝗼𝘂𝗻𝗱 𝗽𝗿𝗼𝗼𝗳. Whether it makes software better is still untested in public.
+
+𝘐𝘧 𝘦𝘹𝘱𝘦𝘳𝘵 𝘫𝘶𝘥𝘨𝘮𝘦𝘯𝘵 𝘤𝘢𝘯 𝘣𝘦 𝘱𝘢𝘤𝘬𝘢𝘨𝘦𝘥 𝘢𝘯𝘥 𝘪𝘯𝘴𝘵𝘢𝘭𝘭𝘦𝘥, 𝘸𝘩𝘢𝘵 𝘩𝘢𝘱𝘱𝘦𝘯𝘴 𝘵𝘰 𝘩𝘰𝘸 𝘫𝘶𝘯𝘪𝘰𝘳 𝘦𝘯𝘨𝘪𝘯𝘦𝘦𝘳𝘴 𝘭𝘦𝘢𝘳𝘯 𝘪𝘵?
+
+Links in reply 👇
+
+
