@@ -4,7 +4,7 @@ Most of us on Windows know Snipping Tool. We use it almost every day to grab a s
 
 ShareX does the same job, and then 𝗶𝘁 𝗸𝗲𝗲𝗽𝘀 𝗴𝗼𝗶𝗻𝗴.
 
-With Snipping Tool, the capture is the end. You still open the image, draw the arrow, hide the email address, save it, and send it somewhere.
+With Snipping Tool, the capture is the end. You still open the image, draw the arrow, hide the email address, and send it somewhere.
 
 ShareX lets you set those steps once and run them from one hotkey. It calls them 𝘢𝘧𝘵𝘦𝘳-𝘤𝘢𝘱𝘵𝘶𝘳𝘦 𝘵𝘢𝘴𝘬𝘴, and you can chain them:
 
@@ -13,7 +13,7 @@ ShareX lets you set those steps once and run them from one hotkey. It calls them
 • 𝗦𝗮𝘃𝗲: to the folder you chose
 • 𝗦𝗵𝗮𝗿𝗲: upload it and get the link in your clipboard
 
-One key, and the chain runs in the order you set.
+One key, and the whole chain runs.
 
 It's free and open source (GPL-3.0), and it has been around for 19 years. The README says no ads and no account needed.
 
