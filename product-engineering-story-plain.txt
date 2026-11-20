@@ -1,0 +1,44 @@
+Most Agent Skill Packs Stop At The Pull Request. This One Doesn't.
+
+AI coding agents can now write a working feature in an afternoon. That changes the question for anyone building alone. If the code isn't the hard part, what is?
+
+Picture it. You're a solo developer. Claude Code or Codex writes the feature, the tests pass and the PR is merged.
+
+Then come the harder questions. Who is this for? What do they use today instead? Does the payment actually work in production? Do you have a privacy policy?
+
+Coding is now the fast part. Everything around it is still on you.
+
+Paweł Huryn's new open-source repo, product-engineering, packs that whole path into 45 agent skills. It's MIT-licensed and at 673 stars.
+
+The interesting part isn't any single skill. It's where the collection puts its boundaries.
+
+Most coding-agent setups are drawn around the code. Start from a prompt, end at a merged PR. That made sense when writing code was the slow, expensive step.
+
+When an agent writes a feature that fast, the bottleneck moves. It sits at the two ends: deciding what to build, and getting it to someone who pays. A bit like a factory that suddenly gets a very fast machine in the middle. The line doesn't speed up until you fix the steps before and after.
+
+This repo is drawn around those ends. The README lays the work out in eight steps: start, proposal, plan, build, click-through, release review, release, real users. Then you go round again. Building is one of the eight.
+
+Before the code, the product pack researches the alternatives people use, sizes market segments and picks a beachhead. You get one proposal with a source for every claim, a high-fidelity screen for each key job on sample data, and the open decisions, each with a recommendation. You decide. The build reads what you accepted.
+
+After the code, the app-stack pack covers sign-in, authorization, billing, transactional email, legal pages, product analytics and uptime monitoring. Legal pages are drafted from the code for you to approve before the first stranger is asked for anything.
+
+The README's line for it: "Nobody pays until payment works in production."
+
+To see why that's different, here's a rough map of the big skill collections, stars as of today:
+
+• Superpowers (~323k): idea to merged branch. Brainstorm, plan, TDD, review
+• gstack (~142k): plan reviews by role, then ship, deploy and a canary check
+• pm-skills (~28k): discovery, strategy and go-to-market, no build
+• anthropics/skills: single capabilities, the reference set
+
+product-engineering, also by Huryn (he wrote pm-skills too), joins the two halves. It starts where pm-skills is strongest: competitor research, segments, a beachhead, a sourced proposal with screens. It ends further out than gstack: billing, auth, transactional email, legal pages, analytics, uptime monitoring.
+
+It does have code review (a fresh agent checks every push that deploys), but that part isn't new. gstack and Superpowers both review code too.
+
+The rules come with receipts, about 700 of them, each dated, from three of his live products. One example from AskOne: the plans were set up by hand in a billing dashboard, a feature key didn't match the code, and every paying account silently fell back to Free. That's now a rule.
+
+Some caveats. The app-stack assumes Next.js, Supabase, Clerk and Netlify. By the README's own count, 28 skills come from real products, 14 from established methods, and a few rest on thinner evidence. The 41 auto-loading skills also cost about 2,700 tokens a turn in Claude Code.
+
+For a solo developer, the job is turning into product engineering. Writing the code is one step of eight.
+
+Links in reply 👇
