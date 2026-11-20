@@ -1,203 +1,219 @@
 ===== Story =====
 
-𝗩𝗲𝗿𝗰𝗲𝗹 𝗕𝗼𝗮𝗿𝗱: 𝗔 𝗠𝗲𝘀𝘀𝗮𝗴𝗲 𝗕𝗼𝗮𝗿𝗱 𝗪𝗵𝗲𝗿𝗲 𝗔𝗜 𝗔𝗴𝗲𝗻𝘁𝘀 𝗔𝗿𝗲 𝗧𝗲𝗮𝗺𝗺𝗮𝘁𝗲𝘀, 𝗡𝗼𝘁 𝗚𝘂𝗲𝘀𝘁𝘀
+𝗬𝗼𝘂𝗿 𝗔𝗜 𝗔𝗴𝗲𝗻𝘁𝘀 𝗔𝗿𝗲 𝗪𝗼𝗿𝗸𝗶𝗻𝗴. 𝗡𝗼𝗯𝗼𝗱𝘆 𝗞𝗻𝗼𝘄𝘀 𝗪𝗵𝗼'𝘀 𝗗𝗼𝗶𝗻𝗴 𝗪𝗵𝗮𝘁.
 
-Picture three coding agents on one repo. Two of them pick up the same bug. The third finishes its fix, needs a person to approve it, and has no clean way to ask and then wait.
+Two agents grab the same bug.
+A third needs your sign-off, can't ask, and guesses.
+The update in Slack is signed by a bot, not by the agent or the person who started it.
 
-Its update lands in Slack under a generic app name, so nobody can tell which agent wrote it or whose access it used.
+That's what a team of agents looks like right now. Vercel's answer, shipped this week, is a message board. 𝗦𝗲𝗿𝗶𝗼𝘂𝘀𝗹𝘆, 𝗮 𝗺𝗲𝘀𝘀𝗮𝗴𝗲 𝗯𝗼𝗮𝗿𝗱.
 
-Vercel shipped something aimed at exactly that on Nov 19: 𝗩𝗲𝗿𝗰𝗲𝗹 𝗕𝗼𝗮𝗿𝗱, a message board for people and agents. It's labelled experimental.
+Everyone else put agents into chat this year:
 
-Yes, agents already live in chat apps. Plenty of them.
+• 𝗦𝗹𝗮𝗰𝗸 𝗖𝗼𝗱𝗲: tag Claude, Devin, Copilot or Vercel and the agent opens a code channel for the task, archived when it's done.
+• 𝗖𝗹𝗮𝘂𝗱𝗲 𝗧𝗮𝗴: @Claude in Slack works under its own identity, with access an admin sets per channel.
+• 𝗢𝗽𝗲𝗻𝗔𝗜: workspace agents run on Codex in the cloud, inside ChatGPT and Slack.
+• 𝗠𝗶𝗰𝗿𝗼𝘀𝗼𝗳𝘁 𝗧𝗲𝗮𝗺𝘀: a Channel Agent with channel memory. Still in preview, Copilot licence needed.
 
-• 𝗦𝗹𝗮𝗰𝗸: Slackbot talks to third-party agents, and Slack Code (Aug 2026) opens a channel when you tag Claude, Devin, Copilot or Vercel.
-• 𝗠𝗶𝗰𝗿𝗼𝘀𝗼𝗳𝘁 𝗧𝗲𝗮𝗺𝘀: Copilot agents sit in channels and meetings, and Copilot Studio can hand work between agents.
-• 𝗔𝗻𝘁𝗵𝗿𝗼𝗽𝗶𝗰: Claude Tag lets anyone in a Slack channel tag @Claude with a task.
-• 𝗢𝗽𝗲𝗻𝗔𝗜: @ChatGPT in Slack hands repo work to Codex, and teams can share workspace agents.
-• 𝗢𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲: MCP Agent Mail gives local coding agents inboxes, threads and advisory file leases.
+All of them answer one question: 𝗵𝗼𝘄 𝗱𝗼𝗲𝘀 𝗮 𝗽𝗲𝗿𝘀𝗼𝗻 𝗵𝗮𝗻𝗱 𝘄𝗼𝗿𝗸 𝘁𝗼 𝗮𝗻 𝗮𝗴𝗲𝗻𝘁?
 
-Most of those are about a person handing a job to an agent inside a chat app. 𝗕𝗼𝗮𝗿𝗱 𝗶𝘀 𝗮𝗯𝗼𝘂𝘁 𝘄𝗵𝗮𝘁 𝗮𝗴𝗲𝗻𝘁𝘀 𝗻𝗲𝗲𝗱 𝘁𝗼 𝗰𝗼𝗼𝗿𝗱𝗶𝗻𝗮𝘁𝗲 𝘄𝗶𝘁𝗵 𝗲𝗮𝗰𝗵 𝗼𝘁𝗵𝗲𝗿, 𝗮𝗻𝗱 𝘄𝗶𝘁𝗵 𝘆𝗼𝘂.
+Vercel Board answers a different one: 𝗵𝗼𝘄 𝗱𝗼 𝟭𝟬 𝗮𝗴𝗲𝗻𝘁𝘀 𝗮𝗻𝗱 𝟱 𝗽𝗲𝗼𝗽𝗹𝗲 𝘀𝗵𝗮𝗿𝗲 𝘄𝗼𝗿𝗸 𝘄𝗶𝘁𝗵𝗼𝘂𝘁 𝘁𝗿𝗶𝗽𝗽𝗶𝗻𝗴 𝗼𝘃𝗲𝗿 𝗲𝗮𝗰𝗵 𝗼𝘁𝗵𝗲𝗿?
 
-𝗩𝗲𝗿𝗶𝗳𝗶𝗲𝗱 𝗮𝘂𝘁𝗵𝗼𝗿𝘀. People are who their Vercel login says. Deployments and CI runs are who their OIDC token says. An agent posts as "claude via julian", its own name plus whose credentials it holds.
+"𝗰𝗹𝗮𝘂𝗱𝗲 𝘃𝗶𝗮 𝗷𝘂𝗹𝗶𝗮𝗻." Every message shows the agent and whose login it's running on. Deployments and CI runs post as themselves too, checked by their tokens.
 
-𝗪𝗮𝗶𝘁𝗶𝗻𝗴 𝗳𝗼𝗿 𝗮𝗻 𝗮𝗻𝘀𝘄𝗲𝗿. 𝚟𝚋 𝚠𝚊𝚒𝚝 <𝚒𝚍> --𝚝𝚒𝚖𝚎𝚘𝚞𝚝 𝟹𝟶𝚖 blocks until someone replies in the thread. No polling loop.
+𝗢𝗻𝗲 𝗷𝗼𝗯, 𝗼𝗻𝗲 𝗼𝘄𝗻𝗲𝗿. An agent claims a task on a timed lease, 𝟭𝟱 𝗺𝗶𝗻𝘂𝘁𝗲𝘀 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁. Go quiet and you lose it. Tasks can wait on other tasks, or sit "blocked" until a person answers.
 
-𝗧𝗮𝘀𝗸𝘀 𝗮𝘀 𝗹𝗲𝗮𝘀𝗲𝘀. An agent claims a task for 30 seconds to an hour (𝟭𝟱 𝗺𝗶𝗻𝘂𝘁𝗲𝘀 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁) and renews while it works. If it stalls, its late writes fail with 𝚌𝚕𝚊𝚒𝚖_𝚕𝚘𝚜𝚝, so two agents never hold one task.
+𝗔𝗴𝗲𝗻𝘁𝘀 𝗰𝗮𝗻 𝘄𝗮𝗶𝘁 𝗳𝗼𝗿 𝘆𝗼𝘂. 𝚟𝚋 𝚠𝚊𝚒𝚝 pauses an agent until someone replies, on the board, in Slack or on GitHub, because the threads sync both ways.
 
-𝗖𝗼𝗱𝗲 𝘁𝗵𝗮𝘁 𝗿𝘂𝗻𝘀 𝘄𝗵𝗲𝗻 𝗮 𝗺𝗲𝘀𝘀𝗮𝗴𝗲 𝗹𝗮𝗻𝗱𝘀. A watcher wakes your serverless route when a matching event arrives, with nothing kept running.
+Vercel says it built Board first for its own swarm of security agents, then rebuilt v0's software factory on it.
 
-𝗢𝗻𝗲 𝘁𝗵𝗿𝗲𝗮𝗱 𝗮𝗰𝗿𝗼𝘀𝘀 𝗦𝗹𝗮𝗰𝗸, 𝗚𝗶𝘁𝗛𝘂𝗯 𝗮𝗻𝗱 𝗟𝗶𝗻𝗲𝗮𝗿. A Slack reply and a CLI reply end up in the same thread. A PR's state shows as labels like 𝚛𝚎𝚟𝚒𝚎𝚠=𝚊𝚙𝚙𝚛𝚘𝚟𝚎𝚍, so an agent can wait on GitHub without polling it.
+Now the part people will argue about. 𝗜𝘀 𝗶𝘁 𝗼𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲?
 
-It works with any agent that can run a shell command, Claude Code, Codex and OpenCode included.
+• 𝗬𝗲𝘀, 𝗔𝗽𝗮𝗰𝗵𝗲-𝟮.𝟬: the SDK, the CLI, a local SQLite board, the inspector, the Slack/GitHub/Linear sync code and the templates.
+• 𝗡𝗼: the hosted board. It lives in Vercel's API, and the "nothing to deploy" magic assumes your team is on Vercel.
+• 𝗢𝗳𝗳 𝗩𝗲𝗿𝗰𝗲𝗹: run 𝚟𝚋 𝚜𝚎𝚛𝚟𝚎 on your machine or your tailnet, or write your own backend. You lose the serverless wake-ups.
 
-So is it open source? Partly, and the split matters.
+To be fair, leasing tasks to agents isn't a new idea. Open-source tools like MCP Agent Mail already give agents inboxes and file leases. What's new is a platform shipping identity, leases, waits and chat sync as one piece.
 
-𝗢𝗽𝗲𝗻, 𝗔𝗽𝗮𝗰𝗵𝗲-𝟮.𝟬: the @vercel/board SDK, the 𝚟𝚋 CLI, a local SQLite board (𝚟𝚋 𝚜𝚎𝚛𝚟𝚎), the browser inspector, the Slack/GitHub/Linear sync code, the templates and the agent skill.
+It's experimental, and it's v0.53.
 
-𝗩𝗲𝗿𝗰𝗲𝗹'𝘀: the hosted board itself. The "no database, nothing to deploy" pitch holds only if your team is on Vercel. Your Vercel login is your identity, watchers wake routes deployed there, and Slack/GitHub credentials default to Vercel Connect.
-
-𝗡𝗼𝘁 𝗼𝗻 𝗩𝗲𝗿𝗰𝗲𝗹? Run 𝚟𝚋 𝚜𝚎𝚛𝚟𝚎 on your machine, share it over Tailscale, or write your own backend against its protocol. The local board keeps timers in the process, so a restart drops pending scheduled messages, and it isn't meant for serverless.
-
-One caveat on maturity: it's 𝘃𝟬.𝟱𝟯 on npm, needs Node 22.18+, and launch coverage says it's 𝗳𝗿𝗲𝗲 𝘄𝗵𝗶𝗹𝗲 𝗲𝘅𝗽𝗲𝗿𝗶𝗺𝗲𝗻𝘁𝗮𝗹 with pricing possible later. The design spec also says sync doesn't run on Vercel's hosted board yet, though the docs describe it there, so check before planning around it.
-
-𝘊𝘩𝘢𝘵 𝘢𝘱𝘱𝘴 𝘢𝘳𝘦 𝘭𝘦𝘢𝘳𝘯𝘪𝘯𝘨 𝘵𝘰 𝘩𝘰𝘴𝘵 𝘢𝘨𝘦𝘯𝘵𝘴. 𝘉𝘰𝘢𝘳𝘥 𝘣𝘦𝘵𝘴 𝘵𝘩𝘢𝘵 𝘢𝘨𝘦𝘯𝘵𝘴 𝘯𝘦𝘦𝘥 𝘵𝘩𝘦𝘪𝘳 𝘰𝘸𝘯 𝘤𝘰𝘰𝘳𝘥𝘪𝘯𝘢𝘵𝘪𝘰𝘯 𝘭𝘢𝘺𝘦𝘳 𝘶𝘯𝘥𝘦𝘳𝘯𝘦𝘢𝘵𝘩, 𝘸𝘪𝘵𝘩 𝘱𝘦𝘰𝘱𝘭𝘦 𝘪𝘯𝘷𝘪𝘵𝘦𝘥 𝘪𝘯.
+𝘊𝘩𝘢𝘵 𝘢𝘱𝘱𝘴 𝘭𝘦𝘵 𝘢𝘨𝘦𝘯𝘵𝘴 𝘪𝘯𝘵𝘰 𝘵𝘩𝘦 𝘳𝘰𝘰𝘮. 𝘝𝘦𝘳𝘤𝘦𝘭 𝘪𝘴 𝘣𝘦𝘵𝘵𝘪𝘯𝘨 𝘢𝘨𝘦𝘯𝘵𝘴 𝘯𝘦𝘦𝘥 𝘢 𝘳𝘰𝘰𝘮 𝘰𝘧 𝘵𝘩𝘦𝘪𝘳 𝘰𝘸𝘯.
 
 Links in reply 👇
 
 
 ===== Karpathy style =====
 
-𝗔𝗴𝗲𝗻𝘁𝘀 𝗡𝗲𝗲𝗱 𝗮 𝗟𝗼𝗰𝗸 𝗮𝗻𝗱 𝗮 𝗪𝗮𝗶𝘁, 𝗡𝗼𝘁 𝗔𝗻𝗼𝘁𝗵𝗲𝗿 𝗖𝗵𝗮𝘁 𝗔𝗽𝗽
+𝗧𝗵𝗲 𝗠𝗼𝘀𝘁 𝗜𝗺𝗽𝗼𝗿𝘁𝗮𝗻𝘁 𝗪𝗼𝗿𝗱 𝗶𝗻 𝗩𝗲𝗿𝗰𝗲𝗹 𝗕𝗼𝗮𝗿𝗱 𝗜𝘀 "𝗩𝗶𝗮"
 
-Vercel put out Board on Nov 19, an experimental "message board for people and agents". Worth thinking through what it actually is.
+Claude Tag posts as Claude.
+Vercel Board posts as 𝘤𝘭𝘢𝘶𝘥𝘦 𝘷𝘪𝘢 𝘫𝘶𝘭𝘪𝘢𝘯.
 
-On the surface it's channels, threads and replies. We have plenty of those. And every chat app now hosts agents: Claude Tag in Slack, @ChatGPT handing repo work to Codex, Copilot agents in Teams channels, Slack Code opening a channel per coding task.
+𝗧𝗵𝗮𝘁 𝗼𝗻𝗲 𝘄𝗼𝗿𝗱 𝗶𝘀 𝗺𝗼𝘀𝘁 𝗼𝗳 𝘄𝗵𝗮𝘁'𝘀 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗵𝗲𝗿𝗲, 𝗶𝗺𝗼.
 
-𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝘁𝗵𝗲 𝗯𝗼𝗮𝗿𝗱, 𝗶𝘁'𝘀 𝘁𝗵𝗲 𝗽𝗿𝗶𝗺𝗶𝘁𝗶𝘃𝗲𝘀 𝘂𝗻𝗱𝗲𝗿 𝗶𝘁.
+An agent acting in the world has two identities. What it is, and whose authority it's borrowing. Most agent-in-chat setups collapse them. Claude Tag, for example, runs as its own identity on credentials an admin sets for the channel, and keeps a log of who asked for what. That's a sensible design for a shared team bot.
 
-Think of a team of agents as processes. A chat app gives them something like stdout: they can print, and a human reads it. What processes actually need is closer to what an operating system gives them.
+Board keeps both on every message. The person (or deployment, or CI run) is verified by an OIDC token. The agent is a named profile on top. It's like git separating author from committer, except the board checks it.
 
-• 𝗜𝗱𝗲𝗻𝘁𝗶𝘁𝘆: who wrote this, with whose permission. Board checks it with OIDC tokens, and an agent shows up as "claude via julian".
-• 𝗔 𝗯𝗹𝗼𝗰𝗸𝗶𝗻𝗴 𝘄𝗮𝗶𝘁: 𝚟𝚋 𝚠𝚊𝚒𝚝 sleeps until a reply lands in the thread. An agent can ask a person and simply pause.
-• 𝗔 𝗹𝗼𝗰𝗸 𝘄𝗶𝘁𝗵 𝗮 𝘁𝗶𝗺𝗲𝗼𝘂𝘁: claiming a task is a lease, 𝟭𝟱 𝗺𝗶𝗻𝘂𝘁𝗲𝘀 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁. Renew it or lose it. A stalled agent's late writes fail with 𝚌𝚕𝚊𝚒𝚖_𝚕𝚘𝚜𝚝.
-• 𝗜𝗻𝘁𝗲𝗿𝗿𝘂𝗽𝘁𝘀: watchers wake a function when a matching event arrives, so nobody polls.
+Once you see agents that way, the rest of Board reads like an operating system for them:
 
-Slack and Teams started with people and are adding agents. Board starts from the agent side and syncs Slack, GitHub and Linear into the same threads so people can join from where they already work.
+• 𝗔 𝗹𝗼𝗰𝗸 𝘄𝗶𝘁𝗵 𝗮 𝘁𝗶𝗺𝗲𝗼𝘂𝘁. A task claim is a lease, 𝟭𝟱 𝗺𝗶𝗻𝘂𝘁𝗲𝘀 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁. Stall and your late writes fail with 𝚌𝚕𝚊𝚒𝚖_𝚕𝚘𝚜𝚝.
+• 𝗔 𝗯𝗹𝗼𝗰𝗸𝗶𝗻𝗴 𝗰𝗮𝗹𝗹. 𝚟𝚋 𝚠𝚊𝚒𝚝 sleeps until a reply lands. An agent can ask a person and simply pause.
+• 𝗜𝗻𝘁𝗲𝗿𝗿𝘂𝗽𝘁𝘀. Watchers wake a function when a matching message arrives. Nobody polls.
+• 𝗗𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝗰𝗶𝗲𝘀. A task can wait on others, or be held for a person.
 
-The closest open-source cousin is MCP Agent Mail, which gives local coding agents inboxes and advisory file leases. Board takes a similar instinct to many machines, with deploys and CI runs as authors too.
+Slack, Teams and ChatGPT started with people and added agents. Board starts from the agents and syncs Slack, GitHub and Linear in so people can join from where they already are.
 
-The licensing is split, and it's easy to miss. The SDK, CLI, local SQLite board, inspector and sync code are 𝗔𝗽𝗮𝗰𝗵𝗲-𝟮.𝟬. The zero-setup hosted board lives in Vercel's API and assumes your team is on Vercel. Off Vercel, you run 𝚟𝚋 𝚜𝚎𝚛𝚟𝚎 yourself, share it over Tailscale, or implement the protocol.
+The licensing is a split worth knowing. SDK, CLI, local board and sync code are 𝗔𝗽𝗮𝗰𝗵𝗲-𝟮.𝟬. The zero-setup hosted board is Vercel's API. Off Vercel you run 𝚟𝚋 𝚜𝚎𝚛𝚟𝚎 yourself.
 
-It's v0.53 and experimental, with no outcome numbers published yet.
+It's experimental, and nobody has published outcome numbers yet.
 
-𝘞𝘩𝘢𝘵 𝘸𝘰𝘶𝘭𝘥 𝘴𝘦𝘵𝘵𝘭𝘦 𝘪𝘵: 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘣𝘢𝘤𝘬𝘭𝘰𝘨 𝘳𝘶𝘯 𝘣𝘺 𝘴𝘦𝘷𝘦𝘳𝘢𝘭 𝘢𝘨𝘦𝘯𝘵𝘴 𝘪𝘯 𝘢 𝘤𝘩𝘢𝘵 𝘢𝘱𝘱 𝘢𝘯𝘥 𝘰𝘯 𝘉𝘰𝘢𝘳𝘥, 𝘤𝘰𝘶𝘯𝘵𝘪𝘯𝘨 𝘥𝘶𝘱𝘭𝘪𝘤𝘢𝘵𝘦𝘥 𝘸𝘰𝘳𝘬 𝘢𝘯𝘥 𝘵𝘢𝘴𝘬𝘴 𝘴𝘵𝘶𝘤𝘬 𝘸𝘢𝘪𝘵𝘪𝘯𝘨 𝘧𝘰𝘳 𝘢 𝘩𝘶𝘮𝘢𝘯.
+𝘛𝘩𝘦 𝘵𝘦𝘴𝘵 𝘵𝘩𝘢𝘵 𝘸𝘰𝘶𝘭𝘥 𝘴𝘦𝘵𝘵𝘭𝘦 𝘪𝘵: 𝘰𝘯𝘦 𝘣𝘢𝘤𝘬𝘭𝘰𝘨, 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘢𝘨𝘦𝘯𝘵𝘴, 𝘳𝘶𝘯 𝘪𝘯 𝘢 𝘤𝘩𝘢𝘵 𝘢𝘱𝘱 𝘢𝘯𝘥 𝘰𝘯 𝘉𝘰𝘢𝘳𝘥. 𝘊𝘰𝘶𝘯𝘵 𝘵𝘩𝘦 𝘥𝘶𝘱𝘭𝘪𝘤𝘢𝘵𝘦𝘥 𝘸𝘰𝘳𝘬.
 
 Links in reply 👇
 
 
 ===== Simon Willison style =====
 
-𝗩𝗲𝗿𝗰𝗲𝗹 𝗕𝗼𝗮𝗿𝗱: 𝗡𝗼𝘁𝗲𝘀
+𝗩𝗲𝗿𝗰𝗲𝗹 𝗕𝗼𝗮𝗿𝗱 𝗟𝗼𝗼𝗸𝘀 𝗟𝗶𝗸𝗲 𝗮 𝗠𝗲𝘀𝘀𝗮𝗴𝗲 𝗕𝗼𝗮𝗿𝗱. 𝗥𝗲𝗮𝗱 𝘁𝗵𝗲 𝗧𝗮𝘀𝗸 𝗗𝗼𝗰𝘀.
 
-Vercel released Board on Nov 19, 2026, marked experimental. The README sums it up as "𝘠𝘰𝘶𝘳 𝘝𝘦𝘳𝘤𝘦𝘭 𝘵𝘦𝘢𝘮'𝘴 𝘮𝘦𝘴𝘴𝘢𝘨𝘦 𝘣𝘰𝘢𝘳𝘥, 𝘧𝘰𝘳 𝘱𝘦𝘰𝘱𝘭𝘦 𝘢𝘯𝘥 𝘢𝘨𝘦𝘯𝘵𝘴."
+Vercel's new Board (experimental, v0.53, Apache-2.0) presents itself as "𝘠𝘰𝘶𝘳 𝘝𝘦𝘳𝘤𝘦𝘭 𝘵𝘦𝘢𝘮'𝘴 𝘮𝘦𝘴𝘴𝘢𝘨𝘦 𝘣𝘰𝘢𝘳𝘥, 𝘧𝘰𝘳 𝘱𝘦𝘰𝘱𝘭𝘦 𝘢𝘯𝘥 𝘢𝘨𝘦𝘯𝘵𝘴."
 
-The package is @vercel/board (𝘃𝟬.𝟱𝟯.𝟬, 𝗔𝗽𝗮𝗰𝗵𝗲-𝟮.𝟬). It ships an SDK, a CLI called 𝚟𝚋, and its docs as markdown inside the package, so agents can read them from node_modules.
+𝗧𝗵𝗲 𝗺𝗼𝗿𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝘁𝗵𝗶𝗻𝗴 𝗶𝘀 𝗵𝗶𝗱𝗶𝗻𝗴 𝗶𝗻 𝘁𝗵𝗲 𝘁𝗮𝘀𝗸𝘀 𝗽𝗮𝗴𝗲. A task is a thread whose state the board keeps: ready, claimed, blocked (held for a person), completed or failed.
 
-The whole quickstart is roughly four commands:
+From the README: "𝘈 𝘤𝘭𝘢𝘪𝘮 𝘪𝘴 𝘢 𝘭𝘦𝘢𝘴𝘦 𝘵𝘩𝘦 𝘣𝘰𝘢𝘳𝘥 𝘨𝘪𝘷𝘦𝘴 𝘵𝘰 𝘰𝘯𝘦 𝘢𝘨𝘦𝘯𝘵, 𝘴𝘰 𝘵𝘸𝘰 𝘢𝘨𝘦𝘯𝘵𝘴 𝘯𝘦𝘷𝘦𝘳 𝘩𝘰𝘭𝘥 𝘰𝘯𝘦 𝘵𝘢𝘴𝘬." Leases run 30 seconds to an hour, 15 minutes by default. A write from an expired claim fails with 𝚌𝚕𝚊𝚒𝚖_𝚕𝚘𝚜𝚝. Tasks can depend on other tasks.
 
-𝚗𝚙𝚡 𝚟𝚋 𝚙𝚘𝚜𝚝 𝚎𝚛𝚛𝚘𝚛𝚜-𝚠𝚠𝚠 "𝚍𝚎𝚙𝚕𝚘𝚢 𝚏𝚊𝚒𝚕𝚎𝚍 𝚘𝚗 𝚊𝟷𝚋𝟸𝚌𝟹"
-𝚗𝚙𝚡 𝚟𝚋 𝚛𝚎𝚙𝚕𝚢 "$𝚒𝚍" "𝚛𝚘𝚕𝚕𝚎𝚍 𝚋𝚊𝚌𝚔 𝚝𝚘 𝚍𝟺𝚎𝟻𝚏𝟼"
-𝚗𝚙𝚡 𝚟𝚋 𝚛𝚎𝚊𝚍 𝚎𝚛𝚛𝚘𝚛𝚜-𝚠𝚠𝚠
-𝚗𝚙𝚡 𝚟𝚋 𝚠𝚊𝚒𝚝 "$𝚕𝚊𝚜𝚝" --𝚝𝚒𝚖𝚎𝚘𝚞𝚝 𝟹𝟶𝚖
+The whole loop is a handful of commands:
 
-Compared with the agents-in-chat products (Claude Tag, @ChatGPT with Codex, Copilot agents in Teams, Slack Code), two features stand out.
+𝚟𝚋 𝚝𝚊𝚜𝚔𝚜 𝚌𝚛𝚎𝚊𝚝𝚎 𝚠𝚘𝚛𝚔 "𝚏𝚒𝚡 𝙲𝚅𝙴-𝟷𝟸𝟹" --𝚕𝚊𝚋𝚎𝚕 𝚜𝚝𝚎𝚙=𝚏𝚒𝚡
+𝚟𝚋 𝚝𝚊𝚜𝚔𝚜 𝚌𝚕𝚊𝚒𝚖 --𝚛𝚎𝚊𝚍𝚢 𝚠𝚘𝚛𝚔/ --𝚕𝚊𝚋𝚎𝚕 𝚜𝚝𝚎𝚙=𝚏𝚒𝚡 --𝚠𝚊𝚒𝚝 𝟷𝟶𝚖
+𝚟𝚋 𝚝𝚊𝚜𝚔𝚜 𝚌𝚘𝚖𝚙𝚕𝚎𝚝𝚎 𝟾𝟷𝟸 "𝚏𝚒𝚡𝚎𝚍 𝚒𝚗 𝚊𝟷𝚋𝟸𝚌𝟹, 𝚝𝚎𝚜𝚝𝚜 𝚙𝚊𝚜𝚜"
 
-𝗔𝘂𝘁𝗵𝗼𝗿𝘀𝗵𝗶𝗽 𝘆𝗼𝘂 𝗰𝗮𝗻 𝗰𝗵𝗲𝗰𝗸. From the README: "𝘈 𝘤𝘰𝘥𝘪𝘯𝘨 𝘢𝘨𝘦𝘯𝘵 𝘱𝘰𝘴𝘵𝘴 𝘢𝘴 𝘤𝘭𝘢𝘶𝘥𝘦 𝘷𝘪𝘢 𝘫𝘶𝘭𝘪𝘢𝘯: 𝘪𝘵𝘴 𝘰𝘸𝘯 𝘯𝘢𝘮𝘦, 𝘸𝘪𝘵𝘩 𝘵𝘩𝘦 𝘱𝘦𝘳𝘴𝘰𝘯 𝘸𝘩𝘰𝘴𝘦 𝘤𝘳𝘦𝘥𝘦𝘯𝘵𝘪𝘢𝘭𝘴 𝘪𝘵 𝘩𝘰𝘭𝘥𝘴." Identity comes from OIDC tokens: your vercel login, or a deployment's or CI run's token.
+The second thing worth noting is identity. An agent picks a name with --𝚊𝚜, and the board shows it through the person whose login it holds: "𝘤𝘭𝘢𝘶𝘥𝘦 𝘷𝘪𝘢 𝘫𝘶𝘭𝘪𝘢𝘯." Deployments and CI runs authenticate with OIDC tokens.
 
-𝗧𝗮𝘀𝗸𝘀 𝘄𝗶𝘁𝗵 𝗹𝗲𝗮𝘀𝗲𝘀. "𝘈 𝘤𝘭𝘢𝘪𝘮 𝘪𝘴 𝘢 𝘭𝘦𝘢𝘴𝘦 𝘵𝘩𝘦 𝘣𝘰𝘢𝘳𝘥 𝘨𝘪𝘷𝘦𝘴 𝘵𝘰 𝘰𝘯𝘦 𝘢𝘨𝘦𝘯𝘵, 𝘴𝘰 𝘵𝘸𝘰 𝘢𝘨𝘦𝘯𝘵𝘴 𝘯𝘦𝘷𝘦𝘳 𝘩𝘰𝘭𝘥 𝘰𝘯𝘦 𝘵𝘢𝘴𝘬." The default lease is 15 minutes and renewable. A write after it ends fails with 𝚌𝚕𝚊𝚒𝚖_𝚕𝚘𝚜𝚝.
+How that differs from the chat-app options:
 
-Also in the box: watchers that wake a serverless route on matching events, two-way thread sync with Slack, GitHub and Linear, and a browser inspector (𝚟𝚋 𝚒𝚗𝚜𝚙𝚎𝚌𝚝).
-
-The open-source question needs care. The repo is Apache-2.0 and includes a local backend: 𝚟𝚋 𝚜𝚎𝚛𝚟𝚎 runs a SQLite board at 127.0.0.1:4100. The default backend, though, is Vercel's API, a hosted service that isn't in the repo.
+• 𝗦𝗹𝗮𝗰𝗸 𝗖𝗼𝗱𝗲 opens a channel per task when you tag an agent. Its API creates, updates and archives those channels.
+• 𝗖𝗹𝗮𝘂𝗱𝗲 𝗧𝗮𝗴 runs as its own identity on admin-set credentials.
+• 𝗢𝗽𝗲𝗻𝗔𝗜'𝘀 𝘄𝗼𝗿𝗸𝘀𝗽𝗮𝗰𝗲 𝗮𝗴𝗲𝗻𝘁𝘀 run on Codex in the cloud, in ChatGPT and Slack.
+• 𝗧𝗲𝗮𝗺𝘀' 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 𝗔𝗴𝗲𝗻𝘁 is in preview.
 
 Things to be careful about:
 
-• 𝗘𝘅𝗽𝗲𝗿𝗶𝗺𝗲𝗻𝘁𝗮𝗹. Launch coverage says it's free while experimental, and pricing may come later.
-• 𝗧𝗵𝗲 𝘇𝗲𝗿𝗼-𝘀𝗲𝘁𝘂𝗽 𝘀𝘁𝗼𝗿𝘆 𝗻𝗲𝗲𝗱𝘀 𝗮 𝗩𝗲𝗿𝗰𝗲𝗹 𝘁𝗲𝗮𝗺. Default identity is your Vercel login, and Slack/GitHub credentials default to Vercel Connect (you can pass your own adapter instead).
-• 𝗔 𝗱𝗼𝗰 𝗺𝗶𝘀𝗺𝗮𝘁𝗰𝗵. SPEC.md says Vercel's hosted board "𝘥𝘰𝘦𝘴𝘯'𝘵 𝘳𝘶𝘯 𝘴𝘺𝘯𝘤 𝘺𝘦𝘵", while the sync docs describe it running there. Test before relying on it.
-• 𝗟𝗼𝗰𝗮𝗹 𝗹𝗶𝗺𝗶𝘁𝘀. The local board is "𝘧𝘰𝘳 𝘥𝘦𝘷𝘦𝘭𝘰𝘱𝘮𝘦𝘯𝘵, 𝘷𝘣 𝘴𝘦𝘳𝘷𝘦, 𝘵𝘦𝘴𝘵𝘴, 𝘢𝘯𝘥 𝘸𝘰𝘳𝘬𝘪𝘯𝘨 𝘰𝘧𝘧𝘭𝘪𝘯𝘦, 𝘯𝘦𝘷𝘦𝘳 𝘴𝘦𝘳𝘷𝘦𝘳𝘭𝘦𝘴𝘴 𝘧𝘶𝘯𝘤𝘵𝘪𝘰𝘯𝘴."
-• 𝗡𝗼𝗱𝗲 𝟮𝟮.𝟭𝟴 𝗼𝗿 𝗹𝗮𝘁𝗲𝗿.
-• 𝗡𝗮𝗺𝗲 𝗰𝗹𝗮𝘀𝗵. 𝚟𝚋 on npm is an unrelated package, so use 𝚗𝚙𝚡 𝚟𝚋 inside a project or 𝚗𝚙𝚡 @𝚟𝚎𝚛𝚌𝚎𝚕/𝚋𝚘𝚊𝚛𝚍 outside one.
-
-For a fully self-hosted take on agent messaging, MCP Agent Mail is the one to compare (its Python version now points to a Rust rewrite).
+• 𝗢𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲, 𝘄𝗶𝘁𝗵 𝗮 𝗰𝗮𝘁𝗰𝗵. The hosted board is Vercel's API and isn't in the repo. The local backend (𝚟𝚋 𝚜𝚎𝚛𝚟𝚎, SQLite) is in it, but it is "𝘯𝘦𝘷𝘦𝘳 𝘴𝘦𝘳𝘷𝘦𝘳𝘭𝘦𝘴𝘴 𝘧𝘶𝘯𝘤𝘵𝘪𝘰𝘯𝘴."
+• 𝗦𝘆𝗻𝗰 𝘀𝘁𝗮𝘁𝘂𝘀. SPEC.md says Vercel's hosted board "𝘥𝘰𝘦𝘴𝘯'𝘵 𝘳𝘶𝘯 𝘴𝘺𝘯𝘤 𝘺𝘦𝘵"; the sync docs describe it there. Test it.
+• 𝗣𝗿𝗶𝗰𝗶𝗻𝗴. Coverage says it's free while experimental.
+• 𝗡𝗮𝗺𝗲 𝗰𝗹𝗮𝘀𝗵. 𝚟𝚋 on npm is a different package. Use 𝚗𝚙𝚡 @𝚟𝚎𝚛𝚌𝚎𝚕/𝚋𝚘𝚊𝚛𝚍 outside a project.
 
 Links in reply 👇
 
 
 ===== swyx style =====
 
-𝗧𝗵𝗲 𝗔𝗴𝗲𝗻𝘁 𝗖𝗼𝗼𝗿𝗱𝗶𝗻𝗮𝘁𝗶𝗼𝗻 𝗟𝗮𝘆𝗲𝗿 𝗜𝘀 𝗨𝗽 𝗳𝗼𝗿 𝗚𝗿𝗮𝗯𝘀
+𝗙𝗶𝘃𝗲 𝗖𝗼𝗺𝗽𝗮𝗻𝗶𝗲𝘀 𝗕𝘂𝗶𝗹𝘁 𝗮 𝗪𝗼𝗿𝗸𝗽𝗹𝗮𝗰𝗲 𝗳𝗼𝗿 𝗔𝗜 𝗔𝗴𝗲𝗻𝘁𝘀 𝗧𝗵𝗶𝘀 𝗬𝗲𝗮𝗿. 𝗧𝗵𝗲𝘆 𝗕𝘂𝗶𝗹𝘁 𝗗𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝗧𝗵𝗶𝗻𝗴𝘀.
 
-A category is forming around one question: 𝘄𝗵𝗲𝗿𝗲 𝗱𝗼 𝗮𝗴𝗲𝗻𝘁𝘀 𝘁𝗮𝗹𝗸 𝘁𝗼 𝗲𝗮𝗰𝗵 𝗼𝘁𝗵𝗲𝗿, 𝗮𝗻𝗱 𝘁𝗼 𝘂𝘀?
+The question everyone's racing to own: 𝘄𝗵𝗲𝗿𝗲 𝗱𝗼 𝗮𝗴𝗲𝗻𝘁𝘀 𝘄𝗼𝗿𝗸 𝗮𝗹𝗼𝗻𝗴𝘀𝗶𝗱𝗲 𝗽𝗲𝗼𝗽𝗹𝗲?
 
-The map as of Nov 2026:
+The scorecard:
 
-• 𝗦𝗹𝗮𝗰𝗸: Slackbot as the front door to Agentforce and third-party agents. Slack Code gives each coding task its own channel, with the API limited to launch partners for now.
-• 𝗠𝗶𝗰𝗿𝗼𝘀𝗼𝗳𝘁 𝗧𝗲𝗮𝗺𝘀: Copilot agents in channels and meetings, multi-agent handoffs in Copilot Studio.
-• 𝗔𝗻𝘁𝗵𝗿𝗼𝗽𝗶𝗰: Claude Tag. Tag @Claude in a Slack channel and it takes the task.
-• 𝗢𝗽𝗲𝗻𝗔𝗜: @ChatGPT in Slack hands repo work to Codex, plus shared workspace agents.
-• 𝗢𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲: MCP Agent Mail, local inboxes and file leases for coding agents.
-• 𝗩𝗲𝗿𝗰𝗲𝗹: Board, shipped Nov 19. Experimental.
+• 𝗦𝗹𝗮𝗰𝗸: Slack Code. Tag an agent, it opens a code channel for the task. Claude, Devin, Copilot and Vercel at launch.
+• 𝗔𝗻𝘁𝗵𝗿𝗼𝗽𝗶𝗰: Claude Tag. One shared @Claude per Slack workspace, with admin-set access and an audit log.
+• 𝗢𝗽𝗲𝗻𝗔𝗜: workspace agents on Codex, inside ChatGPT and Slack.
+• 𝗠𝗶𝗰𝗿𝗼𝘀𝗼𝗳𝘁: Teams Channel Agent. Still in preview.
+• 𝗩𝗲𝗿𝗰𝗲𝗹: Board. A message board where agents claim work on leases, wait for people, and sign every post.
 
-Board's position is the inverse of the chat apps. 𝗡𝗼𝘁 𝗮 𝗰𝗵𝗮𝘁 𝗮𝗽𝗽 𝘄𝗶𝘁𝗵 𝗮𝗴𝗲𝗻𝘁𝘀 𝗮𝗱𝗱𝗲𝗱, 𝗯𝘂𝘁 𝗮𝗻 𝗮𝗴𝗲𝗻𝘁 𝗰𝗼𝗼𝗿𝗱𝗶𝗻𝗮𝘁𝗶𝗼𝗻 𝗹𝗮𝘆𝗲𝗿 𝘄𝗶𝘁𝗵 𝗰𝗵𝗮𝘁 𝗮𝗽𝗽𝘀 𝘀𝘆𝗻𝗰𝗲𝗱 𝗶𝗻.
+The first four put agents inside chat. 𝗕𝗼𝗮𝗿𝗱 𝗽𝘂𝘁𝘀 𝗰𝗵𝗮𝘁 𝗼𝗻 𝘁𝗼𝗽 𝗼𝗳 𝗮 𝘄𝗼𝗿𝗸 𝗾𝘂𝗲𝘂𝗲. Slack, GitHub and Linear sync into its threads, so people stay where they are and agents get primitives built for them.
 
-What it ships that the chat-side players don't bundle: verified authorship for agents, deploys and CI ("claude via julian"), a blocking 𝚟𝚋 𝚠𝚊𝚒𝚝, task claims as leases, watchers that wake serverless routes, and one thread spanning Slack, GitHub and Linear. It works with any harness that runs a shell: Claude Code, Codex, OpenCode.
+The tell: Vercel is a Slack Code launch partner 𝘢𝘯𝘥 shipped Board. It wants to be inside Slack and underneath it.
 
-The odd detail: Vercel is also a Slack Code launch partner. It wants to be inside Slack and underneath it at the same time.
+Open source is the other split. SDK, CLI, local board and sync code are 𝗔𝗽𝗮𝗰𝗵𝗲-𝟮.𝟬. The hosted, zero-setup board is Vercel's API. Leave Vercel and you self-host with 𝚟𝚋 𝚜𝚎𝚛𝚟𝚎.
 
-The licensing split decides who can use it. SDK, CLI, local SQLite board and sync code are 𝗔𝗽𝗮𝗰𝗵𝗲-𝟮.𝟬. The hosted, zero-setup board is Vercel's API. Leave Vercel and you run 𝚟𝚋 𝚜𝚎𝚛𝚟𝚎 or your own backend, without the serverless wake-ups.
-
-𝘊𝘩𝘢𝘵 𝘢𝘱𝘱𝘴 𝘰𝘸𝘯 𝘵𝘩𝘦 𝘱𝘦𝘰𝘱𝘭𝘦. 𝘞𝘩𝘰𝘦𝘷𝘦𝘳 𝘰𝘸𝘯𝘴 𝘪𝘥𝘦𝘯𝘵𝘪𝘵𝘺 𝘢𝘯𝘥 𝘵𝘩𝘦 𝘵𝘢𝘴𝘬 𝘲𝘶𝘦𝘶𝘦 𝘶𝘯𝘥𝘦𝘳 𝘵𝘩𝘦 𝘢𝘨𝘦𝘯𝘵𝘴 𝘰𝘸𝘯𝘴 𝘵𝘩𝘦 𝘸𝘰𝘳𝘬𝘧𝘭𝘰𝘸. 𝘞𝘰𝘳𝘵𝘩 𝘸𝘢𝘵𝘤𝘩𝘪𝘯𝘨 𝘸𝘩𝘦𝘵𝘩𝘦𝘳 𝘚𝘭𝘢𝘤𝘬 𝘢𝘯𝘥 𝘔𝘪𝘤𝘳𝘰𝘴𝘰𝘧𝘵 𝘴𝘩𝘪𝘱 𝘭𝘦𝘢𝘴𝘦𝘴 𝘢𝘯𝘥 𝘸𝘢𝘪𝘵𝘴 𝘯𝘦𝘹𝘵.
+𝘊𝘩𝘢𝘵 𝘢𝘱𝘱𝘴 𝘰𝘸𝘯 𝘵𝘩𝘦 𝘩𝘶𝘮𝘢𝘯𝘴. 𝘞𝘩𝘰𝘦𝘷𝘦𝘳 𝘰𝘸𝘯𝘴 𝘵𝘩𝘦 𝘵𝘢𝘴𝘬 𝘲𝘶𝘦𝘶𝘦 𝘢𝘯𝘥 𝘪𝘥𝘦𝘯𝘵𝘪𝘵𝘺 𝘶𝘯𝘥𝘦𝘳 𝘵𝘩𝘦 𝘢𝘨𝘦𝘯𝘵𝘴 𝘰𝘸𝘯𝘴 𝘵𝘩𝘦 𝘸𝘰𝘳𝘬. 𝘞𝘢𝘵𝘤𝘩 𝘸𝘩𝘦𝘵𝘩𝘦𝘳 𝘚𝘭𝘢𝘤𝘬 𝘴𝘩𝘪𝘱𝘴 𝘭𝘦𝘢𝘴𝘦𝘴 𝘯𝘦𝘹𝘵.
 
 Links in reply 👇
 
 
 ===== Hamel Husain style =====
 
-𝗪𝗵𝗮𝘁 𝗩𝗲𝗿𝗰𝗲𝗹 𝗕𝗼𝗮𝗿𝗱 𝗚𝗶𝘃𝗲𝘀 𝗬𝗼𝘂, 𝗮𝗻𝗱 𝗪𝗵𝗮𝘁 𝗜𝘁 𝗗𝗼𝗲𝘀𝗻'𝘁
+"𝗢𝘃𝗲𝗿 𝟱𝟬% 𝗼𝗳 𝗣𝗥𝘀 𝗠𝗲𝗿𝗴𝗲𝗱." 𝗢𝗸𝗮𝘆, 𝗯𝘂𝘁 𝗖𝗼𝗺𝗽𝗮𝗿𝗲𝗱 𝘁𝗼 𝗪𝗵𝗮𝘁?
 
-Vercel Board (experimental, Nov 19) is a message board for people and agents. Plenty of products already put agents in chat: Claude Tag, @ChatGPT with Codex, Copilot agents in Teams, Slack Code. Before you add another layer, be clear on what this one adds.
+Vercel says the software factory behind v0 now runs on its new Board and merges 𝗼𝘃𝗲𝗿 𝟱𝟬% 𝗼𝗳 𝗶𝘁𝘀 𝗣𝗥𝘀. No baseline, no method published.
 
-What it gives you:
+That doesn't make Board bad. It means you should test it on your own work before believing it.
 
-• 𝗩𝗲𝗿𝗶𝗳𝗶𝗲𝗱 𝗮𝘂𝘁𝗵𝗼𝗿𝘀. Every message records who wrote it and with whose credentials.
-• 𝗔 𝘄𝗮𝘆 𝘁𝗼 𝘄𝗮𝗶𝘁. 𝚟𝚋 𝚠𝚊𝚒𝚝 lets an agent block on a person's reply.
-• 𝗧𝗮𝘀𝗸 𝗹𝗲𝗮𝘀𝗲𝘀. One agent per task. A stalled agent loses the claim and its late writes fail with 𝚌𝚕𝚊𝚒𝚖_𝚕𝚘𝚜𝚝.
-• 𝗪𝗮𝘁𝗰𝗵𝗲𝗿𝘀. A matching event wakes a route, no polling.
-• 𝗦𝘆𝗻𝗰. Threads connect to Slack, GitHub and Linear.
-• 𝗢𝗻𝗲 𝗹𝗼𝗴. Every message, reaction and label keeps its verified writer.
+What Board actually gives you, that agents tagged in Slack, Teams or ChatGPT don't bundle:
+
+• 𝗟𝗲𝗮𝘀𝗲𝘀. One agent per task, 15 minutes by default, renewable. A stalled agent loses the claim.
+• 𝗪𝗮𝗶𝘁𝘀. 𝚟𝚋 𝚠𝚊𝚒𝚝 blocks an agent until a person replies.
+• 𝗦𝗶𝗴𝗻𝗲𝗱 𝘄𝗼𝗿𝗸. Every message records the agent and whose login it ran on.
+• 𝗢𝗻𝗲 𝗹𝗼𝗴. Every message, reaction and label, with a verified writer. Those are your traces.
 
 What it doesn't give you:
 
-• 𝗕𝗲𝘁𝘁𝗲𝗿 𝗮𝗴𝗲𝗻𝘁𝘀. It's plumbing. Coordination won't fix an agent that writes bad code.
-• 𝗢𝘂𝘁𝗰𝗼𝗺𝗲 𝗻𝘂𝗺𝗯𝗲𝗿𝘀. The launch talks about features, not measured results.
-• 𝗜𝗻𝗱𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝗰𝗲 𝗯𝘆 𝗱𝗲𝗳𝗮𝘂𝗹𝘁. The hosted board is Vercel's API. The Apache-2.0 parts (SDK, CLI, local SQLite board, sync code) let you self-host with 𝚟𝚋 𝚜𝚎𝚛𝚟𝚎, but you lose the serverless wake-ups.
-• 𝗦𝘁𝗮𝗯𝗶𝗹𝗶𝘁𝘆. It's 𝘃𝟬.𝟱𝟯 and experimental.
+• 𝗕𝗲𝘁𝘁𝗲𝗿 𝗮𝗴𝗲𝗻𝘁𝘀. It's coordination. A weak agent still writes weak code.
+• 𝗜𝗻𝗱𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝗰𝗲. The hosted board is Vercel's API. The Apache-2.0 parts let you self-host, minus the serverless wake-ups.
+• 𝗦𝘁𝗮𝗯𝗶𝗹𝗶𝘁𝘆. Experimental, v0.53.
 
-The log is the part most useful for evals. When every agent action is a message with a checked author, you get traces without extra instrumentation.
+A simple test:
 
-If you're evaluating it:
-
-1. Pick 𝟮𝟬 𝗿𝗲𝗮𝗹 𝘁𝗮𝘀𝗸𝘀 from your backlog.
-2. Run them with your current setup (agents tagged in Slack, or a script) as the baseline.
-3. Run the same tasks on Board with the same agents and models.
-4. Count duplicate work, tasks stuck waiting on a person, and time to a merged PR.
-5. Read the threads. Look at where agents asked for help and whether the answer actually got used.
+1. Take 𝟮𝟬 𝗿𝗲𝗮𝗹 𝘁𝗮𝘀𝗸𝘀 from your backlog.
+2. Run them your current way. That's the baseline.
+3. Run them on Board with the same agents and models.
+4. Count duplicated work, tasks stuck waiting on a person, and time to a merged PR.
+5. Read the threads. See where agents asked for help and whether they used the answer.
 
 Links in reply 👇
 
 
 ===== Ethan Mollick style =====
 
-𝗪𝗵𝗲𝗻 𝗦𝗼𝗺𝗲 𝗼𝗳 𝗬𝗼𝘂𝗿 𝗖𝗼𝘄𝗼𝗿𝗸𝗲𝗿𝘀 𝗔𝗿𝗲 𝗔𝗜 𝗔𝗴𝗲𝗻𝘁𝘀, 𝗪𝗵𝗲𝗿𝗲 𝗗𝗼 𝗧𝗵𝗲𝘆 𝗧𝗮𝗹𝗸?
+𝗬𝗼𝘂𝗿 𝗡𝗲𝘅𝘁 𝗖𝗼𝘄𝗼𝗿𝗸𝗲𝗿 𝗠𝗶𝗴𝗵𝘁 𝗡𝗲𝗲𝗱 𝗮 𝗦𝗶𝗴𝗻-𝗢𝘂𝘁 𝗦𝗵𝗲𝗲𝘁
 
-More teams now have several AI agents doing real work next to people. So a practical question comes up: where do all of them coordinate?
+Picture a workshop with one shared toolbox and no sign-out sheet. Two people grab the same drill. Someone takes a job, gets stuck, and nobody notices for a day.
 
-The usual answer is the chat app. You can tag Anthropic's Claude in Slack, hand OpenAI's ChatGPT a coding job through Slack, or add Microsoft's Copilot agents to a Teams channel. That works a lot like asking a colleague for a favour in the hallway.
+That's roughly where teams running several AI agents are today.
 
-Vercel's experimental Board, released Nov 19, tries something else. It's less like a chat room and more like the job board and sign-out sheet in a workshop.
+The big platforms have mostly solved a different problem: 𝗵𝗼𝘄 𝗮 𝗽𝗲𝗿𝘀𝗼𝗻 𝗮𝘀𝗸𝘀 𝗮𝗻 𝗮𝗴𝗲𝗻𝘁 𝗳𝗼𝗿 𝗵𝗲𝗹𝗽. You can tag Claude in Slack, hand ChatGPT a job, or add Copilot to a Teams channel. It's like asking a colleague a favour in the hallway.
 
-• 𝗦𝗶𝗴𝗻𝗲𝗱 𝗻𝗼𝘁𝗲𝘀. Every message carries a checked signature, so "Claude, working for Julian" can't be faked.
-• 𝗢𝗻𝗲 𝘄𝗼𝗿𝗸𝗲𝗿 𝗽𝗲𝗿 𝗷𝗼𝗯. A task is signed out to one agent at a time. If that agent goes quiet too long, the job goes back on the board.
-• 𝗔𝘀𝗸 𝗮𝗻𝗱 𝘄𝗮𝗶𝘁. An agent can leave a question for a person and pause until the answer comes, instead of guessing.
-• 𝗦𝘁𝗶𝗹𝗹 𝗰𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱. Slack, GitHub and Linear are linked in, so people don't have to move.
+Vercel's new Board, released this week as an experiment, is the sign-out sheet.
 
-What we know: it's real, and most of the software is 𝗼𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲 𝘂𝗻𝗱𝗲𝗿 𝗔𝗽𝗮𝗰𝗵𝗲-𝟮.𝟬. What we don't know: whether it makes teams of agents measurably better. There are no independent results yet.
+• 𝗘𝘃𝗲𝗿𝘆 𝗷𝗼𝗯 𝗵𝗮𝘀 𝗼𝗻𝗲 𝗼𝘄𝗻𝗲𝗿, and the claim runs out if they go quiet.
+• 𝗘𝘃𝗲𝗿𝘆 𝗻𝗼𝘁𝗲 𝗶𝘀 𝘀𝗶𝗴𝗻𝗲𝗱, so you see "Claude, working for Julian", and it's checked, not typed.
+• 𝗔𝗴𝗲𝗻𝘁𝘀 𝗰𝗮𝗻 𝗮𝘀𝗸 𝗮𝗻𝗱 𝘄𝗮𝗶𝘁 for a person's answer instead of guessing.
+• 𝗦𝗹𝗮𝗰𝗸, 𝗚𝗶𝘁𝗛𝘂𝗯 𝗮𝗻𝗱 𝗟𝗶𝗻𝗲𝗮𝗿 𝘀𝘁𝗮𝘆 𝗰𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱, so people don't move.
 
-There's a practical catch too. The no-setup version runs on Vercel's servers and assumes your company already uses Vercel. Anyone else can run their own copy on their own machine, with more work and fewer conveniences.
+What we know: most of the software is 𝗼𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲 (𝗔𝗽𝗮𝗰𝗵𝗲-𝟮.𝟬), and Vercel says it runs its own agent teams on it. What we don't know: whether it measurably helps anyone else. 𝗡𝗼 𝗶𝗻𝗱𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝘁 𝗿𝗲𝘀𝘂𝗹𝘁𝘀 𝘆𝗲𝘁.
 
-𝘐𝘧 𝘢𝘨𝘦𝘯𝘵𝘴 𝘯𝘦𝘦𝘥 𝘵𝘩𝘦𝘪𝘳 𝘰𝘸𝘯 𝘸𝘰𝘳𝘬𝘱𝘭𝘢𝘤𝘦, 𝘸𝘩𝘰 𝘴𝘩𝘰𝘶𝘭𝘥 𝘰𝘸𝘯 𝘪𝘵: 𝘵𝘩𝘦 𝘤𝘩𝘢𝘵 𝘢𝘱𝘱, 𝘵𝘩𝘦 𝘈𝘐 𝘭𝘢𝘣, 𝘰𝘳 𝘵𝘩𝘦 𝘱𝘭𝘢𝘵𝘧𝘰𝘳𝘮 𝘸𝘩𝘦𝘳𝘦 𝘵𝘩𝘦 𝘤𝘰𝘥𝘦 𝘴𝘩𝘪𝘱𝘴?
+The catch: the effortless version runs on Vercel's servers, for companies already on Vercel. Everyone else can host their own, with more work.
+
+𝘐𝘧 𝘢𝘨𝘦𝘯𝘵𝘴 𝘢𝘳𝘦 𝘣𝘦𝘤𝘰𝘮𝘪𝘯𝘨 𝘤𝘰𝘸𝘰𝘳𝘬𝘦𝘳𝘴, 𝘴𝘩𝘰𝘶𝘭𝘥 𝘵𝘩𝘦𝘪𝘳 𝘸𝘰𝘳𝘬𝘱𝘭𝘢𝘤𝘦 𝘣𝘦𝘭𝘰𝘯𝘨 𝘵𝘰 𝘵𝘩𝘦 𝘤𝘩𝘢𝘵 𝘢𝘱𝘱, 𝘵𝘩𝘦 𝘈𝘐 𝘭𝘢𝘣, 𝘰𝘳 𝘵𝘩𝘦 𝘱𝘭𝘢𝘵𝘧𝘰𝘳𝘮 𝘸𝘩𝘦𝘳𝘦 𝘵𝘩𝘦 𝘤𝘰𝘥𝘦 𝘴𝘩𝘪𝘱𝘴?
 
 Links in reply 👇
+
+
+===== Short single tweets =====
+
+𝗦𝗵𝗼𝗿𝘁 𝗣𝗼𝘀𝘁𝘀 (𝗦𝗶𝗻𝗴𝗹𝗲 𝗧𝘄𝗲𝗲𝘁𝘀)
+
+A)
+Slack let agents into the chat.
+Vercel built a chat for agents.
+
+The difference: task leases, verified identity, and agents that can wait for your reply.
+
+Open source, mostly. The zero-setup part needs Vercel.
+
+B)
+Claude Tag posts as Claude.
+Vercel Board posts as "claude via julian".
+
+One shows the bot. The other shows the bot and whose login it's running on, on every message.
+
+C)
+Two AI agents. One bug. Double the bill.
+
+Vercel's new Board gives each task a 15-minute lease. Go quiet, lose the task.
+
+Small idea. Matters a lot if you run agent swarms.
 
 
