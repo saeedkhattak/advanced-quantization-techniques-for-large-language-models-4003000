@@ -1,0 +1,37 @@
+𝗦𝗻𝗶𝗽𝗽𝗶𝗻𝗴 𝗧𝗼𝗼𝗹 𝗧𝗮𝗸𝗲𝘀 𝗧𝗵𝗲 𝗦𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁. 𝗦𝗵𝗮𝗿𝗲𝗫 𝗗𝗼𝗲𝘀 𝗪𝗵𝗮𝘁 𝗖𝗼𝗺𝗲𝘀 𝗡𝗲𝘅𝘁.
+
+Most of us on Windows know Snipping Tool. We use it almost every day to grab a screenshot or record a short video.
+
+ShareX does the same job, and then 𝗶𝘁 𝗸𝗲𝗲𝗽𝘀 𝗴𝗼𝗶𝗻𝗴.
+
+With Snipping Tool, the capture is the end. You still open the image, draw the arrow, hide the email address, save it, and send it somewhere.
+
+ShareX lets you set those steps once and run them from one hotkey. It calls them 𝘢𝘧𝘵𝘦𝘳-𝘤𝘢𝘱𝘵𝘶𝘳𝘦 𝘵𝘢𝘴𝘬𝘴, and you can chain them:
+
+• 𝗖𝗮𝗽𝘁𝘂𝗿𝗲: a region, a window, a scrolling page, a video or a GIF
+• 𝗘𝗱𝗶𝘁: open it in the editor to add arrows, step numbers or blur
+• 𝗦𝗮𝘃𝗲: to the folder you chose
+• 𝗦𝗵𝗮𝗿𝗲: upload it and get the link in your clipboard
+
+One key, and the chain runs in the order you set.
+
+It's free and open source (GPL-3.0), and it has been around for 19 years. The README says no ads and no account needed.
+
+𝗪𝗵𝗮𝘁 𝗰𝗵𝗮𝗻𝗴𝗲𝗱 𝘁𝗵𝗶𝘀 𝗮𝘂𝘁𝘂𝗺𝗻
+
+On 20 October the team shipped ShareX 22.0.0 and called it "𝘵𝘩𝘦 𝘣𝘪𝘨𝘨𝘦𝘴𝘵 𝘶𝘱𝘥𝘢𝘵𝘦 𝘸𝘦'𝘷𝘦 𝘦𝘷𝘦𝘳 𝘳𝘦𝘭𝘦𝘢𝘴𝘦𝘥". Every part of the UI was rewritten.
+
+• 𝗥𝗲𝗰𝗼𝗿𝗱𝗶𝗻𝗴: now works without relying on FFmpeg, with system audio, microphone and a camera overlay, at 𝘂𝗽 𝘁𝗼 𝟭𝟮𝟬 𝗙𝗣𝗦
+• 𝗦𝗰𝗿𝗼𝗹𝗹𝗶𝗻𝗴 𝘀𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁: one tall image of a whole page, not a video of it
+• 𝗣𝗵𝗼𝘁𝗼 𝗲𝗱𝗶𝘁𝗼𝗿: a layer-based editor arrived in 22.1.0
+• 𝗘𝘅𝘁𝗿𝗮𝘀: the README lists 𝟯𝟳 𝘂𝘁𝗶𝗹𝗶𝘁𝗶𝗲𝘀, from OCR and QR codes to a colour picker and a video trimmer
+
+𝗧𝘄𝗼 𝗵𝗼𝗻𝗲𝘀𝘁 𝗻𝗼𝘁𝗲𝘀
+
+Snipping Tool is already installed and it's enough for a quick grab. It records video and reads text from images too, so ShareX only pays off 𝗶𝗳 𝘆𝗼𝘂 𝗿𝗲𝗽𝗲𝗮𝘁 𝘁𝗵𝗲 𝘀𝗮𝗺𝗲 𝘀𝘁𝗲𝗽𝘀 𝗲𝘃𝗲𝗿𝘆 𝗱𝗮𝘆.
+
+And v22 is new. The team said they expect it to be "𝘴𝘪𝘨𝘯𝘪𝘧𝘪𝘤𝘢𝘯𝘵𝘭𝘺 𝘭𝘦𝘴𝘴 𝘴𝘵𝘢𝘣𝘭𝘦 𝘵𝘩𝘢𝘯 𝘰𝘶𝘳 𝘶𝘴𝘶𝘢𝘭 𝘳𝘦𝘭𝘦𝘢𝘴𝘦𝘴". Four more releases followed in under three weeks. It is also 𝗪𝗶𝗻𝗱𝗼𝘄𝘀 𝗼𝗻𝗹𝘆.
+
+𝘚𝘯𝘪𝘱𝘱𝘪𝘯𝘨 𝘛𝘰𝘰𝘭 𝘨𝘪𝘷𝘦𝘴 𝘺𝘰𝘶 𝘢 𝘱𝘪𝘤𝘵𝘶𝘳𝘦. 𝘚𝘩𝘢𝘳𝘦𝘟 𝘨𝘪𝘷𝘦𝘴 𝘺𝘰𝘶 𝘵𝘩𝘦 𝘱𝘪𝘤𝘵𝘶𝘳𝘦 𝘢𝘯𝘥 𝘵𝘩𝘦 𝘯𝘦𝘹𝘵 𝘧𝘦𝘸 𝘴𝘵𝘦𝘱𝘴 𝘥𝘰𝘯𝘦.
+
+Links in reply 👇
