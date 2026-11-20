@@ -1,37 +1,33 @@
-𝗦𝗻𝗶𝗽𝗽𝗶𝗻𝗴 𝗧𝗼𝗼𝗹 𝗧𝗮𝗸𝗲𝘀 𝗧𝗵𝗲 𝗦𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁. 𝗦𝗵𝗮𝗿𝗲𝗫 𝗗𝗼𝗲𝘀 𝗪𝗵𝗮𝘁 𝗖𝗼𝗺𝗲𝘀 𝗡𝗲𝘅𝘁.
+𝗦𝗵𝗮𝗿𝗲𝗫 𝗜𝘀 𝗦𝗻𝗶𝗽𝗽𝗶𝗻𝗴 𝗧𝗼𝗼𝗹, 𝗔𝘁 𝗧𝗵𝗲 𝗔𝗱𝘃𝗮𝗻𝗰𝗲𝗱 𝗘𝗻𝗱
 
-Most of us on Windows know Snipping Tool. We use it almost every day to grab a screenshot or record a short video.
+We all know Snipping Tool. It's on every Windows PC and most of us use it to grab a screenshot or record a short clip.
 
-ShareX does the same job, and then 𝗶𝘁 𝗸𝗲𝗲𝗽𝘀 𝗴𝗼𝗶𝗻𝗴.
+ShareX is that, plus a lot more at the advanced end.
 
-With Snipping Tool, the capture is the end. You still open the image, draw the arrow, hide the email address, and send it somewhere.
+Many people look at it and think it's just another Snipping Tool. It isn't, and 𝘁𝗵𝗲 𝗺𝗮𝗶𝗻 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝗰𝗲 𝗶𝘀 𝗰𝗵𝗮𝗶𝗻𝗶𝗻𝗴.
 
-ShareX lets you set those steps once and run them from one hotkey. It calls them 𝘢𝘧𝘵𝘦𝘳-𝘤𝘢𝘱𝘵𝘶𝘳𝘦 𝘵𝘢𝘴𝘬𝘴, and you can chain them:
+Think about what you do to a screenshot again and again. You open it in an editor. You add an arrow or blur a name. You save it to a folder. You copy it, or upload it and copy the link.
 
-• 𝗖𝗮𝗽𝘁𝘂𝗿𝗲: a region, a window, a scrolling page, a video or a GIF
-• 𝗘𝗱𝗶𝘁: open it in the editor to add arrows, step numbers or blur
-• 𝗦𝗮𝘃𝗲: to the folder you chose
-• 𝗦𝗵𝗮𝗿𝗲: upload it and get the link in your clipboard
+In Snipping Tool you do each of those by hand, every time.
 
-One key, and the whole chain runs.
+In ShareX you set the steps once, chain them together and attach the chain to one hotkey. After that, 𝗼𝗻𝗲 𝗸𝗲𝘆 𝗽𝗿𝗲𝘀𝘀 𝗿𝘂𝗻𝘀 𝘁𝗵𝗲 𝘄𝗵𝗼𝗹𝗲 𝘁𝗵𝗶𝗻𝗴. Capture, edit, save, upload, link in your clipboard. ShareX calls these 𝘢𝘧𝘵𝘦𝘳-𝘤𝘢𝘱𝘵𝘶𝘳𝘦 𝘵𝘢𝘴𝘬𝘴.
 
-It's free and open source (GPL-3.0), and it has been around for 19 years. The README says no ads and no account needed.
+On top of that the README lists 𝟯𝟳 𝗯𝘂𝗶𝗹𝘁-𝗶𝗻 𝘁𝗼𝗼𝗹𝘀, which is huge for a free app: OCR, QR codes, a colour picker, a ruler, an image comparer, a video trimmer, a hash checker and more.
 
-𝗪𝗵𝗮𝘁 𝗰𝗵𝗮𝗻𝗴𝗲𝗱 𝘁𝗵𝗶𝘀 𝗮𝘂𝘁𝘂𝗺𝗻
+𝗧𝗵𝗿𝗲𝗲 𝘁𝗵𝗶𝗻𝗴𝘀 𝗜'𝗱 𝗽𝗼𝗶𝗻𝘁 𝗮 𝗱𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿 𝘁𝗼
 
-On 20 October the team shipped ShareX 22.0.0 and called it "𝘵𝘩𝘦 𝘣𝘪𝘨𝘨𝘦𝘴𝘵 𝘶𝘱𝘥𝘢𝘵𝘦 𝘸𝘦'𝘷𝘦 𝘦𝘷𝘦𝘳 𝘳𝘦𝘭𝘦𝘢𝘴𝘦𝘥". Every part of the UI was rewritten.
+• 𝗬𝗼𝘂𝗿 𝗼𝘄𝗻 𝘀𝘁𝗼𝗿𝗮𝗴𝗲: screenshots can upload to your own Amazon S3 or Cloudflare R2 bucket, so work images don't sit on a public host
+• 𝗬𝗼𝘂𝗿 𝗼𝘄𝗻 𝘀𝗰𝗿𝗶𝗽𝘁: a step in the chain can pass the file to an external tool or script
+• 𝗦𝗰𝗿𝗼𝗹𝗹𝗶𝗻𝗴 𝘀𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁: one tall image of a whole page, with step numbers you can add for a bug report
 
-• 𝗥𝗲𝗰𝗼𝗿𝗱𝗶𝗻𝗴: now works without relying on FFmpeg, with system audio, microphone and a camera overlay, at 𝘂𝗽 𝘁𝗼 𝟭𝟮𝟬 𝗙𝗣𝗦
-• 𝗦𝗰𝗿𝗼𝗹𝗹𝗶𝗻𝗴 𝘀𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁: one tall image of a whole page, not a video of it
-• 𝗣𝗵𝗼𝘁𝗼 𝗲𝗱𝗶𝘁𝗼𝗿: a layer-based editor arrived in 22.1.0
-• 𝗘𝘅𝘁𝗿𝗮𝘀: the README lists 𝟯𝟳 𝘂𝘁𝗶𝗹𝗶𝘁𝗶𝗲𝘀, from OCR and QR codes to a colour picker and a video trimmer
+It's free and open source (GPL-3.0), 19 years old, and the README says no ads and no account needed.
 
 𝗧𝘄𝗼 𝗵𝗼𝗻𝗲𝘀𝘁 𝗻𝗼𝘁𝗲𝘀
 
-Snipping Tool is already installed and it's enough for a quick grab. It records video and reads text from images too, so ShareX only pays off 𝗶𝗳 𝘆𝗼𝘂 𝗿𝗲𝗽𝗲𝗮𝘁 𝘁𝗵𝗲 𝘀𝗮𝗺𝗲 𝘀𝘁𝗲𝗽𝘀 𝗲𝘃𝗲𝗿𝘆 𝗱𝗮𝘆.
+Snipping Tool is enough for a quick grab, and it records video and reads text too. ShareX pays off 𝘄𝗵𝗲𝗻 𝘆𝗼𝘂 𝗿𝗲𝗽𝗲𝗮𝘁 𝘁𝗵𝗲 𝘀𝗮𝗺𝗲 𝘀𝘁𝗲𝗽𝘀 𝗲𝘃𝗲𝗿𝘆 𝗱𝗮𝘆.
 
-And v22 is new. The team said they expect it to be "𝘴𝘪𝘨𝘯𝘪𝘧𝘪𝘤𝘢𝘯𝘵𝘭𝘺 𝘭𝘦𝘴𝘴 𝘴𝘵𝘢𝘣𝘭𝘦 𝘵𝘩𝘢𝘯 𝘰𝘶𝘳 𝘶𝘴𝘶𝘢𝘭 𝘳𝘦𝘭𝘦𝘢𝘴𝘦𝘴". Four more releases followed in under three weeks. It is also 𝗪𝗶𝗻𝗱𝗼𝘄𝘀 𝗼𝗻𝗹𝘆.
+Version 22 came out on 20 October with a fully rewritten UI, and the team said they expect it to be "𝘴𝘪𝘨𝘯𝘪𝘧𝘪𝘤𝘢𝘯𝘵𝘭𝘺 𝘭𝘦𝘴𝘴 𝘴𝘵𝘢𝘣𝘭𝘦 𝘵𝘩𝘢𝘯 𝘰𝘶𝘳 𝘶𝘴𝘶𝘢𝘭 𝘳𝘦𝘭𝘦𝘢𝘴𝘦𝘴". It is also 𝗪𝗶𝗻𝗱𝗼𝘄𝘀 𝗼𝗻𝗹𝘆.
 
-𝘚𝘯𝘪𝘱𝘱𝘪𝘯𝘨 𝘛𝘰𝘰𝘭 𝘨𝘪𝘷𝘦𝘴 𝘺𝘰𝘶 𝘢 𝘱𝘪𝘤𝘵𝘶𝘳𝘦. 𝘚𝘩𝘢𝘳𝘦𝘟 𝘨𝘪𝘷𝘦𝘴 𝘺𝘰𝘶 𝘵𝘩𝘦 𝘱𝘪𝘤𝘵𝘶𝘳𝘦 𝘢𝘯𝘥 𝘵𝘩𝘦 𝘯𝘦𝘹𝘵 𝘧𝘦𝘸 𝘴𝘵𝘦𝘱𝘴 𝘥𝘰𝘯𝘦.
+𝘚𝘢𝘮𝘦 𝘪𝘥𝘦𝘢 𝘢𝘴 𝘚𝘯𝘪𝘱𝘱𝘪𝘯𝘨 𝘛𝘰𝘰𝘭. 𝘛𝘩𝘦 𝘥𝘪𝘧𝘧𝘦𝘳𝘦𝘯𝘤𝘦 𝘪𝘴 𝘦𝘷𝘦𝘳𝘺𝘵𝘩𝘪𝘯𝘨 𝘵𝘩𝘢𝘵 𝘩𝘢𝘱𝘱𝘦𝘯𝘴 𝘢𝘧𝘵𝘦𝘳 𝘵𝘩𝘦 𝘤𝘢𝘱𝘵𝘶𝘳𝘦.
 
 Links in reply 👇
