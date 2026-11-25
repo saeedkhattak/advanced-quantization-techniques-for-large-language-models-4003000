@@ -1,0 +1,198 @@
+===== 1. Story =====
+
+𝗧𝗿𝗮𝗶𝗻 𝗮 𝗪𝗵𝗼𝗹𝗲 𝗟𝗮𝗻𝗴𝘂𝗮𝗴𝗲 𝗠𝗼𝗱𝗲𝗹 𝗳𝗼𝗿 𝗔𝗯𝗼𝘂𝘁 𝟯 𝗬𝘂𝗮𝗻
+
+Most people who say they're "learning LLMs" are really learning an API. Or they LoRA-tune someone else's 7B model and call it a day.
+
+𝗠𝗶𝗻𝗶𝗠𝗶𝗻𝗱 𝗹𝗲𝘁𝘀 𝘆𝗼𝘂 𝗯𝘂𝗶𝗹𝗱 𝘁𝗵𝗲 𝘄𝗵𝗼𝗹𝗲 𝘁𝗵𝗶𝗻𝗴 𝘆𝗼𝘂𝗿𝘀𝗲𝗹𝗳, 𝗳𝗿𝗼𝗺 𝘁𝗵𝗲 𝘁𝗼𝗸𝗲𝗻𝗶𝘇𝗲𝗿 𝘂𝗽, 𝗼𝗻 𝗼𝗻𝗲 𝗴𝗮𝗺𝗶𝗻𝗴 𝗚𝗣𝗨.
+
+It's an open-source repo by jingyaogong. The current model, minimind-3, has 𝗮𝗯𝗼𝘂𝘁 𝟲𝟰𝗠 𝗽𝗮𝗿𝗮𝗺𝗲𝘁𝗲𝗿𝘀. That's roughly 1/2700 the size of GPT-3.
+
+Here's what one run looks like, using the repo's own numbers:
+
+• 𝗣𝗿𝗲𝘁𝗿𝗮𝗶𝗻: about 1.2 hours on a single RTX 3090
+• 𝗜𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻 𝘁𝘂𝗻𝗶𝗻𝗴 (𝗦𝗙𝗧): about 1.1 hours more
+• 𝗧𝗼𝘁𝗮𝗹: about 2.3 hours and 𝗮𝗯𝗼𝘂𝘁 𝟯 𝘆𝘂𝗮𝗻 of rented GPU time (under half a dollar)
+
+At the end you get a small chat model you trained from zero.
+
+It doesn't stop at chat. The repo also covers LoRA, DPO, PPO, GRPO, CISPO, distillation, tool calling, and a multi-turn agent RL script (𝚝𝚛𝚊𝚒𝚗_𝚊𝚐𝚎𝚗𝚝.𝚙𝚢) added this year.
+
+The part that matters for learning: the core algorithms are written in plain PyTorch. No 𝚝𝚛𝚕 or 𝚙𝚎𝚏𝚝 wrapper hiding the loop. You can read every line.
+
+𝗙𝗼𝗿 𝘂𝘀𝗲𝗿𝘀: the trained model loads in transformers, llama.cpp, vLLM and Ollama, because its config follows the Qwen3 layout.
+
+𝗙𝗼𝗿 𝗯𝘂𝗶𝗹𝗱𝗲𝗿𝘀: there's a dense 64M model and an MoE one (198M total, 64M active, 4 experts with top-1 routing). The README is honest that the MoE trains about 50% slower in native PyTorch.
+
+It isn't the only project like this. Karpathy's nanochat trains a GPT-2-level model for about $48 in around 2 hours, but on an 8xH100 node. MiniMind aims lower and cheaper: one consumer card.
+
+Now the caveats, and the README states most of them itself.
+
+𝗧𝗵𝗶𝘀 𝗺𝗼𝗱𝗲𝗹 𝗶𝘀 𝗻𝗼𝘁 𝘀𝗺𝗮𝗿𝘁. On the repo's own lm_eval run, minimind-3 scores 28.5 on ARC-Easy and 50.7 on PIQA. SmolLM2-135M gets 58.5 and 68.2. Several MiniMind scores sit 𝗰𝗹𝗼𝘀𝗲 𝘁𝗼 𝗿𝗮𝗻𝗱𝗼𝗺 𝗴𝘂𝗲𝘀𝘀𝗶𝗻𝗴. These are self-reported.
+
+The training data leans heavily Chinese, so English is weak. And the "2 hours" headline is measured on one SFT epoch; a full pipeline with RL takes longer.
+
+The agent version solved 𝟭𝟳 𝗼𝗳 𝟮𝟬 test problems versus 12 of 20 for the plain SFT model. Twenty problems is a tiny sample, and the README notes the agent model hallucinates more on general questions.
+
+70.2k stars, Apache 2.0, and updated as recently as 23 Nov.
+
+𝘠𝘰𝘶 𝘸𝘰𝘯'𝘵 𝘨𝘦𝘵 𝘢 𝘶𝘴𝘦𝘧𝘶𝘭 𝘢𝘴𝘴𝘪𝘴𝘵𝘢𝘯𝘵 𝘰𝘶𝘵 𝘰𝘧 𝘪𝘵. 𝘠𝘰𝘶'𝘭𝘭 𝘶𝘯𝘥𝘦𝘳𝘴𝘵𝘢𝘯𝘥 𝘩𝘰𝘸 𝘰𝘯𝘦 𝘪𝘴 𝘮𝘢𝘥𝘦.
+
+Links in reply 👇
+
+
+===== 2. Karpathy style =====
+
+𝗠𝗶𝗻𝗶𝗠𝗶𝗻𝗱 𝗮𝗻𝗱 𝘁𝗵𝗲 𝗩𝗮𝗹𝘂𝗲 𝗼𝗳 𝗮 𝗠𝗼𝗱𝗲𝗹 𝗧𝗵𝗮𝘁'𝘀 𝗧𝗼𝗼 𝗦𝗺𝗮𝗹𝗹 𝘁𝗼 𝗕𝗲 𝗨𝘀𝗲𝗳𝘂𝗹
+
+MiniMind, a repo by jingyaogong: a 𝟲𝟰𝗠-𝗽𝗮𝗿𝗮𝗺𝗲𝘁𝗲𝗿 language model you train from scratch on one RTX 3090 in about 2.3 hours, for 𝗮𝗯𝗼𝘂𝘁 𝟯 𝘆𝘂𝗮𝗻 of rented compute.
+
+On paper the model is bad. ARC-Easy 28.5, PIQA 50.7 (repo's own numbers). SmolLM2-135M scores 58.5 and 68.2 on the same tests.
+
+𝗜 𝘁𝗵𝗶𝗻𝗸 𝘁𝗵𝗮𝘁'𝘀 𝗯𝗲𝘀𝗶𝗱𝗲 𝘁𝗵𝗲 𝗽𝗼𝗶𝗻𝘁. 𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝘁𝗵𝗲 𝗺𝗼𝗱𝗲𝗹, 𝗶𝘁'𝘀 𝘁𝗵𝗮𝘁 𝘁𝗵𝗲 𝗲𝗻𝘁𝗶𝗿𝗲 𝗽𝗶𝗽𝗲𝗹𝗶𝗻𝗲 𝗳𝗶𝘁𝘀 𝗶𝗻 𝘆𝗼𝘂𝗿 𝗵𝗲𝗮𝗱.
+
+Tokenizer, pretraining, SFT, LoRA, DPO, PPO, GRPO, CISPO, distillation, tool use, multi-turn agent RL. All of it in plain PyTorch, no 𝚝𝚛𝚕 or 𝚙𝚎𝚏𝚝 in between.
+
+Think of it like a model railway. Nobody commutes on one. But you learn how signals, switches and timetables interact in a way you never would from a train ticket.
+
+A small model is also a cheap place to see failure modes that big models hide.
+
+The README has a nice example. They trained an agent variant with RL. It went from 12/20 to 17/20 on tool-using math problems, and at the same time got 𝘄𝗼𝗿𝘀𝗲 𝗮𝘁 𝗽𝗹𝗮𝗶𝗻 𝗳𝗮𝗰𝘁𝘂𝗮𝗹 𝗤&𝗔, more willing to make things up. That's the alignment tax, visible on a model you can retrain in an afternoon.
+
+Another one: an earlier run hit about 97% on C-Eval when test data leaked into training. They call that number meaningless and publish the clean ones instead. Good habit.
+
+imo the honest benchmark table (with stderr per dataset, and a note that gaps under ~3 points don't separate models) is worth reading on its own.
+
+It sits next to nanochat in spirit. nanochat targets GPT-2-level capability on an 8xH100 node for about $48. MiniMind goes smaller and runs on one consumer card, with a lot more of the post-training stack.
+
+What I'd want to see next: the same pipeline run at 2-3 sizes with identical data, so you could watch which abilities appear and when.
+
+𝘚𝘮𝘢𝘭𝘭 𝘦𝘯𝘰𝘶𝘨𝘩 𝘵𝘰 𝘣𝘳𝘦𝘢𝘬, 𝘤𝘩𝘦𝘢𝘱 𝘦𝘯𝘰𝘶𝘨𝘩 𝘵𝘰 𝘵𝘳𝘺 𝘢𝘨𝘢𝘪𝘯.
+
+Links in reply 👇
+
+
+===== 3. Simon Willison style =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗼𝗻 𝗠𝗶𝗻𝗶𝗠𝗶𝗻𝗱: 𝗧𝗿𝗮𝗶𝗻𝗶𝗻𝗴 𝗮 𝟲𝟰𝗠 𝗟𝗟𝗠 𝗙𝗿𝗼𝗺 𝗦𝗰𝗿𝗮𝘁𝗰𝗵
+
+MiniMind is an Apache 2.0 repo by jingyaogong that walks through training a small language model end to end. 70.2k GitHub stars as of 25 Nov 2026, first released August 2024, latest model (minimind-3) released 1 April 2026, commits as recent as 23 Nov.
+
+The README's pitch:
+
+"𝘵𝘳𝘢𝘪𝘯 𝘔𝘪𝘯𝘪𝘔𝘪𝘯𝘥, 𝘢𝘯 𝘶𝘭𝘵𝘳𝘢-𝘴𝘮𝘢𝘭𝘭 𝘭𝘢𝘯𝘨𝘶𝘢𝘨𝘦 𝘮𝘰𝘥𝘦𝘭 𝘸𝘪𝘵𝘩 𝘢𝘣𝘰𝘶𝘵 64𝘔 𝘱𝘢𝘳𝘢𝘮𝘦𝘵𝘦𝘳𝘴, 𝘦𝘯𝘵𝘪𝘳𝘦𝘭𝘺 𝘧𝘳𝘰𝘮 𝘴𝘤𝘳𝘢𝘵𝘤𝘩 𝘸𝘪𝘵𝘩 𝘰𝘯𝘭𝘺 𝘢𝘣𝘰𝘶𝘵 𝘙𝘔𝘉 3 𝘪𝘯 𝘤𝘰𝘴𝘵 𝘢𝘯𝘥 2 𝘩𝘰𝘶𝘳𝘴 𝘰𝘧 𝘵𝘳𝘢𝘪𝘯𝘪𝘯𝘨 𝘵𝘪𝘮𝘦."
+
+The footnote matters. "𝟮 𝗵𝗼𝘂𝗿𝘀" 𝗶𝘀 𝗼𝗻𝗲 𝗲𝗽𝗼𝗰𝗵 𝗼𝗳 𝘁𝗵𝗲 𝗦𝗙𝗧 𝘀𝘁𝗮𝗴𝗲 𝗼𝗻 𝗮 𝘀𝗶𝗻𝗴𝗹𝗲 𝟯𝟬𝟵𝟬, and "RMB 3" is the rental cost of that time. Their own table puts pretrain plus SFT at about 2.31 hours and 3.0 yuan, assuming 1.3 yuan per hour for a 3090.
+
+Two parts are worth a closer look.
+
+𝟭. 𝗡𝗼 𝗳𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸 𝘄𝗿𝗮𝗽𝗽𝗲𝗿𝘀. "𝘈𝘭𝘭 𝘤𝘰𝘳𝘦 𝘢𝘭𝘨𝘰𝘳𝘪𝘵𝘩𝘮𝘴 𝘢𝘳𝘦 𝘪𝘮𝘱𝘭𝘦𝘮𝘦𝘯𝘵𝘦𝘥 𝘥𝘪𝘳𝘦𝘤𝘵𝘭𝘺 𝘪𝘯 𝘯𝘢𝘵𝘪𝘷𝘦 𝘗𝘺𝘛𝘰𝘳𝘤𝘩." That covers LoRA, DPO, PPO, GRPO, CISPO and distillation. The 𝚝𝚛𝚊𝚒𝚗𝚎𝚛/ folder is the curriculum: 𝚝𝚛𝚊𝚒𝚗_𝚙𝚛𝚎𝚝𝚛𝚊𝚒𝚗.𝚙𝚢, 𝚝𝚛𝚊𝚒𝚗_𝚏𝚞𝚕𝚕_𝚜𝚏𝚝.𝚙𝚢, 𝚝𝚛𝚊𝚒𝚗_𝚐𝚛𝚙𝚘.𝚙𝚢, 𝚝𝚛𝚊𝚒𝚗_𝚊𝚐𝚎𝚗𝚝.𝚙𝚢 and so on.
+
+𝟮. 𝗔𝗴𝗲𝗻𝘁𝗶𝗰 𝗥𝗟 𝗮𝘁 𝟲𝟰𝗠. 𝚝𝚛𝚊𝚒𝚗_𝚊𝚐𝚎𝚗𝚝.𝚙𝚢 does multi-turn tool-use rollouts with a reward made of answer match, tool-call validity, format and a reward model, minus a penalty for unfinished trajectories.
+
+Output compatibility is good. The config follows Qwen3 (8 layers, d_model 768, vocab 6400), so weights work with transformers, llama.cpp, vLLM and Ollama.
+
+Things to be careful about:
+
+• 𝗕𝗲𝗻𝗰𝗵𝗺𝗮𝗿𝗸𝘀 𝗮𝗿𝗲 𝘀𝗲𝗹𝗳-𝗿𝗲𝗽𝗼𝗿𝘁𝗲𝗱, via lm_eval on their own models. minimind-3: C-Eval 24.89, ARC-Easy 28.49, PIQA 50.65. Several are near chance; the README itself says the results are "𝘰𝘯𝘭𝘺 𝘧𝘰𝘳 𝘧𝘶𝘯".
+• 𝗧𝗵𝗲 𝗮𝗴𝗲𝗻𝘁 𝗿𝗲𝘀𝘂𝗹𝘁 𝗶𝘀 𝟭𝟳/𝟮𝟬 𝘃𝘀 𝟭𝟮/𝟮𝟬. That's 20 problems. The README also says the agent model hallucinates more on open questions.
+• 𝗗𝗮𝘁𝗮 𝘀𝗸𝗲𝘄𝘀 𝗖𝗵𝗶𝗻𝗲𝘀𝗲, so English output is weak.
+• The MoE variant (198M total, 64M active) trains about 50% slower than the dense one in this pure-PyTorch setup.
+
+If you want a comparison point, Karpathy's nanochat (MIT) does a similar from-scratch pipeline aimed at GPT-2-level capability on an 8xH100 node.
+
+Links in reply 👇
+
+
+===== 4. swyx style =====
+
+𝗧𝗶𝗻𝘆 𝗙𝗿𝗼𝗺-𝗦𝗰𝗿𝗮𝘁𝗰𝗵 𝗟𝗟𝗠𝘀 𝗔𝗿𝗲 𝗕𝗲𝗰𝗼𝗺𝗶𝗻𝗴 𝗧𝗵𝗲𝗶𝗿 𝗢𝘄𝗻 𝗖𝗮𝘁𝗲𝗴𝗼𝗿𝘆
+
+There's a growing shelf of "train the whole thing yourself" repos. They aren't competing on capability. They're competing on 𝗵𝗼𝘄 𝗺𝘂𝗰𝗵 𝗼𝗳 𝘁𝗵𝗲 𝘀𝘁𝗮𝗰𝗸 𝘆𝗼𝘂 𝗰𝗮𝗻 𝘀𝗲𝗲 𝗮𝗻𝗱 𝗿𝘂𝗻 𝗳𝗼𝗿 𝗮𝗹𝗺𝗼𝘀𝘁 𝗻𝗼𝘁𝗵𝗶𝗻𝗴.
+
+Quick map:
+
+• 𝗻𝗮𝗻𝗼𝗚𝗣𝗧 (Karpathy): the classic. Its README now calls it deprecated and points to nanochat.
+• 𝗻𝗮𝗻𝗼𝗰𝗵𝗮𝘁 (Karpathy): full pipeline to GPT-2-level capability, about $48 and ~2 hours on an 8xH100 node. 60.8k stars.
+• 𝗦𝗺𝗼𝗹𝗟𝗠𝟮-𝟭𝟯𝟱𝗠 (Hugging Face): a small model you download, not a course in building one. Much stronger scores.
+• 𝗠𝗶𝗻𝗶𝗠𝗶𝗻𝗱 (jingyaogong): 64M params, one RTX 3090, about 2.3 hours and 3 yuan for pretrain plus SFT. 70.2k stars.
+
+Where MiniMind fits: lowest hardware bar of the group, and the widest post-training coverage.
+
+LoRA, DPO, PPO, GRPO, CISPO, distillation, tool calling, adaptive thinking (a <𝚝𝚑𝚒𝚗𝚔> toggle), and a multi-turn agent RL trainer. All in native PyTorch. It also has siblings for vision (MiniMind-V) and omni (MiniMind-O), plus experimental diffusion and linear-attention variants.
+
+And it plugs into the real ecosystem. The config mirrors Qwen3, so the weights run on transformers, llama.cpp, vLLM and Ollama.
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗶𝘀𝗻'𝘁: a useful model. Self-reported ARC-Easy is 28.5 vs SmolLM2-135M's 58.5. The README says its own benchmark results are "𝘰𝘯𝘭𝘺 𝘧𝘰𝘳 𝘧𝘶𝘯".
+
+The bigger shift: the teaching repo is following the frontier. nanoGPT covered pretraining and fine-tuning. MiniMind now includes 𝗥𝗟 𝘄𝗶𝘁𝗵 𝘁𝗼𝗼𝗹 𝘂𝘀𝗲 𝗮𝗻𝗱 𝘃𝗲𝗿𝗶𝗳𝗶𝗮𝗯𝗹𝗲 𝗿𝗲𝘄𝗮𝗿𝗱𝘀, at 64M parameters, on a card people already own.
+
+My bet is the next one in this category ships an eval harness as the main feature, not the trainer.
+
+Links in reply 👇
+
+
+===== 5. Hamel Husain style =====
+
+𝗠𝗶𝗻𝗶𝗠𝗶𝗻𝗱 𝗜𝘀 𝗮 𝗚𝗼𝗼𝗱 𝗣𝗹𝗮𝗰𝗲 𝘁𝗼 𝗟𝗲𝗮𝗿𝗻 𝗘𝘃𝗮𝗹𝘀, 𝗡𝗼𝘁 𝗝𝘂𝘀𝘁 𝗧𝗿𝗮𝗶𝗻𝗶𝗻𝗴
+
+MiniMind trains a 64M-parameter LLM from scratch on one RTX 3090. About 2.3 hours and 3 yuan for pretrain plus SFT, per the repo's own table.
+
+Most people will look at the training scripts. The eval section is the more useful part.
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗴𝗶𝘃𝗲𝘀 𝘆𝗼𝘂:
+
+• 𝗔 𝗳𝘂𝗹𝗹 𝗽𝗶𝗽𝗲𝗹𝗶𝗻𝗲 𝗶𝗻 𝗽𝗹𝗮𝗶𝗻 𝗣𝘆𝗧𝗼𝗿𝗰𝗵: pretrain, SFT, LoRA, DPO, PPO, GRPO, CISPO, distillation, agent RL. No 𝚝𝚛𝚕 or 𝚙𝚎𝚏𝚝 abstractions to debug through.
+• 𝗕𝗲𝗻𝗰𝗵𝗺𝗮𝗿𝗸𝘀 𝘄𝗶𝘁𝗵 𝗲𝗿𝗿𝗼𝗿 𝗯𝗮𝗿𝘀: the README lists the stderr per dataset and says gaps under ~5 points on OpenBookQA or ~3 on C-Eval/PIQA "𝘥𝘰 𝘯𝘰𝘵 𝘴𝘦𝘱𝘢𝘳𝘢𝘵𝘦 𝘵𝘸𝘰 𝘮𝘰𝘥𝘦𝘭𝘴." Most model cards skip this.
+• 𝗔 𝗰𝗼𝗻𝘁𝗮𝗺𝗶𝗻𝗮𝘁𝗶𝗼𝗻 𝘀𝘁𝗼𝗿𝘆: an earlier run hit about 97% on C-Eval/CMMLU after test data leaked into training. They call it meaningless and show the clean numbers instead.
+• 𝗔 𝗳𝗼𝗿𝗺𝗮𝘁-𝘃𝘀-𝗸𝗻𝗼𝘄𝗹𝗲𝗱𝗴𝗲 𝘁𝗲𝘀𝘁: a small LoRA that only teaches the multiple-choice format adds 𝗮𝗯𝗼𝘂𝘁 𝟮.𝟵 𝗽𝗼𝗶𝗻𝘁𝘀 on average. So part of a small model's low score is format, not knowledge.
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗴𝗶𝘃𝗲 𝘆𝗼𝘂:
+
+• 𝗔 𝗰𝗮𝗽𝗮𝗯𝗹𝗲 𝗺𝗼𝗱𝗲𝗹. Self-reported: ARC-Easy 28.5, PIQA 50.7, near chance in places. SmolLM2-135M is far ahead.
+• 𝗦𝘁𝗮𝘁𝗶𝘀𝘁𝗶𝗰𝗮𝗹𝗹𝘆 𝘀𝗼𝗹𝗶𝗱 𝗮𝗴𝗲𝗻𝘁 𝗲𝘃𝗮𝗹𝘀. The agent model scored 17/20 vs 12/20 for SFT. Twenty items can't carry much weight.
+• 𝗙𝗿𝗲𝗲 𝗴𝗮𝗶𝗻𝘀. The README says the agent model hallucinates more on open Q&A. RL moved one number and hurt another.
+
+If you train with it, here's the order I'd follow:
+
+1. Write 50+ test prompts for the thing you care about, with known answers.
+2. Run the plain 𝚏𝚞𝚕𝚕_𝚜𝚏𝚝 model on them. That's your baseline.
+3. Train one change (LoRA, DPO, agent RL) and run the same prompts.
+4. Read the failed outputs one by one, not just the score. Check what got worse too.
+
+A 2-hour training loop means you can actually do that loop many times.
+
+Links in reply 👇
+
+
+===== 6. Ethan Mollick style =====
+
+𝗪𝗵𝗮𝘁 𝗗𝗼 𝗬𝗼𝘂 𝗟𝗲𝗮𝗿𝗻 𝗯𝘆 𝗕𝘂𝗶𝗹𝗱𝗶𝗻𝗴 𝗮𝗻 𝗔𝗜 𝗧𝗵𝗮𝘁 𝗜𝘀𝗻'𝘁 𝗩𝗲𝗿𝘆 𝗚𝗼𝗼𝗱?
+
+The AI models people use every day are trained in giant data centres. So it's strange, and kind of wonderful, that you can now train a tiny chatbot from nothing for 𝗮𝗯𝗼𝘂𝘁 𝟯 𝘆𝘂𝗮𝗻, 𝗹𝗲𝘀𝘀 𝘁𝗵𝗮𝗻 𝗵𝗮𝗹𝗳 𝗮 𝗱𝗼𝗹𝗹𝗮𝗿.
+
+That's the promise of MiniMind, an open-source project by jingyaogong with 70.2k stars on GitHub.
+
+Its model has about 64 million parameters. GPT-3 had 175 billion. The project's README says it trains on a single gaming graphics card in about two hours.
+
+𝗧𝗵𝗶𝗻𝗸 𝗼𝗳 𝗶𝘁 𝗮𝘀 𝗮 𝗳𝗹𝗶𝗴𝗵𝘁 𝘀𝗶𝗺𝘂𝗹𝗮𝘁𝗼𝗿 𝗳𝗼𝗿 𝗔𝗜. You won't fly anywhere. But every control is there, and you can see what each one does.
+
+And there are a lot of controls. The same steps big labs talk about, like pretraining on text, teaching the model to follow instructions, rewarding good answers, and teaching it to use tools, are all in the code. Written plainly, so a student can follow them.
+
+The evidence cuts both ways.
+
+On the plus side, it really runs on ordinary hardware, and the code is open (Apache 2.0) and still being updated (latest commit 23 Nov).
+
+On the minus side, the model itself is weak. On the team's own tests it scores close to random guessing on several multiple-choice exams, well behind other small models like SmolLM2. Its training data is mostly Chinese.
+
+One finding is worth noticing even if you never touch code. When the team trained a version to get better at using tools, it improved on that task (17 of 20 vs 12 of 20 problems). But the team says it also became 𝘮𝘰𝘳𝘦 𝘭𝘪𝘬𝘦𝘭𝘺 𝘵𝘰 𝘮𝘢𝘬𝘦 𝘵𝘩𝘪𝘯𝘨𝘴 𝘶𝘱 on ordinary questions.
+
+That trade-off shows up in much bigger models too. Here you can watch it happen on a model you can retrain in an afternoon.
+
+What we know: you can build every stage of a modern chatbot cheaply. What we don't know: how much of that understanding carries over to systems thousands of times larger.
+
+𝘐𝘧 𝘣𝘶𝘪𝘭𝘥𝘪𝘯𝘨 𝘢𝘯 𝘈𝘐 𝘪𝘴 𝘯𝘰𝘸 𝘢 𝘸𝘦𝘦𝘬𝘦𝘯𝘥 𝘱𝘳𝘰𝘫𝘦𝘤𝘵, 𝘸𝘩𝘰 𝘦𝘭𝘴𝘦 𝘴𝘩𝘰𝘶𝘭𝘥 𝘣𝘦 𝘭𝘦𝘢𝘳𝘯𝘪𝘯𝘨 𝘩𝘰𝘸 𝘪𝘵 𝘸𝘰𝘳𝘬𝘴?
+
+Links in reply 👇
+
+
