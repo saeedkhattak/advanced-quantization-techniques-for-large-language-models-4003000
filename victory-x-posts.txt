@@ -1,0 +1,204 @@
+=== 1. STORY ===
+
+GTA VI Is Drawing Frames on a Windows PC. Slowly.
+
+GTA VI came out on November 19, on PS5 and Xbox Series X|S only. Rockstar hasn't announced a PC version.
+
+Six days later, an open-source project called VIctory has the Xbox version booting on Windows. It runs the menus at the game's own 30 fps and loads into the world.
+
+It isn't an emulator in the usual sense. The Xbox Series uses an x86-64 CPU, the same kind of chip your PC has, so the game's code can run as it is.
+
+What's missing is everything around that code. The Xbox system calls, its version of Direct3D 12, its GPU shaders, its compressed file formats.
+
+So VIctory rebuilds that layer:
+
+• System calls: its own versions of the console services (one offline user, licences, saves)
+• Graphics: the console's D3D12.X calls turned into normal D3D12
+• Shaders: console GPU code recompiled to DXIL, the format Windows GPUs take
+• Files: archives read and decompressed in parallel
+
+The shader numbers show how far it's got. In the world, 8,765 of 8,765 mesh shaders translate, 12,550 of 12,592 vertex and pixel shaders, and 2,579 of 2,637 compute shaders.
+
+For players, the README says it plainly: not playable yet. The world loads in about 50 seconds, then shows 1-2 seconds per frame. Surfaces are unlit, a band of distant geometry is missing, and characters come out broken in some shots.
+
+It's been tested on one machine (Windows 11, AMD RX 6700 XT). The README also warns that earlier builds hung the GPU when entering the world, and Windows reset the display driver.
+
+For builders, the docs are worth reading. It's written in Rust and licensed GPL-3.0-or-later. A pre-build step makes about 27,000 GPU pipelines ahead of time (around 20 minutes on 16 threads) so they don't stall the game.
+
+The idea isn't new. Wine runs Windows programs on Linux by rebuilding the system around them. Cxbx-Reloaded did something similar for the original Xbox, running game code directly and reimplementing the Xbox's APIs.
+
+Now the hard part, which isn't technical. The README says it runs "from files the user supplies". But the files going around come from a leak of the Xbox build (version 1.0.2.1, which the README also names), and reports say there's no known way to dump a decrypted copy from your own console.
+
+Take-Two has already sent a DMCA notice against Leonida, another GTA VI PC project, and its forks. Reports say its argument is that "bring your own files" doesn't get around copyright. Take-Two also took down re3 and reVC, the GTA III and Vice City projects, in 2021.
+
+As of November 25 the repo has about 11.4k stars and 1.7k forks.
+
+The engineering is real. Whether it gets to stay up is a separate question.
+
+Links in reply 👇
+
+
+=== 2. KARPATHY STYLE ===
+
+Some thoughts on VIctory, the project getting GTA VI's Xbox build to run on Windows.
+
+The interesting part isn't "GTA on PC". It's that there's no CPU emulation at all.
+
+The Xbox Series CPU is x86-64. So is your PC's. The game's machine code just runs, inside VIctory's own process. Everything else gets rebuilt around it.
+
+The analogy I keep coming back to is moving a fish to a new tank. You don't change the fish. You copy the water chemistry closely enough that it doesn't notice.
+
+In practice the "water" is a lot:
+
+• the console's system services (saves, licences, a single offline user)
+• D3D12.X, the Xbox's own Direct3D 12, mapped onto normal D3D12
+• GPU shaders, recompiled from console machine code to DXIL
+• texture tiling layouts and the BCPack compression the console uses
+
+The shaders are where I'd spend my time if I were reading the code. The README walks through it: native GPU code goes to SSA form, then they remove EXEC masks (the hardware's per-lane on/off bits) and turn them into per-lane booleans. That's a real compiler, not a lookup table.
+
+The status is honest, which I appreciate. "Not playable yet." Menus at 30 fps. The world at 1-2 seconds per frame, unlit, with missing geometry. Tested on one GPU, an AMD RX 6700 XT.
+
+Then there's the part that isn't engineering. The only copies people actually have come from a leaked Xbox build. Take-Two has already sent a DMCA notice against a similar project, Leonida. So imo the code is impressive and the legal footing is very weak, and those are two separate facts.
+
+What I'd actually want to see: a writeup of the shader translator run on a game whose owner can legally dump it. That's the part that outlives this one title.
+
+Links in reply 👇
+
+
+=== 3. SIMON WILLISON STYLE ===
+
+VIctory: an open-source layer that runs the Xbox Series build of GTA VI on Windows.
+
+From the README:
+
+"Runs Grand Theft Auto VI (Xbox Series X|S) natively on Windows, from files the user supplies."
+
+"The title's x86-64 code runs unchanged inside our process; VIctory supplies the platform underneath it"
+
+Status as of the README's own date (2026-11-24): "Not playable yet." Boot, menus, the intro video, saves and loading all work. The world draws at 1-2 s per frame, with unlit surfaces and missing distant geometry.
+
+Two details stood out.
+
+First, the shader coverage table. World shaders: mesh 8,765 of 8,765, vertex/pixel 12,550 of 12,592, compute 2,579 of 2,637. Still missing: merged geometry stages (195 programs) and about 100 others.
+
+Second, the import resolution order in docs/architecture.md. For every function the game imports, VIctory uses its own implementation first, then the host's Windows function if policy allows that DLL, then a DLL the game shipped, then a stub that names the missing import when it's called. That's a tidy way to find out what's left to build.
+
+It's GPL-3.0-or-later, written in Rust, and offline by design ("the title cannot reach the network").
+
+Things to be careful about:
+
+• Tested on one machine (Windows 11, RX 6700 XT)
+• The README warns earlier builds hung the GPU and made Windows reset the display driver
+• "Files the user supplies" in practice means the leaked Xbox build, version 1.0.2.1. Reports say there's no known way to dump your own copy
+• Take-Two has filed a DMCA notice against a similar project, Leonida. I'd treat this repo's future as uncertain
+
+Most of the news coverage I found repeats the same few posts. The README and the architecture doc are the primary sources, and they're more careful than the headlines.
+
+Links in reply 👇
+
+
+=== 4. SWYX STYLE ===
+
+The GTA VI PC port race is a week old and it already has a bracket.
+
+GTA VI launched on November 19, console only. A leaked Xbox Series build followed, and several open-source projects started racing to run it on Windows:
+
+• VIctory: boots, 30 fps menus, the world draws at 1-2 s per frame. About 11.4k stars as of Nov 25
+• Leonida: hit with a Take-Two DMCA notice on Nov 24, along with its forks (per reports)
+• XCL: a general Xbox Series compatibility layer, reported to run other titles like Minecraft Preview
+
+Behind them is a longer line of work:
+
+• Wine: rebuild the OS around unchanged x86 programs
+• Cxbx-Reloaded: the same trick for the original Xbox
+• Xenia: Xbox 360, where the CPU is PowerPC and has to be translated
+• re3 / reVC: decompiled GTA III and Vice City, taken down by Take-Two in 2021
+
+VIctory sits with Wine and Cxbx, not with Xenia. The Xbox Series CPU is x86-64, so there's no CPU to emulate. All the work goes into the OS services, D3D12.X, and a shader recompiler that outputs DXIL.
+
+My take: modern consoles are close to PCs, so the main barrier to these projects isn't technical anymore. It's encryption and lawyers. VIctory got from a leaked executable to drawing the world in days. The DMCA got to Leonida in about one.
+
+The shader translator is what lasts. Whatever happens to this repo, someone now knows how to turn Xbox Series GPU code into DXIL.
+
+Links in reply 👇
+
+
+=== 5. HAMEL HUSAIN STYLE ===
+
+Everyone's sharing "GTA VI runs on PC" clips. The README of the project behind them is a lot more modest, and that's a good thing.
+
+VIctory runs the Xbox Series build of GTA VI on Windows. The game's x86-64 code runs unchanged, and VIctory rebuilds the console's system services, graphics API and shaders underneath it.
+
+What it gives you today:
+
+• Boot, menus and the intro video, at the game's own 30 fps
+• Saves that survive the process being killed at any step
+• World loading in about 50 s
+• Shader coverage you can count: 2,579 of 2,637 world compute shaders translate, for example
+
+What it doesn't:
+
+• A playable game. The world runs at 1-2 s per frame
+• Lighting. Surfaces are unlit
+• Draws whose shaders didn't translate. Those are dropped
+• Testing beyond one machine (Windows 11, RX 6700 XT)
+• A legal way to get the files. The only copies come from the leaked 1.0.2.1 build
+
+What I like is that the project measures itself. The tests run without game data (cargo test --workspace). There's a stand-in "title" made of their own code for loader tests. Crashes go to crashes.log with the faulting module and offset. There are env vars to capture frames, dump render targets and time each GPU command list.
+
+If you're judging any port like this, look for:
+
+1. A status table split by subsystem, not one "it works" video
+2. Shader or API coverage as counts, X of Y
+3. More than one GPU vendor tested
+4. Frame times in the world, not the menu
+5. The crash log, read line by line
+
+Take-Two has already filed a DMCA notice against a similar project, Leonida. Study the methods, not the leak.
+
+Links in reply 👇
+
+
+=== 6. ETHAN MOLLICK STYLE ===
+
+What does it mean when a console exclusive can run on a PC six days after launch, without the publisher's help?
+
+GTA VI came out on November 19 for PS5 and Xbox Series X|S. Rockstar hasn't announced a PC version.
+
+An open-source project called VIctory now has the Xbox version booting on Windows, using a leaked copy of the game.
+
+A useful way to picture it: imagine moving a stage play to a new theatre. The actors (the game's code) don't change. VIctory rebuilds the stage, the lights and the sound system so the actors can't tell they've moved.
+
+That works because today's Xbox uses the same kind of processor as a PC. Older consoles needed slow translation of every instruction. This one mostly needs the surroundings rebuilt.
+
+What we actually know, from the project's own README:
+
+• It boots, runs the menus at 30 fps and loads into the world
+• The world shows one frame every 1-2 seconds, unlit, with missing pieces
+• It has been tested on a single PC
+• The project itself says "Not playable yet"
+
+The case for being impressed: within days, volunteers translated more than 23,000 of the game's world shaders and got the world on screen.
+
+The case for caution: the game files come from a leak, there's reportedly no legal way to copy your own, and Take-Two has already sent a takedown notice against a similar project.
+
+So the technical wall between consoles and PCs looks lower than ever. The legal one hasn't moved.
+
+When the only thing protecting an exclusive is the law, how long do exclusives last?
+
+Links in reply 👇
+
+
+=== FIRST REPLY (links) ===
+
+VIctory repo and README (status table, requirements):
+https://github.com/Marvisak/VIctory
+
+How it works (loader, import resolution, shader translator):
+https://github.com/Marvisak/VIctory/blob/main/docs/architecture.md
+
+Prior work: Cxbx-Reloaded (original Xbox, same "run the code directly" idea):
+https://github.com/Cxbx-Reloaded/Cxbx-Reloaded
+
+No links to game files. Please don't ask for them.
