@@ -1,0 +1,277 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+:root{
+  --bg:#080b12; --panel:#0e131d; --line:#1e2735; --text:#e8edf5; --mute:#8b97ab;
+  --orange:#fb923c; --orange-d:rgba(251,146,60,.14);
+  --green:#34d399; --green-d:rgba(52,211,153,.13);
+  --cyan:#38bdf8; --red:#f87171; --violet:#a78bfa;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1080px;overflow:hidden;background:var(--bg);font-family:Inter,sans-serif;color:var(--text)}
+#stage{position:relative;width:1080px;height:1080px;overflow:hidden;
+  background:
+   radial-gradient(900px 500px at 85% 0%, rgba(56,189,248,.10), transparent 60%),
+   radial-gradient(700px 500px at 0% 100%, rgba(52,211,153,.10), transparent 60%),
+   var(--bg);}
+#grid{position:absolute;inset:0;background-image:
+  linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:36px 36px;}
+.abs{position:absolute}
+.mono{font-family:"JetBrains Mono",monospace}
+.eyebrow{left:36px;top:30px;font-size:15px;font-weight:600;letter-spacing:.16em;color:var(--cyan)}
+.title{left:36px;top:54px;font-size:39px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.title em{font-style:normal;background:linear-gradient(90deg,var(--green),var(--cyan));-webkit-background-clip:text;color:transparent}
+.sub{left:36px;top:104px;font-size:17px;color:var(--mute)}
+.sub b{color:var(--text);font-weight:600}
+.panel{border:1.5px solid var(--line);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));}
+.ptitle{font-size:25px;font-weight:800;letter-spacing:-.01em}
+.pill{font-size:12.5px;font-weight:700;letter-spacing:.12em;padding:6px 11px;border-radius:999px}
+.box{border-radius:16px;border:2px solid;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px}
+.blabel{font-size:20px;font-weight:700}
+.bsub{font-size:14.5px;color:var(--mute)}
+.cells{display:grid;gap:4px}
+.cells i{display:block;width:20px;height:20px;border-radius:5px}
+.chip{font-size:13px;font-weight:700;letter-spacing:.06em;padding:4px 9px;border-radius:7px}
+.card{border:1.5px solid var(--line);border-radius:16px;background:rgba(8,11,18,.55)}
+.ctitle{font-size:13.5px;font-weight:700;letter-spacing:.12em;color:var(--mute)}
+.mrow{display:flex;align-items:center;gap:10px;font-size:14.5px}
+.track{flex:1;height:14px;border-radius:7px;background:#151c28;overflow:hidden}
+.fill{height:100%;border-radius:7px}
+</style></head>
+<body><div id="stage">
+<div id="grid" class="abs"></div>
+
+<div class="abs eyebrow">ORCAROUTER · ORCABONSAI 2.5 27B UNCENSORED</div>
+<div class="abs title">Abliteration <em>without touching a single weight</em></div>
+<div class="abs sub">Ternary Bonsai 2.5 (Qwen3.8-27B) · <b>1.76 bits/weight</b> · refusal direction projected out at inference</div>
+
+<!-- ============ PANEL A ============ -->
+<div class="abs panel" id="pA" style="left:28px;top:144px;width:1024px;height:318px"></div>
+<div class="abs ptitle" style="left:56px;top:166px">Conventional abliteration</div>
+<div class="abs pill" style="left:396px;top:170px;background:var(--orange-d);color:var(--orange);border:1px solid rgba(251,146,60,.4)">PERMANENT</div>
+<div class="abs mono" style="right:58px;top:170px;font-size:17px;color:var(--orange)">W ← W − r(rᵀW)</div>
+
+<div class="abs box" id="a1" style="left:56px;top:214px;width:272px;height:178px;border-color:#5b6476;background:#121926">
+  <div class="cells" id="g1" style="grid-template-columns:repeat(8,20px)"></div>
+  <div class="blabel">Original weights</div>
+  <div class="bsub">ternary {−1, 0, +1}</div>
+</div>
+<div class="abs box" id="a2" style="left:404px;top:214px;width:272px;height:178px;border-color:var(--orange);background:var(--orange-d)">
+  <div class="cells" id="g2" style="grid-template-columns:repeat(8,20px)"></div>
+  <div class="blabel">Modify weights</div>
+  <div class="bsub">dense full-precision values</div>
+</div>
+<div class="abs box" id="a3" style="left:752px;top:214px;width:272px;height:178px;border-color:var(--orange);background:var(--orange-d)">
+  <div class="cells" id="g3" style="grid-template-columns:repeat(8,20px)"></div>
+  <div class="blabel">Save new model</div>
+  <div class="bsub" id="warn">needs re-quantization</div>
+</div>
+<svg class="abs" id="svgA" style="left:0;top:0" width="1080" height="480"></svg>
+<div class="abs" style="left:56px;top:410px;width:968px;font-size:16.5px;color:var(--mute);text-align:center">
+  <span style="color:var(--orange);font-weight:700">Permanent weight changes</span> &nbsp;·&nbsp; re-quantizing can erase the projection or degrade quality
+</div>
+
+<!-- ============ PANEL B ============ -->
+<div class="abs panel" id="pB" style="left:28px;top:478px;width:1024px;height:574px;border-color:rgba(52,211,153,.35)"></div>
+<div class="abs ptitle" style="left:56px;top:500px">OrcaRouter's approach</div>
+<div class="abs pill" style="left:350px;top:504px;background:var(--green-d);color:var(--green);border:1px solid rgba(52,211,153,.4)">RUNTIME · α ADJUSTABLE PER REQUEST</div>
+
+<!-- left flow -->
+<div class="abs box" id="b1" style="left:56px;top:552px;width:500px;height:126px;border-color:var(--green);background:var(--green-d);flex-direction:row;gap:22px">
+  <div class="cells" id="g4" style="grid-template-columns:repeat(6,20px)"></div>
+  <div style="display:flex;flex-direction:column;gap:6px">
+    <div class="blabel" style="font-size:22px">Original Bonsai model</div>
+    <div style="font-size:16px;color:var(--green);font-weight:600">5.93 GB · unchanged</div>
+    <div class="mono" style="font-size:13px;color:var(--mute)">ternary weights · bit-identical</div>
+  </div>
+</div>
+<div class="abs box" id="b2" style="left:56px;top:712px;width:500px;height:170px;border-color:#64748b;background:#111826;gap:12px">
+  <div class="blabel" style="font-size:22px">Runtime behaviour adjustment</div>
+  <div class="mono" style="font-size:21px"><span style="color:var(--text)">y ← y − </span><span style="color:var(--violet)">α</span><span>·(y·</span><span style="color:var(--cyan)">r</span><span>)·</span><span style="color:var(--cyan)">r</span></div>
+  <div style="display:flex;align-items:center;gap:12px;width:400px">
+    <span class="mono" style="font-size:13px;color:var(--mute)">0</span>
+    <div style="position:relative;flex:1;height:8px;border-radius:4px;background:#1e2735">
+      <div id="sfill" style="position:absolute;left:0;top:0;height:8px;border-radius:4px;background:linear-gradient(90deg,#7c3aed,var(--violet))"></div>
+      <div id="knob" style="position:absolute;top:-7px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(167,139,250,.35),0 0 18px rgba(167,139,250,.8)"></div>
+    </div>
+    <span class="mono" style="font-size:13px;color:var(--mute)">1</span>
+    <span class="mono" id="aval" style="font-size:17px;color:var(--violet);width:82px;text-align:right;font-weight:700"></span>
+  </div>
+</div>
+<div class="abs box" id="b3" style="left:56px;top:916px;width:500px;height:112px;border-color:var(--green);background:var(--green-d);align-items:flex-start;padding:0 24px;gap:8px">
+  <div style="display:flex;align-items:center;gap:12px;width:100%">
+    <div class="blabel" style="font-size:22px">Model response</div>
+    <div class="chip" id="rchip" style="margin-left:auto"></div>
+  </div>
+  <div class="mono" id="rtext" style="font-size:16.5px;height:22px;white-space:nowrap"></div>
+</div>
+<svg class="abs" id="svgB" style="left:0;top:0" width="1080" height="1080"></svg>
+
+<!-- right column -->
+<div class="abs card" style="left:584px;top:552px;width:440px;height:236px"></div>
+<div class="abs ctitle" style="left:604px;top:568px">RESIDUAL WRITE, PROJECTED</div>
+<svg class="abs" id="vec" style="left:584px;top:552px" width="440" height="236"></svg>
+
+<div class="abs card" style="left:584px;top:802px;width:440px;height:128px;padding:14px 20px;display:flex;flex-direction:column;gap:9px">
+  <div class="ctitle">ADVBENCH REFUSAL</div>
+  <div class="mrow" id="m1"><span style="width:62px" class="mono">α = 0</span><div class="track"><div class="fill" style="width:99%;background:var(--red)"></div></div><span class="mono" style="width:46px;text-align:right">99%</span></div>
+  <div class="mrow" id="m2"><span style="width:62px" class="mono">α = 1</span><div class="track"><div class="fill" style="width:4%;background:var(--green)"></div></div><span class="mono" style="width:46px;text-align:right">4%</span></div>
+  <div class="mono" style="font-size:13.5px;color:var(--mute)">MMLU <span style="color:var(--text)">77.3 → 76.7</span> &nbsp;·&nbsp; <span id="mmlu">−0.6 pts</span></div>
+</div>
+
+<div class="abs card" style="left:584px;top:944px;width:440px;height:84px;padding:13px 20px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <div class="ctitle">RESIDUAL HOOK SITES</div>
+    <div class="mono" style="font-size:20px;font-weight:700;color:var(--cyan)">129</div>
+  </div>
+  <svg id="hooks" width="400" height="12" style="margin-top:8px;display:block"></svg>
+  <div class="mono" style="display:flex;justify-content:space-between;font-size:12px;margin-top:6px">
+   <span style="color:#34d399">down_proj 64</span><span style="color:#38bdf8">linear_attn 48</span><span style="color:#a78bfa">o_proj 16</span><span style="color:#fb923c">embed 1</span></div>
+</div>
+</div>
+
+<script>
+const T = 12;
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e;}
+function rnd(i){const x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x);}
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const tern=v=>v<0?'#3b82f6':v>0?'#e2e8f0':'#1f2a3a';
+function makeCells(id,n){const g=document.getElementById(id);const out=[];for(let i=0;i<n;i++){const c=document.createElement('i');g.appendChild(c);out.push(c);}return out;}
+const C1=makeCells('g1',24),C2=makeCells('g2',24),C3=makeCells('g3',24),C4=makeCells('g4',18);
+const tv=i=>{const r=rnd(i);return r<.33?-1:r<.6?0:1;};
+C1.forEach((c,i)=>c.style.background=tern(tv(i)));
+C4.forEach((c,i)=>c.style.background=tern(tv(i+7)));
+
+// panel A arrows
+const sA=document.getElementById('svgA');
+const defs=el('defs',{},sA);
+const mk=el('marker',{id:'ah',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:7,markerHeight:7,orient:'auto'},defs);
+el('path',{d:'M0,0 L10,5 L0,10 z',fill:'#94a3b8'},mk);
+[[332,400],[680,748]].forEach(([x1,x2])=>el('line',{x1,y1:303,x2,y2:303,stroke:'#94a3b8','stroke-width':2.5,'marker-end':'url(#ah)'},sA));
+const pulseA=el('circle',{r:7,fill:'var(--orange)',style:'filter:drop-shadow(0 0 8px #fb923c)'},sA);
+
+// panel B connectors
+const sB=document.getElementById('svgB');
+const d2=el('defs',{},sB);
+const mk2=el('marker',{id:'ah2',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:7,markerHeight:7,orient:'auto'},d2);
+el('path',{d:'M0,0 L10,5 L0,10 z',fill:'#94a3b8'},mk2);
+const cons=[[680,710],[884,914]];
+cons.forEach(([y1,y2])=>el('line',{x1:306,y1,x2:306,y2,stroke:'#94a3b8','stroke-width':2.5,'marker-end':'url(#ah2)'},sB));
+const parts=[];cons.forEach(([y1,y2])=>{for(let k=0;k<2;k++)parts.push({c:el('circle',{r:4,fill:'var(--green)',style:'filter:drop-shadow(0 0 6px #34d399)'},sB),y1,y2,k});});
+// glow line from flow to vector card
+const link=el('path',{d:'M556 797 C 570 797, 570 690, 584 690',stroke:'rgba(167,139,250,.5)','stroke-width':2,fill:'none','stroke-dasharray':'4 5'},sB);
+
+// vector diagram
+const V=document.getElementById('vec');
+const vd=el('defs',{},V);
+function arrowM(id,col){const m=el('marker',{id,viewBox:'0 0 10 10',refX:7,refY:5,markerWidth:6,markerHeight:6,orient:'auto'},vd);el('path',{d:'M0,0 L10,5 L0,10 z',fill:col},m);}
+arrowM('vC','#38bdf8');arrowM('vG','#34d399');arrowM('vY','#64748b');
+const O={x:150,y:206};
+el('line',{x1:O.x,y1:O.y+8,x2:O.x,y2:44,stroke:'#38bdf8','stroke-width':2,'stroke-dasharray':'5 5',opacity:.8},V);
+el('line',{x1:O.x-20,y1:O.y,x2:420,y2:O.y,stroke:'#263042','stroke-width':1.5},V);
+el('line',{x1:O.x,y1:O.y,x2:O.x,y2:70,stroke:'#38bdf8','stroke-width':3,'marker-end':'url(#vC)'},V);
+const rl=el('text',{x:O.x-14,y:78,fill:'#38bdf8','font-size':15,'font-family':'JetBrains Mono','text-anchor':'end','font-weight':700},V);rl.textContent='r';
+const rl2=el('text',{x:O.x-14,y:96,fill:'#8b97ab','font-size':12,'font-family':'Inter','text-anchor':'end'},V);rl2.textContent='refusal';
+const rl3=el('text',{x:O.x-14,y:110,fill:'#8b97ab','font-size':12,'font-family':'Inter','text-anchor':'end'},V);rl3.textContent='direction';
+const Y={x:200,y:-130};
+const ghost=el('line',{x1:O.x,y1:O.y,stroke:'#64748b','stroke-width':3,'stroke-dasharray':'2 0','marker-end':'url(#vY)'},V);
+const removed=el('line',{stroke:'#f87171','stroke-width':2.5,'stroke-dasharray':'5 4'},V);
+const yv=el('line',{x1:O.x,y1:O.y,stroke:'#34d399','stroke-width':4,'marker-end':'url(#vG)'},V);
+const yl=el('text',{fill:'#34d399','font-size':16,'font-family':'JetBrains Mono','font-weight':700},V);yl.textContent="y′";
+const gl=el('text',{fill:'#64748b','font-size':15,'font-family':'JetBrains Mono','font-weight':700},V);gl.textContent='y';
+const remL=el('text',{fill:'#f87171','font-size':12.5,'font-family':'JetBrains Mono'},V);remL.textContent='−α(y·r)r';
+
+// hooks bar
+const H=document.getElementById('hooks');
+const segs=[['down_proj',64,'#34d399'],['linear_attn',48,'#38bdf8'],['o_proj',16,'#a78bfa'],['embed',1,'#fb923c']];
+const W=400,gap=1.2,uw=(W-gap*128)/129;let x=0;const ticks=[];
+segs.forEach(([n,c,col])=>{for(let i=0;i<c;i++){ticks.push({r:el('rect',{x:x,y:0,width:uw,height:12,rx:1,fill:col},H),col});x+=uw+gap;}});
+/*(([n,c,col])=>{const w=c*(uw+gap);if(c>4){const t=el('text',{x:lx,y:29,fill:col,'font-size':12,'font-family':'JetBrains Mono'},H);t.textContent=`${n} ${c}`;}lx+=w;});
+const tt=el('text',{x:400,y:29,fill:'#fb923c','font-size':12,'font-family':'JetBrains Mono','text-anchor':'end'},H);*/
+
+function alphaAt(t){
+  if(t<2) return 0;
+  if(t<4.5) return ease((t-2)/2.5);
+  if(t<8.5) return 1;
+  if(t<11) return 1-ease((t-8.5)/2.5);
+  return 0;
+}
+const REF="I can't help with that.";
+const ANS="Sure — here's a complete answer…";
+
+function render(t){
+  t=((t%T)+T)%T;
+  // panel A pulse (period 4s)
+  const pa=(t%4)/4;
+  let px;
+  if(pa<.25) px=332+(400-332)*ease(pa/.25);
+  else if(pa<.5) px=400;
+  else if(pa<.75) px=680+(748-680)*ease((pa-.5)/.25);
+  else px=748;
+  pulseA.setAttribute('cx',px);pulseA.setAttribute('cy',303);
+  pulseA.setAttribute('opacity',(pa<.25||(pa>=.5&&pa<.75))?1:0);
+  // dense cells shimmer (seamless: integer cycles per T)
+  C2.forEach((c,i)=>{const h=20+200*(0.5+0.5*Math.sin(2*Math.PI*(t/T*2)+i*1.7));const l=45+15*Math.sin(2*Math.PI*(t/T*3)+i);c.style.background=`hsl(${h},70%,${l}%)`;});
+  const glow2=pa>=.25&&pa<.5?Math.sin(Math.PI*(pa-.25)/.25):0;
+  document.getElementById('a2').style.boxShadow=`0 0 ${30*glow2}px rgba(251,146,60,${.5*glow2})`;
+  const glow3=pa>=.75?Math.sin(Math.PI*(pa-.75)/.25):0;
+  document.getElementById('a3').style.boxShadow=`0 0 ${30*glow3}px rgba(251,146,60,${.5*glow3})`;
+  C3.forEach((c,i)=>{const h=20+200*rnd(i+50);c.style.background=`hsl(${h},55%,${40+10*rnd(i+90)}%)`;c.style.opacity=.55+.45*Math.abs(Math.sin(2*Math.PI*(t/T*3)+i*.5));});
+  const w=document.getElementById('warn');w.style.color=`rgba(251,146,60,${.6+.4*glow3})`;w.textContent='⚠ needs re-quantization';
+
+  // panel B particles (period 1.5s, 8 cycles per T)
+  parts.forEach(p=>{const ph=((t/1.5)+p.k*.5)%1;p.c.setAttribute('cx',306);p.c.setAttribute('cy',p.y1+(p.y2-p.y1)*ph);p.c.setAttribute('opacity',Math.sin(Math.PI*ph));});
+  link.setAttribute('stroke-dashoffset',-t*18);
+
+  const a=alphaAt(t);
+  document.getElementById('sfill').style.width=(a*100)+'%';
+  document.getElementById('knob').style.left=`calc(${a*100}% - 11px)`;
+  const lab=a<.005?'original':a>.995?'full':'';
+  document.getElementById('aval').textContent=`α=${a.toFixed(2)}`;
+  document.getElementById('b2').style.boxShadow=`0 0 ${36*a}px rgba(167,139,250,${.35*a})`;
+  document.getElementById('b2').style.borderColor=`rgba(167,139,250,${.35+.65*a})`;
+
+  // vector
+  const tip={x:O.x+Y.x,y:O.y+Y.y};
+  const tip2={x:O.x+Y.x,y:O.y+Y.y*(1-a)};
+  ghost.setAttribute('x2',tip.x);ghost.setAttribute('y2',tip.y);ghost.setAttribute('opacity',a>.02?.55:0);
+  removed.setAttribute('x1',tip2.x);removed.setAttribute('y1',tip2.y-4);removed.setAttribute('x2',tip.x);removed.setAttribute('y2',tip.y+6);removed.setAttribute('opacity',a>.05?1:0);
+  yv.setAttribute('x2',tip2.x);yv.setAttribute('y2',tip2.y);
+  yl.setAttribute('x',tip2.x+10);yl.setAttribute('y',tip2.y+(a>.9?-8:4));yl.textContent=a<.02?'y':'y′';
+  gl.setAttribute('x',tip.x-24);gl.setAttribute('y',tip.y+2);gl.setAttribute('opacity',a>.02?1:0);
+  remL.setAttribute('x',tip.x+10);remL.setAttribute('y',(tip.y+tip2.y)/2+14);remL.setAttribute('opacity',a>.3?clamp((a-.3)*3):0);
+
+  // metrics highlight
+  const m1=document.getElementById('m1'),m2=document.getElementById('m2');
+  m1.style.opacity=.35+.65*(1-a);m2.style.opacity=.35+.65*a;
+
+  // response
+  const refusing=a<.5;
+  const chip=document.getElementById('rchip');
+  chip.textContent=refusing?'REFUSES':'ANSWERS';
+  chip.style.background=refusing?'rgba(248,113,113,.15)':'rgba(52,211,153,.15)';
+  chip.style.color=refusing?'var(--red)':'var(--green)';
+  chip.style.border='1px solid '+(refusing?'rgba(248,113,113,.45)':'rgba(52,211,153,.45)');
+  // typing: time since last switch
+  let since;const txt=refusing?REF:ANS;
+  if(refusing){since = t<6?t+(T-9.75):(t-9.75);} // switch back at ~9.75
+  else{since=t-3.25;}
+  const n=Math.floor(clamp(since/1.1)*txt.length);
+  const cur=(Math.floor(t*2.5)%2===0)?'▍':' ';
+  const rt=document.getElementById('rtext');
+  rt.textContent=txt.slice(0,n)+(n<txt.length||true?cur:'');
+  rt.style.color=refusing?'#fca5a5':'#d1fae5';
+  document.getElementById('b3').style.borderColor=refusing?'rgba(248,113,113,.7)':'var(--green)';
+  document.getElementById('b3').style.background=refusing?'rgba(248,113,113,.08)':'var(--green-d)';
+
+  // hooks sweep (period 3s)
+  const sw=(t%3)/3*160-15;
+  ticks.forEach((k,i)=>{const d=Math.abs(i-sw);const g=clamp(1-d/14);k.r.setAttribute('opacity',.35+.65*g);k.r.setAttribute('height',12+0*g);});
+}
+window.render=render;render(0);
+</script>
+</body></html>
