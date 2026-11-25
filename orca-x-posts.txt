@@ -1,0 +1,172 @@
+===== 1. Story =====
+
+𝗢𝗿𝗰𝗮 𝗪𝗮𝗻𝘁𝘀 𝗬𝗼𝘂𝗿 𝗖𝗼𝗱𝗶𝗻𝗴 𝗔𝗴𝗲𝗻𝘁𝘀 𝗧𝗼 𝗪𝗼𝗿𝗸 𝗟𝗶𝗸𝗲 𝗔 𝗧𝗲𝗮𝗺
+
+You start Claude Code on a bug. Then a second terminal for a refactor. Then a third because CI broke. Ten minutes later you've lost track of which tab is waiting on you.
+
+Orca is an open-source desktop app from Stably AI built for that mess. Its README sums it up in one line: "𝘉𝘰𝘵𝘴 𝘪𝘯𝘴𝘪𝘥𝘦 𝘺𝘰𝘶𝘳 𝘢𝘨𝘦𝘯𝘵 𝘐𝘋𝘌."
+
+𝗧𝗵𝗲 𝗶𝗱𝗲𝗮 𝗶𝘀 𝘀𝗶𝗺𝗽𝗹𝗲: 𝗼𝗻𝗲 𝗮𝗴𝗲𝗻𝘁 𝗽𝗲𝗿 𝘁𝗮𝘀𝗸, 𝗲𝗮𝗰𝗵 𝗶𝗻 𝗶𝘁𝘀 𝗼𝘄𝗻 𝗴𝗶𝘁 𝘄𝗼𝗿𝗸𝘁𝗿𝗲𝗲, 𝗮𝗹𝗹 𝗶𝗻 𝗼𝗻𝗲 𝘄𝗶𝗻𝗱𝗼𝘄.
+
+Each task gets its own worktree, so agents don't write over each other's files. You can run them as a chat UI or the raw CLI and move a conversation between the two.
+
+For a big job you hand the task to one coordinator agent. It splits the work, starts worker agents in their own workspaces and brings the results back.
+
+When an agent finishes, you review the diff inside Orca, leave a note on an exact line, and send it back. Failing checks and PR review comments can go back to the agent the same way.
+
+Then there are the bots. You ask one in Slack, Linear or GitHub to fix a bug, and the README says you come back to a tested pull request. Bots can run on a schedule ("every weekday at 9") or fire when a PR opens, a check fails or a webhook comes in.
+
+𝗙𝗼𝗿 𝘂𝘀𝗲𝗿𝘀: it runs on macOS, Windows and Linux, with iOS and Android apps that ping you when an agent needs input. Agents can run on an SSH host or a Remote Orca Server, so they keep going when your laptop sleeps.
+
+𝗙𝗼𝗿 𝗯𝘂𝗶𝗹𝗱𝗲𝗿𝘀: it isn't tied to one model. It runs on your own Claude Code or Codex subscription, and the README lists 𝗺𝗼𝗿𝗲 𝘁𝗵𝗮𝗻 𝟯𝟬 𝗖𝗟𝗜 𝗮𝗴𝗲𝗻𝘁𝘀, plus "any CLI agent". A bot's personality and memory are plain Markdown files (𝚂𝙾𝚄𝙻.𝚖𝚍, 𝙼𝙴𝙼𝙾𝚁𝚈.𝚖𝚍) you can read and edit. There's also an Orca CLI, so agents can create worktrees and start workers themselves.
+
+It isn't the first tool here. Claude Squad (AGPL-3.0) manages several terminal agents in separate workspaces. Vibe Kanban (Apache-2.0) did a board for agent tasks and is now sunsetting, per its README. Orca goes wider: bots, mobile, remote machines, review.
+
+A few caveats. Every feature above is the team's own description. "Tested pull request" is their claim, and the tests are only as good as your repo's. Worktrees separate files, not shared things like a local database or a port. The app collects 𝗮𝗻𝗼𝗻𝘆𝗺𝗼𝘂𝘀 𝘂𝘀𝗮𝗴𝗲 𝗱𝗮𝘁𝗮 by default, with an opt-out. And it moves fast: 𝘁𝘄𝗼 𝗱𝗲𝘀𝗸𝘁𝗼𝗽 𝗿𝗲𝗹𝗲𝗮𝘀𝗲𝘀 𝗼𝗻 𝟮𝟰 𝗡𝗼𝘃 𝗮𝗹𝗼𝗻𝗲 (latest v1.4.274), so expect things to change under you.
+
+It's MIT licensed, with 𝟭𝟯𝟳.𝟴𝗸 𝗚𝗶𝘁𝗛𝘂𝗯 𝘀𝘁𝗮𝗿𝘀 as of 25 Nov 2026.
+
+𝗧𝗵𝗲 𝗲𝗱𝗶𝘁𝗼𝗿 𝘂𝘀𝗲𝗱 𝘁𝗼 𝗯𝗲 𝘄𝗵𝗲𝗿𝗲 𝘆𝗼𝘂 𝘄𝗿𝗼𝘁𝗲 𝗰𝗼𝗱𝗲. 𝗢𝗿𝗰𝗮 𝗶𝘀 𝗯𝗲𝘁𝘁𝗶𝗻𝗴 𝗶𝘁 𝗯𝗲𝗰𝗼𝗺𝗲𝘀 𝘄𝗵𝗲𝗿𝗲 𝘆𝗼𝘂 𝗺𝗮𝗻𝗮𝗴𝗲 𝘁𝗵𝗲 𝘁𝗵𝗶𝗻𝗴𝘀 𝘄𝗿𝗶𝘁𝗶𝗻𝗴 𝗶𝘁.
+
+Links in reply 👇
+
+
+===== 2. Karpathy style =====
+
+𝗢𝗿𝗰𝗮 𝗔𝗻𝗱 𝗧𝗵𝗲 𝗦𝗵𝗮𝗽𝗲 𝗢𝗳 𝗔𝗻 𝗔𝗴𝗲𝗻𝘁 𝗜𝗗𝗘
+
+Been looking at Orca, the open-source (MIT) desktop app from Stably AI for running lots of coding agents at once.
+
+The feature list is long. Parallel worktrees, diff review, a mobile app, remote hosts, bots in Slack. 𝗕𝘂𝘁 𝗜 𝘁𝗵𝗶𝗻𝗸 𝘁𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝗮𝗻𝘆 𝘀𝗶𝗻𝗴𝗹𝗲 𝗳𝗲𝗮𝘁𝘂𝗿𝗲, 𝗶𝘁'𝘀 𝘄𝗵𝗮𝘁 𝘁𝗵𝗲 𝗮𝗽𝗽 𝗮𝘀𝘀𝘂𝗺𝗲𝘀 𝗮𝗯𝗼𝘂𝘁 𝘆𝗼𝘂.
+
+It assumes you aren't writing most of the code. You're dispatching it.
+
+That changes what the main screen should be. An editor is built around one file and one cursor. Orca is built around many tasks, each in its own git worktree, each with its own agent, and a list of which ones need you.
+
+The analogy I keep coming back to is a kitchen pass. The cooks (Claude Code, Codex, any of the 𝟯𝟬+ 𝗖𝗟𝗜 𝗮𝗴𝗲𝗻𝘁𝘀 it lists) do the work at their stations. The person at the pass doesn't cook. They check each plate, send some back with a note, and keep orders moving. Orca's diff review is literally that: comment on a line, send it back to the agent.
+
+The bots push it one step further. You ask in Slack, Linear or GitHub, and per the README you come back to a tested PR. A bot's memory is plain Markdown (𝙼𝙴𝙼𝙾𝚁𝚈.𝚖𝚍, 𝚂𝙾𝚄𝙻.𝚖𝚍), which I like a lot. Readable state beats a hidden vector store, imo.
+
+What I'd be careful about. The bottleneck in this setup is review, not generation. Ten agents producing ten diffs is only a win if you can actually judge ten diffs. "Tested" is only as strong as the tests in your repo. And worktrees isolate files, not your local database or ports.
+
+Also, everything here is the team's own description. They ship very fast (𝘃𝟭.𝟰.𝟮𝟳𝟰 𝗼𝗻 𝟮𝟰 𝗡𝗼𝘃 𝟮𝟬𝟮𝟲, two desktop releases that day), so the details will drift.
+
+What I'd actually want to see: numbers on how often a bot's PR gets merged unchanged, versus sent back. 𝘛𝘩𝘢𝘵'𝘴 𝘵𝘩𝘦 𝘮𝘦𝘵𝘳𝘪𝘤 𝘵𝘩𝘢𝘵 𝘵𝘦𝘭𝘭𝘴 𝘺𝘰𝘶 𝘸𝘩𝘦𝘵𝘩𝘦𝘳 𝘵𝘩𝘦 𝘱𝘢𝘴𝘴 𝘪𝘴 𝘸𝘰𝘳𝘬𝘪𝘯𝘨.
+
+Links in reply 👇
+
+
+===== 3. Simon Willison style =====
+
+𝗢𝗿𝗰𝗮: 𝗡𝗼𝘁𝗲𝘀 𝗢𝗻 𝗦𝘁𝗮𝗯𝗹𝘆 𝗔𝗜'𝘀 𝗢𝗽𝗲𝗻-𝗦𝗼𝘂𝗿𝗰𝗲 𝗔𝗴𝗲𝗻𝘁 𝗜𝗗𝗘
+
+Orca (github.com/stablyai/orca) is an MIT-licensed desktop app for macOS, Windows and Linux that runs coding agents in parallel git worktrees. The README's headline is "𝘉𝘰𝘵𝘴 𝘪𝘯𝘴𝘪𝘥𝘦 𝘺𝘰𝘶𝘳 𝘢𝘨𝘦𝘯𝘵 𝘐𝘋𝘌."
+
+The pitch, quoted from the README: "𝘖𝘱𝘦𝘯 𝘴𝘰𝘶𝘳𝘤𝘦. 𝘉𝘳𝘪𝘯𝘨 𝘺𝘰𝘶𝘳 𝘰𝘸𝘯 𝘦𝘷𝘦𝘳𝘺𝘵𝘩𝘪𝘯𝘨: 𝘺𝘰𝘶𝘳 𝘊𝘭𝘢𝘶𝘥𝘦 𝘊𝘰𝘥𝘦 𝘰𝘳 𝘊𝘰𝘥𝘦𝘹, 𝘺𝘰𝘶𝘳 𝘭𝘰𝘤𝘢𝘭 𝘰𝘳 𝘳𝘦𝘮𝘰𝘵𝘦 𝘮𝘢𝘤𝘩𝘪𝘯𝘦𝘴, 𝘺𝘰𝘶𝘳 𝘵𝘰𝘰𝘭𝘴."
+
+It isn't tied to one agent. The supported list has 𝟯𝟰 𝗻𝗮𝗺𝗲𝗱 𝗖𝗟𝗜 𝗮𝗴𝗲𝗻𝘁𝘀 (Claude Code, Codex, Cursor, GitHub Copilot, Goose, Qwen Code and more) and ends with "+ any CLI agent".
+
+Two features are worth a closer look.
+
+𝗕𝗼𝘁𝘀. "𝘈𝘴𝘬 𝘢 𝘣𝘰𝘵 𝘪𝘯 𝘚𝘭𝘢𝘤𝘬, 𝘓𝘪𝘯𝘦𝘢𝘳, 𝘰𝘳 𝘎𝘪𝘵𝘏𝘶𝘣 𝘵𝘰 𝘧𝘪𝘹 𝘢 𝘣𝘶𝘨, 𝘢𝘯𝘥 𝘤𝘰𝘮𝘦 𝘣𝘢𝘤𝘬 𝘵𝘰 𝘢 𝘵𝘦𝘴𝘵𝘦𝘥 𝘱𝘶𝘭𝘭 𝘳𝘦𝘲𝘶𝘦𝘴𝘵. 𝘐𝘵 𝘳𝘶𝘯𝘴 𝘰𝘯 𝘺𝘰𝘶𝘳 𝘰𝘸𝘯 𝘊𝘭𝘢𝘶𝘥𝘦 𝘊𝘰𝘥𝘦 𝘰𝘳 𝘊𝘰𝘥𝘦𝘹." They can run on a schedule or on triggers like a PR opening, a check failing or a webhook. A bot's "𝘴𝘰𝘶𝘭 𝘢𝘯𝘥 𝘮𝘦𝘮𝘰𝘳𝘺 𝘢𝘳𝘦 𝘱𝘭𝘢𝘪𝘯 𝘔𝘢𝘳𝘬𝘥𝘰𝘸𝘯 𝘧𝘪𝘭𝘦𝘴 (𝘚𝘖𝘜𝘓.𝘮𝘥, 𝘔𝘌𝘔𝘖𝘙𝘠.𝘮𝘥) 𝘺𝘰𝘶 𝘤𝘢𝘯 𝘳𝘦𝘢𝘥 𝘢𝘯𝘥 𝘦𝘥𝘪𝘵." That's a nice design choice: you can diff and review what the bot remembers.
+
+𝗧𝗵𝗲 𝗢𝗿𝗰𝗮 𝗖𝗟𝗜. "𝘈𝘯𝘺𝘵𝘩𝘪𝘯𝘨 𝘺𝘰𝘶 𝘤𝘢𝘯 𝘥𝘰 𝘪𝘯 𝘖𝘳𝘤𝘢, 𝘺𝘰𝘶𝘳 𝘢𝘨𝘦𝘯𝘵𝘴 𝘤𝘢𝘯 𝘥𝘰 𝘵𝘰𝘰: 𝘤𝘳𝘦𝘢𝘵𝘦 𝘸𝘰𝘳𝘬𝘵𝘳𝘦𝘦𝘴, 𝘴𝘵𝘢𝘳𝘵 𝘸𝘰𝘳𝘬𝘦𝘳𝘴, 𝘥𝘳𝘪𝘷𝘦 𝘵𝘩𝘦 𝘣𝘳𝘰𝘸𝘴𝘦𝘳 𝘢𝘯𝘥 𝘥𝘦𝘴𝘬𝘵𝘰𝘱 𝘢𝘱𝘱𝘴, 𝘢𝘯𝘥 𝘴𝘤𝘩𝘦𝘥𝘶𝘭𝘦 𝘢𝘶𝘵𝘰𝘮𝘢𝘵𝘪𝘰𝘯𝘴." That's what makes the coordinator setup work, where one agent splits a task and starts workers.
+
+Things to be careful about:
+
+• 𝗦𝗲𝗹𝗳-𝗱𝗲𝘀𝗰𝗿𝗶𝗯𝗲𝗱: every feature claim comes from the project's own README. The bot security docs live on orca.dev, not in the repo.
+• "𝗧𝗲𝘀𝘁𝗲𝗱" 𝗣𝗥: that means the tests your repo already has. Nothing more.
+• 𝗧𝗲𝗹𝗲𝗺𝗲𝘁𝗿𝘆: the README says it collects "𝘢𝘯𝘰𝘯𝘺𝘮𝘰𝘶𝘴 𝘶𝘴𝘢𝘨𝘦 𝘥𝘢𝘵𝘢" and links to opt-out docs.
+• 𝗪𝗼𝗿𝗸𝘁𝗿𝗲𝗲𝘀: they separate files, not a shared local database or port.
+• 𝗛𝗼𝗺𝗲𝗯𝗿𝗲𝘄: the README warns that bare 𝚘𝚛𝚌𝚊 is an unrelated Plotly cask. Use 𝚋𝚛𝚎𝚠 𝚒𝚗𝚜𝚝𝚊𝚕𝚕 --𝚌𝚊𝚜𝚔 𝚜𝚝𝚊𝚋𝚕𝚢𝚊𝚒/𝚘𝚛𝚌𝚊/𝚘𝚛𝚌𝚊.
+• 𝗣𝗮𝗰𝗲: latest release v1.4.274 on 24 Nov 2026, and the releases page runs to about 1,000 entries back to v1.0.43 in March.
+
+For comparison, see Claude Squad (terminal app for several agents in separate workspaces, AGPL-3.0) and Vibe Kanban (Apache-2.0, which its README says is sunsetting).
+
+Stars: 𝟭𝟯𝟳.𝟴𝗸 as of 25 Nov 2026.
+
+Links in reply 👇
+
+
+===== 4. swyx style =====
+
+𝗧𝗵𝗲 𝗔𝗴𝗲𝗻𝘁 𝗜𝗗𝗘 𝗜𝘀 𝗧𝘂𝗿𝗻𝗶𝗻𝗴 𝗜𝗻𝘁𝗼 𝗔𝗻 𝗔𝗴𝗲𝗻𝘁 𝗢𝗿𝗴 𝗖𝗵𝗮𝗿𝘁
+
+There's a new category forming above the coding agent. Call it the agent manager: the place you run many agents, not the agent itself.
+
+Quick map of what's around it:
+
+• 𝗖𝗹𝗮𝘂𝗱𝗲 𝗦𝗾𝘂𝗮𝗱: a terminal app that runs several agents (Claude Code, Codex, Gemini, Aider) in separate workspaces. AGPL-3.0, 8.9k stars.
+• 𝗩𝗶𝗯𝗲 𝗞𝗮𝗻𝗯𝗮𝗻: a task board for coding agents, Apache-2.0. Its README now says it's sunsetting.
+• 𝗢𝗿𝗰𝗮: Stably AI's MIT-licensed desktop app. Parallel worktrees, plus bots, mobile, remote machines and review.
+
+Orca is the maximalist bet in this group. Desktop on three OSes, iOS and Android apps, agents on SSH hosts or a Remote Orca Server, a CLI so agents can spin up their own workers, and 𝟯𝟰 𝗻𝗮𝗺𝗲𝗱 𝗖𝗟𝗜 𝗮𝗴𝗲𝗻𝘁𝘀 supported, plus "any CLI agent".
+
+𝗧𝗵𝗲 𝗽𝗮𝗿𝘁 𝘁𝗵𝗮𝘁 𝗺𝗼𝘃𝗲𝘀 𝗶𝘁 𝗼𝘂𝘁 𝗼𝗳 𝘁𝗵𝗲 𝗜𝗗𝗘 𝗯𝗼𝘅 𝗶𝘀 𝗯𝗼𝘁𝘀. You ask in Slack, Linear or GitHub, a bot runs on your own Claude Code or Codex subscription, and per the README you come back to a tested PR. Bots run on schedules or triggers (a PR opens, a check fails, a webhook fires). Their memory lives in 𝙼𝙴𝙼𝙾𝚁𝚈.𝚖𝚍.
+
+The traction is real by GitHub standards: 𝟭𝟯𝟳.𝟴𝗸 𝘀𝘁𝗮𝗿𝘀 𝗮𝗻𝗱 𝟴.𝟴𝗸 𝗳𝗼𝗿𝗸𝘀 as of 25 Nov 2026, and about 1,000 releases since March. Two desktop releases shipped on 24 Nov alone.
+
+Two caveats. These are the team's own feature claims, and "tested" means whatever tests your repo has. Stars also tell you about interest, not merge rates.
+
+My take: the model labs own the agent. The fight now is over the layer that schedules, routes and reviews agents, and 𝘸𝘩𝘰𝘦𝘷𝘦𝘳 𝘰𝘸𝘯𝘴 𝘵𝘩𝘦 𝘳𝘦𝘷𝘪𝘦𝘸 𝘲𝘶𝘦𝘶𝘦 𝘰𝘸𝘯𝘴 𝘵𝘩𝘦 𝘥𝘦𝘷𝘦𝘭𝘰𝘱𝘦𝘳.
+
+Links in reply 👇
+
+
+===== 5. Hamel Husain style =====
+
+𝗕𝗲𝗳𝗼𝗿𝗲 𝗬𝗼𝘂 𝗛𝗮𝗻𝗱 𝗢𝗿𝗰𝗮 𝗧𝗲𝗻 𝗔𝗴𝗲𝗻𝘁𝘀, 𝗠𝗲𝗮𝘀𝘂𝗿𝗲 𝗢𝗻𝗲
+
+Orca is an open-source (MIT) desktop app from Stably AI for running many coding agents at once, each in its own git worktree. It also has bots you can ping from Slack, Linear or GitHub.
+
+It's popular: 𝟭𝟯𝟳.𝟴𝗸 𝗚𝗶𝘁𝗛𝘂𝗯 𝘀𝘁𝗮𝗿𝘀 as of 25 Nov 2026. Popular isn't the same as proven for your codebase.
+
+What it gives you:
+
+• 𝗣𝗮𝗿𝗮𝗹𝗹𝗲𝗹 𝘄𝗼𝗿𝗸𝘁𝗿𝗲𝗲𝘀: one task per worktree, so agents don't trample each other's files.
+• 𝗥𝗲𝘃𝗶𝗲𝘄 𝗹𝗼𝗼𝗽: notes on exact diff lines, plus failing checks and PR comments, sent back to the agent.
+• 𝗕𝗼𝘁𝘀: per the README, ask in Slack and "𝘤𝘰𝘮𝘦 𝘣𝘢𝘤𝘬 𝘵𝘰 𝘢 𝘵𝘦𝘴𝘵𝘦𝘥 𝘱𝘶𝘭𝘭 𝘳𝘦𝘲𝘶𝘦𝘴𝘵", on your own Claude Code or Codex. They can run on schedules or triggers.
+• 𝗜𝗻𝘀𝗽𝗲𝗰𝘁𝗮𝗯𝗹𝗲 𝗺𝗲𝗺𝗼𝗿𝘆: a bot's memory and persona are Markdown files (𝙼𝙴𝙼𝙾𝚁𝚈.𝚖𝚍, 𝚂𝙾𝚄𝙻.𝚖𝚍). You can read them, which is more than most tools give you.
+
+What it doesn't give you:
+
+• 𝗔 𝗾𝘂𝗮𝗹𝗶𝘁𝘆 𝘀𝗶𝗴𝗻𝗮𝗹. "Tested" means your existing tests passed. If coverage is thin, the PR is thin.
+• 𝗜𝘀𝗼𝗹𝗮𝘁𝗶𝗼𝗻 𝗯𝗲𝘆𝗼𝗻𝗱 𝗳𝗶𝗹𝗲𝘀. Worktrees don't separate a shared local database or a port.
+• 𝗜𝗻𝗱𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝘁 𝗻𝘂𝗺𝗯𝗲𝗿𝘀. Every feature claim is the team's own. There is no public merge-rate or success-rate figure yet.
+
+So treat it like any other agent setup and measure it. A simple recipe:
+
+1. Pick 𝟮𝟬 𝗰𝗹𝗼𝘀𝗲𝗱 𝗶𝘀𝘀𝘂𝗲𝘀 from your repo with known fixes.
+2. Baseline: run them through one agent in a single terminal. Record pass rate and how many review rounds each took.
+3. Run the same 20 through Orca, with bots or a coordinator plus workers.
+4. Compare merged-without-changes, review rounds, and your time spent reviewing.
+5. Read the traces for the failures. Check what the bot wrote in 𝙼𝙴𝙼𝙾𝚁𝚈.𝚖𝚍 too.
+
+𝘐𝘧 𝘵𝘩𝘦 𝘳𝘦𝘷𝘪𝘦𝘸 𝘲𝘶𝘦𝘶𝘦 𝘨𝘳𝘰𝘸𝘴 𝘧𝘢𝘴𝘵𝘦𝘳 𝘵𝘩𝘢𝘯 𝘵𝘩𝘦 𝘮𝘦𝘳𝘨𝘦 𝘳𝘢𝘵𝘦, 𝘮𝘰𝘳𝘦 𝘢𝘨𝘦𝘯𝘵𝘴 𝘫𝘶𝘴𝘵 𝘮𝘦𝘢𝘯𝘴 𝘮𝘰𝘳𝘦 𝘵𝘰 𝘳𝘦𝘢𝘥.
+
+Links in reply 👇
+
+
+===== 6. Ethan Mollick style =====
+
+𝗪𝗵𝗮𝘁 𝗛𝗮𝗽𝗽𝗲𝗻𝘀 𝗪𝗵𝗲𝗻 𝗔 𝗗𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿 𝗛𝗮𝘀 𝗧𝗲𝗻 𝗔𝘀𝘀𝗶𝘀𝘁𝗮𝗻𝘁𝘀 𝗜𝗻𝘀𝘁𝗲𝗮𝗱 𝗢𝗳 𝗢𝗻𝗲?
+
+AI coding agents can now write a lot of code on their own. The new question is what work looks like when one person runs many of them at the same time.
+
+Orca is one answer. It's a free, open-source app from a startup called Stably AI that lets a developer run many AI coding assistants side by side.
+
+Think of a manager with a team of contractors. Each contractor gets their own copy of the project to work on, so nobody overwrites anyone else. The manager doesn't do the work. They hand out tasks, check what comes back, write notes on what's wrong, and send it back for another pass.
+
+That's roughly what Orca does. You can even message a "bot" in Slack and, according to the company, come back later to a finished, tested change ready for review. There's a phone app that pings you when one of them needs a decision.
+
+Developers seem interested. The project has 𝟭𝟯𝟳.𝟴𝗸 𝘀𝘁𝗮𝗿𝘀 𝗼𝗻 𝗚𝗶𝘁𝗛𝘂𝗯 (a rough measure of attention) as of 25 Nov 2026, and the team ships updates almost every day.
+
+What we don't know yet matters more. The features are the company's own description, and there is no independent public data yet on how often these bots' work gets accepted as is. "Tested" only means the project's existing checks passed, which can miss a lot. And more assistants means more work to review. 𝗔 𝗺𝗮𝗻𝗮𝗴𝗲𝗿 𝘄𝗶𝘁𝗵 𝘁𝗲𝗻 𝗰𝗼𝗻𝘁𝗿𝗮𝗰𝘁𝗼𝗿𝘀 𝘀𝘁𝗶𝗹𝗹 𝗵𝗮𝘀 𝘁𝗼 𝗰𝗵𝗲𝗰𝗸 𝘁𝗲𝗻 𝗷𝗼𝗯𝘀.
+
+So the evidence so far is mostly about adoption, not outcomes.
+
+𝘐𝘧 𝘵𝘩𝘦 𝘴𝘬𝘪𝘭𝘭 𝘵𝘩𝘢𝘵 𝘮𝘢𝘵𝘵𝘦𝘳𝘴 𝘴𝘩𝘪𝘧𝘵𝘴 𝘧𝘳𝘰𝘮 𝘸𝘳𝘪𝘵𝘪𝘯𝘨 𝘤𝘰𝘥𝘦 𝘵𝘰 𝘫𝘶𝘥𝘨𝘪𝘯𝘨 𝘪𝘵, 𝘩𝘰𝘸 𝘥𝘰 𝘯𝘦𝘸 𝘥𝘦𝘷𝘦𝘭𝘰𝘱𝘦𝘳𝘴 𝘭𝘦𝘢𝘳𝘯 𝘵𝘰 𝘫𝘶𝘥𝘨𝘦 𝘤𝘰𝘥𝘦 𝘵𝘩𝘦𝘺 𝘯𝘦𝘷𝘦𝘳 𝘩𝘢𝘥 𝘵𝘰 𝘸𝘳𝘪𝘵𝘦?
+
+Links in reply 👇
+
+
