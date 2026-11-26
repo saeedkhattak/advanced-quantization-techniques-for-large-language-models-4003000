@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pocket Keys</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Pocket Keys</h1>
+    <p>A keyboard on your screen. Click or tap the keys, or use your computer keyboard. Each press sends a real MIDI-style message, shown below, so you can see what a MIDI controller "says".</p>
+  </header>
+
+  <section class="panel" aria-label="Instrument">
+    <div class="top">
+      <div class="screen" aria-live="polite">
+        <span class="lbl" id="scrLbl">Ready</span>
+        <span class="big" id="scrBig">Press a key</span>
+        <span class="sub" id="scrSub">Try three keys at once to hear a chord.</span>
+      </div>
+      <div class="controls">
+        <div class="row" role="group" aria-label="Sound">
+          <span class="ctl-label">Sound</span>
+          <div class="row" id="sounds"></div>
+        </div>
+        <div class="row">
+          <span class="ctl-label">Octave</span>
+          <button id="octDown" aria-label="Lower octave">−</button>
+          <span class="oct" id="octLbl">C3–C5</span>
+          <button id="octUp" aria-label="Higher octave">+</button>
+          <button id="sustainBtn" aria-pressed="false" title="Keeps notes ringing after you let go, like a piano's foot pedal">Sustain</button>
+        </div>
+        <div class="row">
+          <span class="ctl-label">Record</span>
+          <button id="recBtn" aria-pressed="false"><span class="rec-dot"></span>Record</button>
+          <button id="playBtn" disabled>Play back</button>
+        </div>
+        <div class="row">
+          <span class="ctl-label">Songs</span>
+          <div class="row" id="songs"></div>
+        </div>
+        <div class="status" id="songStatus" style="margin-top:0">Pick a song. The keys light up as it plays.</div>
+      </div>
+    </div>
+    <div class="keyboard" id="kb" aria-label="Piano keys"></div>
+  </section>
+
+  <div class="below">
+    <section class="card">
+      <h2>MIDI messages</h2>
+      <p>This is what a MIDI keyboard sends to a computer. It isn't sound, only instructions: which key, how hard, and whether it went down or up. The three codes at the end are the actual bytes (tiny numbers) that travel down the cable.</p>
+      <ul class="log" id="log"><li class="empty">Play a note and its message appears here.</li></ul>
+    </section>
+    <section class="card">
+      <h2>How to play</h2>
+      <ul class="help">
+        <li><strong>Mouse or finger:</strong> press a key. Slide across keys to glide. Press <strong>lower</strong> on a key to play <strong>louder</strong> (that's called velocity).</li>
+        <li><strong>Computer keyboard:</strong> the row <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> <kbd>F</kbd>… plays white keys; <kbd>W</kbd> <kbd>E</kbd> <kbd>T</kbd> <kbd>Y</kbd> <kbd>U</kbd>… plays black keys. The letter is printed on each key.</li>
+        <li><kbd>Z</kbd> / <kbd>X</kbd> move down / up an octave (8 white keys = the same notes, lower or higher). <kbd>Space</kbd> holds Sustain.</li>
+        <li><strong>Try:</strong> C + E + G together (a happy chord), then A + C + E (a sad one).</li>
+      </ul>
+      <button id="midiBtn" style="margin-top:12px">Connect a real MIDI keyboard</button>
+      <div class="status" id="midiStatus"></div>
+    </section>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
