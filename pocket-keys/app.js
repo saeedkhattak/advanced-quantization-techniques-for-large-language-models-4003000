@@ -39,12 +39,41 @@
     bell: { label: "Bell", desc: "chiming, long ring",
       oscs: [["sine",1,1],["sine",3.5,0.4],["sine",5.4,0.15]], a: 0.002, decay: 3.2, sustainLvl: 0.0, r: 1.2, filter: 9000 },
     drive: { hidden: true, label: "Drive bass", desc: "", oscs: [["sawtooth",1,0.5],["square",1,0.35],["sine",1,0.7]], a: 0.004, decay: 0.15, sustainLvl: 0.6, r: 0.06, filter: 650 },
+    rabab: { group: "world", label: "Rabab", desc: "Afghan and Pashto lute: bright, plucked strings", ks: true, ksDur: 1.6, ksDecay: 0.995, bright: 0.85, body: [900, 6, 1.2], a: 0.002, decay: 0.01, sustainLvl: 1, r: 0.25, filter: 6500, gain: 1.1 },
+    sitar: { group: "world", label: "Sitar", desc: "Indian long-neck lute: buzzy, ringing strings", ks: true, ksDur: 2.6, ksDecay: 0.998, bright: 0.9, buzz: 3, body: [2600, 7, 2], a: 0.002, decay: 0.01, sustainLvl: 1, r: 0.5, filter: 8000, gain: 0.8 },
+    bansuri: { group: "world", label: "Bansuri", desc: "South Asian bamboo flute: soft and breathy", oscs: [["sine",1,1],["triangle",2,0.08]], vibrato: [5, 14, 0.25], breath: 0.25, a: 0.07, decay: 0.2, sustainLvl: 0.8, r: 0.15, filter: 3200 },
+    guzheng: { group: "world", label: "Guzheng", desc: "Chinese zither: bright pluck with a wobble", ks: true, ksDur: 2.2, ksDecay: 0.997, bright: 0.7, body: [1500, 3, 1], vibrato: [5.5, 18, 0.35], a: 0.002, decay: 0.01, sustainLvl: 1, r: 0.4, filter: 7000 },
   };
 
   const voices = new Map(); // note -> voice
+  // Shared noise (used for breath, drums)
+  let noiseBuf = null;
+  function getNoise() {
+    const c = audio();
+    if (!noiseBuf) { noiseBuf = c.createBuffer(1, c.sampleRate, c.sampleRate); const d = noiseBuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; }
+    return noiseBuf;
+  }
+  // Plucked strings (rabab, sitar, guzheng) use the Karplus-Strong method: a burst of noise
+  // fed round a tiny delay loop. It naturally sounds like a plucked string fading out.
+  const ksCache = new Map();
+  function ksBuffer(note, id, s) {
+    const key = id + ":" + note;
+    if (ksCache.has(key)) return ksCache.get(key);
+    const c = audio(), sr = c.sampleRate, f = freq(note), N = Math.max(2, Math.round(sr / f));
+    const len = Math.floor(sr * s.ksDur), buf = c.createBuffer(1, len, sr), d = buf.getChannelData(0);
+    let prev = 0;
+    for (let i = 0; i < N && i < len; i++) { prev += s.bright * ((Math.random() * 2 - 1) - prev); d[i] = prev; }
+    for (let i = N; i < len; i++) d[i] = s.ksDecay * 0.5 * (d[i - N] + (i - N - 1 >= 0 ? d[i - N - 1] : 0));
+    let peak = 0; for (let i = 0; i < len; i++) peak = Math.max(peak, Math.abs(d[i]));
+    if (peak > 0) for (let i = 0; i < len; i++) d[i] /= peak;
+    const out = { buf, ratio: f / (sr / (N + 0.5)) };
+    if (ksCache.size > 90) ksCache.delete(ksCache.keys().next().value);
+    ksCache.set(key, out);
+    return out;
+  }
   function startVoice(note, vel, snd) {
-    const c = audio(), s = SOUNDS[snd || soundId], t = c.currentTime;
-    const peak = Math.pow(vel / 127, 1.4) * 0.5;
+    const id = snd || soundId, c = audio(), s = SOUNDS[id], t = c.currentTime;
+    const peak = Math.pow(vel / 127, 1.4) * 0.5 * (s.gain || 1);
     const env = c.createGain(); env.gain.setValueAtTime(0.0001, t);
     env.gain.exponentialRampToValueAtTime(peak, t + s.a);
     const sustainVal = Math.max(peak * s.sustainLvl, 0.0001);
@@ -53,12 +82,32 @@
     filt.frequency.setValueAtTime(s.sweep ? s.filter * 2.2 : s.filter, t);
     if (s.sweep) filt.frequency.exponentialRampToValueAtTime(s.filter, t + 0.35);
     filt.connect(env); env.connect(master);
-    const oscs = s.oscs.map(([type, mult, lvl, cents]) => {
-      const o = c.createOscillator(), g = c.createGain();
-      o.type = type; o.frequency.value = freq(note) * mult; if (cents) o.detune.value = cents;
-      g.gain.value = lvl; o.connect(g); g.connect(filt); o.start(t); return o;
-    });
-    return { env, oscs, r: s.r };
+    let head = filt;
+    if (s.body) { const pk = c.createBiquadFilter(); pk.type = "peaking"; [pk.frequency.value, pk.gain.value, pk.Q.value] = s.body; pk.connect(head); head = pk; }
+    if (s.buzz) { const ws = c.createWaveShaper(), curve = new Float32Array(1024); for (let i = 0; i < 1024; i++) { const x = i / 511.5 - 1; curve[i] = Math.tanh(s.buzz * x) / Math.tanh(s.buzz); } ws.curve = curve; ws.connect(head); head = ws; }
+    const stops = [], pitchParams = [];
+    if (s.ks) {
+      const { buf, ratio } = ksBuffer(note, id, s), src = c.createBufferSource();
+      src.buffer = buf; src.playbackRate.value = ratio; src.connect(head); src.start(t);
+      stops.push(src); pitchParams.push(src.detune);
+    } else {
+      s.oscs.forEach(([type, mult, lvl, cents]) => {
+        const o = c.createOscillator(), g = c.createGain();
+        o.type = type; o.frequency.value = freq(note) * mult; if (cents) o.detune.value = cents;
+        g.gain.value = lvl; o.connect(g); g.connect(head); o.start(t); stops.push(o); pitchParams.push(o.detune);
+      });
+    }
+    if (s.vibrato) {
+      const [rate, cents, delay] = s.vibrato, lfo = c.createOscillator(), lg = c.createGain();
+      lfo.frequency.value = rate; lg.gain.setValueAtTime(0, t); lg.gain.setValueAtTime(0, t + delay * 0.5); lg.gain.linearRampToValueAtTime(cents, t + delay);
+      lfo.connect(lg); pitchParams.forEach(p => { if (p) lg.connect(p); }); lfo.start(t); stops.push(lfo);
+    }
+    if (s.breath) {
+      const n = c.createBufferSource(), bp = c.createBiquadFilter(), ng = c.createGain();
+      n.buffer = getNoise(); n.loop = true; bp.type = "bandpass"; bp.frequency.value = freq(note); bp.Q.value = 1.5; ng.gain.value = s.breath;
+      n.connect(bp); bp.connect(ng); ng.connect(head); n.start(t, Math.random() * 0.5); stops.push(n);
+    }
+    return { env, oscs: stops, r: s.r };
   }
   function stopVoice(v) {
     const t = ctx.currentTime;
@@ -185,12 +234,12 @@
   sustainBtn.onclick = () => setSustain(!sustain);
 
   // Sound buttons
-  const soundsEl = document.getElementById("sounds");
+  const soundsEl = document.getElementById("sounds"), worldEl = document.getElementById("worldSounds");
   Object.entries(SOUNDS).filter(([, s]) => !s.hidden).forEach(([id, s]) => {
     const b = document.createElement("button"); b.id = "snd-" + id; b.textContent = s.label; b.title = s.desc;
     b.setAttribute("aria-pressed", String(id === soundId));
-    b.onclick = () => { soundId = id; soundsEl.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b))); showInfo("Sound", s.label, s.desc); };
-    soundsEl.appendChild(b);
+    b.onclick = () => { soundId = id; document.querySelectorAll("#sounds button, #worldSounds button").forEach(x => x.setAttribute("aria-pressed", String(x === b))); showInfo("Sound", s.label, s.desc); };
+    (s.group === "world" ? worldEl : soundsEl).appendChild(b);
   });
 
   // ---------- Screen + chord names ----------
@@ -265,15 +314,77 @@
     if (playTimers.length) return stopPlayback();
     if (!lastTake || !lastTake.length) return;
     audio(); playBtn.textContent = "Stop";
-    lastTake.forEach(ev => playTimers.push(setTimeout(() => ev.on ? noteOn(ev.note, ev.vel, true) : noteOff(ev.note, true), ev.t)));
+    lastTake.forEach(ev => playTimers.push(setTimeout(() => ev.drum ? hitPad(ev.drum, ev.vel, true) : ev.on ? noteOn(ev.note, ev.vel, true) : noteOff(ev.note, true), ev.t)));
     const end = lastTake[lastTake.length - 1].t + 400;
     playTimers.push(setTimeout(() => { playTimers = []; releaseAll(true); playBtn.textContent = "Play back"; }, end));
   };
 
+  // ---------- Drum pads ----------
+  // Drums send MIDI on channel 10 (status byte 99). "gm" is the drum's General MIDI number.
+  const PADS = [
+    { id: "kick", label: "Kick", gm: 36, tip: "Big bass drum: the 'boom' of pop and dance music" },
+    { id: "snare", label: "Snare", gm: 38, tip: "Sharp crack, usually on beats 2 and 4" },
+    { id: "hat", label: "Hi-hat", gm: 42, tip: "Short 'tss' cymbal that keeps time" },
+    { id: "clap", label: "Clap", gm: 39, tip: "Hand clap" },
+    { id: "dholBoom", label: "Dhol dhum", gm: 64, tip: "Dhol, big side: the deep 'dhum', played with a thick curved stick" },
+    { id: "dholTak", label: "Dhol tak", gm: 63, tip: "Dhol, small side: the sharp 'tak', played with a thin cane" },
+    { id: "tablaGe", label: "Tabla ge", gm: 61, tip: "Tabla, big drum (bayan): low 'ge' that bends upward" },
+    { id: "tablaNa", label: "Tabla na", gm: 60, tip: "Tabla, small drum (dayan): ringing 'na'" },
+  ];
+  const PAD_BY_ID = Object.fromEntries(PADS.map(p => [p.id, p]));
+  function drum(kind, vel) {
+    const c = audio(), t = c.currentTime;
+    const tone = (f0, f1, glide, dur, lvl, type) => {
+      const o = c.createOscillator(), g = c.createGain(); o.type = type || "sine";
+      o.frequency.setValueAtTime(f0, t); if (f1 !== f0) o.frequency.exponentialRampToValueAtTime(f1, t + glide);
+      g.gain.setValueAtTime(lvl * vel, t); g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t + dur + 0.02);
+    };
+    const noise = (ftype, ff, q, dur, lvl) => {
+      const src = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+      src.buffer = getNoise(); f.type = ftype; f.frequency.value = ff; f.Q.value = q;
+      g.gain.setValueAtTime(lvl * vel, t); g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+      src.connect(f); f.connect(g); g.connect(master); src.start(t, Math.random() * 0.5); src.stop(t + dur + 0.02);
+    };
+    switch (kind) {
+      case "kick": tone(150, 45, 0.12, 0.3, 0.9); break;
+      case "snare": tone(190, 150, 0.05, 0.12, 0.35, "triangle"); noise("bandpass", 1800, 0.8, 0.18, 0.6); break;
+      case "hat": noise("highpass", 7000, 0.7, 0.05, 0.2); break;
+      case "clap": noise("bandpass", 1500, 0.9, 0.18, 0.55); break;
+      case "dholBoom": tone(110, 58, 0.25, 0.55, 1.0); noise("lowpass", 300, 0.7, 0.08, 0.5); break;
+      case "dholTak": noise("highpass", 2500, 1, 0.06, 0.6); tone(420, 380, 0.05, 0.08, 0.3, "triangle"); break;
+      case "tablaNa": tone(530, 525, 0.1, 0.4, 0.45); tone(1060, 1060, 0, 0.22, 0.15); tone(1590, 1590, 0, 0.12, 0.08); noise("bandpass", 4000, 2, 0.015, 0.4); break;
+      case "tablaGe": tone(92, 128, 0.28, 0.6, 0.85); noise("lowpass", 500, 0.7, 0.04, 0.3); break;
+    }
+  }
+  const padsEl = document.getElementById("pads"), padEls = {}, padTimers = {};
+  function hitPad(kind, vel, fromPlayback) {
+    drum(kind, vel);
+    const el = padEls[kind];
+    if (el) { el.classList.add("hit"); clearTimeout(padTimers[kind]); padTimers[kind] = setTimeout(() => el.classList.remove("hit"), 110); }
+    if (!fromPlayback) {
+      const p = PAD_BY_ID[kind], v = Math.max(1, Math.min(127, Math.round(vel * 127)));
+      pushLog(`<span class="t-on">Drum hit</span><span>${p.label}</span><span>velocity ${v} <span class="bytes">[99 ${hex(p.gm)} ${hex(v)}]</span></span>`);
+      if (recording) recording.push({ t: performance.now() - recStart, drum: kind, vel });
+    }
+  }
+  PADS.forEach((p, i) => {
+    const b = document.createElement("button"); b.className = "pad"; b.id = "pad-" + p.id; b.title = p.tip;
+    b.innerHTML = `<span>${p.label}</span><kbd>${i + 1}</kbd>`;
+    b.addEventListener("pointerdown", e => { e.preventDefault(); hitPad(p.id, 0.9); });
+    b.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); hitPad(p.id, 0.9); } });
+    padsEl.appendChild(b); padEls[p.id] = b;
+  });
+  window.addEventListener("keydown", e => {
+    if (e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
+    const i = "12345678".indexOf(e.key);
+    if (i >= 0) { e.preventDefault(); hitPad(PADS[i].id, 0.9); }
+  });
+
   // ---------- Songs ----------
   // A song is a list of sections; each section has "parts" (players). Each part has a role, a style and its own sound.
-  const NOTE = { C4:60, D4:62, E4:64, F4:65, G4:67, A4:69, B4:71, C5:72 };
-  const mel = s => s.trim() ? s.trim().split(/\s+/).map(t => { const [n, d] = t.split("/"); return [n === "r" ? null : NOTE[n], +d]; }) : [];
+  const noteNum = n => { const m = /^([A-G])([#b]?)(-?\d)$/.exec(n); if (!m) throw new Error("Bad note " + n); return (+m[3] + 1) * 12 + { C:0, D:2, E:4, F:5, G:7, A:9, B:11 }[m[1]] + (m[2] === "#" ? 1 : m[2] === "b" ? -1 : 0); };
+  const mel = s => s.trim() ? s.trim().split(/\s+/).map(t => { const [n, d] = t.split("/"); return [n === "r" ? null : noteNum(n), +d]; }) : [];
   const RIFF = "A4/0.5 r/0.5 C5/0.5 A4/0.5 r/0.5 G4/0.5 A4/0.5 r/0.5  E4/0.5 r/0.5 A4/0.5 E4/0.5 r/0.5 G4/0.5 A4/0.5 r/0.5  " +
                "D4/0.5 r/0.5 G4/0.5 B4/0.5 r/0.5 A4/0.5 G4/0.5 r/0.5  E4/0.5 G4/0.5 C5/1 B4/0.5 G4/0.5 E4/1";
   const GOLD_CHORUS = "C5/1.5 A4/0.5 C5/2  C5/1 B4/0.5 A4/2.5  B4/1.5 G4/0.5 B4/1 C5/1  G4/4  " +
@@ -291,6 +402,32 @@
     { role: "melody", snd: "synth", text: P_CHORUS, vel: 108 },
     { role: "melody", snd: "bell", text: P_CHORUS, vel: 66, shift: 12 },
   ];
+  // Khyber Sunrise uses a scale like Raag Bhairav / Hijaz on D: D Eb F# G A Bb C# D
+  const K_INTRO = "A4/2 Bb4/1 A4/1  G4/1.5 F#4/0.5 G4/1 A4/1  Bb4/2 A4/1 G4/0.5 F#4/0.5  Eb4/1 D4/3";
+  const K_THEME_A = "D4/0.5 F#4/0.5 A4/0.5 F#4/0.5 G4/0.5 A4/0.5 Bb4/1  A4/0.5 G4/0.5 F#4/0.5 G4/0.5 A4/1 r/1  " +
+                    "Bb4/0.5 A4/0.5 G4/0.5 A4/0.5 Bb4/0.5 C#5/0.5 D5/1  C#5/0.5 Bb4/0.5 A4/0.5 G4/0.5 F#4/0.5 Eb4/0.5 D4/1  " +
+                    "D4/0.5 F#4/0.5 A4/0.5 F#4/0.5 G4/0.5 A4/0.5 Bb4/1  D5/0.5 C#5/0.5 Bb4/0.5 A4/0.5 Bb4/1 A4/1  " +
+                    "G4/0.5 A4/0.5 Bb4/0.5 A4/0.5 G4/0.5 F#4/0.5 G4/1  F#4/0.5 Eb4/0.5 D4/1 D4/1 r/1";
+  const K_THEME_B = "D5/2 C#5/1 D5/1  A4/3 r/1  Bb4/1.5 A4/0.5 G4/1 Bb4/1  A4/4  " +
+                    "D5/1.5 C#5/0.5 Bb4/1 A4/1  G4/1 A4/1 Bb4/1 C#5/1  D5/1.5 C#5/0.5 Bb4/0.5 A4/0.5 G4/1  F#4/1 Eb4/1 D4/2";
+  // Drum patterns for one bar: [beat, pad, loudness]
+  const DRUM_PATTERNS = {
+    chaal: [[0,"dholBoom",1],[0.75,"dholTak",0.7],[1,"dholTak",0.9],[1.5,"dholBoom",0.9],[2,"dholTak",0.9],[2.5,"dholBoom",0.6],[3,"dholTak",0.9],[3.5,"dholTak",0.7],[3.75,"dholTak",0.5]],
+    tabla: [[0.5,"tablaNa",0.6],[1.5,"tablaNa",0.6],[2,"tablaGe",0.8],[2.5,"tablaNa",0.6],[3.25,"tablaGe",0.6],[3.5,"tablaNa",0.7],[3.75,"tablaNa",0.5]],
+    kick2: [[0,"kick",0.9],[2,"kick",0.8]],
+    dholEnd: [[0,"dholBoom",1],[0,"dholTak",1]],
+    // Bar 1: fast tabla roll. Bar 2: a "tihai", one phrase played three times, landing on the next downbeat.
+    tablaSolo: b => b % 2 === 0
+      ? Array.from({ length: 16 }, (_, k) => [k * 0.25, [0, 6, 12].includes(k) ? "tablaGe" : "tablaNa", k % 4 === 0 ? 1 : 0.55])
+      : [[0,"tablaGe",1],[0.5,"tablaNa",0.7], ...[1,2,3].flatMap(x => [[x,"tablaNa",0.9],[x + 0.25,"tablaNa",0.7],[x + 0.5,"tablaGe",1]])],
+  };
+  function drumWho(d) {
+    if (!d || d === "none") return [];
+    if (!Array.isArray(d)) return ["drums"];
+    const w = new Set();
+    d.forEach(n => w.add(n.startsWith("tabla") ? "tabla" : n.startsWith("dhol") || n === "chaal" ? "dhol" : "drums"));
+    return [...w];
+  }
   const SONGS = {
     rain: { title: "Rain on the Window", bpm: 92, blurb: "Gentle and a little sad. Plays in the sound you pick. About 1 minute.",
       chords: { Am: [52,57,60], F: [53,57,60], C: [48,52,55], G: [50,55,59] }, prog: ["Am","F","C","G"],
@@ -343,23 +480,36 @@
           { role: "bass", style: "whole", snd: "bass" },
           { role: "melody", snd: "bell", text: "A4/4 C5/6", vel: 92 } ] },
       ] },
+    khyber: { title: "Khyber Sunrise", bpm: 108, blurb: "Pashto and Punjabi folk-dance feel: dhol, tabla, rabab, sitar, bansuri and guzheng. About 75 seconds.",
+      chords: { D: [50,57,62], G: [55,58,62] }, prog: ["D","D","G","D"],
+      sections: [
+        { name: "Sunrise", bars: 4, drums: "none", parts: [
+          { role: "chords", style: "whole", snd: "sitar", vel: 70 },
+          { role: "melody", snd: "bansuri", text: K_INTRO, vel: 96 } ] },
+        { name: "Dhol enters", bars: 4, drums: ["chaal"], parts: [
+          { role: "chords", style: "whole", snd: "sitar", vel: 55 },
+          { role: "chords", style: "arp", snd: "rabab", vel: 85 } ] },
+        { name: "Rabab tune", bars: 8, drums: ["chaal", "tabla"], parts: [
+          { role: "chords", style: "whole", snd: "sitar", vel: 55 },
+          { role: "melody", snd: "rabab", text: K_THEME_A, vel: 112 } ] },
+        { name: "Flute tune", bars: 8, drums: ["chaal", "tabla"], parts: [
+          { role: "chords", style: "whole", snd: "sitar", vel: 50 },
+          { role: "chords", style: "arp", snd: "guzheng", vel: 68, shift: 12 },
+          { role: "chords", style: "stab", snd: "rabab", vel: 60 },
+          { role: "melody", snd: "bansuri", text: K_THEME_B, vel: 104 } ] },
+        { name: "Tabla solo", bars: 2, drums: ["tablaSolo"], parts: [
+          { role: "chords", style: "whole", snd: "sitar", vel: 60 } ] },
+        { name: "Finale", bars: 8, drums: ["chaal", "tabla", "kick2"], parts: [
+          { role: "chords", style: "whole", snd: "sitar", vel: 55 },
+          { role: "chords", style: "arp", snd: "guzheng", vel: 62 },
+          { role: "melody", snd: "rabab", text: K_THEME_A, vel: 116 },
+          { role: "melody", snd: "bansuri", text: K_THEME_A, vel: 78, shift: 12 } ] },
+        { name: "Ending", bars: 2, drums: ["dholEnd"], prog: ["D","D"], parts: [
+          { role: "chords", style: "whole", snd: "sitar", vel: 75 },
+          { role: "chords", style: "whole", snd: "guzheng", vel: 70 },
+          { role: "melody", snd: "bansuri", text: "A4/4 D5/6", vel: 96 } ] },
+      ] },
   };
-
-  let noiseBuf = null;
-  function drum(kind, vel) {
-    const c = audio(), t = c.currentTime;
-    if (kind === "kick") {
-      const o = c.createOscillator(), g = c.createGain();
-      o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(45, t + 0.12);
-      g.gain.setValueAtTime(0.9 * vel, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.3);
-      o.connect(g); g.connect(master); o.start(t); o.stop(t + 0.32); return;
-    }
-    if (!noiseBuf) { noiseBuf = c.createBuffer(1, Math.floor(c.sampleRate * 0.3), c.sampleRate); const d = noiseBuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; }
-    const hat = kind === "hat", src = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain(), len = hat ? 0.05 : 0.18;
-    src.buffer = noiseBuf; f.type = hat ? "highpass" : "bandpass"; f.frequency.value = hat ? 7000 : 1500;
-    g.gain.setValueAtTime((hat ? 0.2 : 0.55) * vel, t); g.gain.exponentialRampToValueAtTime(0.001, t + len);
-    src.connect(f); f.connect(g); g.connect(master); src.start(t); src.stop(t + len + 0.02);
-  }
 
   // Older songs describe parts in shorthand; turn that into the same "parts" list.
   function partsOf(sec) {
@@ -377,7 +527,7 @@
     const hit = (beat, kind, vel) => ev.push({ t: beat * BEAT, drum: kind, vel: vel || 1 });
     def.sections.forEach((sec, si) => {
       const parts = partsOf(sec), finalSec = si === def.sections.length - 1;
-      marks.push({ bar, name: sec.name, snds: [...new Set(parts.map(p => p.snd || "user"))], drums: !!sec.drums && sec.drums !== "none" });
+      marks.push({ bar, name: sec.name, snds: [...new Set(parts.map(p => p.snd || "user"))], drums: drumWho(sec.drums) });
       for (let b = 0; b < sec.bars; b++) {
         const name = (sec.prog || def.prog)[b % 4], s = (bar + b) * 4, last = finalSec && b === sec.bars - 1;
         parts.forEach(p => {
@@ -401,6 +551,7 @@
         if (d === "hat" || d === "half" || d === "four" || d === "full") for (let k = 0; k < 8; k++) hit(s + k * 0.5, "hat", k % 2 ? 1 : 0.5);
         if (d === "full") { hit(s + 1, "clap"); hit(s + 3, "clap"); }
         if (d === "soft") hit(s, "kick", 0.8);
+        if (Array.isArray(d)) d.forEach(nm => { const pat = DRUM_PATTERNS[nm]; (typeof pat === "function" ? pat(b) : pat).forEach(([o, k, v]) => hit(s + o, k, v)); });
       }
       parts.filter(p => p.role === "melody").forEach(p => {
         let beat = bar * 4;
@@ -430,11 +581,11 @@
     const def = SONGS[id], song = buildSong(def), t0 = 250;
     playingId = id; songBtns[id].textContent = "■ Stop"; songBtns[id].setAttribute("aria-pressed", "true");
     songStatus.textContent = def.blurb;
-    song.ev.forEach(e => songTimers.push(setTimeout(() => e.drum ? drum(e.drum, e.vel) : e.on ? noteOn(e.note, e.vel, true, e.snd) : noteOff(e.note, true, e.snd), t0 + e.t)));
+    song.ev.forEach(e => songTimers.push(setTimeout(() => e.drum ? hitPad(e.drum, e.vel, true) : e.on ? noteOn(e.note, e.vel, true, e.snd) : noteOff(e.note, true, e.snd), t0 + e.t)));
     for (let b = 0; b < song.totalBars; b++) {
       const sec = [...song.marks].reverse().find(m => m.bar <= b);
       const who = sec.snds.map(s => s === "user" ? "your sound" : s === "drive" ? "bass" : SOUNDS[s].label.toLowerCase());
-      if (sec.drums) who.push("drums");
+      who.push(...sec.drums);
       songTimers.push(setTimeout(() => {
         songStatus.textContent = def.title + ": " + sec.name + " · bar " + (b + 1) + " of " + song.totalBars + " · playing: " + [...new Set(who)].join(", ");
         markSounds(sec.snds);

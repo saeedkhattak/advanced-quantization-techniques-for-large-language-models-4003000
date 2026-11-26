@@ -67,6 +67,11 @@ button:disabled { opacity: 0.45; cursor: default; }
 #recBtn[aria-pressed="true"] .rec-dot { animation: blink 1s steps(2) infinite; }
 @keyframes blink { 50% { opacity: 0.2; } }
 
+.pads { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 6px; }
+@media (max-width: 720px) { .pads { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.pad { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 54px; padding: 6px 4px; font-weight: 600; line-height: 1.2; text-align: center; touch-action: manipulation; transition: background 60ms; }
+.pad kbd { font-size: 10px; font-weight: 400; }
+.pad.hit { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 .keyboard { position: relative; height: clamp(150px, 26vw, 230px); user-select: none; -webkit-user-select: none; touch-action: none; display: flex; border-radius: 0 0 8px 8px; overflow: hidden; }
 .key { position: relative; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; cursor: pointer; }
 .key.white { flex: 1 1 0; background: var(--white-key); border: 1px solid var(--white-key-edge); border-top: none; border-radius: 0 0 6px 6px; margin-right: -1px; }

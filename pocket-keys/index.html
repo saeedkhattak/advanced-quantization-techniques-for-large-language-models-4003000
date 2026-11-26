@@ -27,6 +27,10 @@
           <span class="ctl-label">Sound</span>
           <div class="row" id="sounds"></div>
         </div>
+        <div class="row" role="group" aria-label="World sounds">
+          <span class="ctl-label">World</span>
+          <div class="row" id="worldSounds"></div>
+        </div>
         <div class="row">
           <span class="ctl-label">Octave</span>
           <button id="octDown" aria-label="Lower octave">−</button>
@@ -46,13 +50,14 @@
         <div class="status" id="songStatus" style="margin-top:0">Pick a song. The keys light up as it plays.</div>
       </div>
     </div>
+    <div class="pads" id="pads" role="group" aria-label="Drum pads"></div>
     <div class="keyboard" id="kb" aria-label="Piano keys"></div>
   </section>
 
   <div class="below">
     <section class="card">
       <h2>MIDI messages</h2>
-      <p>This is what a MIDI keyboard sends to a computer. It isn't sound, only instructions: which key, how hard, and whether it went down or up. The three codes at the end are the actual bytes (tiny numbers) that travel down the cable.</p>
+      <p>This is what a MIDI keyboard sends to a computer. It isn't sound, only instructions: which key, how hard, and whether it went down or up. The three codes at the end are the actual bytes (tiny numbers) that travel down the cable. Drum pads send on channel 10, the channel MIDI saves for drums, which is why their first code is 99.</p>
       <ul class="log" id="log"><li class="empty">Play a note and its message appears here.</li></ul>
     </section>
     <section class="card">
@@ -61,6 +66,7 @@
         <li><strong>Mouse or finger:</strong> press a key. Slide across keys to glide. Press <strong>lower</strong> on a key to play <strong>louder</strong> (that's called velocity).</li>
         <li><strong>Computer keyboard:</strong> the row <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> <kbd>F</kbd>… plays white keys; <kbd>W</kbd> <kbd>E</kbd> <kbd>T</kbd> <kbd>Y</kbd> <kbd>U</kbd>… plays black keys. The letter is printed on each key.</li>
         <li><kbd>Z</kbd> / <kbd>X</kbd> move down / up an octave (8 white keys = the same notes, lower or higher). <kbd>Space</kbd> holds Sustain.</li>
+        <li><strong>Drum pads:</strong> tap them, or press <kbd>1</kbd> to <kbd>8</kbd>. Hover a pad to see what the drum is.</li>
         <li><strong>Try:</strong> C + E + G together (a happy chord), then A + C + E (a sad one).</li>
       </ul>
       <button id="midiBtn" style="margin-top:12px">Connect a real MIDI keyboard</button>
