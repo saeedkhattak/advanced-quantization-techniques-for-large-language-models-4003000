@@ -1,0 +1,158 @@
+===== 1-story =====
+
+𝗧𝘄𝗼 𝗡𝗲𝘄 𝗘𝗻𝗴𝗶𝗻𝗲𝘀, 𝗢𝗻𝗲 𝟮𝟳𝗕 𝗠𝗼𝗱𝗲𝗹, 𝗢𝗽𝗽𝗼𝘀𝗶𝘁𝗲 𝗕𝗲𝘁𝘀
+
+You want to run a 27B model at home. The usual answer is "get a GPU with 24 GB", because a normal 4-bit build of Qwen3.8-27B is a 16 to 19 GB file.
+
+This week two small teams put out engines that answer that problem from opposite ends. 𝗕𝗼𝘁𝗵 𝗿𝘂𝗻 𝘁𝗵𝗲 𝘀𝗮𝗺𝗲 𝗯𝗮𝘀𝗲 𝗺𝗼𝗱𝗲𝗹, Qwen3.8-27B.
+
+flyx 𝗯𝗲𝘁𝘀 𝗼𝗻 𝘁𝗵𝗲 𝗚𝗣𝗨 𝘆𝗼𝘂 𝗵𝗮𝘃𝗲. It's a new engine written from scratch in C++ and CUDA, shipped as one Windows file of 𝗮𝗯𝗼𝘂𝘁 𝟱𝟳 𝗠𝗕 (a Linux tarball too). No Python, no install. It needs an NVIDIA card and a recent driver.
+
+The headline is speculative decoding. On an RTX 4090 their table shows 𝟰𝟵.𝟰 𝘁𝗼𝗸/𝘀 𝗽𝗹𝗮𝗶𝗻 𝗮𝗻𝗱 𝟭𝟳𝟭.𝟲 𝘁𝗼𝗸/𝘀 with their DFlash2 drafter. On a 3090, 42.8 and 131.2.
+
+openset-llm 𝗯𝗲𝘁𝘀 𝗼𝗻 𝗻𝗼 𝗚𝗣𝗨 𝗮𝘁 𝗮𝗹𝗹. It runs a ternary version of the model (PrismML's Bonsai-2-27B, a 5.95 GB file) on a CPU with 𝟴 𝗚𝗕 𝗼𝗳 𝗥𝗔𝗠. Their number: 𝟭𝟳 𝘁𝗼 𝟮𝟬 𝘁𝗼𝗸/𝘀 on an 8 vCPU Ice Lake cloud box, about 4x ik_llama.cpp and about 6x PrismML's own fork on the same machine.
+
+For users, the question is simply what's in your machine. NVIDIA card: flyx. A server or desktop CPU with AVX-512 and no GPU: openset-llm. Both speak the OpenAI API, and flyx also speaks Anthropic's, so Claude Code and Codex can point at it.
+
+For builders, the two are built very differently. flyx is a new engine. openset-llm is a set of patches and new AVX-512 kernels on top of PrismML's llama.cpp fork. That's the same family that sits under Ollama and LM Studio.
+
+Some caveats. 𝗘𝘃𝗲𝗿𝘆 𝗻𝘂𝗺𝗯𝗲𝗿 𝗮𝗯𝗼𝘃𝗲 𝗶𝘀 𝘁𝗵𝗲 𝘁𝗲𝗮𝗺𝘀' 𝗼𝘄𝗻, and neither project is a week old. openset-llm only gets its fast path on AVX-512 chips (Ice Lake Xeon, AMD Zen 4 and newer). Most Intel laptops from 12th gen on don't have it and run 𝗮𝗯𝗼𝘂𝘁 𝟱𝘅 𝘀𝗹𝗼𝘄𝗲𝗿. Its default context is 4k on 8 GB. And the speed comes partly from a smaller ternary model; how that compares with full precision is on PrismML's model card, not measured here.
+
+flyx supports Qwen3, Qwen3.5/3.8 and Inkling-2-Mini, on NVIDIA only. Its README doesn't compare its speed against llama.cpp.
+
+𝗧𝗵𝗲 𝗯𝗶𝗴𝗴𝗲𝗿 𝗽𝗼𝗶𝗻𝘁: 𝘁𝗵𝗲 𝘀𝗽𝗲𝗲𝗱-𝘂𝗽𝘀 𝗶𝗻 𝗹𝗼𝗰𝗮𝗹 𝗔𝗜 𝗻𝗼𝘄 𝗰𝗼𝗺𝗲 𝗳𝗿𝗼𝗺 𝘁𝗵𝗲 𝗲𝗻𝗴𝗶𝗻𝗲 𝗹𝗮𝘆𝗲𝗿, 𝗻𝗼𝘁 𝗷𝘂𝘀𝘁 𝗳𝗿𝗼𝗺 𝘀𝗺𝗮𝗹𝗹𝗲𝗿 𝗺𝗼𝗱𝗲𝗹𝘀.
+
+Links in reply 👇
+
+
+===== 2-karpathy =====
+
+𝗦𝗮𝗺𝗲 𝗠𝗼𝗱𝗲𝗹, 𝗧𝘄𝗼 𝗘𝗻𝗴𝗶𝗻𝗲𝘀, 𝗢𝗽𝗽𝗼𝘀𝗶𝘁𝗲 𝗛𝗮𝗿𝗱𝘄𝗮𝗿𝗲
+
+Two repos showed up this week that are worth reading side by side: flyx and openset-llm.
+
+On the surface they're both "run a 27B model locally". 𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝘁𝗵𝗲 𝘀𝗽𝗲𝗲𝗱, 𝗶𝘁'𝘀 𝘁𝗵𝗮𝘁 𝘁𝗵𝗲𝘆 𝗱𝗶𝘀𝗮𝗴𝗿𝗲𝗲 𝗮𝗯𝗼𝘂𝘁 𝘄𝗵𝗲𝗿𝗲 𝘁𝗵𝗲 𝗯𝗼𝘁𝘁𝗹𝗲𝗻𝗲𝗰𝗸 𝗶𝘀.
+
+flyx says: you already own an NVIDIA GPU, the engine is the waste. So they wrote one from scratch in C++/CUDA, shipped it as a single ~57 MB file, and leaned hard on speculative decoding. A small drafter guesses several tokens, the big model checks them in one pass. On a 4090 they report 𝟰𝟵.𝟰 𝘁𝗼𝗸/𝘀 𝗽𝗹𝗮𝗶𝗻, 𝟭𝟳𝟭.𝟲 𝘁𝗼𝗸/𝘀 with drafting.
+
+openset-llm says: most machines don't have a GPU, memory is the wall. So they take a ternary version of the model (5.95 GB) and write AVX-512 kernels for it. They report 𝟭𝟳 𝘁𝗼 𝟮𝟬 𝘁𝗼𝗸/𝘀 𝗼𝗻 𝟴 𝗚𝗕 𝗼𝗳 𝗥𝗔𝗠 𝗮𝗻𝗱 𝗻𝗼 𝗚𝗣𝗨.
+
+An analogy that helps: one is tuning the engine of a car you already own, the other is making the car light enough that a bicycle engine moves it.
+
+Both use speculative decoding, and one detail stands out. flyx claims its drafted output is bitwise identical to plain decoding. openset-llm says plainly that its output matches plain decoding on 𝟭𝟳 𝗼𝗳 𝟮𝟰 benchmark prompts and drifts at near-ties, with task scores unchanged. It's a useful number to have written down.
+
+Imo the caveats matter as much as the headlines. All numbers are self-reported. openset-llm needs AVX-512, so most Intel laptops get a fallback that's about 5x slower. It uses a ternary model, which isn't the same as the full one. flyx is NVIDIA-only and doesn't benchmark against llama.cpp in its README.
+
+𝘞𝘩𝘢𝘵 𝘐'𝘥 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘴𝘦𝘦: 𝘣𝘰𝘵𝘩 𝘦𝘯𝘨𝘪𝘯𝘦𝘴 𝘳𝘶𝘯 𝘣𝘺 𝘴𝘰𝘮𝘦𝘰𝘯𝘦 𝘦𝘭𝘴𝘦, 𝘰𝘯 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘱𝘳𝘰𝘮𝘱𝘵𝘴, 𝘸𝘪𝘵𝘩 𝘲𝘶𝘢𝘭𝘪𝘵𝘺 𝘮𝘦𝘢𝘴𝘶𝘳𝘦𝘥 𝘢𝘭𝘰𝘯𝘨𝘴𝘪𝘥𝘦 𝘴𝘱𝘦𝘦𝘥.
+
+Links in reply 👇
+
+
+===== 3-willison =====
+
+𝗡𝗼𝘁𝗲𝘀 𝗼𝗻 𝗧𝘄𝗼 𝗡𝗲𝘄 𝗟𝗼𝗰𝗮𝗹 𝗟𝗟𝗠 𝗘𝗻𝗴𝗶𝗻𝗲𝘀
+
+Two new local inference engines, both released in the last week, both running Qwen3.8-27B. Notes on each.
+
+flyx (enwove, Apache-2.0). The README calls it "𝘢 𝘭𝘰𝘤𝘢𝘭 𝘓𝘓𝘔 𝘦𝘯𝘨𝘪𝘯𝘦 𝘸𝘪𝘵𝘩 𝘻𝘦𝘳𝘰 𝘥𝘦𝘱𝘦𝘯𝘥𝘦𝘯𝘤𝘪𝘦𝘴" that serves "𝘣𝘳𝘰𝘸𝘴𝘦𝘳𝘴, 𝘴𝘤𝘳𝘪𝘱𝘵𝘴 𝘢𝘯𝘥 𝘤𝘰𝘥𝘪𝘯𝘨 𝘢𝘨𝘦𝘯𝘵𝘴 𝘵𝘩𝘳𝘰𝘶𝘨𝘩 𝘖𝘱𝘦𝘯𝘈𝘐- 𝘢𝘯𝘥 𝘈𝘯𝘵𝘩𝘳𝘰𝘱𝘪𝘤-𝘤𝘰𝘮𝘱𝘢𝘵𝘪𝘣𝘭𝘦 𝘈𝘗𝘐𝘴."
+
+Written from scratch in C++/CUDA. The Windows build is a single 𝟱𝟳.𝟭𝟰 𝗠𝗕 exe that includes the CUDA runtime; there's a Linux tarball too. NVIDIA only, driver 580 or newer, RTX 30/40/50 plus L4, L40S, A100, H100.
+
+The two things I found most interesting:
+
+• 𝗦𝗽𝗲𝗰𝘂𝗹𝗮𝘁𝗶𝘃𝗲 𝗱𝗲𝗰𝗼𝗱𝗶𝗻𝗴 𝗯𝘂𝗶𝗹𝘁 𝗶𝗻: MTP, DFlash2 and others. Their table for Qwen3.8-27B on an RTX 4090 shows 49.4 tok/s plain and 171.6 with DFlash2.
+• 𝗔 𝗱𝗮𝘀𝗵𝗯𝗼𝗮𝗿𝗱 𝘄𝗶𝘁𝗵 𝗼𝗻𝗲-𝗰𝗹𝗶𝗰𝗸 𝗮𝗴𝗲𝗻𝘁 𝘀𝗲𝘁𝘂𝗽: it can launch Claude Code or Codex pointed at the local model.
+
+openset-llm (Open Set Labs, MIT). The tagline: "𝘍𝘢𝘴𝘵 𝘓𝘓𝘔 𝘪𝘯𝘧𝘦𝘳𝘦𝘯𝘤𝘦 𝘰𝘯 𝘵𝘩𝘦 𝘩𝘢𝘳𝘥𝘸𝘢𝘳𝘦 𝘺𝘰𝘶 𝘢𝘭𝘳𝘦𝘢𝘥𝘺 𝘰𝘸𝘯. 𝘕𝘰 𝘎𝘗𝘜. 8 𝘎𝘉 𝘰𝘧 𝘙𝘈𝘔."
+
+It's a patch set and new AVX-512 kernels on top of PrismML's llama.cpp fork, running PrismML's ternary Bonsai-2-27B (5.95 GB). Reported: 𝟭𝟳 𝘁𝗼 𝟮𝟬 𝘁𝗼𝗸/𝘀 on an 8 vCPU / 8 GB Ice Lake VM, 4.2 to 4.3x ik_llama.cpp and 5.9 to 6.1x PrismML's fork, with confidence intervals and a 𝚋𝚎𝚗𝚌𝚑/ folder to reproduce.
+
+Things to be careful about:
+
+• 𝗔𝗹𝗹 𝗻𝘂𝗺𝗯𝗲𝗿𝘀 𝗮𝗿𝗲 𝘀𝗲𝗹𝗳-𝗿𝗲𝗽𝗼𝗿𝘁𝗲𝗱 by each team.
+• openset-llm's fast path needs AVX-512 VNNI + VBMI. Intel Core 12th gen and later laptops don't have it and run 𝟰.𝟴 𝘁𝗼 𝟱.𝟳𝘅 𝘀𝗹𝗼𝘄𝗲𝗿.
+• Its default context is 4k tokens on 8 GB. Speculation changes the reply at near-ties: byte-identical on 17 of 24 prompts.
+• flyx's README has no speed comparison against llama.cpp. Its exactness claims are documented in a numerics doc.
+
+Both READMEs are unusually detailed. Worth reading in full.
+
+Links in reply 👇
+
+
+===== 4-swyx =====
+
+𝗧𝗵𝗲 𝗟𝗼𝗰𝗮𝗹 𝗜𝗻𝗳𝗲𝗿𝗲𝗻𝗰𝗲 𝗘𝗻𝗴𝗶𝗻𝗲 𝗜𝘀 𝗕𝗮𝗰𝗸 𝗶𝗻 𝗣𝗹𝗮𝘆
+
+For a long time "run it locally" meant llama.cpp, plus whichever wrapper you liked on top. Ollama, LM Studio and others all sit on it.
+
+This week two new engines took the same model, Qwen3.8-27B, and went in opposite directions.
+
+Where things stand, one line each:
+
+• llama.cpp: the default. Runs everywhere, and most local apps are built on it.
+• ik_llama.cpp: a fork tuned for CPU speed.
+• vLLM / SGLang: built for serving many users on data-center GPUs.
+• flyx: new, from scratch in C++/CUDA, one ~57 MB file. Aimed at a single user on one NVIDIA GPU, with speculative decoding as the main act. Self-reported 171.6 tok/s on a 4090 with its DFlash2 drafter, from 49.4 plain.
+• openset-llm: new, patches on PrismML's llama.cpp fork. Aimed at CPUs with no GPU and 8 GB of RAM, using a ternary model. Self-reported 17 to 20 tok/s, about 4x ik_llama.cpp on the same box.
+
+Notice who both are built for. flyx ships one-click Claude Code and Codex setup and speaks the Anthropic API. openset-llm benchmarks a recorded coding-agent session and resumes agent loops where the prompt changed instead of reading it all again.
+
+𝗧𝗵𝗲 𝗰𝘂𝘀𝘁𝗼𝗺𝗲𝗿 𝗳𝗼𝗿 𝗹𝗼𝗰𝗮𝗹 𝗶𝗻𝗳𝗲𝗿𝗲𝗻𝗰𝗲 𝗶𝘀 𝗻𝗼𝘄 𝘁𝗵𝗲 𝗰𝗼𝗱𝗶𝗻𝗴 𝗮𝗴𝗲𝗻𝘁, 𝗻𝗼𝘁 𝘁𝗵𝗲 𝗰𝗵𝗮𝘁 𝘄𝗶𝗻𝗱𝗼𝘄.
+
+Caveats: both are days old, numbers are their own, flyx is NVIDIA-only, openset-llm needs AVX-512 and runs one ternary model.
+
+My take: the next local engines won't compete on "runs model X". They'll compete on how many agent steps per minute you get on the hardware you have.
+
+Links in reply 👇
+
+
+===== 5-hamel =====
+
+𝗕𝗲𝗳𝗼𝗿𝗲 𝗬𝗼𝘂 𝗦𝘄𝗶𝘁𝗰𝗵 𝗘𝗻𝗴𝗶𝗻𝗲𝘀, 𝗠𝗲𝗮𝘀𝘂𝗿𝗲
+
+Two new local engines this week, flyx and openset-llm. Both run Qwen3.8-27B. Both post big speed numbers. Here's what the READMEs give you, and what they don't.
+
+What flyx 𝗴𝗶𝘃𝗲𝘀 𝘆𝗼𝘂: one ~57 MB file, NVIDIA GPU, OpenAI and Anthropic APIs. Speculative decoding they say produces output identical to plain decoding. Reported on a 4090: 𝟰𝟵.𝟰 𝘁𝗼𝗸/𝘀 𝗽𝗹𝗮𝗶𝗻, 𝟭𝟳𝟭.𝟲 with DFlash2.
+
+What it doesn't: a speed comparison against llama.cpp, or any quality eval in the README. Speed tables use their own prompt sets.
+
+What openset-llm 𝗴𝗶𝘃𝗲𝘀 𝘆𝗼𝘂: a 27B model on a CPU with 8 GB of RAM. Reported 𝟭𝟳 𝘁𝗼 𝟮𝟬 𝘁𝗼𝗸/𝘀, with confidence intervals, paired prompts, two runs on different boxes, and a quality check (GSM8K 39/40, coding pass@1 83.1%) showing their speed-ups didn't change scores.
+
+What it doesn't: proof the ternary model is as good as the full one for your task. Their quality check compares their engine before and after its speed-ups, not ternary against full precision. Also, speculation changes the output at near-ties (identical on 𝟭𝟳 𝗼𝗳 𝟮𝟰 prompts). Fine for most uses, but you should know.
+
+Neither tells you how it does on your workload. So:
+
+1. Pull 30 to 50 real prompts from your own logs.
+2. Run them on what you use today. That's your baseline.
+3. Run the same prompts on the new engine, same model, same settings.
+4. Compare tokens per second and the answers, side by side.
+5. Read the outputs where they differ. That's where the problems are.
+
+A 3x speed-up you didn't measure on your prompts is a guess.
+
+Links in reply 👇
+
+
+===== 6-mollick =====
+
+𝗗𝗼 𝗬𝗼𝘂 𝗡𝗲𝗲𝗱 𝗮 𝗕𝗶𝗴 𝗚𝗣𝗨 𝘁𝗼 𝗥𝘂𝗻 𝗦𝗲𝗿𝗶𝗼𝘂𝘀 𝗔𝗜 𝗮𝘁 𝗛𝗼𝗺𝗲?
+
+For a 27B model the usual answer is yes: a normal 4-bit copy is a 16 to 19 GB file. This week two small open-source projects gave two very different answers.
+
+Think of a model as a heavy load and the engine as the vehicle. You can build a better truck, or make the load lighter so an ordinary car can carry it.
+
+flyx 𝗯𝘂𝗶𝗹𝗱𝘀 𝗮 𝗯𝗲𝘁𝘁𝗲𝗿 𝘁𝗿𝘂𝗰𝗸. It's a new engine for NVIDIA graphics cards, one downloadable file of about 57 MB. On a high-end gaming card (RTX 4090) the team reports about 𝟭𝟳𝟭 𝘁𝗼𝗸𝗲𝗻𝘀 𝗮 𝘀𝗲𝗰𝗼𝗻𝗱 for a 27B model, against about 49 without its main trick. That trick has a small model guess ahead and the big model check the guesses.
+
+openset-llm 𝗺𝗮𝗸𝗲𝘀 𝘁𝗵𝗲 𝗹𝗼𝗮𝗱 𝗹𝗶𝗴𝗵𝘁𝗲𝗿. It uses a compressed "ternary" version of the same model, small enough to fit in 𝟴 𝗚𝗕 𝗼𝗳 𝗼𝗿𝗱𝗶𝗻𝗮𝗿𝘆 𝗺𝗲𝗺𝗼𝗿𝘆, and runs it with no graphics card at all. The team reports 𝟭𝟳 𝘁𝗼 𝟮𝟬 𝘁𝗼𝗸𝗲𝗻𝘀 𝗮 𝘀𝗲𝗰𝗼𝗻𝗱 on an 8-core cloud machine.
+
+What we know: these are the teams' own measurements, and both projects are only days old. openset-llm needs a fairly recent server or desktop chip; most Intel laptops get a much slower fallback. The compressed model is not identical to the original, and how much it loses is still an open question.
+
+What we don't know: how either holds up on everyday work once other people test it.
+
+The direction is clear, though. Running capable AI privately, on hardware you already own, keeps getting cheaper.
+
+𝘐𝘧 𝘢 𝘤𝘢𝘱𝘢𝘣𝘭𝘦 𝘮𝘰𝘥𝘦𝘭 𝘳𝘶𝘯𝘴 𝘰𝘯 𝘵𝘩𝘦 𝘤𝘰𝘮𝘱𝘶𝘵𝘦𝘳 𝘶𝘯𝘥𝘦𝘳 𝘺𝘰𝘶𝘳 𝘥𝘦𝘴𝘬, 𝘸𝘩𝘪𝘤𝘩 𝘵𝘢𝘴𝘬𝘴 𝘸𝘰𝘶𝘭𝘥 𝘺𝘰𝘶 𝘴𝘵𝘰𝘱 𝘴𝘦𝘯𝘥𝘪𝘯𝘨 𝘵𝘰 𝘵𝘩𝘦 𝘤𝘭𝘰𝘶𝘥?
+
+Links in reply 👇
+
+
