@@ -1,0 +1,184 @@
+===== 1-story =====
+𝗦𝗵𝗼𝘂𝗹𝗱 𝘁𝗵𝗲 𝗠𝗼𝗱𝗲𝗹 𝗗𝗲𝗰𝗶𝗱𝗲 𝗪𝗵𝗮𝘁 𝗜𝘁 𝗙𝗼𝗿𝗴𝗲𝘁𝘀?
+
+You've watched an agent hit its context limit mid-task. The harness steps in, squashes the history into a summary, and the agent carries on a little dumber than before.
+
+𝗔 𝗻𝗲𝘄 𝗽𝗮𝗽𝗲𝗿 𝗮𝘀𝗸𝘀 𝘄𝗵𝗮𝘁 𝗵𝗮𝗽𝗽𝗲𝗻𝘀 𝗶𝗳 𝘁𝗵𝗲 𝗺𝗼𝗱𝗲𝗹 𝗵𝗼𝗹𝗱𝘀 𝘁𝗵𝗲 𝘀𝗰𝗶𝘀𝘀𝗼𝗿𝘀 𝗶𝗻𝘀𝘁𝗲𝗮𝗱.
+
+The usual setup is simple. When the context window is 𝟴𝟬% 𝗳𝘂𝗹𝗹, the harness compacts it. It keeps the first instructions and the 10 most recent events, and summarises the rest. The model has no say.
+
+The alternative tested here is "model-driven" compaction. Inside NOOA, NVIDIA's open-source agent harness, the model gets a small context API. It can collapse any range of past events into a summary it writes itself. The originals are archived, so it can pull them back by tag later. It also sees a live meter of how full its context is.
+
+The team ran both setups on two tasks: OfficeQA Pro v2 (𝟵𝟬 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 on U.S. federal spending data) and MLE-bench Lite (𝟮𝟮 𝗞𝗮𝗴𝗴𝗹𝗲 𝗰𝗼𝗺𝗽𝗲𝘁𝗶𝘁𝗶𝗼𝗻𝘀). Four models, context budgets from 8K to 512K tokens.
+
+The best result is big. At a 32K budget on OfficeQA, GPT-6.1 Sol went from 𝟮𝟭% 𝘁𝗼 𝟱𝟲% when it managed its own context. Kimi K3 scored about the same as the baseline (43% vs 41%) while using 𝟰𝟭% 𝗳𝗲𝘄𝗲𝗿 𝗶𝗻𝗽𝘂𝘁 𝘁𝗼𝗸𝗲𝗻𝘀.
+
+But the models behave very differently. GPT, Kimi and DeepSeek V4 Pro compacted in roughly half their tasks. Claude Opus 5.5 did it in 𝗼𝗻𝗹𝘆 𝟰%. When GPT compacts, the request shrinks by a median 3.7x. Opus manages 1.5x.
+
+There's also a nervous streak. Remove the instruction "consider compacting around 85%" and Kimi starts compacting at 𝟮𝟵% 𝗼𝗳 𝗶𝘁𝘀 𝗯𝘂𝗱𝗴𝗲𝘁 instead of about 84%. Kimi and DeepSeek then score around 8 points below the plain harness at 128K and up. The authors call this context anxiety.
+
+𝗙𝗼𝗿 𝗽𝗲𝗼𝗽𝗹𝗲 𝘂𝘀𝗶𝗻𝗴 𝗮𝗴𝗲𝗻𝘁𝘀: the same harness feature can help one model a lot and do almost nothing for another. Test it on your model before you switch it on.
+
+𝗙𝗼𝗿 𝗯𝘂𝗶𝗹𝗱𝗲𝗿𝘀: editing the middle of a context normally breaks prefix caching, so everything after the edit gets recomputed. The paper's SGLang prototype reuses the KV cache of the unchanged part after the edit. On Qwen3.6-27B that cut prefill compute by 𝟰% 𝘁𝗼 𝟭𝟱% 𝗽𝗲𝗿 𝗿𝗲𝗾𝘂𝗲𝘀𝘁, with no measurable accuracy change.
+
+The idea itself isn't new. MemGPT (2023) gave models paged memory. Context-Folding and AgentFold (2025) trained models to fold their history. SelfCompact used a prompt rubric. Context Language Models treat the context as an editable file. OpenAI's Codex has an experimental, off-by-default mode where the model can start a fresh context. What this paper adds is a side-by-side test of four frontier models under the same budgets.
+
+One caveat: 𝘁𝗵𝗲 𝗯𝗲𝗻𝗰𝗵𝗺𝗮𝗿𝗸𝘀 𝗮𝗿𝗲 𝘀𝗺𝗮𝗹𝗹 (90 and 22 items), so small gaps may be noise. On MLE-bench the gain was much smaller and only showed at the tightest budgets. Why GPT does so well is, in the authors' words, "a conjecture, not a tested claim." And the KV result covers one open model on one engine, measured in compute, not latency or cost.
+
+𝗚𝗶𝘃𝗶𝗻𝗴 𝗮 𝗺𝗼𝗱𝗲𝗹 𝗰𝗼𝗻𝘁𝗿𝗼𝗹 𝗼𝗳 𝗶𝘁𝘀 𝗺𝗲𝗺𝗼𝗿𝘆 𝗼𝗻𝗹𝘆 𝗵𝗲𝗹𝗽𝘀 𝗶𝗳 𝘁𝗵𝗲 𝗺𝗼𝗱𝗲𝗹 𝘄𝗮𝘀 𝘁𝗮𝘂𝗴𝗵𝘁 𝗵𝗼𝘄 𝘁𝗼 𝘂𝘀𝗲 𝗶𝘁.
+
+𝘞𝘩𝘪𝘤𝘩 𝘮𝘰𝘥𝘦𝘭𝘴 𝘸𝘪𝘭𝘭 𝘴𝘩𝘪𝘱 𝘵𝘳𝘢𝘪𝘯𝘦𝘥 𝘧𝘰𝘳 𝘵𝘩𝘪𝘴 𝘯𝘦𝘹𝘵 𝘺𝘦𝘢𝘳?
+
+Links in reply 👇
+
+===== 2-karpathy =====
+𝗖𝗼𝗻𝘁𝗲𝘅𝘁 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁 𝗜𝘀 𝗕𝗲𝗰𝗼𝗺𝗶𝗻𝗴 𝗮 𝗦𝗸𝗶𝗹𝗹, 𝗡𝗼𝘁 𝗮 𝗦𝗲𝘁𝘁𝗶𝗻𝗴
+
+A new paper asks who should decide what an agent forgets.
+
+Right now it's mostly the harness. Context hits 80%, a fixed rule fires, keep the system prompt and the last 10 events, summarise the middle. It works, but it's a bit like a person whose notebook gets torn in half by someone else every few hours.
+
+The paper (arXiv 2611.34147) hands the scissors to the model. In NOOA, NVIDIA's open-source harness, the model can collapse a range of its own history into a summary, keep the originals archived, and fetch them back by tag. It sees how full it is.
+
+𝗧𝗵𝗲 𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁𝗶𝗻𝗴 𝗽𝗮𝗿𝘁 𝗶𝘀𝗻'𝘁 𝘁𝗵𝗮𝘁 𝗶𝘁 𝗰𝗮𝗻 𝗵𝗲𝗹𝗽. 𝗜𝘁'𝘀 𝗵𝗼𝘄 𝘂𝗻𝗲𝘃𝗲𝗻𝗹𝘆 𝗶𝘁 𝗵𝗲𝗹𝗽𝘀.
+
+At a 32K budget on OfficeQA Pro v2, GPT-6.1 Sol jumps from 𝟮𝟭% 𝘁𝗼 𝟱𝟲%. Kimi K3 holds its score and uses 𝟰𝟭% 𝗳𝗲𝘄𝗲𝗿 𝗶𝗻𝗽𝘂𝘁 𝘁𝗼𝗸𝗲𝗻𝘀. Claude Opus 5.5 barely touches the tool: it edits its context in 𝟰% 𝗼𝗳 𝘁𝗮𝘀𝗸𝘀. Same API, same prompt, very different habits.
+
+And the habits look learned. Without a hint about when to compact, Kimi starts trimming at 𝟮𝟵% 𝗳𝘂𝗹𝗹 and loses about 8 points against the dumb baseline at 128K and up. That's a model that knows it has a tool but not when to reach for it.
+
+So I think the right mental model is that context management is a skill, like tool use was a couple of years ago. You can bolt it on with prompts, but the gains show up when the model was trained for it. The authors guess this is why GPT does best, and they're careful to say it's a guess.
+
+The systems angle is the other half. Editing the middle of the context normally kills your prefix cache. Their SGLang prototype reuses the KV cache for the unchanged suffix and saves 𝟰% 𝘁𝗼 𝟭𝟱% of prefill compute per request on Qwen3.6-27B, no measurable accuracy change.
+
+Caveats, honestly stated by the authors: 90 and 22 test items, four models, one engine for the KV part, and only small gains on MLE-bench Lite.
+
+What I'd actually want to see: 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘤𝘰𝘮𝘱𝘢𝘳𝘪𝘴𝘰𝘯 𝘰𝘯 𝘢 𝘮𝘰𝘥𝘦𝘭 𝘵𝘳𝘢𝘪𝘯𝘦𝘥 𝘸𝘪𝘵𝘩 𝘵𝘩𝘪𝘴 𝘈𝘗𝘐 𝘧𝘳𝘰𝘮 𝘵𝘩𝘦 𝘴𝘵𝘢𝘳𝘵, 𝘢𝘯𝘥 𝘵𝘩𝘦 𝘭𝘢𝘵𝘦𝘯𝘤𝘺 𝘯𝘶𝘮𝘣𝘦𝘳𝘴, 𝘯𝘰𝘵 𝘫𝘶𝘴𝘵 𝘤𝘰𝘮𝘱𝘶𝘵𝘦.
+
+Links in reply 👇
+
+===== 3-willison =====
+𝗡𝗼𝘁𝗲𝘀 𝗼𝗻 "𝗟𝗲𝘁𝘁𝗶𝗻𝗴 𝗠𝗼𝗱𝗲𝗹𝘀 𝗠𝗮𝗻𝗮𝗴𝗲 𝗧𝗵𝗲𝗶𝗿 𝗢𝘄𝗻 𝗖𝗼𝗻𝘁𝗲𝘅𝘁: 𝗪𝗵𝗲𝗿𝗲 𝗪𝗲 𝗦𝘁𝗮𝗻𝗱"
+
+New on arXiv (2611.34147, submitted 25 Nov 2026). Seven authors. It's an empirical study, not a new method.
+
+The question: should the harness decide when to compact an agent's context, or should the model?
+
+𝗧𝘄𝗼 𝘀𝗲𝘁𝘂𝗽𝘀 𝗮𝗿𝗲 𝗰𝗼𝗺𝗽𝗮𝗿𝗲𝗱.
+
+• 𝗛𝗮𝗿𝗻𝗲𝘀𝘀-𝗱𝗿𝗶𝘃𝗲𝗻: at 80% full, compact. Keep the first instructions and the 10 most recent events.
+• 𝗠𝗼𝗱𝗲𝗹-𝗱𝗿𝗶𝘃𝗲𝗻: the model gets NOOA's context API. It can collapse a range of events into a summary, originals are archived and retrievable by tag, it sees live usage, and it's told to consider compacting at 85%.
+
+NOOA is NVIDIA's open-source agent harness, so this runs on code you can read.
+
+The abstract's headline: models that use the API well "𝘳𝘦𝘢𝘤𝘩 𝘩𝘪𝘨𝘩𝘦𝘳 𝘢𝘤𝘤𝘶𝘳𝘢𝘤𝘺, 𝘰𝘧𝘵𝘦𝘯 𝘸𝘪𝘵𝘩 𝘧𝘦𝘸𝘦𝘳 𝘪𝘯𝘱𝘶𝘵 𝘵𝘰𝘬𝘦𝘯𝘴, 𝘦𝘴𝘱𝘦𝘤𝘪𝘢𝘭𝘭𝘺 𝘢𝘵 𝘵𝘪𝘨𝘩𝘵 𝘣𝘶𝘥𝘨𝘦𝘵𝘴."
+
+𝗧𝗵𝗲 𝘁𝘄𝗼 𝗻𝘂𝗺𝗯𝗲𝗿𝘀 𝗜'𝗱 𝗽𝘂𝗹𝗹 𝗼𝘂𝘁.
+
+On OfficeQA Pro v2 at a 32K budget, GPT-6.1 Sol goes from 𝟮𝟭% 𝘁𝗼 𝟱𝟲%. Kimi K3 at the same budget uses 36M input tokens instead of 62M (𝟰𝟭% 𝗳𝗲𝘄𝗲𝗿) for a similar score, 43% vs 41%.
+
+𝗧𝗵𝗲 𝗱𝗲𝘁𝗮𝗶𝗹 𝗜 𝗳𝗼𝘂𝗻𝗱 𝗺𝗼𝘀𝘁 𝘂𝘀𝗲𝗳𝘂𝗹 is the behaviour table. GPT, Kimi and DeepSeek V4 Pro compact in 42 to 53% of tasks. Claude Opus 5.5 compacts in 𝟰%. So "give the model a context tool" is not one feature. It depends heavily on the model.
+
+Things to be careful about:
+
+• 𝗦𝗺𝗮𝗹𝗹 𝗯𝗲𝗻𝗰𝗵𝗺𝗮𝗿𝗸𝘀. 90 questions and 22 Kaggle competitions. The authors say small differences may not be significant.
+• 𝗠𝗟𝗘-𝗯𝗲𝗻𝗰𝗵 𝗟𝗶𝘁𝗲 𝗴𝗮𝗶𝗻𝘀 𝘄𝗲𝗿𝗲 𝗺𝘂𝗰𝗵 𝘀𝗺𝗮𝗹𝗹𝗲𝗿, limited to the tightest budgets.
+• 𝗧𝗵𝗲 𝗚𝗣𝗧 𝗲𝘅𝗽𝗹𝗮𝗻𝗮𝘁𝗶𝗼𝗻 𝗶𝘀 𝗮 𝗴𝘂𝗲𝘀𝘀. Their words: "𝘢 𝘤𝘰𝘯𝘫𝘦𝘤𝘵𝘶𝘳𝘦, 𝘯𝘰𝘵 𝘢 𝘵𝘦𝘴𝘵𝘦𝘥 𝘤𝘭𝘢𝘪𝘮."
+• 𝗣𝗿𝗼𝗺𝗽𝘁 𝘀𝗲𝗻𝘀𝗶𝘁𝗶𝘃𝗶𝘁𝘆. Drop the "compact around 85%" hint and Kimi starts at 29% of budget, scoring about 8 points under the baseline at 128K and up.
+• 𝗞𝗩-𝗰𝗮𝗰𝗵𝗲 𝗿𝗲𝘀𝘂𝗹𝘁 𝗶𝘀 𝗻𝗮𝗿𝗿𝗼𝘄. 4 to 15% less prefill compute per request on Qwen3.6-27B with an SGLang prototype. Compute, not latency or cost.
+
+Further reading, all cited in the paper: MemGPT (2023), Context-Folding and AgentFold (2025), SelfCompact, and Context Language Models (arXiv 2609.37725), which treats the context as an editable file. OpenAI's Codex has a related experimental mode, off by default.
+
+Links in reply 👇
+
+===== 4-swyx =====
+𝗖𝗼𝗻𝘁𝗲𝘅𝘁 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴 𝗜𝘀 𝗠𝗼𝘃𝗶𝗻𝗴 𝗜𝗻𝘀𝗶𝗱𝗲 𝘁𝗵𝗲 𝗠𝗼𝗱𝗲𝗹
+
+Call it self-managed context. For two years the harness did the forgetting for the model. That's starting to flip.
+
+Who's where, quickly:
+
+• 𝗠𝗲𝗺𝗚𝗣𝗧 (𝟮𝟬𝟮𝟯): paged memory, the OG framing.
+• 𝗖𝗼𝗻𝘁𝗲𝘅𝘁-𝗙𝗼𝗹𝗱𝗶𝗻𝗴, 𝗔𝗴𝗲𝗻𝘁𝗙𝗼𝗹𝗱 (𝟮𝟬𝟮𝟱): train the model to fold its own history.
+• 𝗦𝗲𝗹𝗳𝗖𝗼𝗺𝗽𝗮𝗰𝘁: no training, a prompt rubric tells the model when to compact.
+• 𝗖𝗼𝗻𝘁𝗲𝘅𝘁 𝗟𝗮𝗻𝗴𝘂𝗮𝗴𝗲 𝗠𝗼𝗱𝗲𝗹𝘀: the context is a file the model edits freely.
+• 𝗖𝗼𝗱𝗲𝘅: an experimental mode where the model can start a new context, off by default.
+• 𝗡𝗢𝗢𝗔: NVIDIA's open-source harness, with a context API the model can call.
+
+The new paper (arXiv 2611.34147) runs four frontier models on the same harness and budgets. 𝗜𝘁'𝘀 𝗮 𝗺𝗲𝗮𝘀𝘂𝗿𝗲𝗺𝗲𝗻𝘁 𝗽𝗮𝗽𝗲𝗿, 𝗮𝗻𝗱 𝘁𝗵𝗮𝘁'𝘀 𝘄𝗵𝗮𝘁 𝘁𝗵𝗶𝘀 𝘀𝗽𝗮𝗰𝗲 𝘄𝗮𝘀 𝗺𝗶𝘀𝘀𝗶𝗻𝗴.
+
+Setup: harness compaction at 80% full vs the model using NOOA's API. OfficeQA Pro v2 and MLE-bench Lite, budgets 8K to 512K.
+
+What came out:
+
+• GPT-6.1 Sol at 32K on OfficeQA: 𝟮𝟭% 𝘁𝗼 𝟱𝟲%.
+• Kimi K3 at 32K: similar score, 𝟰𝟭% 𝗳𝗲𝘄𝗲𝗿 𝗶𝗻𝗽𝘂𝘁 𝘁𝗼𝗸𝗲𝗻𝘀.
+• Claude Opus 5.5: compacts in 𝗼𝗻𝗹𝘆 𝟰% 𝗼𝗳 𝘁𝗮𝘀𝗸𝘀. The others do it in about half.
+• Without a timing hint, Kimi panics early and compacts at 𝟮𝟵% 𝗳𝘂𝗹𝗹, losing about 8 points vs the baseline at 128K+.
+
+The infra side matters as much. Mid-context edits break prefix caching. Their SGLang prototype reuses the KV cache after the edit and cuts prefill compute 𝟰 𝘁𝗼 𝟭𝟱% per request on Qwen3.6-27B, no measurable accuracy drop.
+
+Fair warning: 90 and 22 test items, small gains on MLE-bench, and the "GPT was trained for this" theory is the authors' conjecture.
+
+My take: 𝘤𝘰𝘯𝘵𝘦𝘹𝘵 𝘮𝘢𝘯𝘢𝘨𝘦𝘮𝘦𝘯𝘵 𝘣𝘦𝘤𝘰𝘮𝘦𝘴 𝘢 𝘱𝘰𝘴𝘵-𝘵𝘳𝘢𝘪𝘯𝘪𝘯𝘨 𝘵𝘢𝘳𝘨𝘦𝘵, 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘸𝘢𝘺 𝘵𝘰𝘰𝘭 𝘤𝘢𝘭𝘭𝘪𝘯𝘨 𝘥𝘪𝘥, 𝘢𝘯𝘥 𝘴𝘦𝘳𝘷𝘪𝘯𝘨 𝘦𝘯𝘨𝘪𝘯𝘦𝘴 𝘴𝘵𝘢𝘳𝘵 𝘤𝘰𝘮𝘱𝘦𝘵𝘪𝘯𝘨 𝘰𝘯 𝘩𝘰𝘸 𝘤𝘩𝘦𝘢𝘱𝘭𝘺 𝘵𝘩𝘦𝘺 𝘩𝘢𝘯𝘥𝘭𝘦 𝘦𝘥𝘪𝘵𝘴. The authors say as much: they expect it to become a standard capability of frontier models.
+
+Links in reply 👇
+
+===== 5-hamel =====
+𝗕𝗲𝗳𝗼𝗿𝗲 𝗬𝗼𝘂 𝗟𝗲𝘁 𝗬𝗼𝘂𝗿 𝗔𝗴𝗲𝗻𝘁 𝗖𝗼𝗺𝗽𝗮𝗰𝘁 𝗜𝘁𝘀 𝗢𝘄𝗻 𝗖𝗼𝗻𝘁𝗲𝘅𝘁, 𝗥𝗲𝗮𝗱 𝗧𝗵𝗶𝘀
+
+There's a new paper (arXiv 2611.34147) comparing two ways to keep an agent under its context limit. It's useful mainly because it shows how much the answer depends on the model.
+
+The setups:
+
+• 𝗛𝗮𝗿𝗻𝗲𝘀𝘀: at 80% full, keep the first instructions and the last 10 events, summarise the rest.
+• 𝗠𝗼𝗱𝗲𝗹: NOOA's context API. The model collapses ranges of its history, originals stay archived and retrievable.
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗴𝗶𝘃𝗲𝘀 𝘆𝗼𝘂.
+
+On OfficeQA Pro v2 at a 32K budget, GPT-6.1 Sol goes from 𝟮𝟭% 𝘁𝗼 𝟱𝟲%. Kimi K3 holds its score (43% vs 41%) with 𝟰𝟭% 𝗳𝗲𝘄𝗲𝗿 𝗶𝗻𝗽𝘂𝘁 𝘁𝗼𝗸𝗲𝗻𝘀. Real wins, at tight budgets.
+
+𝗪𝗵𝗮𝘁 𝗶𝘁 𝗱𝗼𝗲𝘀𝗻'𝘁 𝗴𝗶𝘃𝗲 𝘆𝗼𝘂.
+
+A free lunch across models. Claude Opus 5.5 compacted in 𝟰% 𝗼𝗳 𝘁𝗮𝘀𝗸𝘀. On MLE-bench Lite the effect was much smaller and only at the tightest budgets. And one line of prompt changes everything: drop "consider compacting at 85%" and Kimi starts at 29% full, then trails the plain harness by about 8 points at 128K and up.
+
+The benchmarks are 90 and 22 items. The authors flag that small differences may not be significant, and that their explanation for GPT's lead is a conjecture.
+
+𝗦𝗼 𝗱𝗼𝗻'𝘁 𝘁𝗮𝗸𝗲 𝘁𝗵𝗶𝘀 𝗽𝗮𝗽𝗲𝗿'𝘀 𝘄𝗶𝗻𝗻𝗲𝗿 𝗮𝘀 𝘆𝗼𝘂𝗿𝘀. Run it on your own traces:
+
+1. 𝗖𝗼𝗹𝗹𝗲𝗰𝘁 𝟯𝟬 𝘁𝗼 𝟱𝟬 𝗿𝗲𝗮𝗹 𝗹𝗼𝗻𝗴-𝗿𝘂𝗻𝗻𝗶𝗻𝗴 𝘁𝗮𝘀𝗸𝘀 that actually hit your context limit.
+2. 𝗕𝗮𝘀𝗲𝗹𝗶𝗻𝗲 with your current harness compaction. Record accuracy and total input tokens.
+3. 𝗧𝘂𝗿𝗻 𝗼𝗻 𝗺𝗼𝗱𝗲𝗹-𝗱𝗿𝗶𝘃𝗲𝗻 𝗰𝗼𝗺𝗽𝗮𝗰𝘁𝗶𝗼𝗻 with the model you'll ship. Same tasks, same budget.
+4. 𝗥𝗲𝗮𝗱 𝘁𝗵𝗲 𝘁𝗿𝗮𝗰𝗲𝘀 𝘄𝗵𝗲𝗿𝗲 𝗶𝘁 𝗰𝗼𝗺𝗽𝗮𝗰𝘁𝗲𝗱. What did it throw away? Did it ever fetch archived content back?
+5. 𝗔𝗯𝗹𝗮𝘁𝗲 𝘁𝗵𝗲 𝘁𝗶𝗺𝗶𝗻𝗴 𝗵𝗶𝗻𝘁. If removing one sentence moves the score, you're tuning a prompt, not getting a capability.
+
+If you serve your own model, also measure the cache side. The paper's SGLang prototype saved 𝟰 𝘁𝗼 𝟭𝟱% of prefill compute per request on Qwen3.6-27B. That's compute, not latency, so measure latency yourself.
+
+𝘛𝘩𝘦 𝘯𝘶𝘮𝘣𝘦𝘳 𝘵𝘩𝘢𝘵 𝘮𝘢𝘵𝘵𝘦𝘳𝘴 𝘪𝘴 𝘵𝘩𝘦 𝘰𝘯𝘦 𝘧𝘳𝘰𝘮 𝘺𝘰𝘶𝘳 𝘵𝘳𝘢𝘤𝘦𝘴.
+
+Links in reply 👇
+
+===== 6-mollick =====
+𝗪𝗵𝗮𝘁 𝗜𝗳 𝗮𝗻 𝗔𝗜 𝗖𝗼𝘂𝗹𝗱 𝗖𝗵𝗼𝗼𝘀𝗲 𝗪𝗵𝗮𝘁 𝘁𝗼 𝗙𝗼𝗿𝗴𝗲𝘁?
+
+AI models have a limited working memory, called a context window. On long jobs it fills up, and something has to go.
+
+Today the software around the model usually decides. When memory is 80% full, it keeps the original instructions and the last 10 steps, and squeezes everything else into a summary. Think of an assistant whose desk gets cleared by a cleaner on a timer.
+
+𝗔 𝗻𝗲𝘄 𝗽𝗮𝗽𝗲𝗿 𝘁𝗲𝘀𝘁𝘀 𝘄𝗵𝗮𝘁 𝗵𝗮𝗽𝗽𝗲𝗻𝘀 𝘄𝗵𝗲𝗻 𝘁𝗵𝗲 𝗮𝘀𝘀𝗶𝘀𝘁𝗮𝗻𝘁 𝗰𝗹𝗲𝗮𝗿𝘀 𝗶𝘁𝘀 𝗼𝘄𝗻 𝗱𝗲𝘀𝗸.
+
+The researchers gave four AI models a tool to summarise chunks of their own history, file the originals away, and pull them back when needed. Then they compared that with the automatic cleaner on two tasks: answering questions about U.S. government spending data, and machine-learning competitions.
+
+The good news is striking. With a small memory, one model (GPT-6.1 Sol) went from answering 𝟮𝟭% 𝗼𝗳 𝗾𝘂𝗲𝘀𝘁𝗶𝗼𝗻𝘀 𝗰𝗼𝗿𝗿𝗲𝗰𝘁𝗹𝘆 𝘁𝗼 𝟱𝟲%. Another (Kimi K3) did about as well as before while reading 𝟰𝟭% 𝗹𝗲𝘀𝘀 𝘁𝗲𝘅𝘁.
+
+The other side is just as interesting. 𝗧𝗵𝗲 𝗺𝗼𝗱𝗲𝗹𝘀 𝗵𝗮𝘃𝗲 𝘃𝗲𝗿𝘆 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝗵𝗮𝗯𝗶𝘁𝘀. Three of them tidied up in about half their tasks. Claude Opus 5.5 did it in 𝟰%. Some models also got anxious: without a hint about when to tidy, Kimi started throwing things away when its memory was only 𝟮𝟵% 𝗳𝘂𝗹𝗹, and scored about 8 points worse than the automatic cleaner on larger memories.
+
+What we actually know is limited. The tests are small, 90 questions and 22 competitions. On the machine-learning tasks the benefit was much smaller. The authors think the best model was trained for this skill, but they say clearly that it's a guess.
+
+There's a practical angle too. Editing the middle of an AI's memory usually means redoing work. The team built a prototype that reuses most of it, saving 𝟰% 𝘁𝗼 𝟭𝟱% of the processing per request on one open model.
+
+The authors expect this to become a standard skill of frontier models. If so, we'll have AI that decides for itself what's worth remembering.
+
+𝘏𝘰𝘸 𝘮𝘶𝘤𝘩 𝘥𝘰 𝘸𝘦 𝘸𝘢𝘯𝘵 𝘵𝘰 𝘬𝘯𝘰𝘸 𝘢𝘣𝘰𝘶𝘵 𝘸𝘩𝘢𝘵 𝘪𝘵 𝘤𝘩𝘰𝘴𝘦 𝘵𝘰 𝘧𝘰𝘳𝘨𝘦𝘵?
+
+Links in reply 👇
+
