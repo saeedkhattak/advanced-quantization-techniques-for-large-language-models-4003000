@@ -27,7 +27,7 @@ Search the file for these headings (lines starting with `// ----------`):
 - `SOUNDS`: the instruments. Piano, Organ, Synth, Pad, Bass and Bell, plus the World sounds:
   Rabab, Sitar and Guzheng (plucked strings made with the Karplus-Strong method, see `ksBuffer`)
   and Bansuri (a flute: a soft tone plus filtered breath noise and vibrato).
-  The original six are Each is built from simple waves (`sine`, `triangle`, `sawtooth`, `square`)
+  The original six are each built from simple waves (`sine`, `triangle`, `sawtooth`, `square`)
   plus an envelope: `a` = attack (how fast it starts), `decay`, `sustainLvl` (how loud while held), `r` = release (fade-out time).
 - **Note state**: what happens when a key goes down (`noteOn`) or up (`noteOff`).
 - **Keyboard UI**: draws the keys and handles mouse, touch and computer-keyboard presses.
