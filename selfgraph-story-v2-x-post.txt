@@ -1,0 +1,51 @@
+Git for Facts: A Knowledge Graph That Remembers What Changed
+
+Your code has version control. Your AI agent's memory doesn't.
+
+Imagine you tell your agent in 2020: "Ann works at Acme."
+
+Two years later you tell it: "Ann works at Globex now."
+
+Then you ask it where Ann works.
+
+A plain knowledge graph does one of two things here. It writes over the old fact, so Acme is gone and you can never ask about the past. Or it keeps both facts side by side, and the agent has to guess which one is true today. Either way, nobody knows what changed, or when.
+
+SelfGraph, a new open-source library from the HydraDB team, treats facts the way git treats code.
+
+When Ann moves to Globex, the Acme fact isn't deleted. It's marked as retired, with a note saying what replaced it. Nothing is lost.
+
+So you can ask things like:
+
+• Where does Ann work now? Globex.
+
+• Where did she work in mid-2021? Acme.
+
+• What did the graph believe last week, before someone fixed a mistake?
+
+• What changed between Monday and today?
+
+That last one is close to a git diff for your graph. It lists the facts that were added, revised, retired or verified between two dates. Even merging two duplicate people into one can be undone.
+
+To be fair, SelfGraph isn't the only graph that keeps history. Zep's Graphiti also dates its facts and retires old ones instead of overwriting them. What makes SelfGraph different is the next two parts.
+
+Second, it can say "I don't know."
+
+Most search always returns something. Ask about data that isn't there and you still get passages that look close enough, so the agent answers anyway.
+
+SelfGraph has a check called check_answerable that runs before the answer. It splits the question into words and tells you which ones the graph has nothing on. Ask "what's the staff size of Acme by ad spend?" and it comes back with: missing ad, spend.
+
+Now the agent can say "that isn't in the graph" instead of making something up.
+
+Third, it works without an LLM.
+
+By default, nothing calls a model. It pulls facts out of text with spaCy or simple rules, finds things with keyword search, and walks the graph from there. It's free, and it gives the same answer every time.
+
+If you do add an LLM, it doesn't run on everything. The cheap steps go first, and only the cases they can't settle go up to the model: two names that might be the same person, two facts that might clash. You pay for the hard bits, not the easy ones.
+
+It runs on Neo4j, Memgraph, FalkorDB, HydraDB or Kuzu, in Python or TypeScript.
+
+A few honest caveats. The repo is three weeks old and at version 0.2.2. There are no published benchmarks yet. And without an LLM, it will miss facts hidden in messy text.
+
+Still, the idea feels right. Code got version control a long time ago. Agent memory is only now getting it.
+
+Links in reply 👇
