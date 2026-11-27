@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Client–Server Request",
+    "locale": "en",
+    "output": ".archify/sequence-client-server-request-20261127-005414/client-server-request.html",
+    "quality_profile": "showcase"
+  },
+  "participants": [
+    { "id": "user", "type": "external", "label": "User", "sublabel": "person" },
+    { "id": "client", "type": "frontend", "label": "Client", "sublabel": "browser or app" },
+    { "id": "dns", "type": "cloud", "label": "DNS", "sublabel": "name resolver" },
+    { "id": "server", "type": "backend", "label": "Server", "sublabel": "web / API" },
+    { "id": "db", "type": "database", "label": "Database", "sublabel": "stored data" }
+  ],
+  "segments": [
+    { "from": 150, "to": 302, "label": "Connect" },
+    { "from": 304, "to": 412, "label": "Request" },
+    { "from": 414, "to": 500, "label": "Response" }
+  ],
+  "messages": [
+    { "id": "open-url", "from": "user", "to": "client", "y": 162, "label": "open URL", "variant": "default" },
+    { "id": "dns-lookup", "from": "client", "to": "dns", "y": 192, "label": "resolve example.com", "variant": "default" },
+    { "id": "dns-answer", "from": "dns", "to": "client", "y": 220, "label": "IP address", "variant": "return" },
+    { "id": "handshake", "from": "client", "to": "server", "y": 250, "label": "TCP + TLS handshake", "variant": "security", "note": "Encrypted connection, reused for later requests" },
+    { "id": "http-request", "from": "client", "to": "server", "y": 316, "label": "GET /orders", "variant": "emphasis", "note": "Method, path, headers, cookies" },
+    { "id": "db-query", "from": "server", "to": "db", "y": 372, "label": "query orders", "variant": "default" },
+    { "id": "db-rows", "from": "db", "to": "server", "y": 400, "label": "rows", "variant": "return" },
+    { "id": "http-response", "from": "server", "to": "client", "y": 430, "label": "200 OK + JSON", "variant": "return", "note": "Status code, headers, body" },
+    { "id": "render", "from": "client", "to": "user", "y": 486, "label": "render page", "variant": "return" }
+  ],
+  "activations": [
+    { "participant": "client", "from": 158, "to": 492, "type": "frontend" },
+    { "participant": "dns", "from": 187, "to": 226, "type": "cloud" },
+    { "participant": "server", "from": 245, "to": 436, "type": "backend" },
+    { "participant": "db", "from": 367, "to": 406, "type": "database" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Find and connect", "items": ["DNS turns the name into an IP address", "TCP + TLS open an encrypted connection first"] },
+    { "dot": "emerald", "title": "Request and response", "items": ["The client sends method, path and headers", "The server reads data, then answers with a status code and body"] }
+  ]
+}

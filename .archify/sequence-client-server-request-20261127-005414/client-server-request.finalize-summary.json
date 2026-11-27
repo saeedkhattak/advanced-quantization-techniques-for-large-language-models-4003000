@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "sequence",
+  "quality": "showcase",
+  "specification": {
+    "path": "/home/user/advanced-quantization-techniques-for-large-language-models-4003000/.archify/sequence-client-server-request-20261127-005414/candidate.json",
+    "sha256": "90c0ffa23f51e402f4ebfbb9e5399869f821f41958fd0487f8b681d1d18c72c9",
+    "bytes": 2773
+  },
+  "artifact": {
+    "path": "/home/user/advanced-quantization-techniques-for-large-language-models-4003000/.archify/sequence-client-server-request-20261127-005414/client-server-request.html",
+    "sha256": "288fc3517b35103fcb693e7dc053171b963cd0ee383106bfb9d2c39a232bf7da",
+    "bytes": 934041
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "/home/user/advanced-quantization-techniques-for-large-language-models-4003000/.archify/sequence-client-server-request-20261127-005414/client-server-request.finalize.json",
+    "summaryReceipt": "/home/user/advanced-quantization-techniques-for-large-language-models-4003000/.archify/sequence-client-server-request-20261127-005414/client-server-request.finalize-summary.json",
+    "browserCheckReceipt": "/home/user/advanced-quantization-techniques-for-large-language-models-4003000/.archify/sequence-client-server-request-20261127-005414/client-server-request.browser-check.json"
+  },
+  "visualReview": "not-requested",
+  "durationMs": 3422,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  }
+}
