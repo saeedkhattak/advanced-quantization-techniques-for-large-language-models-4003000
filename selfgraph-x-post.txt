@@ -1,0 +1,194 @@
+===== 1. STORY =====
+
+A Knowledge Graph That Says "I Don't Know"
+
+Ask an agent where Ann works. It searches its notes, finds two answers, Acme and Globex, and picks one with full confidence.
+
+Both were true once. Ann joined Acme in 2020 and moved to Globex in 2022. The notes never said which one replaced the other.
+
+SelfGraph is a new open-source library from the HydraDB team that is built for this problem. You give it text, it builds a knowledge graph, and every fact in that graph carries time.
+
+How it works, step by step:
+
+• Text goes in. Entities and relations come out, pulled by an LLM if you set one, or by spaCy or plain regex if you don't.
+
+• When a newer fact contradicts an older one, the old one is retired, not deleted. It keeps a record of what replaced it.
+
+• You can ask two kinds of time question. as_of asks what was true on a date. known_at asks what the graph believed on a date, before any later correction.
+
+• Search starts from keyword (BM25) matches, walks the graph, and hands back the source passages. There's no vector store. Embeddings are optional.
+
+The part worth a builder's attention is check_answerable. Before the agent answers, it splits the question into terms and reports which ones the graph doesn't hold. Ask about "staff size of Acme by ad spend" and it comes back with missing: ad, spend. No LLM call is involved.
+
+For users, that means an agent that can say "that isn't in the graph" instead of guessing.
+
+For builders, there's one setting called level. light uses regex, balanced (the default) is free and deterministic, and max brings in the LLM. A higher level only sends the cases the cheaper ones couldn't settle, so you pay for the hard ones. It runs over Neo4j, Memgraph, FalkorDB, HydraDB or embedded Kuzu, in Python or TypeScript, as an SDK, CLI or MCP server.
+
+It isn't the first graph with time built in. Zep's Graphiti already keeps both timelines on every edge and invalidates old facts instead of overwriting them. Microsoft GraphRAG and LightRAG go after a different job, summarising and searching across a big corpus.
+
+Some caveats. The repo was created on 4 November 2026 and it's at version 0.2.2. It comes from a database company, so check how well the other backends hold up. There are no published benchmarks yet. And regex or spaCy will pull far fewer facts from messy text than an LLM will.
+
+Still, a graph that knows when it holds no answer is the piece most agent memory has been missing.
+
+Links in reply 👇
+
+
+===== 2. KARPATHY STYLE =====
+
+Thinking About SelfGraph
+
+SelfGraph is a new open-source repo from the HydraDB team. On the surface it's text in, knowledge graph out, and there are plenty of those.
+
+I think the interesting part is somewhere else. It treats "the graph doesn't contain this" as a result you can compute.
+
+Most retrieval returns whatever its search reaches. Ask something off-topic and you still get passages, so the model gets context that looks relevant and answers anyway. SelfGraph's check_answerable splits the question into terms, matches them against entity names, aliases and schema synonyms, and lists what's missing. "Staff size of Acme by ad spend" gives you missing: ad, spend. No LLM in that loop.
+
+A decent analogy is a librarian who checks the catalogue before sending you to a shelf. Cheap, boring, and it stops a whole class of confident nonsense.
+
+The rest of the design follows the same instinct. The default level is deterministic: spaCy or regex extraction, name and alias matching, BM25 seeds, BFS over the graph. You turn the LLM on per capability, and a higher tier only gets the cases the lower one couldn't decide.
+
+Time is handled properly too, imo. Facts get retired, never deleted, and you can ask both "what was true then" (as_of) and "what did we know then" (known_at). Graphiti from Zep already does the two-timeline thing, so that part isn't new. The combination with LLM-free checks is what caught my eye.
+
+It's three weeks old, version 0.2.2, no benchmarks published. What would settle it: a set of questions, half of them unanswerable from the corpus, and how often the agent correctly says "not in the graph" with and without check_answerable.
+
+Links in reply 👇
+
+
+===== 3. SIMON WILLISON STYLE =====
+
+SelfGraph: Notes
+
+SelfGraph is a new Apache-2.0 library from the HydraDB team. The README's one-line pitch: "Turn unstructured text into a queryable, versioned knowledge graph."
+
+It's Python 3.10+ and TypeScript (Node 20+), at version 0.2.2. The repo was created on 4 November 2026.
+
+Two features stand out.
+
+First, temporal queries. You can ask for the graph as of a date, or as it was known at a date:
+
+retrieve("where does Ann work", as_of="2021-06-01")
+
+The docs say retired facts are never deleted: "The retired relation keeps its history and records what replaced it." There's also graph.diff(since, until), which lists what was added, revised, retired and certified between two times.
+
+Second, the "answering safely" checks. From docs/trust.md: "retrieve always returns whatever its keywords reach, even when that is unrelated to the question." So they ship readiness(), check_answerable(), hub detection and human certification of facts, and "None of them calls an LLM." The bundled MCP server tells clients to run check_readiness, then check_answerable, then retrieve, and to say "not in the graph" on a not_answerable verdict.
+
+Hub detection is a nice touch. Any entity with 50 or more current relations counts as a hub, and links that only run through one get flagged as weak.
+
+Backends: Neo4j, Memgraph and other Bolt engines, FalkorDB, HydraDB (0.5.0 or later), and embedded Kuzu. Raw Cypher is still there if you need it.
+
+Things to be careful about:
+
+• It's very young. 236 stars and 76 forks as of 27 November 2026.
+
+• There are no benchmarks in the repo or docs, so retrieval quality is unmeasured so far.
+
+• Without an LLM, extraction is spaCy or regex. Fine for clean text, much weaker for messy notes.
+
+• It's maintained by a graph database vendor. The other backends are supported, but watch which one gets the most attention.
+
+• Two timelines per fact isn't new. Zep's Graphiti stores valid_at, invalid_at and created_at on every edge.
+
+Further reading: the README, docs/trust.md and docs/retrieval.md. Links below.
+
+Links in reply 👇
+
+
+===== 4. SWYX STYLE =====
+
+Graph Memory Is Splitting Into Two Camps
+
+Graph memory for agents has quietly split in two.
+
+One camp builds graphs to summarise and search a big corpus. The other builds graphs that track facts as they change.
+
+Roughly where everyone sits:
+
+• Microsoft GraphRAG: community summaries over a large dataset, LLM-heavy at index time.
+
+• LightRAG: lighter graph-plus-vector retrieval in the same spirit.
+
+• Cognee: a memory pipeline that mixes vector search with a graph database.
+
+• Graphiti (Zep): a temporal graph that keeps two timelines on every edge. It calls an LLM on each write, and Thoughtworks flags that as a cost to plan for.
+
+• SelfGraph (HydraDB, open source, 3 weeks old): versioned facts too, but the default path makes no LLM calls at all.
+
+SelfGraph lands in the second camp with two bets of its own.
+
+The first is cost. A single level setting moves extraction, entity resolution, contradiction handling and retrieval from regex and BM25 up to LLM-backed. Higher tiers only see the cases the lower ones couldn't decide.
+
+The second is refusal. check_answerable tells the agent which parts of a question the graph doesn't hold, before retrieval, with no LLM. Most memory layers return something for every query.
+
+It also isn't tied to a single database: Neo4j, Memgraph, FalkorDB, HydraDB or embedded Kuzu, through one SDK, CLI and MCP server.
+
+It's version 0.2.2 with no published benchmarks, so treat it as a direction, not a winner.
+
+My read is that agent memory is heading toward database ideas: versions, audit trails, "what did we know on Tuesday". The retrieval trick matters less than whether the agent can prove where a fact came from and when it was true.
+
+Links in reply 👇
+
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+Before You Add SelfGraph to Your Agent
+
+A new graph memory library, SelfGraph from the HydraDB team, went open source this month. Before you wire it in, here's what it does and doesn't give you.
+
+What it gives you:
+
+• Text to graph extraction with an LLM, or with spaCy or regex if you don't want one.
+
+• Facts with time on them. Old facts are retired, not deleted, and you can query as_of a date or as known_at a date.
+
+• check_answerable, which lists the terms in a question the graph doesn't hold. It runs without an LLM, so it's cheap enough to call before every answer.
+
+• Hub warnings, for when two entities only connect through something linked to everything (50 or more relations).
+
+• The same API over Neo4j, Memgraph, FalkorDB, HydraDB or embedded Kuzu.
+
+What it doesn't give you:
+
+• Any published evidence that it retrieves better. The repo has no benchmarks.
+
+• Good extraction for free. The default path is spaCy or regex, which will miss a lot on real notes and chat logs.
+
+• Maturity. It's version 0.2.2 and the repo is about three weeks old.
+
+The check_answerable idea is worth testing whatever you end up using, because "answered when it should have refused" is a failure mode most teams never measure.
+
+If you want to know whether it helps your agent:
+
+1. Write 50 questions from your own data, including 15 or so the data can't answer.
+
+2. Run your current retrieval as the baseline and record every answer.
+
+3. Run SelfGraph at level balanced, then at max, with check_answerable in front.
+
+4. Score correct answers and correct refusals separately.
+
+5. Read the traces for the misses. Most of them will be extraction errors, and you'll only see that by looking.
+
+Links in reply 👇
+
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+Can an AI Know What It Doesn't Know?
+
+One of the most useful things a human expert does is say "I don't have that information."
+
+AI agents are bad at this. When an agent pulls in notes to answer a question, it nearly always finds something, and it answers from whatever it found.
+
+A new open-source tool called SelfGraph tries a simple fix.
+
+It turns documents into a knowledge graph: a map of people, companies and how they relate. Think of an org chart that keeps every past version of itself. If Ann moves from Acme to Globex, the old fact isn't erased. It's marked as replaced, so you can ask where Ann worked in 2021 or what the system believed last week.
+
+The newer idea is a check that runs before the agent answers. It looks at the words in your question and tells you which ones the map has nothing on. Ask about a company's ad spend when the map holds no ad spend data, and it says so. That check uses no AI, just matching against the map.
+
+Here's what we can honestly say. The approach makes sense, and it's cheap to run. Keeping old facts on record is something other tools such as Graphiti already do, so that part isn't new.
+
+What we don't know is how well it works in practice. The project is only weeks old and hasn't published any tests of its accuracy. Without an AI model it reads text in a fairly mechanical way, so it may miss facts that a person would spot.
+
+Still, it points at a question worth asking about every AI system we rely on at work. Should we judge these tools by how often they're right, or by how often they know when they can't be?
+
+Links in reply 👇
