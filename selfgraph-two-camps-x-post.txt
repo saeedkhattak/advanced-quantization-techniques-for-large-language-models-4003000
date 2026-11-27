@@ -1,0 +1,19 @@
+Graph Memory Is Splitting Into Two Camps
+
+If you're building agent memory on a graph, you've probably noticed the tools don't all do the same job.
+
+Some are built to read a huge pile of documents and help you search and summarise it. Others are built to keep track of facts that change over time, like who works where today versus last year.
+
+Here's roughly how the main ones line up:
+
+• Microsoft GraphRAG builds summaries of topics across a large dataset. It leans heavily on an LLM while building the graph.
+
+• LightRAG does a lighter version of the same thing, mixing a graph with vector search.
+
+• Cognee is a memory pipeline that combines vector search with a graph database.
+
+• Graphiti, from Zep, tracks facts over time. Every link records when it was true and when the graph learned it. It calls an LLM every time you add data, and Thoughtworks warns teams to budget for that.
+
+• SelfGraph, from the HydraDB team, is open source and only three weeks old. It also keeps a history of facts, but out of the box it doesn't call an LLM at all.
+
+So SelfGraph sits in the second camp, next to Graphiti. What sets it apart are two bets of its own.
