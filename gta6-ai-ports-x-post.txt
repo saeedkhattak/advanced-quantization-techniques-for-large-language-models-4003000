@@ -1,0 +1,198 @@
+===== 1. STORY =====
+
+The AI In The GTA 6 PC Ports Is Porting The Game, Not Making It
+
+GTA 6 came out on PS5 and Xbox Series on 19 November. There's still no PC date.
+
+Within days, people were trying to run it on PC anyway, and AI coding tools keep coming up in the coverage.
+
+The easy headline is "fans are impatient". The more useful question is what the AI is actually doing in these projects. From the reporting, it's a narrower job than the clips suggest.
+
+Start with the leak. A hacker or group calling itself Cyberleek released what it claimed was a near-complete Xbox development build, then what it claimed was the missing .exe. Rockstar and Take-Two haven't confirmed it's real.
+
+If it is, that build already holds the game. The art and map data are in the files, and nobody needs a model to draw them.
+
+What's missing is a way to run Xbox code on a Windows PC. Mark Brown of Game Maker's Toolkit told the BBC: "Now people are using AI to try and decompile it, make a modified version that could run on PC, and compile a new version."
+
+So the AI's job is translation. Machine code back into something readable, patched for different hardware, then built again. Leonida, the biggest public attempt, called itself a static recompilation and shipped no game files at all. Users had to bring their own.
+
+Compare that with the other kind of AI clone. Brown's own game, Word Play, was recently recreated with AI. Indie studio Robotonic found a copy of their unreleased puzzle game 204Snake on Yandex with "the exact same mechanics as we had, but with the art looking a bit off". (The BBC doesn't say how that copy was made.)
+
+"A bit off" is the tell. When a tool has to make the thing, you see the seams. When it only has to translate a finished thing, every step has a reference to check against.
+
+For game developers, that's the uncomfortable bit. A design was always easy to copy. A leaked binary is now cheaper to port than it used to be.
+
+For builders, it's a fair map of where these tools earn their keep: big, dull jobs with a ground truth to test against. Not inventing a world from a prompt.
+
+The IP side moved fast. Take-Two's notice says the build files went public on 20 November and Leonida's repo opened the next day. On 24 November GitHub processed a takedown covering Leonida and its whole fork network, 3,007 repos. The notice cites Rockstar's terms banning reverse engineering. One line, quoted by the BBC: "There are no remedies available to rectify this clear attempt to facilitate copyright infringement based upon Take-Two's copyrighted property."
+
+Anthropic had already added a rule in late October steering Claude Code away from recreating specific existing games, even renamed ones. Original and genre games are still fine, though some developers say it now refuses legitimate projects too.
+
+Some caution on the progress. The claims come from the groups themselves, mostly on X. The BBC saw one claiming near-console smoothness on a high-end PC, while Notebookcheck reported builds at 2 to 5 FPS. Trackers count roughly 25 to 30 projects. None of it is independently checked, and the leaked build itself is unconfirmed.
+
+Legally it isn't close. Aaron Treble, a UK IP lawyer at Lewis Silkin, told the BBC that anyone who releases or sells a clone "will almost certainly be infringing".
+
+The leak supplied the game and the AI supplied the plumbing, which is a much smaller (and more believable) claim than "AI rebuilt GTA 6".
+
+Links in reply 👇
+
+
+===== 2. KARPATHY STYLE =====
+
+What The AI Is Really Doing In The GTA 6 PC Ports
+
+Been thinking about the GTA 6 PC port story from the bottom up.
+
+A shipped game is roughly two things. A huge pile of content (textures, audio, map data, animation) and a much smaller pile of code that knows how to play it on one machine.
+
+The leaked Xbox build, if it's real, contains both. Rockstar and Take-Two haven't confirmed it. But the reporting doesn't describe anyone generating art or audio. Mark Brown told the BBC people are using AI "to try and decompile it, make a modified version that could run on PC, and compile a new version."
+
+So the model never touches the expensive part. It works on the code, translating Xbox machine code into something that builds for Windows.
+
+The closest analogy I have is translating a novel versus writing one. Translation is still hard, and you can get a lot wrong. But the plot, the characters and every sentence already exist, and you can hold your version up against the original line by line.
+
+I think that's the real lesson, and it's not specific to GTA. These tools look strongest when there's a ground truth to check against. They look weaker when they have to invent the thing. The BBC has a small example of the second case: an indie team found a copy of their unreleased game 204Snake with "the exact same mechanics" but "the art looking a bit off". (The article doesn't say how it was made.)
+
+The progress numbers are all over the place, which fits. The BBC saw a claim on X of near-console smoothness on a high-end PC. Notebookcheck reported builds at 2 to 5 FPS. Trackers count something like 25 to 30 projects. All self-reported.
+
+None of this makes it legal. GitHub processed a Take-Two takedown on 24 November covering 3,007 repos, the Leonida project and every fork. Anthropic, since late October, steers Claude Code away from recreating specific existing games. A UK IP lawyer told the BBC that releasing or selling a clone "will almost certainly be infringing".
+
+What I'd actually want to see is boring. The same save, the same scene, console and PC side by side, frame times logged. And for any project that says it used AI, how much of the translated code was checked against the original, and how.
+
+Links in reply 👇
+
+
+===== 3. SIMON WILLISON STYLE =====
+
+Notes On AI And The Unofficial GTA 6 PC Ports
+
+The BBC has a piece on the race to get GTA 6 running on PC before Rockstar ships an official version. GTA 6 launched on PS5 and Xbox Series on 19 November and has no PC date.
+
+The starting point is a leak. Someone calling themselves Cyberleek released what they claimed was a near-complete Xbox development build, then what they claimed was the missing .exe. Rockstar and Take-Two haven't confirmed it.
+
+The useful quote is from Mark Brown of Game Maker's Toolkit:
+
+"Now people are using AI to try and decompile it, make a modified version that could run on PC, and compile a new version."
+
+That's worth reading carefully. The AI work described is decompilation and recompilation. Nothing in the coverage I found says anyone is generating art, audio or map data. Those come from the leaked build.
+
+The best-known project, Leonida, described itself as a static recompilation of the Xbox Series version. According to reports on its README, it shipped no game files, keys or binaries; you built it from your own copy.
+
+Brown also splits AI cloning into two kinds, which is a useful frame:
+
+• Replication: ask a chatbot to build a new game from screenshots or a description. His words: "looking at a painting and making your own replica".
+
+• Reverse engineering: work back from the finished game. "Taking a cake and somehow turning it back into the original recipe."
+
+The GTA 6 ports are the second kind.
+
+Things to be careful about:
+
+• The build is unconfirmed. Rockstar and Take-Two didn't respond to the BBC.
+
+• Progress claims are self-reported. The BBC saw one claiming near-console smoothness on a high-end PC. Notebookcheck reported builds at 2 to 5 FPS.
+
+• I couldn't find a source tying a specific port to a specific AI tool. The BBC says the wave of AI game recreation "has been widely linked" to Anthropic's models and Claude Code.
+
+• Don't download anything claiming to be GTA 6 for PC. Reports say those files are either fakes carrying malware or the stolen build.
+
+On the legal side: GitHub processed a Take-Two notice on 24 November covering 3,007 repositories, Leonida and its forks. The notice cites Rockstar's terms banning reverse engineering. Anthropic confirmed on 30 October that Claude Code now steers away from recreating specific existing games, even if renamed, while still helping with original and genre games.
+
+Further reading is in the reply, including the takedown coverage and the reporting on Anthropic's rule.
+
+Links in reply 👇
+
+
+===== 4. SWYX STYLE =====
+
+AI Game Cloning Has Split Into Two Different Businesses
+
+The GTA 6 PC port race makes something clear: "AI cloned a game" now covers two very different activities.
+
+One is replication. You show a model screenshots, describe the mechanics, and it builds a new game that looks like the old one. Mark Brown's game Word Play was recently recreated with AI. Robotonic found a copy of its unreleased puzzle game 204Snake on Yandex with "the exact same mechanics" and "the art looking a bit off".
+
+The other is reverse engineering. You start from a real binary and translate it. That's what's happening with GTA 6.
+
+Here's where the pieces sit right now:
+
+• The source material: a claimed near-complete Xbox dev build plus a claimed .exe, from a leaker called Cyberleek. Unconfirmed by Rockstar or Take-Two.
+
+• Leonida: the biggest public static recompilation attempt, built from users' own files. Taken down on 24 November along with its fork network, 3,007 repos in all.
+
+• The long tail: trackers count roughly 25 to 30 projects, many now in private channels. Claimed progress runs from boot screens to 2 to 5 FPS gameplay, with one claim of near-console smoothness on a high-end PC.
+
+• Older decomp work: the BBC notes reverse-engineering projects have already put Halo: Combat Evolved and GTA: Vice City in web browsers.
+
+• The tool vendor: Anthropic added a rule in late October steering Claude Code away from recreating specific existing games.
+
+• The rights holder: Take-Two, citing Rockstar's ban on reverse engineering.
+
+The AI isn't generating GTA 6 in any of this. The leak supplies the content and the AI speeds up the translation work decomp teams have always done by hand.
+
+My read: the binary is no longer much of a moat. What's left is content, servers and lawyers. Strauss Zelnick has said piracy was "less of an issue" for games because of "file sizes and complexity". Complexity is the part AI is wearing down.
+
+Links in reply 👇
+
+
+===== 5. HAMEL HUSAIN STYLE =====
+
+Before You Believe A GTA 6 PC Port Clip, Ask How It Was Checked
+
+There are now something like 25 to 30 projects trying to run the leaked Xbox build of GTA 6 on PC, by tracker counts. Clips on X claim everything from a boot screen to near-console smoothness on a high-end PC. Notebookcheck reported builds at 2 to 5 FPS.
+
+None of that is an eval. It's a demo.
+
+It helps to be precise about what AI is doing here. Mark Brown told the BBC people are using it "to try and decompile it, make a modified version that could run on PC, and compile a new version." That's code translation. The art, audio and map data come from the leaked build, which Rockstar and Take-Two haven't confirmed is real.
+
+What AI translation gives you:
+
+• Speed on huge, repetitive work, the kind decomp teams used to grind through by hand.
+
+• A target you can test against. The original binary tells you what correct looks like.
+
+What it doesn't give you:
+
+• Any guarantee the translated code behaves the same. A port that boots can still be wrong in a thousand quiet places.
+
+• Legal cover. GitHub processed a Take-Two notice on 24 November covering 3,007 repos (the Leonida project and its forks). Anthropic has steered Claude Code away from recreating specific existing games since late October.
+
+The useful part for builders isn't GTA. It's the pattern. If you're using AI to port your own legacy code to a new platform, here's a minimal setup:
+
+• Build a set of fixed inputs: saved states, recorded input sequences, test files.
+
+• Record a baseline from the original: outputs, frame times, memory.
+
+• Run the same inputs through the translated version and diff the results automatically.
+
+• Read the failures and logs yourself. Don't skim a pass rate.
+
+That's the bar a port claim should meet before it's news.
+
+Links in reply 👇
+
+
+===== 6. ETHAN MOLLICK STYLE =====
+
+If AI Can Port GTA 6 In Weeks, What's Still Hard?
+
+GTA 6 launched on PS5 and Xbox Series on 19 November. Within days, fans were trying to get a leaked Xbox build running on PC, with AI coding tools part of the effort. Rockstar hasn't announced a PC date.
+
+The question worth asking is less "when" and more "what is the AI really doing?"
+
+Think of a game as a film plus a projector. The film is the art, sound, map and story, the bulk of the work. The projector is the code that plays it on one kind of machine.
+
+The leak, which Rockstar and Take-Two haven't confirmed, appears to contain the whole film. What fans need is a projector that works on a PC. According to Mark Brown of Game Maker's Toolkit, that's where AI comes in: decompiling the code, changing it to run on PC, and compiling it again.
+
+So it's adapting a finished game to new hardware. It isn't making one.
+
+The evidence cuts both ways. One Reddit user wrote: "Why should the PC players have to wait half a year if you can develop the game in weeks as shown so far!" But progress claims are self-reported, Notebookcheck reported builds at 2 to 5 FPS, and Christopher Dring of The Game Business points out PC versions are "complex", with "different hardware configurations".
+
+There's another side for small studios. Brown's own game was recreated with AI, and indie team Robotonic found a copy of their unreleased game with "the exact same mechanics" but art that looked "a bit off". The article doesn't say how that copy was made, but it hints that building something new still shows its seams.
+
+The rules are tightening. GitHub processed a Take-Two takedown on 24 November covering 3,007 repositories. Anthropic added a rule in late October steering Claude Code away from recreating specific existing games. A UK IP lawyer told the BBC that anyone who releases or sells a clone "will almost certainly be infringing".
+
+What we know: the hard, expensive part of GTA 6 came from the leak, not the AI.
+
+What we don't know yet is the bigger question. If the code that runs a game becomes cheap to translate, does protecting a game come down entirely to the content and the lawyers?
+
+Links in reply 👇
