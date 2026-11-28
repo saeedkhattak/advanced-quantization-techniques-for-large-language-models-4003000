@@ -1,43 +1,29 @@
-Decompile, Recompile, Emulate: How People Are Trying To Get GTA 6 On PC
+How Do You Copy A Game? GTA 6 Explained Simply
 
-GTA 6 is out on PS5 and Xbox Series, with no PC version announced. There are reports of around 25 to 30 fan projects trying to make one from a leaked Xbox build, and words like "decompile" and "recompile" are getting thrown around a lot.
+GTA 6 is out on PS5 and Xbox, but not on PC. There are reports of around 25 to 30 fan projects trying to put a leaked Xbox copy on PC anyway.
 
-They mean different things, so here's the plain version.
+You'll hear words like "decompile" and "recompile". Think of a game as a book written in a language only one machine can read.
 
-The first way to copy a game doesn't touch its code at all. You play it, take screenshots, and build something that works the same way. That's replication. The BBC's example is the indie puzzle game 204Snake, copied with "the exact same mechanics" and "the art looking a bit off". AI chatbots have made this kind of copy much quicker to produce.
+Copying the story: you read the book and write your own with the same plot. No original code is used. An indie game called 204Snake was copied like this, with "the exact same mechanics" but "the art looking a bit off" (BBC).
 
-Everything else starts from the real files. That's reverse engineering.
+Reverse engineering: you study the printed book to work out how it was written. Tools like Ghidra and IDA do this, and new tools like REA let AI agents use them.
 
-Reverse engineering is the umbrella term. A game ships as machine code, which only the CPU reads. Tools like Ghidra and IDA turn it back into assembly (disassembly) or into something closer to C (decompilation).
+But understanding a book doesn't put it in a new language. To run a game on another machine, you need one more step:
 
-The recent hype is about letting AI agents drive those tools. REA (Reverse Engineer Anything) is an open-source, MIT-licensed project that connects coding agents to Ghidra, IDA and Hopper through MCP. GhidraMCP does a similar job for Ghidra on its own.
+• Emulation: an interpreter translates every line while you read. It works for any book, but it's slow.
 
-But reverse engineering doesn't make anything cross-platform by itself. It gives you understanding. To run the game on a different machine you still need one of these:
+• Translation layer: the language is the same, so only the local references get swapped as you read. Wine and Proton do this for Windows games on Linux.
 
-• Emulation: simulate the old console in software while the game runs. One emulator can handle many games, but decoding instructions live costs speed.
+• Recompilation: translate the whole book once, before anyone reads it. N64Recomp does this for old N64 games.
 
-• A translation layer: run the code as it is and swap the system and graphics calls underneath it. Wine and Valve's Proton do this for Windows games on Linux.
+• Source port: rebuild the author's draft, rewrite the local parts and print a new edition.
 
-• Static recompilation: translate the whole binary ahead of time into C, then compile that for the new machine. N64Recomp does this for N64 games, XenonRecomp for Xbox 360 games.
+GTA 6 is an unusual case. The Xbox and a PC speak the same language (the same type of processor), so most of the game's code can run as it is. The hard part is the references: the Xbox system software and the graphics. That's why some experts say the GTA 6 "recomps" are really translation layers.
 
-• A source port: take decompiled source code, rewrite the platform parts, and compile it normally for the new target.
+AI is reported to help with that work, going through the code and changing it to run on PC.
 
-Compiling just means turning source code into machine code for one target. Recompiling is doing it again for a different target, either from recovered source or straight from the old binary.
+Take-Two isn't waiting. On 24 November, GitHub removed 3,007 projects linked to the biggest attempt, Leonida, after a Take-Two notice. In 2021 it did the same to fan versions of GTA III and Vice City.
 
-Which route you need depends mostly on the CPU.
-
-If the old and new machines speak different instruction sets, say the Xbox 360's PowerPC chip and a PC, the code itself has to be translated. That's emulation or recompilation.
-
-GTA 6 is the odd case. The Xbox Series runs on an AMD Zen 2 CPU with the same x86-64 instructions as a PC, so most of the game's code can run as it is. The hard part is everything around it: the Xbox system software, the graphics and the shaders. Several technical write-ups argue the GTA 6 "recomps" are really compatibility layers, closer to Wine than to N64Recomp.
-
-That's also where AI is reported to help. Mark Brown of Game Maker's Toolkit told the BBC people are using it "to try and decompile it, make a modified version that could run on PC, and compile a new version."
-
-GTA has been here before. In 2021, fans released re3 and reVC, reverse-engineered versions of GTA III and Vice City. Take-Two had them taken down, a counter-notice got them restored, and then Take-Two sued. The case was later dropped before it reached court.
-
-This time it moved faster. On 24 November GitHub processed a Take-Two notice covering 3,007 repos linked to Leonida, the biggest public attempt. The notice cites Rockstar's terms banning reverse engineering.
-
-Some caution before sharing clips. Rockstar and Take-Two haven't confirmed the leaked build is real. Progress claims come from the groups themselves, and reports put the Windows builds at a few frames per second. Any "GTA 6 PC" download you see is either a fake (often carrying malware) or the stolen build.
-
-Knowing which technique someone used tells you how much of the original they still depend on. For GTA 6, it's nearly all of it.
+Be careful: the leaked build isn't confirmed, the reports say the PC versions run at a few frames per second, and "GTA 6 PC" downloads are fakes, often with malware, or stolen.
 
 Links in reply 👇
