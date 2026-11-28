@@ -1,160 +1,183 @@
 ===== 1. STORY =====
 
-The Missing Piece In AI Software Factories Isn't The Coding Agent
+Everyone Is Building A Software Factory. Who Tells The Agents Where The Code Lives?
 
-Picture the pipeline a lot of teams are building. A ticket comes in. An agent plans the work, another writes the code, another reviews it, and a PR opens. No human in the middle.
+"Software factory" is suddenly everywhere.
 
-Now give it a real ticket at a big company: let customers pay with a gift card.
+Factory published "Factory 2.0: From coding agents to software factories" in June. Warp launched Warp Factories in August. Coforge announced an Autonomous Software Factory in October. Qodo is shipping approval workflows for agent-built PRs and writes about the software factory on its blog.
 
-That one change touches payments, pricing, orders and the receipt email. Four repos, maybe more, owned by four teams. Which ones should the agents open?
+YouTube has caught up too, with videos like Gauntlet's "How to Build Your Own Software Factory".
 
-Today a person answers that. They pick the repos, load them into a workspace and hope they didn't miss one. A factory can't stop and wait for that person on every ticket.
+And open source is full of them: superplane, Fabro ("the open source dark software factory"), and Addy Osmani's factory, "a reference software factory for Claude Code and Codex".
 
-AWS Labs open-sourced CodeKB to be the part of the pipeline that answers it. It's two weeks old, Apache-2.0, and v1.1.0 shipped on 27 November. The README frames it exactly this way: "Code understanding for the world of autonomous software factories."
+Getting a pipeline of agents to plan, code, review and open a PR is the part people have figured out. The harder part is context. The agents don't know your company.
 
-Here's how it builds that understanding.
+Take one ticket at a big shop: let customers pay with a gift card.
 
-It clones each repo and parses every function and class with Tree-sitter (14 languages). It rebuilds the call graph. Then a Claude model on Amazon Bedrock writes a business description of every function, including what the functions it calls do. Those descriptions are embedded as vectors.
+That touches payments, pricing, orders and the receipt email. Four repos, maybe more, owned by four teams.
 
-So an agent can ask over MCP, "where are payments authorized?", with no repo named at all. If it gives no scope, the search runs across every analyzed repo and returns matching functions, each tagged with the repo it lives in. From there the agent follows callers and callees to see what the change will hit.
+Normally an engineer who knows the system pulls those repos into a workspace and points the agent at them. But in an autonomous factory there's no engineer at that step. The agent gets the ticket and has to decide for itself which of hundreds of repos matter. It can't ask anyone.
 
-When code changes, a refresh re-summarizes only the changed functions and the callers that described them. That matters when agents are merging all day.
+AWS Labs open-sourced CodeKB for exactly this step. Its README says it plainly: "An autonomous software factory cannot wait for a human to hand-pick repositories for every task."
 
-And it all runs inside your own AWS account.
+How it works:
 
-It isn't a finished factory part yet. Bedrock is required even on a laptop, and every function costs an LLM call (default model Claude Opus 4.6). Scheduled refresh, resuming after a restart, scaling MCP across containers and detecting which repos depend on each other are all still on the roadmap. There are no published benchmarks.
+It parses every function in every repo with Tree-sitter and rebuilds the call graph. Then a Claude model on Amazon Bedrock writes a business description of each function, including what the code it calls does. A Bedrock Guardrail masks secrets and PII first. The descriptions become vectors.
 
-Sourcegraph and Augment already serve cross-repo context over MCP too, so the category isn't new. What's new is a big cloud vendor saying the quiet part: in an agent-run pipeline, the scarce thing is knowing where to look.
+Now an agent can ask, over MCP, "where are payments authorized?" without naming a repo. With no scope given, the search covers every analyzed repo. From each hit it can walk callers and callees to see what the change will break.
+
+When code changes, only the changed functions and the callers that described them get re-summarized.
+
+Now the caveats.
+
+It needs an LLM, and specifically Claude on Amazon Bedrock (default Claude Opus 4.6). Embeddings are fixed to Amazon Titan. No OpenAI, no Ollama.
+
+You can run the app locally in Docker, but you still need an AWS account. The setup script creates S3 buckets, a vector index, a KMS key and a Guardrail there. Local mode is for one person with no sign-in. For a team, you deploy it into AWS with CDK.
+
+Every function costs an LLM call. There are no published benchmarks yet, and scheduled refresh and resumable jobs are still on the roadmap.
+
+Factories are easy to build now. Giving them the knowledge your senior engineers carry is the real work.
 
 Links in reply 👇
 
 
 ===== 2. KARPATHY STYLE =====
 
-Reading the CodeKB README from AWS Labs. The framing is "autonomous software factories", and I think the framing is the most useful part.
+Thinking about the "software factory" wave for a moment.
 
-If you sketch a factory as a loop (ticket in, plan, code, review, PR out), the obvious bottleneck looks like the model writing code. It mostly isn't anymore. The step that quietly still needs a human is the first one: deciding which parts of a large codebase the task touches. In a big company that knowledge is spread across hundreds of repos and a few people's heads.
+The phrase is everywhere right now. Factory frames its 2.0 release as "from coding agents to software factories". Warp sells Warp Factories, Coforge an Autonomous Software Factory, and Qodo writes about quality control for the agentic software factory. There's a steady stream of how-to videos (Gauntlet has a full class on it), and open-source versions like superplane, Fabro and addyosmani/factory.
 
-CodeKB tries to turn that knowledge into something an agent can query.
+The loop itself is not that hard anymore: ticket in, plan, code, review, PR out. I think the interesting problem is the very first step, the one that still quietly assumes a human.
 
-The mechanism is simple and a bit clever. Parse every function, rebuild the call graph, then have an LLM write a business-language description of each function that includes what its callees do. Embed the descriptions, not the code.
+In a big company, a single feature like checkout is spread across many repos. Someone who knows the system pulls the right ones into a workspace before the agent starts. That someone is doing retrieval, from memory. Take them out of the loop and the agent is starting cold, with hundreds of repos and no idea which matter.
 
-The analogy I'd use is a new hire's first week. You don't hand them the source. You walk them through what each part of the system is for. CodeKB writes that walkthrough once, for every function, and keeps it updated: a refresh re-summarizes only the changed functions and the callers whose descriptions mentioned them.
+AWS Labs' CodeKB is an attempt to make that memory queryable.
 
-Over MCP, an agent can search those descriptions with no scope and get hits from every analyzed repo, then follow the call graph from there. That's the factory's "which repos?" question answered by a tool call instead of a person.
+The trick is in what gets embedded. It parses every function, rebuilds the call graph, then has an LLM write a business-language description of each function that includes what its callees do. You embed those descriptions, not raw code. You end up searching explanations, built bottom-up along the call graph.
 
-It's early. Bedrock is required even locally, every function costs an LLM pass, and the operational bits a factory needs (scheduled refresh, resumable jobs, scale-out MCP) are on the roadmap. No benchmarks yet.
+Over MCP, an agent searches with no scope and gets hits across every analyzed repo, then walks callers and callees. On a code change, only the changed functions and the callers that mentioned them get re-summarized.
 
-What I'd want to see: a fixed set of past tickets, agents run with and without it, scored on whether they found the repos a senior engineer would have named. If that number is high, this layer becomes table stakes.
+The practical constraints are worth being clear about. The LLM has to be Claude on Amazon Bedrock, and embeddings are Titan. You can run the container on your laptop, but it still needs an AWS account for the models, the vector index, S3 and KMS. Team use means deploying it into AWS. Every function is an LLM call, and there are no benchmarks yet.
+
+What I'd want to see: a set of past tickets, an agent run with and without this, scored on whether it found the repos a senior engineer would have picked.
 
 Links in reply 👇
 
 
 ===== 3. SIMON WILLISON STYLE =====
 
-CodeKB, new from AWS Labs (Apache-2.0, v1.1.0 released 27 November 2026).
+Notes on software factories, and on the AWS tool aimed at their weakest step.
 
-The README opens with: "Code understanding for the world of autonomous software factories." And then: "An autonomous software factory cannot wait for a human to hand-pick repositories for every task."
+The term is everywhere this year:
 
-That's the pitch. Agents need to find the relevant repos themselves.
+• Factory: "Factory 2.0: From coding agents to software factories" (15 June 2026).
+• Warp: "Introducing Warp Factories", open infrastructure for building your software factory (August 2026).
+• Coforge: "Autonomous Software Factory" press release (29 October 2026).
+• Qodo: Auto Approval Workflows and Agent Session Review, framed around the software factory (November 2026).
+• Video: Gauntlet Night School, "How to Build Your Own Software Factory".
+• Open source: superplanehq/superplane, fabro-sh/fabro, addyosmani/factory, the-open-engine/zeroshot.
 
-What it is: one container serving a web UI, a REST API and an MCP server. It parses code with Tree-sitter, rebuilds the call graph, and has an LLM on Amazon Bedrock describe each function "in business language, together with the code it calls". Titan embeds the descriptions into Amazon S3 Vectors.
+The common gap is context. An agent can write the change. It doesn't know which of your repos the change belongs in. Usually a person who knows the system pulls the right repos into a workspace first. In an autonomous factory, nobody does that.
 
-The detail that makes the factory claim real is in the MCP tool's own docstring. get_component_from_description takes an optional space_id, space_ids or hyperspace_id, and the docstring says "omit all to search across every space". So an agent can describe a task and get matches from every analyzed repo, each with a space-qualified ID it can pass to show_component, trace_flow or show_dependencies.
+The CodeKB README (awslabs, Apache-2.0, v1.1.0 released 27 November) says it directly: "An autonomous software factory cannot wait for a human to hand-pick repositories for every task."
 
-The other piece is incremental refresh, which "walks the call graph in reverse to find the callers whose descriptions included the changed code" and re-summarizes only those.
+How it handles that: Tree-sitter parses every function, the call graph is rebuilt, and an LLM on Bedrock describes each function "in business language, together with the code it calls". Titan embeds those descriptions into Amazon S3 Vectors.
+
+The key detail is in the MCP tool's docstring. get_component_from_description accepts space_id, space_ids or hyperspace_id, and you can "omit all to search across every space". So a factory agent can search the whole organisation in one call, then use show_dependencies or trace_flow on the results.
 
 Things to be careful about:
 
-• It needs Amazon Bedrock even when run locally. Default model: Claude Opus 4.6.
-• Cost is mostly Bedrock summarization and grows with the number of functions.
-• The CDK deployment's default non-dev stages run 10 Fargate tasks of 4 vCPU and 16 GB each.
-• A space is one branch at one commit, capped at 10,000 source files.
-• Several things a factory would lean on are roadmap items: scale-out MCP (Now), scheduled refresh and resumable analysis (Next), IAM SigV4 machine-to-machine auth (Exploring), and automatically finding which repos depend on each other (Later).
-• No benchmarks yet; benchmarking is listed under "Next".
+• LLM required: Claude via Amazon Bedrock (default Opus 4.6). Qwen parsing exists but is labelled experimental. Embeddings are fixed to Titan.
+• "Local" means the container runs on your machine. It still needs an AWS account, plus S3, S3 Vectors, KMS and a Bedrock Guardrail, created by infra/cli/setup_aws.sh.
+• Local mode is single-user with sign-in off. For a team, deploy with CDK. Its default non-dev stages run 10 Fargate tasks of 4 vCPU and 16 GB each.
+• Every function costs an LLM call. No benchmarks yet.
+• Scheduled refresh and resumable analysis are listed under "Next" on the roadmap.
 
-Start with docs/mcp.md, then ROADMAP.md.
+Read docs/local.md and docs/mcp.md first.
 
 Links in reply 👇
 
 
 ===== 4. SWYX STYLE =====
 
-Every serious "AI software factory" pitch eventually hits the same wall: the agents can write code, but nothing tells them which of your hundreds of repos the ticket is about.
+2026 is the year "software factory" became a product category.
 
-That missing layer is turning into its own category, a context engine that agents query before they act. AWS just shipped an open-source one, and it's explicitly built for the factory case.
+Factory relaunched as Factory 2.0 around it. Warp built Warp Factories. Coforge sells an Autonomous Software Factory. Qodo is positioning itself as the quality and approval layer for agent-built code. YouTube is full of build-your-own-factory tutorials, and open source has superplane (10k+ stars), Fabro and addyosmani/factory.
 
-Who's already in the category:
+The orchestration layer is crowded and getting cheaper to build. The layer underneath it isn't: context.
 
-• Sourcegraph: cross-repo search and precise code navigation over MCP.
-• Augment Context Engine: shipped as a standalone MCP server in February 2026.
-• DeepWiki: generated wikis and Q&A for public GitHub repos.
-• Greptile: a code graph, mostly in service of AI code review.
-• AWS's own earlier Git Repo Research MCP server: per-repo semantic search, now deprecated.
+Picture a factory agent picking up "add gift card payments" at a big company. That touches payments, pricing, orders and email, across repos owned by different teams. In a human workflow, a senior engineer pulls the right repos into the workspace. In a factory, nobody's there to do it.
 
-CodeKB (awslabs, Apache-2.0) indexes descriptions rather than code. Claude on Bedrock writes a business summary of every function, covering what its callees do. An agent searches those by intent across every analyzed repo in one MCP call, then walks the call graph for impact. Refresh only redoes what changed. All of it sits in your own AWS account.
+That's the slot AWS just went after with CodeKB (awslabs, Apache-2.0). The README literally frames it as code understanding "for the world of autonomous software factories."
 
-That last point is the AWS play. If agents are going to run unattended on your code, enterprises will want the map of that code inside their own account, not a startup's cloud.
+The approach: parse every function, rebuild the call graph, and have Claude on Bedrock write a business description of each function, including what its callees do. Agents search those descriptions over MCP across every analyzed repo in one call, then walk the call graph for impact.
 
-It's two weeks old. Bedrock is required even locally, there are no benchmarks, and the ops features a factory needs (scheduled refresh, resumable jobs, scale-out MCP) are still roadmap.
+Other context engines in the same race: Sourcegraph and Augment both serve cross-repo context over MCP.
 
-My read: the coding model is becoming a commodity, and the factory's moat moves to who owns the map of your codebase. Every cloud will ship one of these within a year, and they'll end up competing on refresh cost and retrieval benchmarks nobody has published yet.
+The catch is that it's an AWS product through and through. The LLM is Claude on Bedrock and the embeddings are Titan. You can run the container locally, but S3, the vector index, KMS and the Guardrail live in your AWS account either way. Teams deploy it into AWS. No benchmarks yet.
+
+My read: factories are commoditizing fast, so the fight moves underneath them, to whoever owns the map of your codebase. AWS is making that map open source and pinning it to Bedrock.
 
 Links in reply 👇
 
 
 ===== 5. HAMEL HUSAIN STYLE =====
 
-AWS Labs pitches CodeKB as the code-understanding layer for "autonomous software factories". If you're building an agent pipeline, here's how I'd think about it.
+Software factories are the hot thing. Factory, Warp, Coforge and Qodo are all marketing them. There are tutorials (Gauntlet's "How to Build Your Own Software Factory") and open-source versions (superplane, Fabro, addyosmani/factory).
 
-In a factory, this sits at the very start. Before any agent plans or writes, it asks CodeKB which code the ticket touches. Every later step trusts that answer. Which makes it the step you most need to measure.
+Building the loop is the easy part. What breaks it is context.
 
-What it gives you:
+Example: a factory agent gets "add gift card payments". At a big company that touches payments, pricing, orders and email, in separate repos. A person who knows the system would pull those into the workspace first. An autonomous agent has no such person, so it guesses or searches. If it misses a repo, every later step builds on that miss.
 
-• A business-language description of every function, written by Claude on Bedrock, including what its callees do.
-• An MCP search tool that, with no scope given, searches every analyzed repo and returns matches tagged with their repo.
+AWS Labs released CodeKB to fill that step. Here's what it actually gives you, and what it doesn't.
+
+It gives you:
+
+• Business-language descriptions of every function, written by Claude on Bedrock, covering what each function's callees do.
+• One MCP search that, with no scope, covers every analyzed repo.
 • Call-graph tools (show_dependencies, trace_flow) for impact analysis.
-• Incremental refresh that redoes only changed functions and their callers.
+• Refresh that re-summarizes only what changed.
 
-What it doesn't give you:
+It doesn't give you:
 
-• Evidence. No published benchmarks; benchmarking is on the roadmap under "Next".
-• Factory-grade ops yet. Scheduled refresh and resumable analysis are "Next", scale-out MCP is "Now".
-• Free runs. Every function costs an LLM call, and Bedrock is required even locally.
+• Model choice. The LLM is Claude via Bedrock and the embeddings are Titan. No OpenAI or local models.
+• AWS-free local use. The container runs locally, but it needs your AWS account for Bedrock, S3, S3 Vectors, KMS and a Guardrail.
+• Evidence. There are no published benchmarks.
+• Unattended ops yet. Scheduled refresh and resumable analysis are on the roadmap.
 
-The failure mode to watch: the summaries are LLM output. A wrong summary at step one sends every agent downstream to the wrong repo, and nothing after it will notice.
+The summaries are LLM output. A wrong one sends the whole factory to the wrong repo.
 
-Before trusting it in a pipeline:
+Before putting it in a pipeline:
 
-1. Pull 30 to 50 closed tickets where you know exactly which repos and functions changed.
-2. Run only the retrieval step, with no scope, and score recall of the right repos and call sites.
-3. Compare against your current approach, whether that's grep, embeddings over raw code, or a human picking.
-4. Track Bedrock token cost per space (CodeKB shows it after each analysis).
-5. Read every miss and label it: bad summary, bad search, or a dependency between repos it couldn't see.
+1. Take 30 to 50 closed tickets where you know which repos and functions changed.
+2. Run only the retrieval step, with no scope.
+3. Score recall of the right repos and call sites against your current method.
+4. Track the Bedrock token cost per repo (CodeKB shows it after each analysis).
+5. Read every miss and label it: bad summary, bad search, or a link between repos it couldn't see.
 
-Ship it into the factory only if step 2 beats step 3.
+Adopt it only if step 3 says it wins.
 
 Links in reply 👇
 
 
 ===== 6. ETHAN MOLLICK STYLE =====
 
-Companies are starting to build what AWS calls "autonomous software factories": chains of AI agents that take a request, write the code and submit it, with no person in between. What stops them from working?
+You may have noticed a new phrase: the "software factory".
 
-Often it isn't the AI's coding skill. It's that it doesn't know the company.
+The idea is a chain of AI agents that takes a request, plans it, writes the code, reviews it and submits it, with little or no human help. Companies are racing to sell it. Factory, Warp, Coforge and Qodo have all launched products or features around it this year. YouTube has full classes on building one, and there are free open-source versions anyone can download.
 
-Big organizations split their software into hundreds of separate projects. One feature, like checkout on a shopping site, can be spread across the cart, pricing, payments, orders and email, each owned by a different team. Knowing which pieces a change will touch usually lives in a few experienced engineers' heads. Today a human picks the right projects for the AI. A factory can't stop and ask every time.
+Building the chain is no longer the hard part. The hard part is that the AI doesn't know your company.
 
-AWS Labs just released a free, open-source tool called CodeKB aimed at that gap. It reads every function across all of a company's code and has an AI write a plain-English note about what each one does for the business, including what it gets done through the other code it calls.
+Large organizations split their software into hundreds of separate projects. Something as ordinary as a shopping site's checkout can involve the cart, pricing, payments, orders and email, each in a different project owned by a different team. When a person uses an AI today, someone who knows the system first gathers the right projects and hands them over.
 
-The agents can then ask it questions like "where do we take payments?" and get pointed to the right places across all the projects at once, before they start changing anything.
+In a true factory there's no one at that step. The AI gets a request and has to work out by itself where the relevant code lives. It's like hiring a very fast contractor and giving them no map of the building.
 
-Think of it as writing down the tour a senior engineer gives a new hire, for every corner of the system, and keeping it updated as the code changes.
+AWS just released a free, open-source tool called CodeKB that tries to draw that map. It reads every function across all of a company's code and has an AI write a plain-English note about what each one does for the business. The factory's agents can then ask "where do we take payments?" and be pointed to the right places across every project at once.
 
-There are real reasons for caution. Nobody has published evidence yet that it makes the agents' work better. The notes are themselves AI-written, so they can be wrong, and in a pipeline with no human, a wrong note can send every later step in the wrong direction. Some features an unattended system would need are still on the roadmap.
+There are limits. It only works with Anthropic's Claude models, run through Amazon's cloud. You can run the program on your own computer, but it still needs an Amazon cloud account behind it. Every function is read by a paid AI model, so large codebases cost real money. And no one has published evidence yet that it makes the agents' work better.
 
-But the direction says something. If the hard part of automating software is knowing the organization, then the valuable thing isn't the AI that writes the code. It's whoever writes down how the company actually works.
+Still, it points somewhere interesting. If anyone can build the factory, the advantage goes to whoever can write down how their organization actually works.
 
-What happens to the role of the senior engineer when that knowledge becomes a service the agents call?
+What happens to the people who carry that knowledge today?
 
 Links in reply 👇
