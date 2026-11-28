@@ -1,0 +1,182 @@
+=== 1. STORY ===
+
+A Course Platform's Welcome Email Became a Phishing Sender
+
+You sign up for an online course and get a welcome email. It comes from the platform's real address and passes every mail check. You'd never think twice about it.
+
+That trust is what an attacker used against LearnWorlds this month.
+
+Nobody broke in, according to CEO Panos Siozos. The attacker used features the platform already had.
+
+Here is how it worked, as the company describes it.
+
+The attacker opened about 570 free trial accounts between November 7 and 14, getting around the per-customer limit on trials.
+
+In each trial, they rewrote the welcome email so it read like a YouTube copyright notice.
+
+Then they added their own lists of target addresses as users. Each new user triggered the welcome email, sent from LearnWorlds' own address.
+
+About 13,000 emails went out in total.
+
+LearnWorlds blocked the first sender on November 9. Reports say the attacker came back with a second wave within 40 minutes.
+
+The link led to a fake YouTube page for reviewing copyright claims, with YouTube and Google branding. The Register, citing security researcher Marcus Hutchins, reports it showed a real Google authorization screen. Approving it would have given the attacker control of the victim's Google and YouTube accounts.
+
+For anyone who gets one of these: real copyright strikes show up in YouTube Studio. Check there, not in the email.
+
+For builders: if strangers can sign up and make your system email any address they like, you are running a mail server for them. Rate limits per account don't help much when accounts cost nothing.
+
+LearnWorlds says it removed the trial accounts, improved its bot checks and now holds new accounts whose emails trigger fraud flags.
+
+A caveat. Every number here comes from the company, as reported by The Register. LearnWorlds also says it can't tell how many people clicked, because the link was disguised. So we don't know how many accounts were lost.
+
+This is an old trick. Attackers have long sent mail through invite and notification features of trusted services, because that mail looks clean.
+
+A welcome email is still an outbound mail server. Any feature that lets strangers trigger messages from your domain is an attack surface, even when no one gets hacked.
+
+Links in reply 👇
+
+
+=== 2. KARPATHY STYLE ===
+
+Free Trials as a Mail Server
+
+Reading the LearnWorlds phishing story, and the part I keep thinking about is that nothing was hacked.
+
+According to CEO Panos Siozos, an attacker opened about 570 free trials (Nov 7 to 14), edited the welcome email into a fake YouTube copyright notice, and added target addresses as "users". The platform did the rest. About 13,000 emails, all sent from LearnWorlds' real address.
+
+I think the useful way to see this: a SaaS product with a customisable welcome email is, from the outside, a function. Input: any email address plus any message text. Output: a message delivered from a domain with a good reputation. That's a mail relay. It just has a sign-up form in front of it.
+
+An analogy. A hotel lets any guest write the note left on the next guest's pillow. Handy feature. Now anyone can book a room for free, as many times as they like.
+
+The attacker came back within 40 minutes of the first block on Nov 9, per reports. That tells you the bottleneck wasn't skill. It was how fast new accounts could be made.
+
+The landing page reportedly copied a YouTube copyright review page and, according to The Register citing Marcus Hutchins, led to a real Google authorization screen. If you approve that, you've handed over your Google and YouTube accounts. No password needed.
+
+Caveats: all figures are the company's, and it says it can't count clicks because the link was disguised.
+
+What I'd actually want to see is platforms treating "who can make us send mail, and to whom" as a security boundary with its own limits. Per account limits mean little when accounts are free. imo the limit has to sit on the domain's total outbound mail to unverified recipients.
+
+Links in reply 👇
+
+
+=== 3. SIMON WILLISON STYLE ===
+
+LearnWorlds and the Welcome Email Phishing Run
+
+The Register has the story of an attacker who used LearnWorlds, an online course platform, to send about 13,000 phishing emails from the company's own address.
+
+The key quote from CEO Panos Siozos, as reported: "In total, around 13,000 emails were sent to addresses on external recipient lists supplied by the sender."
+
+What happened, per the company:
+
+• About 570 free trial accounts opened between November 7 and 14
+• The per-customer trial limit was bypassed
+• The welcome email was rewritten as a fake YouTube copyright notice
+• Target addresses were added as users, which triggered the email
+• First sender blocked November 9, second wave within 40 minutes
+
+The interesting detail is the payload. The page copied a YouTube copyright review page. The Register, citing researcher Marcus Hutchins, says it showed a real Google authorization screen. That's consent phishing: the victim isn't typing a password into a fake form, they're approving an app on Google's own screen. Password managers and "check the URL" advice don't catch that.
+
+The second interesting detail is why the emails got through. They came from LearnWorlds' real mail setup, so SPF, DKIM and DMARC checks would pass. Those checks prove who sent a message. They say nothing about whether the content is honest.
+
+Things to be careful about:
+
+• Every number comes from the company via The Register. Some write-ups say 576 accounts and 13,576 emails.
+• Some reports say part of the total came from one paid account on November 14, so "all free trials" may be too simple.
+• LearnWorlds says it can't tell how many people clicked, because the link was disguised.
+• It says it found no breach of its systems.
+
+Fixes it lists: trial accounts removed, better bot checks, and holds on new accounts whose emails trigger fraud flags.
+
+If you got a copyright notice: real strikes appear in YouTube Studio under Active copyright strikes.
+
+Links in reply 👇
+
+
+=== 4. SWYX STYLE ===
+
+Your Product's Email Feature Is Someone Else's Mail Server
+
+The LearnWorlds incident fits a pattern that keeps coming back: abusing trusted senders.
+
+Attackers don't need to spoof domains anymore. They borrow real ones through features:
+
+• Invite emails from collaboration apps
+• Share notifications from file storage services
+• Calendar invites that land straight in the inbox
+• And now, course platform welcome emails
+
+The LearnWorlds case, per CEO Panos Siozos: about 570 free trials opened Nov 7 to 14, the per-customer trial cap bypassed, the welcome email rewritten as a fake YouTube copyright notice, target addresses added as students. About 13,000 emails sent from the company's own address.
+
+Blocked on Nov 9. Back within 40 minutes, per reports.
+
+The payload was consent phishing. A fake YouTube copyright page that, according to The Register citing Marcus Hutchins, showed a real Google authorization screen. Approve it and the attacker controls your Google and YouTube accounts.
+
+Where this fits: email authentication won. SPF, DKIM and DMARC made spoofing hard. So the attack moved up a layer, to getting a legitimate service to send the message for you.
+
+Numbers are the company's own. It says it can't count clicks because the link was disguised.
+
+My take: "can a stranger make us send a message to any address?" is going to become a standard question in security reviews, next to "can a stranger make us fetch any URL?" Product-led growth means free sign-ups. Free sign-ups plus custom email content is a relay. Teams that ship both need to price that in.
+
+Links in reply 👇
+
+
+=== 5. HAMEL HUSAIN STYLE ===
+
+The Feature Worked Exactly as Designed
+
+Everyone wants to call the LearnWorlds incident a hack. The CEO says it wasn't, and I think that's the more uncomfortable answer.
+
+What the attacker got, according to Panos Siozos:
+
+• About 570 free trial accounts, Nov 7 to 14, past the per-customer limit
+• A welcome email they could rewrite (they made it a fake YouTube copyright notice)
+• Delivery to any address they added as a user
+• About 13,000 emails from LearnWorlds' real address
+
+What they didn't need: stolen credentials, a software bug, or a spoofed domain.
+
+The link went to a fake YouTube copyright page. The Register, citing Marcus Hutchins, says it showed a real Google authorization screen, which would hand over Google and YouTube accounts if approved.
+
+What the defences gave LearnWorlds: they blocked the first sender on Nov 9. What they didn't give: the attacker was back within 40 minutes, per reports. And the company says it can't tell how many people clicked, because the link was disguised.
+
+So the per-account limit wasn't the right control. You can't fix that by adding a fraud tool and hoping. You fix it by testing the feature the way an attacker would use it.
+
+If your product sends email for users, a short recipe:
+
+1. Write the abuse cases down. "New account, 500 unverified recipients, custom body with a link" is a test case.
+2. Get a baseline. How many messages to unverified addresses does a normal trial send in its first day?
+3. Compare against it. Alert on the total across all new accounts, not per account.
+4. Read the actual messages. Look at a sample of edited templates from new accounts every week. Someone looking would have spotted a "copyright notice" in a course welcome email.
+
+LearnWorlds' fixes: removed the trials, better bot checks, holds on new accounts with emails that trigger fraud flags. All figures are the company's own.
+
+Links in reply 👇
+
+
+=== 6. ETHAN MOLLICK STYLE ===
+
+When the Real Sender Is the Problem
+
+Most of us learned one rule about phishing: check who it's from. What happens when the sender really is who it says?
+
+That's what happened with LearnWorlds, a platform for online courses.
+
+Think of it like a print shop that lets anyone walk in, use the company letterhead for free, and mail the letter to whoever they like. Every letter is real letterhead. The words on it are not.
+
+According to CEO Panos Siozos, an attacker opened about 570 free trial accounts between November 7 and 14. Each trial lets you edit the welcome email new students get. The attacker made it look like a YouTube copyright warning, then added thousands of addresses as "students".
+
+About 13,000 emails went out from LearnWorlds' own address. After the first block on November 9, a second wave reportedly began within 40 minutes.
+
+The link led to a fake YouTube page. The Register, citing security researcher Marcus Hutchins, says it then showed a real Google approval screen. Clicking "allow" there would have given the attacker your Google and YouTube accounts.
+
+What we know: the company's own account of how it was done, and its fixes (removed accounts, better bot checks, holds on suspicious sign-ups). It says its systems weren't breached.
+
+What we don't know: how many people clicked. The company says the link was disguised, so it can't tell. All the numbers come from LearnWorlds itself.
+
+For anyone with a YouTube channel, the practical advice is simple. Real copyright strikes appear in YouTube Studio. Go there directly instead of clicking.
+
+The bigger question is about trust. If "it came from the real company" no longer means "the company wrote it", what should the rest of us look for?
+
+Links in reply 👇
