@@ -18,11 +18,11 @@ But understanding a book doesn't put it in a new language. To run a game on anot
 
 • Source port: rebuild the author's draft, rewrite the local parts and print a new edition.
 
-GTA 6 is an unusual case. The Xbox and a PC speak the same language (the same type of processor), so most of the game's code can run as it is. The hard part is the references: the Xbox system software and the graphics. That's why some experts say the GTA 6 "recomps" are really translation layers.
+GTA 6 is an unusual case. The Xbox and a PC speak the same language (the same type of processor), so most of the game's code can run as it is. The hard part is the references: the Xbox system software and the graphics. That's why some technical write-ups say the GTA 6 "recomps" are really translation layers.
 
 AI is reported to help with that work, going through the code and changing it to run on PC.
 
-Take-Two isn't waiting. On 24 November, GitHub removed 3,007 projects linked to the biggest attempt, Leonida, after a Take-Two notice. In 2021 it did the same to fan versions of GTA III and Vice City.
+Take-Two isn't waiting. On 24 November, GitHub removed 3,007 projects linked to the biggest attempt, Leonida, after a Take-Two notice. In 2021 it also had fan versions of GTA III and Vice City taken down.
 
 Be careful: the leaked build isn't confirmed, the reports say the PC versions run at a few frames per second, and "GTA 6 PC" downloads are fakes, often with malware, or stolen.
 
