@@ -1,0 +1,43 @@
+Decompile, Recompile, Emulate: How People Are Trying To Get GTA 6 On PC
+
+GTA 6 is out on PS5 and Xbox Series, with no PC version announced. There are reports of around 25 to 30 fan projects trying to make one from a leaked Xbox build, and words like "decompile" and "recompile" are getting thrown around a lot.
+
+They mean different things, so here's the plain version.
+
+The first way to copy a game doesn't touch its code at all. You play it, take screenshots, and build something that works the same way. That's replication. The BBC's example is the indie puzzle game 204Snake, copied with "the exact same mechanics" and "the art looking a bit off". AI chatbots have made this kind of copy much quicker to produce.
+
+Everything else starts from the real files. That's reverse engineering.
+
+Reverse engineering is the umbrella term. A game ships as machine code, which only the CPU reads. Tools like Ghidra and IDA turn it back into assembly (disassembly) or into something closer to C (decompilation).
+
+The recent hype is about letting AI agents drive those tools. REA (Reverse Engineer Anything) is an open-source, MIT-licensed project that connects coding agents to Ghidra, IDA and Hopper through MCP. GhidraMCP does a similar job for Ghidra on its own.
+
+But reverse engineering doesn't make anything cross-platform by itself. It gives you understanding. To run the game on a different machine you still need one of these:
+
+• Emulation: simulate the old console in software while the game runs. One emulator can handle many games, but decoding instructions live costs speed.
+
+• A translation layer: run the code as it is and swap the system and graphics calls underneath it. Wine and Valve's Proton do this for Windows games on Linux.
+
+• Static recompilation: translate the whole binary ahead of time into C, then compile that for the new machine. N64Recomp does this for N64 games, XenonRecomp for Xbox 360 games.
+
+• A source port: take decompiled source code, rewrite the platform parts, and compile it normally for the new target.
+
+Compiling just means turning source code into machine code for one target. Recompiling is doing it again for a different target, either from recovered source or straight from the old binary.
+
+Which route you need depends mostly on the CPU.
+
+If the old and new machines speak different instruction sets, say the Xbox 360's PowerPC chip and a PC, the code itself has to be translated. That's emulation or recompilation.
+
+GTA 6 is the odd case. The Xbox Series runs on an AMD Zen 2 CPU with the same x86-64 instructions as a PC, so most of the game's code can run as it is. The hard part is everything around it: the Xbox system software, the graphics and the shaders. Several technical write-ups argue the GTA 6 "recomps" are really compatibility layers, closer to Wine than to N64Recomp.
+
+That's also where AI is reported to help. Mark Brown of Game Maker's Toolkit told the BBC people are using it "to try and decompile it, make a modified version that could run on PC, and compile a new version."
+
+GTA has been here before. In 2021, fans released re3 and reVC, reverse-engineered versions of GTA III and Vice City. Take-Two had them taken down, a counter-notice got them restored, and then Take-Two sued. The case was later dropped before it reached court.
+
+This time it moved faster. On 24 November GitHub processed a Take-Two notice covering 3,007 repos linked to Leonida, the biggest public attempt. The notice cites Rockstar's terms banning reverse engineering.
+
+Some caution before sharing clips. Rockstar and Take-Two haven't confirmed the leaked build is real. Progress claims come from the groups themselves, and reports put the Windows builds at a few frames per second. Any "GTA 6 PC" download you see is either a fake (often carrying malware) or the stolen build.
+
+Knowing which technique someone used tells you how much of the original they still depend on. For GTA 6, it's nearly all of it.
+
+Links in reply 👇
